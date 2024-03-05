@@ -6,6 +6,7 @@ import { Login } from '../pages/Auth/Login/Login'
 import { TravelContext } from '../Context/TravelsProvider'
 import { NavBarApp } from '../components/NavBarApp/NavBarApp'
 import { Home } from '../pages/Home/Home'
+import { Footer } from '../components/Footer/Footer'
 
 
 export const AppRoutes = () => {
@@ -35,7 +36,7 @@ export const AppRoutes = () => {
           </Routes>
         </main>
         <footer>
-
+              <Footer />
         </footer>
       </Container>
     </>  
