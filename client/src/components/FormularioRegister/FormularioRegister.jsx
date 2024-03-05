@@ -5,7 +5,8 @@ import axios from "axios"
 const initialValue = {
   name:"",
   email:"",
-  password:""
+  password:"",
+  password2:""
 }
 
 export const FormularioRegister = () => {
@@ -25,6 +26,9 @@ export const FormularioRegister = () => {
     }
     else if (register.password.length < 2){
       setErrorMessage("La contraseña minima debe contener mas de 8 caracteres")
+    }
+    else if(register.password!=register.password2){
+      setErrorMessage("Las contraseñas no coinciden")
     }
     else{
       axios
@@ -55,7 +59,7 @@ export const FormularioRegister = () => {
         value={register.name}
         onChange={handleChange}
         type="text" 
-        placeholder="Enter name" />
+        placeholder="Introduce tu nombre" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -65,7 +69,7 @@ export const FormularioRegister = () => {
         value={register.email}
         onChange={handleChange}
         type="text" 
-        placeholder="Enter Email" />
+        placeholder="Introduce tu Email" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -75,25 +79,25 @@ export const FormularioRegister = () => {
         value={register.password}
         onChange={handleChange}
         type="password" 
-        placeholder="Enter Password" />
+        placeholder="Introduce tu contraseña" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Repeat Password</Form.Label>
+        <Form.Label>Repetir Password</Form.Label>
         <Form.Control 
-        name="password"
-        value={register.password}
+        name="password2"
+        value={register.password2}
         onChange={handleChange}
         type="password" 
-        placeholder="Repeat another Password" />
+        placeholder="Repite tu contraseña" />
       </Form.Group>
 
       <span className='errorMessage'>{errorMessage}</span>
       <p>Estas registrado,<Link to='/login'>Login aqui</Link> </p>
       
       <div>
-      <Button onClick={onSubmit} className='ms-1 me-1' variant="primary">Submit</Button>
-      <Button onClick={()=>{navigate('/login')}} className='ms-1 me-1' variant="primary">Cancel</Button>
+      <Button onClick={onSubmit} className='ms-1 me-1' variant="primary">Aceptar</Button>
+      <Button onClick={()=>{navigate('/login')}} className='ms-1 me-1' variant="primary">Cancelar</Button>
       </div>
       
     </Form>

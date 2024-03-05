@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Button, Container, Nav, Navbar, NavDropdown  } from 'react-bootstrap'
+import { TravelContext } from '../../Context/TravelsProvider';
+import { deleteLocalStorage } from '../../utils/localStorageUtils';
 import './navbar.scss'
 
 export const NavBarApp= () => {
 
+  const navigate = useNavigate();
+
+  const {user, setUser, setToken}= useContext(TravelContext)
+
+
+  const LogOut=()=>{
+    deleteLocalStorage("token")
+    setUser()
+    setToken()
+    navigate("/")
+  }
 
   return (
     <Navbar expand="lg" className="custom-navbar-bg">
@@ -27,17 +41,37 @@ export const NavBarApp= () => {
               <Nav.Link href="#action2">SERVICIOS</Nav.Link>
               <Nav.Link href="#action2">BLOG</Nav.Link>
               <Nav.Link href="#action2">CONTACTO</Nav.Link>
-              <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
+            
+              {!user ? 
+                <div>
+                  <Button
+                    onClick={()=>{navigate("/login")}}
+                    className='ml-auto' >Iniciar sesión</Button>
+                </div>
+                :
+                <div className='d-flex'>
+                  <div className='navbar-avatar'>
+                  <NavDropdown title={user?.user_img ? <img onClick={()=>{navigate("/userProfile")}}src={`http://localhost:3000/images/users/${user?.user_img}`} alt="" /> :
+                    <span>{user?.name[0].toUpperCase()}</span>} id="navbarScrollingDropdown">
+                <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
+                <NavDropdown.Item href="#action4">Crear curso</NavDropdown.Item>
+                <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action5">
-                  Something else here
+                  <Button
+                    onClick={LogOut}
+                    className='ms-1 me-1'
+                    variant="outline-success">
+                  LogOut</Button>
                 </NavDropdown.Item>
               </NavDropdown>
-              <Button className='ml-auto'>Iniciar sesión</Button>
+                  </div>
+
+                  
+
+          </div> 
+                }
+              
             </Nav>
           </Navbar.Collapse>
         </div>
