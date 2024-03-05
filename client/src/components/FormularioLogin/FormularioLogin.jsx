@@ -29,10 +29,10 @@ export const FormularioLogin = () => {
         .post('http://localhost:3000/users/login', login)
         .then((res)=>{
           if(res.data.user.type===1){
-           navigate("/about") 
+           navigate("/") 
           }
           else{
-            navigate("/about") 
+            navigate("/") 
           }
                     
           //guardar en el context
@@ -59,13 +59,13 @@ export const FormularioLogin = () => {
       <Form.Group 
       className="mb-3" 
       controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Control
         name="email"
         type="text"
         value={login.email}
         onChange={handleChange}
-        placeholder="Enter email" />
+        placeholder="Introduce tu Email" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -75,21 +75,21 @@ export const FormularioLogin = () => {
         type="password"
         value={login.password}
         onChange={handleChange}  
-        placeholder="Password" />
+        placeholder="Introduce tu contraseña" />
       </Form.Group>
-
-      <p>Estas registrado,<Link to='/register'>Registro aqui</Link> </p>
+    
+      <p>Estas registrado? <Link to='/register'>Registro aqui</Link> </p>
       <span className='errorMessage'>{message}</span>
 
       <div>
       <Button 
       onClick={onSubmit}
       className='ms-1 me-1' 
-      variant="primary">Submit</Button>
+      variant="primary">Aceptar</Button>
       <Button 
-      onClick={()=>{navigate('/about')}} 
+      onClick={()=>{navigate('/')}} 
       className='ms-1 me-1' 
-      variant="primary">Cancel</Button>
+      variant="primary">Cancelar</Button>
       </div>
 
     </Form>

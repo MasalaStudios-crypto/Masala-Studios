@@ -33,3 +33,18 @@
 .nav-alinear2 {
   padding-right: 38px !important;
 }
+
+.navbar-avatar{
+  background-color: rgba(179, 154, 108, 0.543);
+  color: white;
+  
+  text-align: center;
+  span{
+    font-size: 2rem;
+  }
+  img{
+   width: 50px; 
+   border-radius: 50%;
+  }
+
+}
