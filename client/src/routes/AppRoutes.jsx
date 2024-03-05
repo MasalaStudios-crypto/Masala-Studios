@@ -4,6 +4,7 @@ import {Container} from 'react-bootstrap'
 import { Register } from '../pages/Auth/Register/Register'
 import { Login } from '../pages/Auth/Login/Login'
 import { TravelContext } from '../Context/TravelsProvider'
+import { NavBarApp } from '../components/NavBarApp/NavBarApp'
 
 
 export const AppRoutes = () => {
@@ -13,7 +14,9 @@ export const AppRoutes = () => {
   
     <>
       <header>
-
+        <nav>
+          <NavBarApp />
+        </nav>
       </header> 
       <Container fluid>
         <main>
