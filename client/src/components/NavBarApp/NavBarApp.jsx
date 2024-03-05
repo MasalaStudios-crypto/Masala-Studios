@@ -37,7 +37,7 @@ export const NavBarApp= () => {
               navbarScroll
             >
               <Nav.Link href="#action1">PORTFOLIO</Nav.Link>
-              <Nav.Link href="#action2">QUIENES SOMOS</Nav.Link>
+              <Nav.Link href="/who">QUIENES SOMOS</Nav.Link>
               <Nav.Link href="#action2">SERVICIOS</Nav.Link>
               <Nav.Link href="#action2">BLOG</Nav.Link>
               <Nav.Link href="#action2">CONTACTO</Nav.Link>
