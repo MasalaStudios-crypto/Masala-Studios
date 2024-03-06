@@ -9,7 +9,7 @@ const initialValue = {
   password2:""
 }
 
-export const FormularioRegister = () => {
+export const FormularioRegister = ({handleClose}) => {
 
   const [register, setRegister]=useState(initialValue)
   const [errorMessage, setErrorMessage]=useState()
@@ -35,7 +35,8 @@ export const FormularioRegister = () => {
       .post("http://localhost:3000/users/register", register)
       .then((res)=>{
         console.log(res)
-        navigate("/login")
+        handleClose();
+        navigate("/")
       })
       .catch((err)=>{
         console.log(err)
@@ -44,13 +45,13 @@ export const FormularioRegister = () => {
         }
       })
     }
+    
   }
 
   console.log(register)
   
   return (
     <Form>
-      <h2>Formulario Register</h2>
 
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Nombre</Form.Label>
@@ -63,7 +64,7 @@ export const FormularioRegister = () => {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>Email</Form.Label>
         <Form.Control 
         name="email"
         value={register.email}
@@ -82,7 +83,7 @@ export const FormularioRegister = () => {
         placeholder="Introduce tu contraseña" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-3" controlId="formBasicPassword2">
         <Form.Label>Repetir Password</Form.Label>
         <Form.Control 
         name="password2"
@@ -93,11 +94,10 @@ export const FormularioRegister = () => {
       </Form.Group>
 
       <span className='errorMessage'>{errorMessage}</span>
-      <p>Estas registrado,<Link to='/login'>Login aqui</Link> </p>
-      
+
       <div>
       <Button onClick={onSubmit} className='ms-1 me-1' variant="primary">Aceptar</Button>
-      <Button onClick={()=>{navigate('/login')}} className='ms-1 me-1' variant="primary">Cancelar</Button>
+      <Button onClick={handleClose} className='ms-1 me-1' variant="primary">Cancelar</Button>
       </div>
       
     </Form>

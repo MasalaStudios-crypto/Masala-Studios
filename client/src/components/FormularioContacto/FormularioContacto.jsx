@@ -21,9 +21,9 @@ export const FormularioContacto = ({handleClose}) => {
   const Submit = (elem) => {
     elem.preventDefault();
 
-    const body = `Nombre: ${contacto.nombre}\nCorreo electrónico: ${contacto.enmail}\nMensaje: ${contacto.mensaje}`;
+    const body = `${contacto.mensaje}`;
 
-    const mailtoLink = `mailto:masalahead.av@pm.me?subject=Formulario de Contacto&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:masalahead.av@pm.me?subject=${contacto.asunto}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
     handleClose();
   }
