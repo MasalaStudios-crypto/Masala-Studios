@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Container, Nav, Navbar, NavDropdown  } from 'react-bootstrap'
 import { TravelContext } from '../../Context/TravelsProvider';
@@ -6,15 +6,22 @@ import { deleteLocalStorage } from '../../utils/localStorageUtils';
 import './navbar.scss'
 import { ModalBasico } from '../ModalBasico/ModalBasico';
 import { FormularioContacto } from '../FormularioContacto/FormularioContacto';
+import { FormularioLogin } from '../FormularioLogin/FormularioLogin';
+import { ModalBasico2 } from '../ModalBasico2/ModalBasico2';
 
 export const NavBarApp= () => {
 
   const navigate = useNavigate();
   const {user, setUser, setToken}= useContext(TravelContext)
   const[show, setShow]=useState(false)
+  const[show2, setShow2]=useState(false)
 
   const showModal =()=>{
     setShow(!show)
+  }
+
+  const showModal2 =()=>{
+    setShow2(!show2)
   }
 
   const LogOut=()=>{
@@ -50,7 +57,7 @@ export const NavBarApp= () => {
               {!user ? 
                 <div>
                   <Button
-                    onClick={()=>{navigate("/login")}}
+                    onClick={showModal2}
                     className='ml-auto' >Iniciar sesión</Button>
                 </div>
                 :
@@ -73,6 +80,7 @@ export const NavBarApp= () => {
                   </NavDropdown>
                 </div>
                 }
+
               <ModalBasico
               title="Contacto"
               show={show}
@@ -80,6 +88,15 @@ export const NavBarApp= () => {
                 <FormularioContacto
                 handleClose={showModal}/>
               </ModalBasico>
+
+              <ModalBasico2
+              title="Login"
+              show={show2}
+              handleClose2={showModal2}>
+                <FormularioLogin
+                handleClose2={showModal2}/>
+              </ModalBasico2>
+
             </Nav>
           </Navbar.Collapse>
         </div>
