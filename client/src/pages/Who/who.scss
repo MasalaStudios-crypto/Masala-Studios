@@ -1,0 +1,99 @@
+.col-who {
+  padding: 0 !important;
+}
+
+/* Contenedor del slider */
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: calc(100vh - 85.14px - 80px);
+  display: flex;
+}
+
+/* Objetos del slider */
+.slider-item {
+  flex: 0 0 100%;
+  width: 100%;
+  background-color: #FF5C00;
+  background-repeat: no-repeat;
+  background-size: cover;
+  scroll-snap-align: start;
+}
+
+.slider-item-back1 {
+  background-image: url(/images/camara.jpg);
+}
+
+.slider-item-back2 {
+  background-image: url(/images/benefit.jpg);
+}
+
+.slider-item-back3 {
+  background-image: url(/images/equipo.jpg);
+}
+
+.slider-item-back4 {
+  background-image: url(/images/us.jpg);
+}
+
+/* Card central */
+.card-who {
+  width: 50%;
+  height: 80%;
+  border: 1px solid #000;
+  border-radius: 25px;
+  padding: 50px 100px;
+  text-align: center;
+  background-color: #FF5C00;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Flechas de navegación */
+.navigation-arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.navigation-arrows.first-section {
+  justify-content: flex-end;
+}
+
+.navigation-arrows button {
+  background: #FF5C00;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navigation-arrows button:hover {
+  transform: scale(0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.arrow, .arrow2 {
+  width: 60px;
+}
+
+.arrow2 {
+  transform: rotate(180deg);
+}
+
+.hidden {
+  display: none;
+}
+
+/* imagenes de la carta */
+.img-card-who {
+  border-radius: 50%;
+  padding: 20px;
+}
