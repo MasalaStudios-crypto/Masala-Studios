@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from 'react'
 import { TravelContext } from '../../Context/TravelsProvider'
 import { Button, Col, Row } from 'react-bootstrap'
 import './userProfile.scss'
-//import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
+import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
 import { useState } from 'react'
-//import { FormNewTravel } from '../../components/FormNewTravel/FormNewTravel'
+import { EditUser } from '../EditUser/EditUser'
 //import axios from 'axios'
-//import { TravelsGallery } from '../../components/TravelsGallery/TravelsGallery'
+
 
 export const UserProfile = () => {
   const [show, setShow] = useState(false);
@@ -29,16 +29,10 @@ export const UserProfile = () => {
     
   }, [user])  */
 
- /*  const showModal = () => {
+  const showModal = () => {
     setShow(!show)
-  } */
+  }
 
- /*  const refresh = () => {
-    setRefreshTravels(!refreshTravels)
-  } */
-  //console.log("REFRESH", travels);
-
-  //console.log("travels", travels);
   return (
     <Row>
       <Col>
@@ -47,7 +41,7 @@ export const UserProfile = () => {
           <div className='use-profile-ppal'>
             <div className='d-flex justify-content-between profile-img-cont'>
               <img src={user?.user_img ? `http://localhost:3000/images/users/$  {user?.user_img}` : '/images/user.png'} alt="foto perfil" className='profile-img' />
-              <img src="/icons/437886-200.png" alt="editar" className='profile-edit' />
+              <img src="/icons/437886-200.png" alt="editar" className='profile-edit' onClick={showModal} />
             </div>
             <h3>Nombre: <span className='profile-gold-text'>{user?.name}</span></h3>
             <h3>Apellidos: <span className='profile-gold-text'>{user?.lastname}</span></h3>
@@ -61,14 +55,12 @@ export const UserProfile = () => {
             <h3>Provincia: <span className='profile-gold-text'>{user?.province}</span></h3>
           </div>
           <div className='text-center'>
-           {/*  <Button variant='success' onClick={showModal}>Añade un viaje</Button> */}
           </div>
         </Col>
         <Col md={8}>
-          
-          {/* <ModalBasico show={show} handleClose={showModal} title="Crea un nuevo viaje"> */}
-            {/* <FormNewTravel handleClose={showModal} user_id={user?.user_id} travels={travels} setTravels={setTravels} /> */}
-          {/* </ModalBasico> */}
+          <ModalBasico show={show} handleClose={showModal} title="Edición usuario">
+            <EditUser handleClose={showModal} user_id={user?.user_id} />
+          </ModalBasico>
         </Col>
       </Row>
       <Row>
