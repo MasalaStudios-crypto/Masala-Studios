@@ -32,7 +32,7 @@ export const FormularioLogin = () => {
            navigate("/") 
           }
           else{
-            navigate("/") 
+            navigate("/")
           }
                     
           //guardar en el context

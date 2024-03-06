@@ -9,6 +9,8 @@ import { Home } from '../pages/Home/Home'
 import { Footer } from '../components/Footer/Footer'
 import { Who } from '../pages/Who/Who'
 import { Servicios } from '../pages/Servicios/Servicios'
+import { UserProfile } from '../pages/UserProfile/UserProfile'
+
 
 
 export const AppRoutes = () => {
@@ -27,6 +29,7 @@ export const AppRoutes = () => {
           <Routes>
             <Route path='/' element={<Home />}/>
             <Route path='/who' element={<Who />}/>
+            <Route path='/profile' element={<UserProfile />}/>
             <Route path='/about' element={<h1>ABOUT</h1>} />
             <Route path='/servicios' element={<Servicios/>} />
             <Route path="*" element={<h1>TRAMPOSO</h1>}/>

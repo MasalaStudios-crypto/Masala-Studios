@@ -1,16 +1,21 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Container, Nav, Navbar, NavDropdown  } from 'react-bootstrap'
 import { TravelContext } from '../../Context/TravelsProvider';
 import { deleteLocalStorage } from '../../utils/localStorageUtils';
 import './navbar.scss'
+import { ModalBasico } from '../ModalBasico/ModalBasico';
+import { FormularioContacto } from '../FormularioContacto/FormularioContacto';
 
 export const NavBarApp= () => {
 
   const navigate = useNavigate();
-
   const {user, setUser, setToken}= useContext(TravelContext)
+  const[show, setShow]=useState(false)
 
+  const showModal =()=>{
+    setShow(!show)
+  }
 
   const LogOut=()=>{
     deleteLocalStorage("token")
@@ -40,7 +45,7 @@ export const NavBarApp= () => {
               <Nav.Link href="/who">QUIENES SOMOS</Nav.Link>
               <Nav.Link href="/servicios">SERVICIOS</Nav.Link>
               <Nav.Link href="#action2">BLOG</Nav.Link>
-              <Nav.Link href="#action2">CONTACTO</Nav.Link>
+              <Nav.Link onClick={showModal}>CONTACTO</Nav.Link>
             
               {!user ? 
                 <div>
@@ -49,33 +54,37 @@ export const NavBarApp= () => {
                     className='ml-auto' >Iniciar sesión</Button>
                 </div>
                 :
-                <div className='d-flex'>
-                  <div className='navbar-avatar'>
-                  <NavDropdown title={user?.user_img ? <img onClick={()=>{navigate("/userProfile")}}src={`http://localhost:3000/images/users/${user?.user_img}`} alt="" /> :
+
+                <div className='navbar-avatar'>
+                  <NavDropdown title={user?.user_img ? <img src={`http://localhost:3000/images/users/${user?. user_img}`} alt="" /> :
                     <span>{user?.name[0].toUpperCase()}</span>} id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Crear curso</NavDropdown.Item>
-                <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
+                  <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
+                  <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">Crear curso</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action5">
                   <Button
                     onClick={LogOut}
                     className='ms-1 me-1'
                     variant="outline-success">
                   LogOut</Button>
-                </NavDropdown.Item>
-              </NavDropdown>
-                  </div>
-
-                  
-
-          </div> 
+                  </NavDropdown.Item>
+                  </NavDropdown>
+                </div>
                 }
-              
+              <ModalBasico
+              title="Contacto"
+              show={show}
+              handleClose={showModal}>
+                <FormularioContacto
+                handleClose={showModal}/>
+              </ModalBasico>
             </Nav>
           </Navbar.Collapse>
         </div>
       </Container>
     </Navbar>
+
   )
 }
