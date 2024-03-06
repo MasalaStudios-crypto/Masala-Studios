@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Container, Nav, Navbar, NavDropdown  } from 'react-bootstrap'
 import { TravelContext } from '../../Context/TravelsProvider';
 import { deleteLocalStorage } from '../../utils/localStorageUtils';
@@ -51,8 +51,9 @@ export const NavBarApp= () => {
                 :
                 <div className='d-flex'>
                   <div className='navbar-avatar'>
-                  <NavDropdown title={user?.user_img ? <img onClick={()=>{navigate("/userProfile")}}src={`http://localhost:3000/images/users/${user?.user_img}`} alt="" /> :
+                  <NavDropdown title={user?.user_img ? <img src={`http://localhost:3000/images/users/${user?.user_img}`} alt="perfil" /> :
                     <span>{user?.name[0].toUpperCase()}</span>} id="navbarScrollingDropdown">
+                <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
                 <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Crear curso</NavDropdown.Item>
                 <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
