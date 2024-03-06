@@ -63,6 +63,20 @@ class UserControllers{
     })
   }
 
+  getOneUser = (req, res) => {
+    const {id} = req.params;
+    let sql = `SELECT * FROM user WHERE user_id = ${id} AND is_deleted = 0 AND is_disabled = 0`;
+
+    connection.query(sql, (err, result) => {
+      if(err){
+        res.status(500).json(err)
+      }
+      else{
+        res.status(200).json(result[0])
+      }
+    })
+  }
+
 }
 
 module.exports = new UserControllers()

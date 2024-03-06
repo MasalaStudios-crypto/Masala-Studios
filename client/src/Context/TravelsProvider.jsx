@@ -22,7 +22,7 @@ export const TravelsProvider = ({children}) => {
         .then((res)=>{
           setUser(res.data)
           setToken(tokenLocal)
-          if(res.data.type === 2){
+          if(res.data.type === 1){
             navigate('/adminProfile')
          }
 

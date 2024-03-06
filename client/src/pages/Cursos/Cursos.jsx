@@ -1,42 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Carousel } from 'react-bootstrap'
 import { CardCursos } from '../../components/Card-Cursos/CardCursos'
 import './cursos.scss'
+import axios from 'axios'
 
 export const Cursos = () => {
+  const [cursos, setCursos] = useState([])
+
+  setCursos[{name:"Photoshop",duration:"20h", price:"0" },{name:"Edicion de fotos", duration:"40h", price:"0"}]
+
+  useEffect(()=>{
+    axios
+        .get("http://localhost:3000/course/allCourses")
+        .then((res)=>{
+        setCursos(res.data)
+      })
+        .catch((err)=>console.log(err))
+
+  },[])
+
   return (
     <>
+        <h2>Cursos</h2>
+        
       <Carousel className='Carousel-ppal'>
+        
+      {cursos.map((elem)=>(
       <Carousel.Item className='Carousel-ppal'>
-          <CardCursos/>
-        <Carousel.Caption>
-        </Carousel.Caption>
+
+        <CardCursos key={elem.course_id} elem={elem}/>
       </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=eee"
-          alt="Second slide"
-        />
-        <Carousel.Caption>
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=e5e5e5"
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-          <h5>Third slide label</h5>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+      ))}
+      </Carousel>
+    
     </>
   )
 }
