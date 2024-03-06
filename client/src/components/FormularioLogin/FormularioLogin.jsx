@@ -4,17 +4,25 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { saveLocalStorage } from '../../utils/localStorageUtils'
 import { TravelContext } from '../../Context/TravelsProvider'
+import { FormularioRegister } from '../FormularioRegister/FormularioRegister'
+import { ModalBasico } from '../ModalBasico/ModalBasico'
 const initialValue = {
   email:"",
   password:""
 }
 
-export const FormularioLogin = () => {
+export const FormularioLogin = ({handleClose2}) => {
   const navigate= useNavigate()
   const[message, setMessage]=useState("")
   const[login, setLogin]=useState(initialValue)
-
   const {setUser, setToken}=useContext(TravelContext);
+  const[show, setShow]=useState(false)
+
+  const showModal =()=>{
+    //handleClose2();
+    setShow(!show)
+  
+  }
 
   const handleChange=(elem)=>{
     const {name, value}= elem.target
@@ -50,13 +58,15 @@ export const FormularioLogin = () => {
             setMessage("Usuario no autorizado")
           }
         })
+        handleClose2();
+
     }
   }
 
   return (
     <Form>
-      <h2>Formulario Login</h2>
-      <Form.Group 
+
+            <Form.Group 
       className="mb-3" 
       controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
@@ -78,7 +88,7 @@ export const FormularioLogin = () => {
         placeholder="Introduce tu contraseña" />
       </Form.Group>
     
-      <p>Estas registrado? <Link to='/register'>Registro aqui</Link> </p>
+      <p>Estas registrado? <a onClick={showModal}>Registro aqui</a> </p>
       <span className='errorMessage'>{message}</span>
 
       <div>
@@ -87,11 +97,21 @@ export const FormularioLogin = () => {
       className='ms-1 me-1' 
       variant="primary">Aceptar</Button>
       <Button 
-      onClick={()=>{navigate('/')}} 
+      onClick={handleClose2} 
       className='ms-1 me-1' 
       variant="primary">Cancelar</Button>
       </div>
 
+      <ModalBasico
+        title="Registro"
+        show={show}
+        handleClose={showModal}>
+        <FormularioRegister
+          handleClose={showModal}/>
+      </ModalBasico>
+
     </Form>
+
+    
   )
 }

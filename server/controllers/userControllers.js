@@ -65,6 +65,7 @@ class UserControllers{
 
   getOneUser = (req, res) => {
     const {id} = req.params;
+
     let sql = `SELECT * FROM user WHERE user_id = ${id} AND is_deleted = 0 AND is_disabled = 0`;
 
     connection.query(sql, (err, result) => {
@@ -104,6 +105,7 @@ class UserControllers{
       }
     });
   }
+
 
 }
 

@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import './cardCursos.scss'
 
-export const CardCursos = () => {
+export const CardCursos = ({elem}) => {
+
+  
+
   return (
     
-      <Card className='serv-card'>
-      <Card.Img variant="top" src="/images/image5.jpg" />
-      <Card.Body>
-        <p>Editor de Video</p>
-
-        <Button variant="primary">Ver más</Button>
-      </Card.Body>
+   
+    <Card style={{backgroundColor:"rgba(255, 255, 255, 0.243)"}} className='serv-card'>
+    <Card.Img variant="top" src="" />
+    <Card.Body>
+    <p>{elem.description}</p>
+      
+    <Button variant="primary">Ver más</Button>
+    </Card.Body>
     </Card>
+    
   )
 }
