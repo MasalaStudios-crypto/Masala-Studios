@@ -8,6 +8,7 @@ import { NavBarApp } from '../components/NavBarApp/NavBarApp'
 import { Home } from '../pages/Home/Home'
 import { Footer } from '../components/Footer/Footer'
 import { Who } from '../pages/Who/Who'
+import { Servicios } from '../pages/Servicios/Servicios'
 
 
 export const AppRoutes = () => {
@@ -27,7 +28,7 @@ export const AppRoutes = () => {
             <Route path='/' element={<Home />}/>
             <Route path='/who' element={<Who />}/>
             <Route path='/about' element={<h1>ABOUT</h1>} />
-            <Route path='/service' element={<h1>SERVICE</h1>} />
+            <Route path='/servicios' element={<Servicios/>} />
             <Route path="*" element={<h1>TRAMPOSO</h1>}/>
 
             {!user && <>

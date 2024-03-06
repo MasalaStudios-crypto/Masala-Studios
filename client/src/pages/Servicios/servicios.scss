@@ -1,0 +1,54 @@
+.service-title{
+  background-color: rgb(250, 192, 32);
+  display: flex;
+  text-align: center;
+}
+
+.serv-ppal{
+  height: auto;
+  padding: 0 !important;
+  
+
+
+
+  .serv-div1{
+    width: 50%;
+    background-color: rgb(250, 192, 32);
+    padding: 20px;
+
+    img{
+      width: 340px;
+      height: 400px;
+    }
+  }
+  .serv-div2{
+    width: 50%;
+    min-height: 130vh;
+    background-color: rgb(250, 192, 32);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+
+
+
+
+    .serv-card{
+      align-items: center;
+      padding: 10px;
+      box-shadow: 3px 5px 4px white;
+      width: 250px;
+      height: 320px;
+      background-color: #EFA341;
+      border-radius: 25px;
+      margin: 15px;
+      text-align: center;
+      img{
+        width: 180px;
+        height: 170px;
+        border-radius: 25px;
+      }
+    }
+  }
+}
