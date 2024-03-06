@@ -8,6 +8,9 @@ router.post('/register', userControllers.register)
 
 router.post('/login', userControllers.login)
 
+router.get('/getOneUser/:id', userControllers.getOneUser);
 
+//no es dinámica porque nos traemos el id del front
+router.put('/editUser', multer("users"), userControllers.editUser);
 
 module.exports = router;
