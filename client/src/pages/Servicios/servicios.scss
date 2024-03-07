@@ -39,7 +39,7 @@
     .serv-card{
       align-items: center;
       padding: 10px;
-      box-shadow: 3px 5px 4px white;
+     
       width: 250px;
       height: 320px;
       background-color: $color-5;
@@ -51,6 +51,10 @@
         height: 170px;
         border-radius: 25px;
       }
+    }
+    .serv-card:hover{
+ 
+      border: 2px solid white;
     }
   }
 }

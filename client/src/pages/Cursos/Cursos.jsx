@@ -21,7 +21,7 @@ export const Cursos = () => {
 
   return (
     <>
-        <h2>Cursos</h2>
+        <h2 style={{textAlign:"center"}}>Cursos</h2>
         
       <Carousel className='Carousel-ppal'>
         

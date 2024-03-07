@@ -10,9 +10,11 @@ export const CardCursos = ({elem}) => {
     
    
     <Card style={{backgroundColor:"rgba(255, 255, 255, 0.243)"}} className='serv-card'>
+      <Card.Title>{elem.name}</Card.Title>
     <Card.Img variant="top" src="" />
     <Card.Body>
     <p>{elem.description}</p>
+    <p>{elem.duration}</p>
       
     <Button variant="primary">Ver más</Button>
     </Card.Body>

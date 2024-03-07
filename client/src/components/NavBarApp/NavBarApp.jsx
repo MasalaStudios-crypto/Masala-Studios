@@ -8,6 +8,7 @@ import { ModalBasico } from '../ModalBasico/ModalBasico';
 import { FormularioContacto } from '../FormularioContacto/FormularioContacto';
 import { FormularioLogin } from '../FormularioLogin/FormularioLogin';
 import { ModalBasico2 } from '../ModalBasico2/ModalBasico2';
+import { FormularioCurso } from '../FormularioCurso/FormularioCurso';
 
 export const NavBarApp= () => {
 
@@ -15,6 +16,7 @@ export const NavBarApp= () => {
   const {user, setUser, setToken}= useContext(TravelContext)
   const[show, setShow]=useState(false)
   const[show2, setShow2]=useState(false)
+  const[show3, setShow3]=useState(false)
 
   const showModal =()=>{
     setShow(!show)
@@ -22,6 +24,9 @@ export const NavBarApp= () => {
 
   const showModal2 =()=>{
     setShow2(!show2)
+  }
+  const showModal3 =()=>{
+    setShow3(!show3)
   }
 
   const LogOut=()=>{
@@ -44,7 +49,7 @@ export const NavBarApp= () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll" >
             <Nav
-              className="me-auto my-2 my-lg-0"
+              className="me-auto my-2 my-lg-0 dropdawn-menu"
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
@@ -71,7 +76,7 @@ export const NavBarApp= () => {
                   >
                   <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
                   <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Crear curso</NavDropdown.Item>
+                  <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
                   <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action5">
@@ -99,6 +104,15 @@ export const NavBarApp= () => {
               handleClose2={showModal2}>
                 <FormularioLogin
                 handleClose2={showModal2}/>
+              </ModalBasico2>
+
+              
+              <ModalBasico2
+              title="Creación Curso"
+              show={show3}
+              handleClose2={showModal3}>
+                <FormularioCurso
+                handleClose2={showModal3}/>
               </ModalBasico2>
 
             </Nav>
