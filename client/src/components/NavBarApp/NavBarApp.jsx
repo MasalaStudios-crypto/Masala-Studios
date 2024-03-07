@@ -48,11 +48,11 @@ export const NavBarApp= () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="#action1">PORTFOLIO</Nav.Link>
-              <Nav.Link href="/who">QUIENES SOMOS</Nav.Link>
-              <Nav.Link href="/servicios">SERVICIOS</Nav.Link>
-              <Nav.Link href="#action2">BLOG</Nav.Link>
-              <Nav.Link onClick={showModal}>CONTACTO</Nav.Link>
+              <Nav.Link href="#action1" className='masala-text'>PORTFOLIO</Nav.Link>
+              <Nav.Link href="/who" className='masala-text'>QUIENES SOMOS</Nav.Link>
+              <Nav.Link href="/servicios" className='masala-text'>SERVICIOS</Nav.Link>
+              <Nav.Link href="#action2" className='masala-text'>BLOG</Nav.Link>
+              <Nav.Link onClick={showModal} className='masala-text'>CONTACTO</Nav.Link>
             
               {!user ? 
                 <div>
@@ -63,8 +63,12 @@ export const NavBarApp= () => {
                 :
 
                 <div className='navbar-avatar'>
-                  <NavDropdown title={user?.user_img ? <img src={`http://localhost:3000/images/users/${user?. user_img}`} alt="" /> :
-                    <span>{user?.name[0].toUpperCase()}</span>} id="navbarScrollingDropdown">
+                  <NavDropdown id="navbarScrollingDropdown" title={user?.user_img 
+                                ? 
+                                <img src={`http://localhost:3000/images/users/${user?. user_img}`} alt="foto perfil" /> 
+                                :
+                                <span>{user?.name[0].toUpperCase()}</span>}
+                  >
                   <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
                   <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">Crear curso</NavDropdown.Item>
