@@ -31,6 +31,7 @@ export const Servicios = () => {
    
         <Button variant="primary">Ver más</Button>
       </Card.Body>
+      
     </Card>
         <Card className='serv-card'>
       <Card.Img variant="top" src="/images/image5.jpg" />
