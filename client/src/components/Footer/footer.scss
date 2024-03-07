@@ -1,8 +1,10 @@
+@import '../../variables';
+
 .custom-footer-bg {
-  background-color: #EFA341;
+  background-color: $color-5;
   padding: 20px 0;
 }
 .custom-footer-bg a {
   text-decoration: none;
-  color: #784019;
+  color: $color-1;
 }

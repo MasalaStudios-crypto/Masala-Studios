@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .logo-nav {
   width: 100px;
 }
@@ -13,16 +15,16 @@
 }
 
 .custom-navbar-bg {
-  background-color: #EFA341;
+  background-color: $color-5;
 }
 
 .masala-text {
-  color: #784019;
+  color: $color-1 !important;
   font-weight: bold;
 }
 
 .head-text {
-  color: #F7C86D;
+  color: $color-3;
   font-weight: bold;
 }
 
@@ -37,14 +39,48 @@
 .navbar-avatar{
   background-color: rgba(179, 154, 108, 0.543);
   color: white;
-  
-  text-align: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   span{
     font-size: 2rem;
-  }
-  img{
-   width: 50px; 
-   border-radius: 50%;
+    /* ajustar posición */
+    position: relative;
+    top: -12.5px;
+    left: 2.5px;
   }
 
+  img{
+   width: 40px; 
+   border-radius: 50%;
+   /* ajustar posición */
+   position: relative;
+   top: -7.5px;
+   left: -7px;
+  }
+
+
+/* dropdown */
+.dropdown-menu.show {
+  transform: translate(-70px, 3px) !important;
+  background-color: $color-5;
+  border: 0;
 }
+
+.dropdown-toggle {
+  width: 40px;
+  height: 40px;
+  
+}
+
+/* ocultar flechita dropdown */
+.show.nav-link::after,
+::after {
+  display: none !important;
+}
+
+

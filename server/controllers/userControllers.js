@@ -81,29 +81,24 @@ class UserControllers{
   editUser = (req, res) => {
     const {name, lastname, birth_date, dni, phone, address, zip_code, city, province, user_id} = JSON.parse(req.body.editUser)
 
-     let img = ""
-
+    let img = ""
+    
     if(req.file != undefined){
       img = `, user_img = "${req.file.filename}"`
     } 
     
     let sql = `UPDATE user SET name = "${name}", lastname = "${lastname}", birth_date = "${birth_date}", dni = "${dni}", phone = "${phone}", address = "${address}", zip_code = "${zip_code}", city = "${city}", province = "${province}" ${img} WHERE user_id = ${user_id}`;
-
+  
     console.log(sql);
-
+  
     connection.query(sql, (err, result) => {
       if (err) {
-      /*   res.status(500).json(err);
+        res.status(500).json(err);
       } else {
         res.status(200).json({result, newImg: req.file?.filename});
-      } */
-        // Manejo de errores
-        console.error(err);
-        res.status(500).json({ error: 'Error interno del servidor', details: err });
-      } else {
-        res.status(200).json({ result, newImg: req.file?.filename });
-      }
+      } 
     });
+    
   }
 
 

@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .edit-ppal {
   min-height: calc(100vh - 56px);
 }
@@ -7,4 +9,10 @@
   box-shadow: 0 0 5px grey;
   padding: 20px;
   border-radius: 15px;
+  background-color: $color-5;
+}
+
+.upload-img {
+  cursor: pointer;
+  width: 100%;
 }

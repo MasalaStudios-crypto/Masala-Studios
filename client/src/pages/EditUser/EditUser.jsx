@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './editUser.scss';
 import {TravelContext} from '../../Context/TravelsProvider'
 import axios from 'axios';
+import { isAlphaNumericWithSpaces, isLetterWithSpace, isNumber, isValidPhoneNumber } from '../../utils/validation';
 
 const initialValue = {
   name: "",
@@ -62,6 +63,7 @@ export const EditUser = ({handleClose}) => {
         else{
           setUser({...user, ...edit})
         }
+        handleClose()
       })
       .catch((err => console.log(err)))
     }
@@ -82,6 +84,8 @@ export const EditUser = ({handleClose}) => {
                 value={edit.name}
                 onChange={handleChange}
                 name="name"
+                maxLength={40}
+                onKeyPress={isLetterWithSpace}
               />
             </Form.Group>
 
@@ -93,13 +97,15 @@ export const EditUser = ({handleClose}) => {
                 value={edit.lastname === null ? "" : edit.lastname}
                 onChange={handleChange}
                 name="lastname"
+                maxLength={100}
+                onKeyPress={isLetterWithSpace}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicBirthDate">
               <Form.Label>Fecha nacimiento</Form.Label>
               <Form.Control 
-                type="date" //AQUI POSIBLE ERROR
+                type="date"
                 placeholder="Fecha nacimiento"
                 value={edit.birth_date === null ? "" : edit.birth_date}
                 onChange={handleChange}
@@ -115,6 +121,8 @@ export const EditUser = ({handleClose}) => {
                 value={edit.dni === null ? "" : edit.dni}
                 onChange={handleChange}
                 name="dni"
+                maxLength={20}
+                onKeyPress={isAlphaNumericWithSpaces}
               />
             </Form.Group>
 
@@ -126,6 +134,8 @@ export const EditUser = ({handleClose}) => {
                 value={edit.phone === null ? "" : edit.phone}
                 onChange={handleChange}
                 name="phone"
+                maxLength={30}
+                onKeyPress={isValidPhoneNumber}
               />
             </Form.Group>
 
@@ -137,6 +147,8 @@ export const EditUser = ({handleClose}) => {
                 value={edit.address === null ? "" : edit.address}
                 onChange={handleChange}
                 name="address"
+                maxLength={100}
+                onKeyPress={isAlphaNumericWithSpaces}
               />
             </Form.Group>
  
@@ -148,6 +160,8 @@ export const EditUser = ({handleClose}) => {
                 value={edit.zip_code === null ? "" : edit.zip_code}
                 onChange={handleChange}
                 name="zip_code"
+                maxLength={20}
+                onKeyPress={isNumber}
               />
             </Form.Group>
  
@@ -159,6 +173,8 @@ export const EditUser = ({handleClose}) => {
                 value={edit.city === null ? "" : edit.city}
                 onChange={handleChange}
                 name="city"
+                maxLength={50}
+                onKeyPress={isLetterWithSpace}
               />
             </Form.Group>
 
@@ -170,11 +186,18 @@ export const EditUser = ({handleClose}) => {
                 value={edit.province === null ? "" : edit.province}
                 onChange={handleChange}
                 name="province"
+                maxLength={50}
+                onKeyPress={isLetterWithSpace}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicImg">
-              <Form.Label>Sube una foto de perfil</Form.Label>
+              <Form.Label>
+                <div className='d-flex'>
+                  <img src="/icons/folder.svg" alt="subir imagen" className='upload-img' />
+                  <span>Subir imagen</span>
+                </div>
+                </Form.Label>
               <Form.Control 
                 type="file" 
                 onChange={handleFile} 
@@ -188,16 +211,13 @@ export const EditUser = ({handleClose}) => {
               <Button 
                 className='ms-1 me-1'
                 variant="primary" 
-                onClick={() => {
-                  onSubmit();
-                  handleClose();
-                }}
-              >Submit</Button>
+                onClick={onSubmit}
+              >Aceptar</Button>
               <Button 
                 className='ms-1 me-1'
                 variant="primary" 
                 onClick={handleClose}
-              >Cancel</Button>
+              >Cancelar</Button>
             </div>
           </Form>
         </Col>
