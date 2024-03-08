@@ -7,6 +7,8 @@
 .visualizador {
   //cambiar los 100px por el tamaño que se le dé a l descripción
   min-height: calc(100vh - 85.14px - 80px - 100px);
+  width: 100%;
+  height: calc(100% - 80px);
 }
 
 .listado-temario {
@@ -18,3 +20,8 @@
   height: 10%;
   cursor: pointer;
 }
+
+.iframe-resources {
+  width: 100%;
+  height: 500px;
+} 
