@@ -22,9 +22,9 @@ export const MasalaProvider = ({children}) => {
         .then((res)=>{
           setUser(res.data)
           setToken(tokenLocal)
-          if(res.data.type === 1){
-            navigate('/adminProfile')
-         }
+          //if(res.data.type === 1){
+          //  navigate('/')
+         //}
 
         })
         .catch((err)=>{

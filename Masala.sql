@@ -92,14 +92,16 @@ CREATE TABLE comment(
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-/*
+
+
 SELECT * FROM user;
 SELECT * FROM course;
 SELECT * FROM subject;
 SELECT * FROM resource;
 SELECT * FROM tag;
 SELECT * FROM comment;
-*/
+
+
 
 
 
