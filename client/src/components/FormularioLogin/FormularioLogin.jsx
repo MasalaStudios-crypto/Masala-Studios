@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { saveLocalStorage } from '../../utils/localStorageUtils'
-import { TravelContext } from '../../Context/TravelsProvider'
+import { MasalaContext } from '../../Context/MasalaProvider'
 import { FormularioRegister } from '../FormularioRegister/FormularioRegister'
 import { ModalBasico } from '../ModalBasico/ModalBasico'
 const initialValue = {
@@ -15,7 +15,7 @@ export const FormularioLogin = ({handleClose2}) => {
   const navigate= useNavigate()
   const[message, setMessage]=useState("")
   const[login, setLogin]=useState(initialValue)
-  const {setUser, setToken}=useContext(TravelContext);
+  const {setUser, setToken}=useContext(MasalaContext);
   const[show, setShow]=useState(false)
 
   const showModal =()=>{

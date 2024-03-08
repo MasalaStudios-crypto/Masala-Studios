@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Container, Nav, Navbar, NavDropdown  } from 'react-bootstrap'
-import { TravelContext } from '../../Context/TravelsProvider';
+import { MasalaContext } from '../../Context/MasalaProvider';
 import { deleteLocalStorage } from '../../utils/localStorageUtils';
 import './navbar.scss'
 import { ModalBasico } from '../ModalBasico/ModalBasico';
@@ -13,7 +13,7 @@ import { FormularioCurso } from '../FormularioCurso/FormularioCurso';
 export const NavBarApp= () => {
 
   const navigate = useNavigate();
-  const {user, setUser, setToken}= useContext(TravelContext)
+  const {user, setUser, setToken}= useContext(MasalaContext)
   const [courses, setCourses] = useState([])
   const [refreshCourses, setRefreshCourses] = useState(false)
   const[show, setShow]=useState(false)
