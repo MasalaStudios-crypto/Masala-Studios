@@ -123,4 +123,3 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
   </Form>
  )
 }
-

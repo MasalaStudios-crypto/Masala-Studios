@@ -54,19 +54,19 @@ export const NavBarApp= () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              {user?.type===2 ?
+              {user?.type===1 ?
+              <div className='d-flex'>
+              <Nav.Link href="/allUsers" className='masala-text'>USUARIOS</Nav.Link>
+              <Nav.Link href="/allCourses" className='masala-text'>CURSOS</Nav.Link>
+              <Nav.Link onClick={showModal3} className='masala-text'>CREAR CURSOS</Nav.Link>
+              </div> 
+              :
               <div className='d-flex'>
               <Nav.Link href="#action1" className='masala-text'>PORTFOLIO</Nav.Link>
               <Nav.Link href="/who" className='masala-text'>QUIENES SOMOS</Nav.Link>
               <Nav.Link href="/servicios" className='masala-text'>SERVICIOS</Nav.Link>
               <Nav.Link href="#action2" className='masala-text'>BLOG</Nav.Link>
               <Nav.Link onClick={showModal} className='masala-text'>CONTACTO</Nav.Link>
-              </div> 
-              :
-              <div className='d-flex'>
-              <Nav.Link href="/allUsers" className='masala-text'>USUARIOS</Nav.Link>
-              <Nav.Link href="" className='masala-text'>CURSOS</Nav.Link>
-              <Nav.Link href="" className='masala-text'>CREAR CURSOS</Nav.Link>
               </div>
               }
                

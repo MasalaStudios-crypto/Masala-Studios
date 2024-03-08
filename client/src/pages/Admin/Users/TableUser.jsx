@@ -16,6 +16,7 @@ import { ModalBasico } from '../../../components/ModalBasico/ModalBasico';
 import { ModalBasico2 } from '../../../components/ModalBasico2/ModalBasico2';
 import { FormularioLogin } from '../../../components/FormularioLogin/FormularioLogin';
 import { FormularioRegister } from '../../../components/FormularioRegister/FormularioRegister';
+import { MasalaContext } from '../../../Context/MasalaProvider';
 
 export const TableUser = () => {
 
@@ -113,7 +114,7 @@ export const TableUser = () => {
           <TableCell align="right">Email</TableCell>
           <TableCell align="right">Tipo</TableCell>
           <TableCell align="right">Estado</TableCell>
-          <TableCell align="right">Visibilidad</TableCell>
+          <TableCell align="right">Habilitado</TableCell>
           <TableCell align="right">Cursos creados</TableCell>
           <TableCell align="right">Cursos apuntados</TableCell>
 
