@@ -11,6 +11,7 @@ import { Who } from '../pages/Who/Who'
 import { Servicios } from '../pages/Servicios/Servicios'
 import { UserProfile } from '../pages/UserProfile/UserProfile'
 import { AdminUsers } from '../pages/Admin/Users/AdminUsers'
+import { MyCourse } from '../pages/MyCourse/MyCourse'
 
 
 
@@ -35,6 +36,7 @@ export const AppRoutes = () => {
             <Route path='/servicios' element={<Servicios/>} />
             <Route path='/allUsers' element={<AdminUsers/>} />
             <Route path="*" element={<h1>TRAMPOSO</h1>}/>
+            <Route path="/mycourse/:course_id" element={<MyCourse />}/>
 
             {!user && <>
             <Route path='/register' element={<Register/>} />
