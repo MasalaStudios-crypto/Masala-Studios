@@ -101,7 +101,74 @@ class UserControllers{
     
   }
 
+  allUsers= (req, res)=>{
+    let sql = `SELECT * FROM user`
+    connection.query(sql, (err, result)=>{
+      console.log(result);
 
+     err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  activate=(req, res)=>{
+    const {id}=req.body
+    let sql =`UPDATE user SET is_deleted=0 where user_id=${id}`
+   connection.query(sql, (err, result)=>{
+     err?res.status(500).json(err):res.status(200).json(result)
+   })
+   
+  }
+
+  deactivate=(req, res)=>{
+    const {id}=req.body
+    let sql =`UPDATE user SET is_deleted=1 where user_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  typeAdmin=(req, res)=>{
+    const {id}=req.body
+    let sql =`UPDATE user SET type=1 where user_id=${id}`
+   connection.query(sql, (err, result)=>{
+     err?res.status(500).json(err):res.status(200).json(result)
+   })
+  }
+
+  typeUser=(req, res)=>{
+    const {id}=req.body
+    let sql =`UPDATE user SET type=2 where user_id=${id}`
+   connection.query(sql, (err, result)=>{
+     err?res.status(500).json(err):res.status(200).json(result)
+   })
+  }
+
+  enable=(req, res)=>{
+    const {id}=req.body
+    let sql =`UPDATE user SET is_disabled=0 where user_id=${id}`
+   connection.query(sql, (err, result)=>{
+     err?res.status(500).json(err):res.status(200).json(result)
+   })
+   
+  }
+
+  disable=(req, res)=>{
+    const {id}=req.body
+    let sql =`UPDATE user SET is_disabled=1 where user_id=${id}`
+   connection.query(sql, (err, result)=>{
+     err?res.status(500).json(err):res.status(200).json(result)
+   })
+   
+  }
+
+  allCreatedCourse=(req, res)=>{
+
+  }
+
+  allRegCourse=(req, res)=>{
+
+  }
 }
+
 
 module.exports = new UserControllers()

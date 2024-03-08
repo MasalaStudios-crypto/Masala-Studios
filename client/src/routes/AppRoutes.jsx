@@ -10,6 +10,7 @@ import { Footer } from '../components/Footer/Footer'
 import { Who } from '../pages/Who/Who'
 import { Servicios } from '../pages/Servicios/Servicios'
 import { UserProfile } from '../pages/UserProfile/UserProfile'
+import { AdminUsers } from '../pages/Admin/Users/AdminUsers'
 
 
 
@@ -32,6 +33,7 @@ export const AppRoutes = () => {
             <Route path='/profile' element={<UserProfile />}/>
             <Route path='/about' element={<h1>ABOUT</h1>} />
             <Route path='/servicios' element={<Servicios/>} />
+            <Route path='/allUsers' element={<AdminUsers/>} />
             <Route path="*" element={<h1>TRAMPOSO</h1>}/>
 
             {!user && <>
