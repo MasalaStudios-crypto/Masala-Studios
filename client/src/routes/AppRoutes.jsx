@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import {Container} from 'react-bootstrap'
 import { Register } from '../pages/Auth/Register/Register'
 import { Login } from '../pages/Auth/Login/Login'
-import { TravelContext } from '../Context/TravelsProvider'
+import { MasalaContext } from '../Context/MasalaProvider'
 import { NavBarApp } from '../components/NavBarApp/NavBarApp'
 import { Home } from '../pages/Home/Home'
 import { Footer } from '../components/Footer/Footer'
@@ -15,7 +15,7 @@ import { UserProfile } from '../pages/UserProfile/UserProfile'
 
 export const AppRoutes = () => {
 
-  const {user}=useContext(TravelContext) 
+  const {user}=useContext(MasalaContext) 
   return (
   
     <>

@@ -1,16 +1,17 @@
-import React, { useContext, useEffect } from 'react'
-import { TravelContext } from '../../Context/TravelsProvider'
+import React, { useContext } from 'react'
+import { MasalaContext } from '../../Context/MasalaProvider'
 import { Button, Col, Row } from 'react-bootstrap'
 import './userProfile.scss'
 import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
 import { useState } from 'react'
 import { EditUser } from '../EditUser/EditUser'
 import { invertirFecha } from '../../utils/reverseDate';
+import { AllCoursesOneUserEnroll } from '../../components/AllCoursesOneUserEnroll/AllCoursesOneUserEnroll'
+import { AllCoursesOneUserCreate } from '../../components/AllCoursesOneUserCreate/AllCoursesOneUserCreate'
 
 export const UserProfile = () => {
   const [show, setShow] = useState(false);
-  const [travels, setTravels] = useState([]);
-  const {user} = useContext(TravelContext);
+  const {user} = useContext(MasalaContext);
 
   const showModal = () => {
     setShow(!show)
@@ -19,6 +20,7 @@ export const UserProfile = () => {
   return (
     <section>
       <Row className='profile-section'>
+        {/* profile */}
         <Col md={4} className='profile-col'>
           <div className='use-profile-ppal'>
             <div className='d-flex justify-content-between profile-img-cont'>
@@ -57,11 +59,23 @@ export const UserProfile = () => {
           </div>
           <div className='text-center'>
           </div>
-        </Col>
-        <Col md={8} className='profile-col'>
+        {/* edit profile */}
           <ModalBasico show={show} handleClose={showModal} title="Edición usuario">
             <EditUser handleClose={showModal} user_id={user?.user_id} />
           </ModalBasico>
+        </Col>
+        {/* course */}
+        <Col md={8} className='profile-col'>
+          <div className='d-flex flex-column align-items-center course-ppal'>
+            <div className='div-carousel'>
+              <h3>Mis cursos</h3>
+              <AllCoursesOneUserEnroll />
+            </div>
+            <div className='div-carousel'>
+              <h3>Mis cursos creados</h3>
+              <AllCoursesOneUserCreate />
+            </div>
+          </div>
         </Col>
       </Row>
     </section> 

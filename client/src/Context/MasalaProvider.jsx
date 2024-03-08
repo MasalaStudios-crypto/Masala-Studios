@@ -4,9 +4,9 @@ import {jwtDecode} from 'jwt-decode'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-export const TravelContext=createContext({})
+export const MasalaContext=createContext({})
 
-export const TravelsProvider = ({children}) => {
+export const MasalaProvider = ({children}) => {
 
   const[user, setUser]=useState()
   const [token, setToken]=useState()
@@ -34,8 +34,8 @@ export const TravelsProvider = ({children}) => {
   },[])
 
   return (
-    <TravelContext.Provider value={{user, setUser, token, setToken}}>
+    <MasalaContext.Provider value={{user, setUser, token, setToken}}>
       {children}
-    </TravelContext.Provider>
+    </MasalaContext.Provider>
   )
 }

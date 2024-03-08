@@ -16,8 +16,101 @@ class courseControllers{
    })
   }
 
+  allCoursesOneUserEnroll = (req, res) => {
+    const { user_id } = req.params;
+    //console.log(req.params);
+  
+    let sql = `
+        SELECT course.*
+        FROM course
+        JOIN register ON course.course_id = register.course_id
+        JOIN user ON user.user_id = register.user_id
+        WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND user.user_id = ${user_id}
+    `;
+  
+    connection.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        // Extraer los IDs de los profesores
+        const profesorIds = result.map((curso) => curso.creator_user_id);
+  
+        // Consultar todos los datos de los profesores asociados a los cursos
+        let sql2 = `
+          SELECT user.*
+          FROM user
+          WHERE user.user_id IN (${profesorIds.join(',')})
+          GROUP BY user.user_id;
+        `;
+  
+        connection.query(sql2, (err2, teachersResult) => {
+          if (err2) {
+            res.status(500).json(err2);
+          } else {
+            // Crear un objeto de respuesta que contenga la información de los cursos y profesores
+            const response = {
+              courses: result,
+              teachers: teachersResult,
+            };
+  
+            // Enviar la respuesta al cliente
+            res.status(200).json(response);
+            //console.log(response);
+          }
+        });
+      }
+    });
+  };
 
-
+  allCoursesOneUserCreate = (req, res) => {
+    const { user_id } = req.params;
+    //console.log(req.params);
+  
+    let sql = `
+            SELECT course.*
+              FROM course
+              JOIN register ON course.course_id = register.course_id
+              JOIN user ON user.user_id = register.user_id
+              WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id = ${user_id}
+              GROUP BY course.course_id;
+    `;
+  
+    connection.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        // Extraer el IDs de los cursos
+        const cursosIds = result.map((curso) => curso.course_id);
+  
+        // Consultar todos los datos de los alumnos asociados a los cursos
+        let sql2 = `
+                SELECT user.*
+                  FROM user
+                  WHERE user.user_id IN (SELECT register.user_id
+                  FROM register, user
+                  WHERE user.user_id = register.user_id
+                  AND register.course_id = 1)
+        `;
+  
+        connection.query(sql2, (err2, studentsResult) => {
+          if (err2) {
+            res.status(500).json(err2);
+          } else {
+            // Crear un objeto de respuesta que contenga la información de los cursos y alumnos
+            const response = {
+              courses: result,
+              students: studentsResult,
+            };
+  
+            // Enviar la respuesta al cliente
+            res.status(200).json(response);
+            //console.log(response);
+          }
+        });
+      }
+    });
+  };
+  
 
 }
 

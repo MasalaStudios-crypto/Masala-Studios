@@ -1,5 +1,6 @@
 @import '../../variables';
 
+/* text */
 .profile-text {
   font-size: $size-1;
 }
@@ -9,6 +10,7 @@
   font-size: $size-1;
 }
 
+/* profile */
 .profile-section {
   min-height: calc(100vh - 85.14px - 80px);
   background-image: url(/images/profile.jpg);
@@ -20,6 +22,7 @@
   padding: 0 !important;
 }
 
+/* profile card */
 .use-profile-ppal {
   margin: 40px;
   border-radius: 20px;
@@ -44,3 +47,18 @@
   }
 }
 
+/* course card */
+.course-ppal {
+  margin: 40px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  box-shadow: 0 0 15px black;
+  padding: 20px;
+  background-color: $color-2;
+}
+
+/* carousel */
+.div-carousel {
+  text-align: center;
+  width: 100%;
+}

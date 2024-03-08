@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import './editUser.scss';
-import {TravelContext} from '../../Context/TravelsProvider'
+import {MasalaContext} from '../../Context/MasalaProvider'
 import axios from 'axios';
 import { isAlphaNumericWithSpaces, isLetterWithSpace, isNumber, isValidPhoneNumber } from '../../utils/validation';
+import { invertirFecha, invertirFecha2 } from '../../utils/reverseDate';
 
 const initialValue = {
   name: "",
@@ -22,10 +23,13 @@ const initialValue = {
 export const EditUser = ({handleClose}) => {
   
   const [message, setMessage] = useState("");
-  const {user, setUser} = useContext(TravelContext);
+  const {user, setUser} = useContext(MasalaContext);
   const [edit, setEdit] = useState(initialValue);
   const [file, setFile] = useState()
 
+  //console.log(edit);
+  //console.log(typeof(edit.birth_date));
+  //console.log("AQUIIIIII", invertirFecha2(edit.birth_date));
   useEffect(() => {
     if(user){
       setEdit({...edit, name:user.name, lastname: user.lastname, birth_date: user.birth_date, dni: user.dni, phone: user.phone, address: user.address, zip_code: user.zip_code, city: user.city, province: user.province, user_id: user.user_id})
@@ -107,7 +111,7 @@ export const EditUser = ({handleClose}) => {
               <Form.Control 
                 type="date"
                 placeholder="Fecha nacimiento"
-                value={edit.birth_date === null ? "" : edit.birth_date}
+                value={edit.birth_date === null ? "" : invertirFecha2(edit.birth_date)}
                 onChange={handleChange}
                 name="birth_date"
               />

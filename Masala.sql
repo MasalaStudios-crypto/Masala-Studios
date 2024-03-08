@@ -37,8 +37,9 @@ CREATE TABLE course(
 );
 
 CREATE TABLE register( -- un user se apunta a un curso
-    user_id INT UNSIGNED NOT NULL PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
 	course_id BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (user_id, course_id),
 	status tinyint NOT NULL default 1,
     register_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- fecha en la que un alumno se apunta un curso
     CONSTRAINT fk_user_2 FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -51,8 +52,9 @@ CREATE TABLE tag(
 );
 
 CREATE TABLE course_tag(
-	tag_id INT UNSIGNED NOT NULL PRIMARY KEY,
+	tag_id INT UNSIGNED NOT NULL,
 	course_id BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY(tag_id, course_id),
     CONSTRAINT fk_tag_1 FOREIGN KEY (tag_id) REFERENCES tag(tag_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_course_2 FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -92,16 +94,13 @@ CREATE TABLE comment(
 
 /*
 SELECT * FROM user;
-
+SELECT * FROM course;
 SELECT * FROM subject;
 SELECT * FROM resource;
 SELECT * FROM tag;
 SELECT * FROM comment;
-
-
-SELECT * FROM course;
-
 */
+
 
 
 
