@@ -37,7 +37,6 @@ export const NavBarApp= () => {
     setToken()
     navigate("/")
   }
-
   return (
     <Navbar expand="lg" className="custom-navbar-bg">
       <Container fluid>
@@ -55,12 +54,22 @@ export const NavBarApp= () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
+              {user?.type===2 ?
+              <div className='d-flex'>
               <Nav.Link href="#action1" className='masala-text'>PORTFOLIO</Nav.Link>
               <Nav.Link href="/who" className='masala-text'>QUIENES SOMOS</Nav.Link>
               <Nav.Link href="/servicios" className='masala-text'>SERVICIOS</Nav.Link>
               <Nav.Link href="#action2" className='masala-text'>BLOG</Nav.Link>
               <Nav.Link onClick={showModal} className='masala-text'>CONTACTO</Nav.Link>
-            
+              </div> 
+              :
+              <div className='d-flex'>
+              <Nav.Link href="/allUsers" className='masala-text'>USUARIOS</Nav.Link>
+              <Nav.Link href="" className='masala-text'>CURSOS</Nav.Link>
+              <Nav.Link href="" className='masala-text'>CREAR CURSOS</Nav.Link>
+              </div>
+              }
+               
               {!user ? 
                 <div>
                   <Button
@@ -76,10 +85,19 @@ export const NavBarApp= () => {
                                 :
                                 <span>{user?.name[0].toUpperCase()}</span>}
                   >
+
+                  {user?.type===2 ? 
+                  <div> 
                   <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
                   <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
                   <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
                   <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
+                  </div> 
+                  :
+                  <div>
+                  <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
+                  </div>
+                  }
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action5">
                   <Button

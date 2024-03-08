@@ -51,7 +51,7 @@ CREATE TABLE tag(
 );
 
 CREATE TABLE course_tag(
-	tag_id INT UNSIGNED NOT NULL PRIMARY KEY,
+	tag_id INT UNSIGNED NOT NULL,
 	course_id BIGINT UNSIGNED NOT NULL,
     CONSTRAINT fk_tag_1 FOREIGN KEY (tag_id) REFERENCES tag(tag_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_course_2 FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -91,14 +91,15 @@ CREATE TABLE comment(
 );
 
 
-SELECT * FROM user;
 
+SELECT * FROM user;
+SELECT * FROM course;
 SELECT * FROM subject;
 SELECT * FROM resource;
 SELECT * FROM tag;
 SELECT * FROM comment;
 
-SELECT * FROM course;
+
 
 
 
