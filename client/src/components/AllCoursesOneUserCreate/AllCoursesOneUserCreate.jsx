@@ -9,7 +9,7 @@ const Slide = ({ imagePath, title, caption }) => (
     <img src={imagePath} alt="foto curso" />
     <div className="caption-container">
       <h4 className='text-carousel'>{title}</h4>
-      <p className='text-carousel'>Alumnos: <br/>{caption}</p>
+      <div className='text-carousel'><span>Alumnos: </span><br/>{caption}</div>
     </div>
   </div>
 );
@@ -38,8 +38,8 @@ export const AllCoursesOneUserCreate = () => {
     }
   }, [user])
 
-  console.log("AQUIIIII", allCoursesOneUserCreate);
-  console.log("AQUIIIII", allStudents);
+  //console.log("AQUIIIII", allCoursesOneUserCreate);
+  //console.log("AQUIIIII", allStudents);
 
 return (
 <div>
@@ -61,7 +61,7 @@ return (
             }
             title={curso.name}
             caption={allStudents.map((student) => (
-              <div key={student.user_id}>{student.name}</div>
+              <p key={student.user_id}>{student.name}</p>
             ))}
           />
         ))}
