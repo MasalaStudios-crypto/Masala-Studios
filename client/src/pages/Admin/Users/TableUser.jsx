@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import {useEffect, useState, useContext} from 'react'
-import { TravelContext } from '../../../Context/TravelsProvider';
+import { MasalaContext } from '../../../Context/MasalaProvider';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';

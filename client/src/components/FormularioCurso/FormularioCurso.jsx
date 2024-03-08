@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
+import { isAlphaNumericWithSpaces, isNumber, onEnter } from '../../utils/validation';
+import './formularioCurso.scss'
 
 
 
 
-export const FormularioCurso = ({setCourses, courses, user_id, showModal3}) => {
+export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => {
 
   const initalValue={
     name:"",
@@ -26,29 +28,30 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3}) => {
   }
 
 
-  const handleFile = (e) =>{
-    setFile(e.target.file);
-  }
+  const handleFile = (e) => {
+    setFile(e.target.files[0]);
+  };
+  
 
   const onSubmit=()=>{
 
-    if (!newCourse.name || !newCourse.duration || !newCourse.price  || !newCourse.description) {
-      setMessage("rellena algo por favor!!!");
-      console.log("error en el if")
+    if (newCourse.name && newCourse.duration && newCourse.price  && newCourse.description) {
+      
       const newFormData = new FormData()
       newFormData.append("CrCourse", JSON.stringify(newCourse));
       newFormData.append("file", file)
-        
-      
+
       axios
-        .put("http://localhost:3000/course/createCourse", newFormData)
+        .post("http://localhost:3000/course/createCourse", newFormData)
         .then((res)=>{
-          refresh();
-          handleClose()
+          console.log("OK TODO GOOD");
+          showModal3()
         })
         .catch(err => console.log(err))
-        console.log("error en el axios",newCourse.name, newCourse.duration, newCourse.price, newCourse.description, user_id)
-        
+
+      }
+      else{
+        setMessage("rellena algo por favor!!!");
       }
       }
     
@@ -67,6 +70,7 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3}) => {
       name="name"
       value={newCourse.name}
       onChange={handleChange}
+      onKeyPress={isAlphaNumericWithSpaces}
       type="text" 
       placeholder="Introduce nombre curso" />
     </Form.Group>
@@ -78,7 +82,8 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3}) => {
       value={newCourse.duration}
       onChange={handleChange}
       type="text" 
-      placeholder="Introduce duración del curso" />
+      onKeyPress={isNumber}
+      placeholder="Introduce duración del curso (Horas)" />
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicPrice">
@@ -87,16 +92,16 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3}) => {
       name="price"
       value={newCourse.price}
       onChange={handleChange}
-      type="text" 
-      placeholder="Introduce precio curso" />
+      type="isNumber" 
+      onKeyPress={isNumber}
+      placeholder="Introduce precio curso (€)" />
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicImg">
       <Form.Label>Imagen</Form.Label>
       <Form.Control 
       onChange={handleFile}
-      type="file" 
-      placeholder="Introduce imagen curso" />
+      type="file"  />
     </Form.Group> 
 
     <Form.Group className="mb-3" controlId="formBasicDescription">
@@ -123,4 +128,3 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3}) => {
   </Form>
  )
 }
-

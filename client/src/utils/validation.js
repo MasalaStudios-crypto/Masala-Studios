@@ -27,6 +27,7 @@ export const isNumber = (event) => {
   }
 };
 
+
 //alfanumericos y espacios
 
 export const isAlphaNumericWithSpaces = (event) => {
@@ -55,3 +56,11 @@ export const isValidPhoneNumber = (event) => {
     return false;
   }
 };
+
+// Para enviar los formularios pulsando Enter
+
+export const onEnter = (e) =>{
+  if (e.keyCode === 13) {
+    find()
+  }
+}

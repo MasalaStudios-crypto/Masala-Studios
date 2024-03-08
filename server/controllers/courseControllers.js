@@ -61,49 +61,59 @@ class courseControllers{
       }
     });
   };
-  saveCourseImg = async (course_img, course_id, res) =>{
-   
-      let sql = `INSERT INTO course (course_img, course_id) VALUES ('${course_img.filename}', '${course_id}')`
-      connection.query(sql, (error,result)=>{
-        if(error){
-        
-          res.status(500).json(error);
-          // throw error
-        }else{
-          res.status(200).json(result);
+
+  createCourse = (req, res) => {
+    try {
+      const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
+      const courseImg = req.file ? req.file.filename : null;
+  
+      let sql;
+      let values;
+  
+      if (courseImg) {
+        // Si hay una imagen, incluir la columna course_img en la consulta
+        sql = `INSERT INTO course (name, duration, price, description, creator_user_id, course_img) VALUES (?, ?, ?, ?, ?, ?)`;
+        values = [name, duration, price, description, creator_user_id, courseImg];
+      } else {
+        // Si no hay imagen, omitir la columna course_img en la consulta
+        sql = `INSERT INTO course (name, duration, price, description, creator_user_id) VALUES (?, ?, ?, ?, ?)`;
+        values = [name, duration, price, description, creator_user_id];
+      }
+  
+      // Ejecutar la consulta SQL
+      connection.query(sql, values, (error, result) => {
+        if (error) {
+          console.error("Error al insertar curso:", error);
+          res.status(500).json({ error: "Error interno del servidor" });
+        } else {
+          const courseId = result.insertId;
+  
+          if (courseImg) {
+            // Si hay una imagen, insertarla en la base de datos
+            let imgSql = `UPDATE course SET course_img = ? WHERE course_id = ?`;
+            let imgValues = [courseImg, courseId];
+            connection.query(imgSql, imgValues, (imgError, imgResult) => {
+              if (imgError) {
+                console.error("Error al actualizar imagen del curso:", imgError);
+                res.status(500).json({ error: "Error interno del servidor" });
+              } else {
+                res.status(200).json({ course_id: courseId });
+              }
+            });
+          } else {
+            // Si no hay imagen, enviar respuesta directamente
+            res.status(200).json({ course_id: courseId });
+          }
         }
-      })
-  }
-
-
-
-createCourse = (req, res) => {
-  try {
-    const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
-
-    let sql = `INSERT INTO course (name, duration, price, description, creator_user_id) VALUES ('${name}', '${duration}', ${price}, '${description}', ${creator_user_id})`;
-
-    connection.query(sql, (error, result) => {
-      if (error) {
-        res.status(500).json(console.log(error)); 
-      } else{
-        let course_id = result.insertId;
-        try{
-            this.saveCourseImg(req.file, course_id, res)
-        }
-        catch(err){
-            console.log("Holaa");
-        }
-        res.status(200).json(course_id)
+      });
+    } catch (error) {
+      console.error("Error en el controlador createCourse:", error);
+      res.status(500).json({ error: "Error interno del servidor" });
     }
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message }); // Enviar mensaje de error al cliente
-  }
-};
+  };
 
-  }
- 
+  
+
 
 
   allCoursesOneUserCreate = (req, res) => {
@@ -111,12 +121,12 @@ createCourse = (req, res) => {
     //console.log(req.params);
   
     let sql = `
-            SELECT course.*
-              FROM course
-              JOIN register ON course.course_id = register.course_id
-              JOIN user ON user.user_id = register.user_id
-              WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id = ${user_id}
-              GROUP BY course.course_id;
+      SELECT course.*
+        FROM course
+        JOIN register ON course.course_id = register.course_id
+        JOIN user ON user.user_id = register.user_id
+        WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id = ${user_id}
+        GROUP BY course.course_id;
     `;
   
     connection.query(sql, (err, result) => {
@@ -145,7 +155,6 @@ createCourse = (req, res) => {
               courses: result,
               students: studentsResult,
             };
-  
             // Enviar la respuesta al cliente
             res.status(200).json(response);
             //console.log(response);
@@ -155,7 +164,7 @@ createCourse = (req, res) => {
     });
   };
   
-
+}
 
 
 module.exports = new courseControllers;
