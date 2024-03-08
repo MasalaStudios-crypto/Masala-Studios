@@ -20,15 +20,16 @@ export const Cursos = () => {
   return (
     <>
         <h2 style={{textAlign:"center"}}>Cursos</h2>
+
         
-      <Carousel className='Carousel-ppal'>
-        
+      <Carousel  className='Carousel-ppal'>
       {cursos.map((elem)=>(
-      <Carousel.Item className='Carousel-ppal'>
+        
+      <Carousel.Item key={elem.course_id} className='Carousel-ppal'>
 
         <CardCursos key={elem.course_id} elem={elem}/>
       </Carousel.Item>
-      ))}
+        ))}
       </Carousel>
     
     </>

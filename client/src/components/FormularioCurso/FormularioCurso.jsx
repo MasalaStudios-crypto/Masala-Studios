@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
+import { isAlphaNumericWithSpaces, isNumber, onEnter } from '../../utils/validation';
+import './formularioCurso.scss'
 
 
 
@@ -68,6 +70,7 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
       name="name"
       value={newCourse.name}
       onChange={handleChange}
+      onKeyPress={isAlphaNumericWithSpaces}
       type="text" 
       placeholder="Introduce nombre curso" />
     </Form.Group>
@@ -79,7 +82,8 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
       value={newCourse.duration}
       onChange={handleChange}
       type="text" 
-      placeholder="Introduce duración del curso" />
+      onKeyPress={isNumber}
+      placeholder="Introduce duración del curso (Horas)" />
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicPrice">
@@ -88,8 +92,9 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
       name="price"
       value={newCourse.price}
       onChange={handleChange}
-      type="text" 
-      placeholder="Introduce precio curso" />
+      type="isNumber" 
+      onKeyPress={isNumber}
+      placeholder="Introduce precio curso (€)" />
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicImg">
@@ -122,4 +127,6 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
     
   </Form>
  )
+
 }
+

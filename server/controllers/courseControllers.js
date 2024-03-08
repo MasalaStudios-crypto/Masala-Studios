@@ -62,19 +62,6 @@ class courseControllers{
     });
   };
 
-  saveCourseImg = async (course_img, course_id, res) =>{
-   
-      let sql = `INSERT INTO course (course_img, course_id) VALUES ('${course_img.filename}', '${course_id}')`
-      connection.query(sql, (error,result)=>{
-        if(error){
-        
-          res.status(500).json(error);
-          // throw error
-        }else{
-          res.status(200).json(result);
-        }
-      })
-  }
 
   createCourse = (req, res) => {
     try {
@@ -125,6 +112,7 @@ class courseControllers{
       res.status(500).json({ error: "Error interno del servidor" });
     }
 
+
   };
   
   
@@ -134,12 +122,12 @@ class courseControllers{
     //console.log(req.params);
   
     let sql = `
-            SELECT course.*
-              FROM course
-              JOIN register ON course.course_id = register.course_id
-              JOIN user ON user.user_id = register.user_id
-              WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id = ${user_id}
-              GROUP BY course.course_id;
+      SELECT course.*
+        FROM course
+        JOIN register ON course.course_id = register.course_id
+        JOIN user ON user.user_id = register.user_id
+        WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id = ${user_id}
+        GROUP BY course.course_id;
     `;
   
     connection.query(sql, (err, result) => {
@@ -168,7 +156,6 @@ class courseControllers{
               courses: result,
               students: studentsResult,
             };
-  
             // Enviar la respuesta al cliente
             res.status(200).json(response);
             //console.log(response);
@@ -177,6 +164,9 @@ class courseControllers{
       }
     });
   };
+
+  
+}
 
 
   detailsCourse = (req, res) => {
