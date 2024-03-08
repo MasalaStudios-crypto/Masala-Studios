@@ -1,6 +1,7 @@
 var express = require('express');
 const courseControllers = require('../controllers/courseControllers');
 var router = express.Router();
+const multer = require('../middlewares/multerSingle')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,5 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/allCourses', courseControllers.allCourses)
+
+router.post('/createCourse',multer("course_img"), courseControllers.createCourse)
 
 module.exports = router;

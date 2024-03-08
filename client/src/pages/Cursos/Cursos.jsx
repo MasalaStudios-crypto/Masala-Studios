@@ -7,8 +7,6 @@ import axios from 'axios'
 export const Cursos = () => {
   const [cursos, setCursos] = useState([])
 
-  setCursos[{name:"Photoshop",duration:"20h", price:"0" },{name:"Edicion de fotos", duration:"40h", price:"0"}]
-
   useEffect(()=>{
     axios
         .get("http://localhost:3000/course/allCourses")
