@@ -1,5 +1,5 @@
 create database masala;
--- drop DATABASE masala;
+drop DATABASE masala;
 use masala;
 
 CREATE TABLE user (
@@ -66,6 +66,7 @@ CREATE TABLE subject(
 	name VARCHAR(50) NOT NULL,
 	duration VARCHAR(10),
 	creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    file_name VARCHAR(100),
 	CONSTRAINT fk_course_3 FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

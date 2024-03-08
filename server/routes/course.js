@@ -16,4 +16,8 @@ router.get('/allCoursesOneUserCreate/:user_id', courseControllers.allCoursesOneU
 
 router.post('/createCourse',multer("course_img"), courseControllers.createCourse)
 
+router.get('/details/:course_id', courseControllers.detailsCourse)
+
+router.get('/subjects/:course_id', courseControllers.getSubjects)
+
 module.exports = router;

@@ -3,13 +3,15 @@ import { MasalaContext } from '../../Context/MasalaProvider'
 import Carousel from 'react-bootstrap/Carousel';
 import './allCoursesOneUserEnroll.scss';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const Slide = ({ imagePath, title, caption }) => (
+const Slide = ({ imagePath, title, caption, aref }) => (
   <div className="slide-container">
     <img src={imagePath} alt="foto curso" />
     <div className="caption-container">
       <h4 className='text-carousel'>{title}</h4>
       <p className='text-carousel'>Profesor: <br/>{caption}</p>
+      <Link to={aref}>Abrir curso</Link>
     </div>
   </div>
 );
@@ -61,6 +63,7 @@ return (
             }
             title={curso.name}
             caption={allTeachers.find((teacher) => teacher.user_id === curso.creator_user_id)?.name}
+            aref={`/mycourse/${curso.course_id}`}
           />
         ))}
       </Carousel.Item>

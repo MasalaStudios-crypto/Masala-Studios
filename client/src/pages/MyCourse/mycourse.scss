@@ -1,0 +1,20 @@
+@import '../../variables';
+
+.course-col {
+  padding: 0 !important;
+}
+
+.visualizador {
+  //cambiar los 100px por el tamaño que se le dé a l descripción
+  min-height: calc(100vh - 85.14px - 80px - 100px);
+}
+
+.listado-temario {
+  min-height: calc(100vh - 85.14px - 80px);
+}
+
+.course-edit {
+  width: 10%;
+  height: 10%;
+  cursor: pointer;
+}
