@@ -91,6 +91,7 @@ CREATE TABLE comment(
 );
 
 
+
 SELECT * FROM user;
 SELECT * FROM course;
 SELECT * FROM subject;

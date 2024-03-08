@@ -14,6 +14,8 @@ export const NavBarApp= () => {
 
   const navigate = useNavigate();
   const {user, setUser, setToken}= useContext(TravelContext)
+  const [courses, setCourses] = useState([])
+  const [refreshCourses, setRefreshCourses] = useState(false)
   const[show, setShow]=useState(false)
   const[show2, setShow2]=useState(false)
   const[show3, setShow3]=useState(false)
@@ -130,7 +132,12 @@ export const NavBarApp= () => {
               show={show3}
               handleClose2={showModal3}>
                 <FormularioCurso
-                handleClose2={showModal3}/>
+                showModal3 ={showModal3}
+                user_id={user?.user_id}
+                courses={courses}
+                setCourses={setCourses}
+                
+                />
               </ModalBasico2>
 
             </Nav>
