@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import {useEffect, useState, useContext} from 'react'
-import { TravelContext } from '../../../Context/TravelsProvider';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -16,6 +15,7 @@ import { ModalBasico } from '../../../components/ModalBasico/ModalBasico';
 import { ModalBasico2 } from '../../../components/ModalBasico2/ModalBasico2';
 import { FormularioLogin } from '../../../components/FormularioLogin/FormularioLogin';
 import { FormularioRegister } from '../../../components/FormularioRegister/FormularioRegister';
+import { MasalaContext } from '../../../Context/MasalaProvider';
 
 export const TableUser = () => {
 
@@ -25,7 +25,7 @@ export const TableUser = () => {
   const [show2, setShow2]=useState(false)
   const [userId, setUserId]=useState()
   const [creators, setCreators]=useState([])
-  const {token}= useContext(TravelContext)
+  const {token}= useContext(MasalaContext)
 
   useEffect(()=>{
     if(token){
@@ -113,7 +113,7 @@ export const TableUser = () => {
           <TableCell align="right">Email</TableCell>
           <TableCell align="right">Tipo</TableCell>
           <TableCell align="right">Estado</TableCell>
-          <TableCell align="right">Visibilidad</TableCell>
+          <TableCell align="right">Habilitado</TableCell>
           <TableCell align="right">Cursos creados</TableCell>
           <TableCell align="right">Cursos apuntados</TableCell>
 

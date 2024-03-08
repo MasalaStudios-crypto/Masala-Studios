@@ -1,11 +1,8 @@
 import React from 'react'
 import { TableUser } from './TableUser'
 
-
 export const AdminUsers = () => {
   
-
-
   return (
     <div>
 
