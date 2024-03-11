@@ -1,5 +1,5 @@
 create database masala;
-drop DATABASE masala;
+-- drop DATABASE masala;
 use masala;
 
 CREATE TABLE user (

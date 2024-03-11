@@ -15,7 +15,7 @@ export const Servicios = () => {
         <Cursos/>
       </Col>
       <Col className='serv-div2'>
-
+       
 
         <Card className='serv-card'>
       <Card.Img variant="top" src="/images/image6.jpg" />

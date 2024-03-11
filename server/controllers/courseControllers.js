@@ -166,7 +166,7 @@ class courseControllers{
   };
 
   
-}
+
 
 
   detailsCourse = (req, res) => {
@@ -183,7 +183,7 @@ class courseControllers{
       }
     })
   }
-}
+
 
 
   allCourses = (req, res)=>{

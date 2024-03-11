@@ -89,7 +89,7 @@ export const NavBarApp= () => {
                   {user?.type===2 ? 
                   <div> 
                   <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
-                  <NavDropdown.Item href="#action3">Todos los cursos</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/allCoursesProfile">Todos los cursos</NavDropdown.Item>
                   <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
                   <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
                   </div> 
