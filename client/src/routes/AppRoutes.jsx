@@ -14,6 +14,7 @@ import { AdminUsers } from '../pages/Admin/Users/AdminUsers'
 import { MyCourse } from '../pages/MyCourse/MyCourse'
 import { AdminCourse } from '../pages/Admin/Course/AdminCourse'
 import { AdminSubject } from '../pages/Admin/Subject/AdminSubject'
+import { FormularioTema } from '../components/FormularioTema/FormularioTema'
 
 
 
@@ -39,9 +40,8 @@ export const AppRoutes = () => {
             <Route path='/allUsers' element={<AdminUsers/>} />
             <Route path='/allCourses' element={<AdminCourse/>} />
             <Route path='/subjects/:course_id' element={<AdminSubject/>} />
-
+            <Route path='/allCourses' element={<AdminCourse/>} />
             <Route path="*" element={<h1>TRAMPOSO</h1>}/>
-            <Route path="/mycourse/:course_id" element={<MyCourse />}/>
 
             {!user && <>
             <Route path='/register' element={<Register/>} />

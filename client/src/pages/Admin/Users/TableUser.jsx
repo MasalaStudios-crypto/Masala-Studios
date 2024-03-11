@@ -16,7 +16,6 @@ import { ModalBasico } from '../../../components/ModalBasico/ModalBasico';
 import { ModalBasico2 } from '../../../components/ModalBasico2/ModalBasico2';
 import { FormularioLogin } from '../../../components/FormularioLogin/FormularioLogin';
 import { FormularioRegister } from '../../../components/FormularioRegister/FormularioRegister';
-import { MasalaContext } from '../../../Context/MasalaProvider';
 
 export const TableUser = () => {
 

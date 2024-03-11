@@ -20,4 +20,6 @@ router.get('/details/:course_id', courseControllers.detailsCourse)
 
 router.get('/subjects/:course_id', courseControllers.getSubjects)
 
+router.post('/addSubject/:course_id', courseControllers.addSubject)
+
 module.exports = router;

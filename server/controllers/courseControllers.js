@@ -62,7 +62,6 @@ class courseControllers{
     });
   };
 
-
   createCourse = (req, res) => {
     try {
       const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
@@ -115,8 +114,6 @@ class courseControllers{
 
   };
   
-  
-
   allCoursesOneUserCreate = (req, res) => {
     const { user_id } = req.params;
     //console.log(req.params);
@@ -165,10 +162,6 @@ class courseControllers{
     });
   };
 
-  
-}
-
-
   detailsCourse = (req, res) => {
     const {course_id} = req.params;
 
@@ -183,8 +176,6 @@ class courseControllers{
       }
     })
   }
-}
-
 
   allCourses = (req, res)=>{
     let sql=`SELECT c.name as course_name , c.*, u.name as profesor_name
@@ -254,6 +245,19 @@ class courseControllers{
       console.log(result);
 
      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  addSubject=(req, res)=>{
+    const {course_id}=re.params;
+    const {name, duration}=req.body
+
+    let sql=`INSERT into subject (course_id, name, duration) VALUES (${course_id}, "${name}", ${duration});`
+
+    connection.query(sql, (err, result)=>{
+      console.log(result);
+
+     err?res.status(100).json(err):res.status(200).json(result)
     })
   }
   

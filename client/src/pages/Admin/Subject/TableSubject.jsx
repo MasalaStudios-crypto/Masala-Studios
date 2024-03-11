@@ -4,13 +4,21 @@ import { MasalaContext } from '../../../Context/MasalaProvider'
 import axios from 'axios'
 import { Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
+import { ModalBasico } from '../../../components/ModalBasico/ModalBasico'
+import { FormularioCurso } from '../../../components/FormularioCurso/FormularioCurso'
+import { FormularioTema } from '../../../components/FormularioTema/FormularioTema'
 
 export const TableSubject = () => {
 
   const [subjects, setSubjects]=useState()
   const [reset, setReset]=useState(false)
+  const[show, setShow]=useState(false)
   const {token}= useContext(MasalaContext)
   const {course_id} = useParams()
+
+  const showModal=()=>{
+    setShow(!show)
+  }
 
   useEffect(()=>{
     if(token){
@@ -28,6 +36,11 @@ export const TableSubject = () => {
 
   return (
     <div>
+
+      <div>
+        <Button onClick={showModal}>Añadir tema</Button>
+      </div>
+
       {subjects?.map((elem)=>
         <div key={elem.coruse_id}>
         <h2>Nombre del curso: {elem.course_name}</h2>
@@ -64,6 +77,15 @@ export const TableSubject = () => {
 
 </Table>
 </TableContainer>
+
+<ModalBasico
+handleClose={showModal}
+show={show}
+title="Añadir tema">
+  <FormularioTema
+  course_id={course_id}
+  handleClose={showModal}/>
+</ModalBasico>
 
 </div>
   )
