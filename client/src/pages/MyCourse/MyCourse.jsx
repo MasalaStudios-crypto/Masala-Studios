@@ -23,9 +23,9 @@ export const MyCourse = () => {
     axios.get(`http://localhost:3000/course/details/${course_id}`)
       .then((response) => {
         const {result1, result2, result3} = response.data
-        console.log("CURSO", result1);
-        console.log("TEMAS", result2);
-        console.log("RECURSOS", result3);
+        //console.log("CURSO", result1);
+        //console.log("TEMAS", result2);
+        //console.log("RECURSOS", result3);
         setCourseDetails(result1);
         setSubjectDetails(result2);
         setResourceDetails(result3);
@@ -36,9 +36,9 @@ export const MyCourse = () => {
       });
   }, [course_id]);
 
-  console.log("DATOS CURSO", courseDetails); //aquí tengo datos del curso
-  console.log("DATOS TEMAS", subjectDetails); //datos de los temas del curso
-  console.log("DATOS RECURSOS", resourcetDetails); //datos de los recursos del curso
+  //console.log("DATOS CURSO", courseDetails); //aquí tengo datos del curso
+  //console.log("DATOS TEMAS", subjectDetails); //datos de los temas del curso
+  //console.log("DATOS RECURSOS", resourcetDetails); //datos de los recursos del curso
 
   return (
     <section>
@@ -48,11 +48,11 @@ export const MyCourse = () => {
           <div className='visualizador' id='visualizador'>
             <p>VISUALIZADOR</p>
           </div>
-          <div>
+          <div className='descript-div'>
             <span>Nombre curso: </span>
             <span>{courseDetails?.name}</span>
             <br />
-            <span>Descripción</span>
+            <span>Descripción:</span>
             <br />
             <span>{courseDetails?.description}</span>
           </div>
@@ -61,10 +61,12 @@ export const MyCourse = () => {
         {/* Columna derecha */}
         <Col md={2} className='course-col'>
           <div className='listado-temario'>
-            <div className='d-flex'>
+            <div className='d-flex justify-content-between'>
               <h5>Temario del curso</h5>
-                <img src="/icons/437886-200.png" alt="editar" className='course-edit' />
-                <img src="/icons/subject.svg" alt="temario" className='course-edit' />
+                <div>
+                  <img src="/icons/437886-200.png" alt="editar" className='course-edit' />
+                  <img src="/icons/subject.svg" alt="temario" className='course-edit' />
+                </div>
             </div>
             {/* Mapeo de subject */}
             {subjectDetails?.map((subject) => (
