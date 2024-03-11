@@ -1,0 +1,14 @@
+.allCoursesProfile-ppal{
+  width: calc((var(--bs-gutter-x)* 1) + 100%) ;
+  height: auto;
+  padding: 50px;
+  margin-left: calc((var(--bs-gutter-x)* -0.5));
+  margin-right: calc((var(--bs-gutter-x)* -0.5));
+  background-image: url('../../../public/images/Background-allCoursesProfile.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
