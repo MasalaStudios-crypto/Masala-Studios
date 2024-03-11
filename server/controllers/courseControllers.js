@@ -62,7 +62,6 @@ class courseControllers{
     });
   };
 
-
   createCourse = (req, res) => {
     try {
       const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
@@ -115,8 +114,6 @@ class courseControllers{
 
   };
   
-  
-
   allCoursesOneUserCreate = (req, res) => {
     const { user_id } = req.params;
     //console.log(req.params);
@@ -165,25 +162,37 @@ class courseControllers{
     });
   };
 
+  detailsCourse = async (req, res) => {
+    try {
+      const { course_id } = req.params;
   
-
-
-
-  detailsCourse = (req, res) => {
-    const {course_id} = req.params;
-
-    let sql = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
-
-    connection.query(sql, (err, result) => {
-      if(err){
-        res.status(500).json(err)
-      }
-      else{
-        res.status(200).json(result[0])
-      }
-    })
-  }
-
+      // Primera consulta SQL
+      const sql1 = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+      const result1 = await connection.promise().query(sql1);
+  
+      // Segunda consulta SQL
+      const sql2 = `SELECT subject.* FROM subject, register WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}`;
+      const result2 = await connection.promise().query(sql2);
+  
+      // Tercera consulta SQL
+      const sql3 = `SELECT resource.*
+                      FROM resource, course
+                      WHERE resource.course_id = course.course_id AND course.course_id = ${course_id}`;
+      const result3 = await connection.promise().query(sql3);
+  
+      // Manipular los resultados según tus necesidades
+      const response = {
+        result1: result1[0][0], // solo la primera posición
+        result2: result2[0],    // array completo de subjects
+        result3: result3[0]     // array completo de resource
+      };
+  
+      res.status(200).json(response);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  };
+  
 
 
   allCourses = (req, res)=>{
@@ -254,6 +263,19 @@ class courseControllers{
       console.log(result);
 
      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  addSubject=(req, res)=>{
+    const {course_id}=re.params;
+    const {name, duration}=req.body
+
+    let sql=`INSERT into subject (course_id, name, duration) VALUES (${course_id}, "${name}", ${duration});`
+
+    connection.query(sql, (err, result)=>{
+      console.log(result);
+
+     err?res.status(100).json(err):res.status(200).json(result)
     })
   }
   
