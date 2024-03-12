@@ -114,35 +114,42 @@ class courseControllers{
 
   };
   
-  allCoursesOneUserCreate = (req, res) => {
+/*   allCoursesOneUserCreate = (req, res) => {
     const { user_id } = req.params;
     //console.log(req.params);
   
     let sql = `
-      SELECT course.*
-        FROM course
-        JOIN register ON course.course_id = register.course_id
-        JOIN user ON user.user_id = register.user_id
-        WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id = ${user_id}
-        GROUP BY course.course_id;
-    `;
+              SELECT *
+              FROM course
+              WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id}
+              GROUP BY course_id
+            `;
   
     connection.query(sql, (err, result) => {
       if (err) {
         res.status(500).json(err);
       } else {
         // Extraer el IDs de los cursos
-        const cursosIds = result.map((curso) => curso.course_id);
-  
+        const cursosIds = result.map((curso) => curso.course_id); */
+        //console.log(cursosIds);
         // Consultar todos los datos de los alumnos asociados a los cursos
-        let sql2 = `
+        /* let sql2 = `
                 SELECT user.*
                   FROM user
                   WHERE user.user_id IN (SELECT register.user_id
                   FROM register, user
                   WHERE user.user_id = register.user_id
-                  AND register.course_id = 1)
-        `;
+                  AND register.course_id = ${cursosIds})
+        `; */
+/*         let sql2 = `
+                    SELECT user.*
+                    FROM user
+                    WHERE user.user_id IN (
+                      SELECT register.user_id
+                      FROM register, user
+                      WHERE user.user_id = register.user_id
+                      AND register.course_id IN (${cursosIds.join(',')}))
+                  `;
   
         connection.query(sql2, (err2, studentsResult) => {
           if (err2) {
@@ -160,18 +167,73 @@ class courseControllers{
         });
       }
     });
+  }; */
+
+  allCoursesOneUserCreate = (req, res) => {
+    const { user_id } = req.params;
+  
+    let sql = `
+      SELECT *
+      FROM course
+      WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id}
+      GROUP BY course_id
+    `;
+  
+    connection.query(sql, (err, courses) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        const cursosIds = courses.map((curso) => curso.course_id);
+  
+        const results = {};
+  
+        // Itera sobre los cursos
+        for (const courseId of cursosIds) {
+          const sql2 = `
+            SELECT DISTINCT user.*
+            FROM user
+            JOIN register ON user.user_id = register.user_id
+            WHERE register.course_id = ${courseId}
+          `;
+  
+          // Ejecuta la consulta y almacena los resultados en el objeto
+          connection.query(sql2, (err2, students) => {
+            if (err2) {
+              res.status(500).json(err2);
+            } else {
+              results[courseId] = {
+                course: courses.find((curso) => curso.course_id === courseId),
+                students,
+              };
+  
+              // Verifica si se han completado todas las consultas y envía la respuesta al cliente
+              if (Object.keys(results).length === cursosIds.length) {
+                res.status(200).json(results);
+                //console.log(results);
+              }
+            }
+          });
+        }
+      }
+    });
   };
+  
 
   detailsCourse = async (req, res) => {
     try {
       const { course_id } = req.params;
   
       // Primera consulta SQL
-      const sql1 = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+      const sql1 = `SELECT * 
+                    FROM course 
+                    WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
       const result1 = await connection.promise().query(sql1);
   
       // Segunda consulta SQL
-      const sql2 = `SELECT subject.* FROM subject, register WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}`;
+      const sql2 = `SELECT subject.* 
+                    FROM subject, register 
+                    WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}
+                    GROUP BY subject_id`;
       const result2 = await connection.promise().query(sql2);
   
       // Tercera consulta SQL
@@ -206,51 +268,6 @@ class courseControllers{
     })
   }
 
-  createCourse = (req, res) => {
-    try {
-      const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
-      const courseImg = req.file ? req.file.filename : null;
-      let sql;
-      let values;
-      if (courseImg) {
-        // Si hay una imagen, incluir la columna course_img en la consulta
-        sql = `INSERT INTO course (name, duration, price, description, creator_user_id, course_img) VALUES (?, ?, ?, ?, ?, ?)`;
-        values = [name, duration, price, description, creator_user_id, courseImg];
-      } else {
-        // Si no hay imagen, omitir la columna course_img en la consulta
-        sql = `INSERT INTO course (name, duration, price, description, creator_user_id) VALUES (?, ?, ?, ?, ?)`;
-        values = [name, duration, price, description, creator_user_id];
-      }
-      // Ejecutar la consulta SQL
-      connection.query(sql, values, (error, result) => {
-        if (error) {
-          console.error("Error al insertar curso:", error);
-          res.status(500).json({ error: "Error interno del servidor" });
-        } else {
-          const courseId = result.insertId;
-          if (courseImg) {
-            // Si hay una imagen, insertarla en la base de datos
-            let imgSql = `UPDATE course SET course_img = ? WHERE course_id = ?`;
-            let imgValues = [courseImg, courseId];
-            connection.query(imgSql, imgValues, (imgError, imgResult) => {
-              if (imgError) {
-                console.error("Error al actualizar imagen del curso:", imgError);
-                res.status(500).json({ error: "Error interno del servidor" });
-              } else {
-                res.status(200).json({ course_id: courseId });
-              }
-            });
-          } else {
-            // Si no hay imagen, enviar respuesta directamente
-            res.status(200).json({ course_id: courseId });
-          }
-        }
-      });
-    } catch (error) {
-      console.error("Error en el controlador createCourse:", error);
-      res.status(500).json({ error: "Error interno del servidor" });
-    }
-  };
 
   getSubjects =(req,res)=>{
     const { course_id } = req.params;
@@ -267,10 +284,10 @@ class courseControllers{
   }
 
   addSubject=(req, res)=>{
-    const {course_id}=re.params;
+    const {course_id}=req.params;
     const {name, duration}=req.body
 
-    let sql=`INSERT into subject (course_id, name, duration) VALUES (${course_id}, "${name}", ${duration});`
+    let sql=`INSERT into subject (course_id, name, duration) VALUES (${course_id}, ${name}, ${duration});`
 
     connection.query(sql, (err, result)=>{
       console.log(result);
@@ -278,6 +295,43 @@ class courseControllers{
      err?res.status(100).json(err):res.status(200).json(result)
     })
   }
+  
+  getGrades = (req,res)=>{
+    const { user_id, course_id } = req.params;
+    //console.log(req.params);
+   
+    let sql=`SELECT *
+              FROM register
+              WHERE user_id = ${user_id} and course_id = ${course_id};`
+    //console.log(sql);
+    
+    connection.query(sql, (err, result)=>{
+      //console.log(result);
+
+     err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  setGrades = (req, res) => {
+    const { user_id, course_id } = req.params;
+    const { status } = req.body; // Se espera que el nuevo estado se envíe en el cuerpo de la solicitud
+  
+    let sql = `
+      UPDATE register
+      SET status = ${status}
+      WHERE user_id = ${user_id} AND course_id = ${course_id};
+    `;
+  
+    connection.query(sql, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ message: "Estado actualizado exitosamente" });
+      }
+    });
+  };
   
 }
 

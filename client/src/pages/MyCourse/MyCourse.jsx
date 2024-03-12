@@ -75,8 +75,7 @@ export const MyCourse = () => {
                 <p>{subject.file_name}</p> {/* enlace de lo que sea */}
                 {/* Mapeo de recursos debajo de cada tema */}
                 {resourcetDetails?.map((resource) => (
-                  // Puedes ajustar la lógica de comparación según la estructura de tus datos
-                  // Aquí estoy asumiendo que hay una relación entre subject y resource a través de algún identificador
+                  // Relación entre subject y resource a través de algún identificador
                   resource.subject_id === subject.subject_id && (
                     <div key={resource.resource_id}>
                       <p>Recurso {resource.resource_id}:</p>

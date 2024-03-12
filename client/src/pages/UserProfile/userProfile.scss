@@ -2,12 +2,12 @@
 
 /* text */
 .profile-text {
-  font-size: $size-1;
+  font-size: 1.5rem;
 }
 
 .profile-gold-text {
   color: $color-3;
-  font-size: $size-1;
+  font-size: 1.5rem;
 }
 
 /* profile */
@@ -61,4 +61,28 @@
 .div-carousel {
   text-align: center;
   width: 100%;
+}
+
+/* media */
+@media screen and (max-width: 1200px) {
+  /* text */
+  .profile-text {
+    font-size: 1.2rem;
+  }
+
+  .profile-gold-text {
+    font-size: 1.2rem;
+  }
+
+  /* course card */
+  .course-ppal {
+    margin: 40px 10px 10px 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* profile */
+  .profile-section {
+    height: 100vh;
+    margin-bottom: 200px;
+  }
 }

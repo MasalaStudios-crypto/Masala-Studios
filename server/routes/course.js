@@ -24,4 +24,8 @@ router.get('/subjects/:course_id', courseControllers.getSubjects)
 
 router.post('/addSubject/:course_id', courseControllers.addSubject)
 
+router.get('/grades/:user_id/:course_id', courseControllers.getGrades)
+
+router.put('/grades/:user_id/:course_id', courseControllers.setGrades)
+
 module.exports = router;

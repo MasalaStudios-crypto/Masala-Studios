@@ -43,7 +43,7 @@ export const AppRoutes = () => {
             <Route path='/allCourses' element={<AdminCourse/>} />
             <Route path='/subjects/:course_id' element={<AdminSubject/>} />
             <Route path='/allCoursesProfile' element={<AllCoursesProfile/>} />
-            <Route path='/allCourses' element={<AdminCourse/>} />
+            <Route path="/mycourse/:course_id" element={<MyCourse />}/>
             <Route path="*" element={<h1>TRAMPOSO</h1>}/>
 
             {!user && <>
