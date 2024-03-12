@@ -1,7 +1,7 @@
 import React from 'react'
 import './servicios.scss'
 import { Button, Card, Col, Row } from 'react-bootstrap'
-import { Cursos } from '../Cursos/Cursos'
+import { CoursesServices } from '../Cursos/CoursesServices'
 
 export const Servicios = () => {
   return (
@@ -12,7 +12,7 @@ export const Servicios = () => {
         
     <Row className='serv-ppal'>
       <Col className='serv-div1'>
-        <Cursos/>
+        <CoursesServices/>
       </Col>
       <Col className='serv-div2'>
        

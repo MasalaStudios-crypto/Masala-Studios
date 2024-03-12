@@ -15,7 +15,6 @@ export const NavBarApp= () => {
   const navigate = useNavigate();
   const {user, setUser, setToken}= useContext(MasalaContext)
   const [courses, setCourses] = useState([])
-  const [refreshCourses, setRefreshCourses] = useState(false)
   const[show, setShow]=useState(false)
   const[show2, setShow2]=useState(false)
   const[show3, setShow3]=useState(false)
@@ -89,8 +88,8 @@ export const NavBarApp= () => {
                   {user?.type===2 ? 
                   <div> 
                   <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/allCoursesProfile">Todos los cursos</NavDropdown.Item>
-                  <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to={`/allCoursesProfile/${user?.user_id}`}>Todos los cursos</NavDropdown.Item>
+                  <NavDropdown.Item onClick={showModal3} showModal3={showModal3}>Crear curso</NavDropdown.Item>
                   <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
                   </div> 
                   :

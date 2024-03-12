@@ -1,7 +1,7 @@
 var express = require('express');
 const courseControllers = require('../controllers/courseControllers');
 var router = express.Router();
-const multer = require('../middlewares/multerSingle')
+const multer= require('../middlewares/multerSIngle');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/allCourses', courseControllers.allCourses)
 
-router.get('/allCoursesProfile', courseControllers.allCourses)
+router.get('/allCoursesProfile', courseControllers.allCoursesProfile)
 
 router.get('/allCoursesOneUserEnroll/:user_id', courseControllers.allCoursesOneUserEnroll)
 
@@ -24,8 +24,22 @@ router.get('/subjects/:course_id', courseControllers.getSubjects)
 
 router.post('/addSubject/:course_id', courseControllers.addSubject)
 
+
 router.get('/grades/:user_id/:course_id', courseControllers.getGrades)
 
 router.put('/grades/:user_id/:course_id', courseControllers.setGrades)
+
+
+router.get('/oneCourse/:course_id', courseControllers.oneCourse)
+
+router.put('/activate', courseControllers.activate)
+router.put('/deactivate', courseControllers.deactivate)
+
+router.put('/visible', courseControllers.visible)
+router.put('/invisible', courseControllers.invisible)
+
+router.put('/enable', courseControllers.enable)
+router.put('/disable', courseControllers.disable)
+
 
 module.exports = router;

@@ -114,60 +114,6 @@ class courseControllers{
 
   };
   
-/*   allCoursesOneUserCreate = (req, res) => {
-    const { user_id } = req.params;
-    //console.log(req.params);
-  
-    let sql = `
-              SELECT *
-              FROM course
-              WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id}
-              GROUP BY course_id
-            `;
-  
-    connection.query(sql, (err, result) => {
-      if (err) {
-        res.status(500).json(err);
-      } else {
-        // Extraer el IDs de los cursos
-        const cursosIds = result.map((curso) => curso.course_id); */
-        //console.log(cursosIds);
-        // Consultar todos los datos de los alumnos asociados a los cursos
-        /* let sql2 = `
-                SELECT user.*
-                  FROM user
-                  WHERE user.user_id IN (SELECT register.user_id
-                  FROM register, user
-                  WHERE user.user_id = register.user_id
-                  AND register.course_id = ${cursosIds})
-        `; */
-/*         let sql2 = `
-                    SELECT user.*
-                    FROM user
-                    WHERE user.user_id IN (
-                      SELECT register.user_id
-                      FROM register, user
-                      WHERE user.user_id = register.user_id
-                      AND register.course_id IN (${cursosIds.join(',')}))
-                  `;
-  
-        connection.query(sql2, (err2, studentsResult) => {
-          if (err2) {
-            res.status(500).json(err2);
-          } else {
-            // Crear un objeto de respuesta que contenga la información de los cursos y alumnos
-            const response = {
-              courses: result,
-              students: studentsResult,
-            };
-            // Enviar la respuesta al cliente
-            res.status(200).json(response);
-            //console.log(response);
-          }
-        });
-      }
-    });
-  }; */
 
   allCoursesOneUserCreate = (req, res) => {
     const { user_id } = req.params;
@@ -256,8 +202,7 @@ class courseControllers{
   };
   
 
-
-  allCourses = (req, res)=>{
+  allCoursesReg2 = (req, res)=>{
     let sql=`SELECT c.name as course_name , c.*, u.name as profesor_name
     FROM course c , user u 
     WHERE c.creator_user_id = u.user_id`
@@ -283,16 +228,55 @@ class courseControllers{
     })
   }
 
-  addSubject=(req, res)=>{
+  oneCourse = (req, res) =>{
+    const {course_id} = req.params;
+    const sql = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+    connection.query(sql, (err,result)=>{
+      err?res.status(500).json(err): res.status(200).json(result)
+    })
+  }
+
+  allCoursesProfile = (req, res) =>{
+
+    const {user_id} = req.params;
+    
+    // let sql = `SELECT *
+    // FROM course
+    // WHERE course_id NOT IN (
+    //     SELECT register.course_id
+    //     FROM register
+    //     WHERE register.user_id = ${user_id}
+    // ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id != ${user_id};`
+
+    let sql = 'SELECT * from course WHERE is_deleted = 0 and is_disabled = 0'
+    
+    connection.query(sql, (err, result)=>{
+          console.log(result);
+          console.log(err);
+        err?res.status(500).json(err):res.status(200) .json(result)
+   })
+  }
+  
+addSubject = (req, res)=>{
     const {course_id}=req.params;
     const {name, duration}=req.body
 
-    let sql=`INSERT into subject (course_id, name, duration) VALUES (${course_id}, ${name}, ${duration});`
+    let sql= `INSERT INTO subject (subject_id, course_id, name, duration)
+    SELECT COALESCE(MAX(subject_id) + 1, 1), ${course_id}, "${name}", ${duration}
+    FROM subject;`
 
     connection.query(sql, (err, result)=>{
-      console.log(result);
+     console.log(result);
+      console.log(err)
+     err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
 
-     err?res.status(100).json(err):res.status(200).json(result)
+  activate=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_deleted=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
     })
   }
   
@@ -333,6 +317,45 @@ class courseControllers{
     });
   };
   
+  deactivate=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_deleted=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  visible=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_visible=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  invisible=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_visible=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  enable=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_disabled=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  disable=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_disabled=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+
 }
 
 

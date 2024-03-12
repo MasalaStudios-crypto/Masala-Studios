@@ -16,6 +16,8 @@ import { ModalBasico } from '../../../components/ModalBasico/ModalBasico';
 import { ModalBasico2 } from '../../../components/ModalBasico2/ModalBasico2';
 import { FormularioLogin } from '../../../components/FormularioLogin/FormularioLogin';
 import { FormularioRegister } from '../../../components/FormularioRegister/FormularioRegister';
+import { ListaCursosCreados } from './ListaCursosCreados';
+import { ListaCursosApuntados } from './ListaCursosApuntados';
 
 
 export const TableUser = () => {
@@ -27,7 +29,6 @@ export const TableUser = () => {
   const [userId, setUserId]=useState()
   const [creators, setCreators]=useState([])
   const {token}= useContext(MasalaContext)
-
   useEffect(()=>{
     if(token){
       axios.defaults.headers.common["Authorization"]=`Bearer ${token}`
@@ -76,26 +77,14 @@ export const TableUser = () => {
   }
 
   const openCreatedCourse=(elem)=>{
-    let url="http://localhost:3000/users/allCreatedCourse"
-    axios
-      .get(url, {elem})
-      .then((res)=>{
-        setCreators(res.data)
-      })
-      .catch((err)=>console.log(err))
-
-  setShow(!show)
+    setUserId(elem)
+    setShow(!show)
   }
 
   const openRegCourse=(elem)=>{
-    let url="http://localhost:3000/users/allRegCourse"
-    axios
-      .get(url, {elem})
-      .then()
-      .catch((err)=>console.log(err))
+    setUserId(elem)
     setShow2(!show2)
   }
-
   return (
 
     <TableContainer component={Paper}>
@@ -140,38 +129,11 @@ export const TableUser = () => {
             <TableCell align="right">{elem.province}</TableCell>
             <TableCell align="right">{elem.email}</TableCell>
 
-            <TableCell align="right">
-              <Dropdown as={ButtonGroup}>
-                <Button variant="success">{elem.type===1?"Administrador":"Usuario"}</Button>
-                <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-                <Dropdown.Menu>
-                  <Dropdown.Item onClick={()=>onType(elem.user_id, elem.type)}>Administrador</Dropdown.Item>
-                  <Dropdown.Item onClick={()=>onType(elem.user_id, elem.type)}>Usuario</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </TableCell>
+            <TableCell align="right"><Button variant={elem.type===1?"primary":"success"} onClick={()=>onType(elem.user_id, elem.type)}>{elem.type===1?"Administrador":"Usuario"}</Button></TableCell>
 
-             <TableCell align="right">    
-              <Dropdown as={ButtonGroup}>
-                <Button variant="success">{elem.is_deleted?"Inactivo":"Activo"}</Button>
-                <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-                <Dropdown.Menu>
-                  <Dropdown.Item onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>Activo</Dropdown.Item>
-                  <Dropdown.Item onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>Inactivo</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </TableCell>
+            <TableCell align="right"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
 
-            <TableCell align="right">
-            <Dropdown as={ButtonGroup}>
-                <Button variant="success">{elem.is_disabled?"Deshabilitado":"Habilitado"}</Button>
-                <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-                <Dropdown.Menu>
-                  <Dropdown.Item onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>Habilitado</Dropdown.Item>
-                  <Dropdown.Item onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>Deshabilitado</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </TableCell>
+            <TableCell align="right"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
 
             <TableCell onClick={()=>openCreatedCourse(elem.user_id)} align="right"><Button>Ver Cursos</Button></TableCell>
             <TableCell  onClick={()=>openRegCourse(elem.user_id)} align="right"><Button>Ver Cursos</Button></TableCell>
@@ -182,17 +144,23 @@ export const TableUser = () => {
       </TableBody>
 
           <ModalBasico
-          title={userId}
+          user_id={userId}
+          title={"Cursos creados"}
           handleClose={openCreatedCourse} 
           show={show}>
-            <FormularioLogin/>
+            <ListaCursosCreados
+            user_id={userId}
+            handleClose={openCreatedCourse} />
           </ModalBasico>
 
           <ModalBasico2
-          title={userId}
+          user_id={userId}
+          title={"Cursos apuntados"}
           handleClose2={openRegCourse} 
           show={show2}>
-            <FormularioRegister/>
+            <ListaCursosApuntados
+            user_id={userId}
+            handleClose={openCreatedCourse} />
           </ModalBasico2>
 
     </Table>

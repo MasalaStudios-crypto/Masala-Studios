@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
-import { isAlphaNumericWithSpaces, isNumber, onEnter } from '../../utils/validation';
+import { isAlphaNumericWithSpaces, isNumber, isValidFloat, onEnter } from '../../utils/validation';
 import './formularioCurso.scss'
 
 
@@ -21,6 +21,7 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
   const[newCourse, setNewCourse] = useState(initalValue);
   const [file, setFile] = useState();
   const[message, setMessage] = useState();
+
 
   const handleChange=(elem)=>{
     const{name, value}=elem.target
@@ -44,7 +45,6 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
       axios
         .post("http://localhost:3000/course/createCourse", newFormData)
         .then((res)=>{
-          console.log("OK TODO GOOD");
           showModal3()
         })
         .catch(err => console.log(err))
@@ -93,7 +93,7 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
       value={newCourse.price}
       onChange={handleChange}
       type="isNumber" 
-      onKeyPress={isNumber}
+      onKeyPress={isValidFloat}
       placeholder="Introduce precio curso (€)" />
     </Form.Group>
 
