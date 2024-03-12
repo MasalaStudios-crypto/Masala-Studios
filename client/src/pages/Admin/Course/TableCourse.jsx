@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MasalaContext } from '../../../Context/MasalaProvider'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 
 export const TableCourse = () => {
 
@@ -19,7 +19,6 @@ export const TableCourse = () => {
         .get(`http://localhost:3000/course/allCourses`)
         .then((res)=>{
           setCourses(res.data)    
-          console.log(res.data)
 
         })
         .catch((err)=>{
@@ -27,6 +26,39 @@ export const TableCourse = () => {
         })
     }
   },[reset, token])
+
+  const onDeleted=(id, state)=>{
+    let url="http://localhost:3000/course/activate"
+    if(!state){
+      url="http://localhost:3000/course/deactivate"
+    }
+    axios
+      .put(url, {id})
+      .then(()=>setReset(!reset))
+      .catch((err)=>console.log(err))
+  }
+
+  const onVisible=(id, state)=>{
+    let url="http://localhost:3000/course/visible"
+    if(!state){
+      url="http://localhost:3000/course/invisible"
+    }
+    axios
+      .put(url, {id})
+      .then(()=>setReset(!reset))
+      .catch((err)=>console.log(err))
+  }
+
+  const onDisabled=(id, state)=>{
+    let url="http://localhost:3000/course/enable"
+    if(!state){
+      url="http://localhost:3000/course/disable"
+    }
+    axios
+      .put(url, {id})
+      .then(()=>setReset(!reset))
+      .catch((err)=>console.log(err))
+  }
 
   return (
 
@@ -61,10 +93,14 @@ export const TableCourse = () => {
               <TableCell align="right">{elem.register_date}</TableCell>
               <TableCell align="right">{elem.profesor_name}</TableCell>
               <TableCell align="right">{elem.description}</TableCell>
-              <TableCell align="right">{elem.is_deleted}</TableCell>
-              <TableCell align="right">{elem.is_visible}</TableCell>
-              <TableCell align="right">{elem.is_disabled}</TableCell>
-              <TableCell onClick={()=>{navigate(`/subjects/${elem.course_id}`)}}><Button>Temario</Button></TableCell>
+
+              <TableCell align="right"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.course_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
+
+              <TableCell align="right"><Button variant={elem.is_visible===1?"success":"danger"} onClick={()=>onVisible(elem.course_id, elem.is_visible)}>{elem.is_visible===1?"Visible":"No visible"}</Button></TableCell>
+
+              <TableCell align="right"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.course_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
+
+              <TableCell onClick={()=>{navigate(`/subjects/${elem.course_id}`)}}><Button>Ver temas</Button></TableCell>
            
             </TableRow>
           ))}

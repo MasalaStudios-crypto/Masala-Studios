@@ -194,6 +194,18 @@ class courseControllers{
   };
   
 
+  allCoursesReg2 = (req, res)=>{
+    let sql=`SELECT c.name as course_name , c.*, u.name as profesor_name
+    FROM course c , user u 
+    WHERE c.creator_user_id = u.user_id`
+    connection.query(sql, (err, result)=>{
+      console.log(result);
+
+     err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+
   getSubjects =(req,res)=>{
     const { course_id } = req.params;
    
@@ -208,25 +220,9 @@ class courseControllers{
     })
   }
 
-  addSubject=(req, res)=>{
-    const {course_id} = req.params
-    const {name, duration, subject_id}=req.body
-    console.log(req.params)
-    
-    let sql=`INSERT into subject (course_id, subject_id, name, duration) VALUES (${course_id}, ${subject_id},"${name}", ${duration})`
-
-    connection.query(sql, (err, result)=>{
-      console.log("resultadoo",result);
-
-     err?res.status(500).json(err):res.status(200).json(result)
-    })
-  }
 
   oneCourse = (req, res) =>{
     const {course_id} = req.params;
-   
-    
-  
     const sql = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
     connection.query(sql, (err,result)=>{
       err?res.status(500).json(err): res.status(200).json(result)
@@ -254,6 +250,66 @@ class courseControllers{
    })
   }
   
+addSubject = (req, res)=>{
+    const {course_id}=req.params;
+    const {name, duration}=req.body
+
+    let sql= `INSERT INTO subject (subject_id, course_id, name, duration)
+    SELECT COALESCE(MAX(subject_id) + 1, 1), ${course_id}, "${name}", ${duration}
+    FROM subject;`
+
+    connection.query(sql, (err, result)=>{
+     console.log(result);
+      console.log(err)
+     err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  activate=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_deleted=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  deactivate=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_deleted=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  visible=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_visible=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  invisible=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_visible=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  enable=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_disabled=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  disable=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_disabled=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
 }
 
 
