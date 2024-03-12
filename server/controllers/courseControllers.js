@@ -193,7 +193,8 @@ class courseControllers{
     }
   };
   
-  allCourses = (req, res)=>{
+
+  allCoursesReg2 = (req, res)=>{
     let sql=`SELECT c.name as course_name , c.*, u.name as profesor_name
     FROM course c , user u 
     WHERE c.creator_user_id = u.user_id`
@@ -203,6 +204,7 @@ class courseControllers{
      err?res.status(500).json(err):res.status(200).json(result)
     })
   }
+
 
   getSubjects =(req,res)=>{
     const { course_id } = req.params;
@@ -218,7 +220,37 @@ class courseControllers{
     })
   }
 
-  addSubject=(req, res)=>{
+
+  oneCourse = (req, res) =>{
+    const {course_id} = req.params;
+    const sql = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+    connection.query(sql, (err,result)=>{
+      err?res.status(500).json(err): res.status(200).json(result)
+    })
+  }
+
+  allCoursesProfile = (req, res) =>{
+
+    const {user_id} = req.params;
+    
+    // let sql = `SELECT *
+    // FROM course
+    // WHERE course_id NOT IN (
+    //     SELECT register.course_id
+    //     FROM register
+    //     WHERE register.user_id = ${user_id}
+    // ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id != ${user_id};`
+
+    let sql = 'SELECT * from course WHERE is_deleted = 0 and is_disabled = 0'
+    
+    connection.query(sql, (err, result)=>{
+          console.log(result);
+          console.log(err);
+        err?res.status(500).json(err):res.status(200) .json(result)
+   })
+  }
+  
+addSubject = (req, res)=>{
     const {course_id}=req.params;
     const {name, duration}=req.body
 
@@ -277,6 +309,7 @@ class courseControllers{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
+
 }
 
 

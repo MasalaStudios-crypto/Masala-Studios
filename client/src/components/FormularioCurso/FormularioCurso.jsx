@@ -22,6 +22,7 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
   const [file, setFile] = useState();
   const[message, setMessage] = useState();
 
+
   const handleChange=(elem)=>{
     const{name, value}=elem.target
     setNewCourse({...newCourse, [name]:value})
@@ -44,7 +45,6 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
       axios
         .post("http://localhost:3000/course/createCourse", newFormData)
         .then((res)=>{
-          console.log("OK TODO GOOD");
           showModal3()
         })
         .catch(err => console.log(err))

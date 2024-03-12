@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
+
 const intialValue={
   name:"",
-  duration:""
+  duration:"",
+  subject_id: ""
 }
 
 export const FormularioTema = ({handleClose, course_id}) => {
