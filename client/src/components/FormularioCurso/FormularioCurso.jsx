@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
-import { isAlphaNumericWithSpaces, isNumber, onEnter } from '../../utils/validation';
+import { isAlphaNumericWithSpaces, isNumber, isValidFloat, onEnter } from '../../utils/validation';
 import './formularioCurso.scss'
 
 
@@ -93,7 +93,7 @@ export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => 
       value={newCourse.price}
       onChange={handleChange}
       type="isNumber" 
-      onKeyPress={isNumber}
+      onKeyPress={isValidFloat}
       placeholder="Introduce precio curso (€)" />
     </Form.Group>
 
