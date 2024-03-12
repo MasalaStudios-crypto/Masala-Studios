@@ -114,64 +114,72 @@ class courseControllers{
 
   };
   
+
   allCoursesOneUserCreate = (req, res) => {
     const { user_id } = req.params;
-    //console.log(req.params);
   
     let sql = `
-      SELECT course.*
-        FROM course
-        JOIN register ON course.course_id = register.course_id
-        JOIN user ON user.user_id = register.user_id
-        WHERE course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id = ${user_id}
-        GROUP BY course.course_id;
+      SELECT *
+      FROM course
+      WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id}
+      GROUP BY course_id
     `;
   
-    connection.query(sql, (err, result) => {
+    connection.query(sql, (err, courses) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        // Extraer el IDs de los cursos
-        const cursosIds = result.map((curso) => curso.course_id);
+        const cursosIds = courses.map((curso) => curso.course_id);
   
-        // Consultar todos los datos de los alumnos asociados a los cursos
-        let sql2 = `
-                SELECT user.*
-                  FROM user
-                  WHERE user.user_id IN (SELECT register.user_id
-                  FROM register, user
-                  WHERE user.user_id = register.user_id
-                  AND register.course_id = 1)
-        `;
+        const results = {};
   
-        connection.query(sql2, (err2, studentsResult) => {
-          if (err2) {
-            res.status(500).json(err2);
-          } else {
-            // Crear un objeto de respuesta que contenga la información de los cursos y alumnos
-            const response = {
-              courses: result,
-              students: studentsResult,
-            };
-            // Enviar la respuesta al cliente
-            res.status(200).json(response);
-            //console.log(response);
-          }
-        });
+        // Itera sobre los cursos
+        for (const courseId of cursosIds) {
+          const sql2 = `
+            SELECT DISTINCT user.*
+            FROM user
+            JOIN register ON user.user_id = register.user_id
+            WHERE register.course_id = ${courseId}
+          `;
+  
+          // Ejecuta la consulta y almacena los resultados en el objeto
+          connection.query(sql2, (err2, students) => {
+            if (err2) {
+              res.status(500).json(err2);
+            } else {
+              results[courseId] = {
+                course: courses.find((curso) => curso.course_id === courseId),
+                students,
+              };
+  
+              // Verifica si se han completado todas las consultas y envía la respuesta al cliente
+              if (Object.keys(results).length === cursosIds.length) {
+                res.status(200).json(results);
+                //console.log(results);
+              }
+            }
+          });
+        }
       }
     });
   };
+  
 
   detailsCourse = async (req, res) => {
     try {
       const { course_id } = req.params;
   
       // Primera consulta SQL
-      const sql1 = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+      const sql1 = `SELECT * 
+                    FROM course 
+                    WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
       const result1 = await connection.promise().query(sql1);
   
       // Segunda consulta SQL
-      const sql2 = `SELECT subject.* FROM subject, register WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}`;
+      const sql2 = `SELECT subject.* 
+                    FROM subject, register 
+                    WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}
+                    GROUP BY subject_id`;
       const result2 = await connection.promise().query(sql2);
   
       // Tercera consulta SQL
@@ -219,7 +227,6 @@ class courseControllers{
      err?res.status(500).json(err):res.status(200).json(result)
     })
   }
-
 
   oneCourse = (req, res) =>{
     const {course_id} = req.params;
@@ -272,6 +279,44 @@ addSubject = (req, res)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
+  
+  getGrades = (req,res)=>{
+    const { user_id, course_id } = req.params;
+    //console.log(req.params);
+   
+    let sql=`SELECT *
+              FROM register
+              WHERE user_id = ${user_id} and course_id = ${course_id};`
+    //console.log(sql);
+    
+    connection.query(sql, (err, result)=>{
+      //console.log(result);
+
+     err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  setGrades = (req, res) => {
+    const { user_id, course_id } = req.params;
+    const { status } = req.body; // Se espera que el nuevo estado se envíe en el cuerpo de la solicitud
+  
+    let sql = `
+      UPDATE register
+      SET status = ${status}
+      WHERE user_id = ${user_id} AND course_id = ${course_id};
+    `;
+  
+    connection.query(sql, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json(err);
+      } else {
+        console.log(result);
+        res.status(200).json({ message: "Estado actualizado exitosamente" });
+      }
+    });
+  };
+  
   deactivate=(req,res)=>{
     const{id}=req.body
     let sql=`UPDATE course SET is_deleted=1 WHERE course_id=${id}`
@@ -309,6 +354,7 @@ addSubject = (req, res)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
+
 
 }
 

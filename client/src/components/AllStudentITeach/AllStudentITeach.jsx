@@ -1,0 +1,78 @@
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+
+export const AllStudentITeach = ({ allStudents, courseId }) => {
+  const [allStatus, setAllStatus] = useState({});
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      if (allStudents && allStudents.length > 0) {
+        const tempStatus = {};
+
+        for (const student of allStudents) {
+          const { user_id } = student;
+
+          try {
+            const res = await axios.get(`http://localhost:3000/course/grades/${user_id}/${courseId}`);
+            const { status } = res.data[0];
+            tempStatus[user_id] = status;
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+        setAllStatus(tempStatus);
+      }
+    };
+
+    fetchData();
+  }, [allStudents]);
+
+  const handleStatusChange = async (user_id, newStatus) => {
+    try {
+      // Realiza la actualización en la base de datos o servicio API
+      await axios.put(`http://localhost:3000/course/grades/${user_id}/${courseId}`, {
+        status: newStatus
+      });
+
+      // Actualiza el estado local después de la actualización exitosa
+      setAllStatus({ ...allStatus, [user_id]: newStatus });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div className='d-flex justify-content-around'>
+      <div className='d-flex flex-column'>
+        <span>Nombre</span>
+        {allStudents.map((student) => (
+          <span key={student.user_id}>{student.name}</span>
+        ))}
+      </div>
+      <div className='d-flex flex-column'>
+        <span>Apellido</span>
+        {allStudents.map((student) => (
+          <span key={student.user_id}>{student.lastname}</span>
+        ))}
+      </div>
+      <div>
+        <span>Estado</span>
+        {Object.entries(allStatus).map(([user_id, status]) => (
+          <div key={user_id}>
+            <select
+              value={status}
+              onChange={(e) => handleStatusChange(user_id, e.target.value)}
+            >
+              <option value="1">En curso</option> {/* VER QUE VALORES LE DAMOS */}
+              <option value="2">Aprobado</option>
+              <option value="3">Suspenso</option>
+            </select>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+

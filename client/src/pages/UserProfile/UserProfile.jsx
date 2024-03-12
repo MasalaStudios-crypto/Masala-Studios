@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { MasalaContext } from '../../Context/MasalaProvider'
 import { Button, Col, Row } from 'react-bootstrap'
 import './userProfile.scss'
@@ -12,16 +12,27 @@ import { AllCoursesOneUserCreate } from '../../components/AllCoursesOneUserCreat
 export const UserProfile = () => {
   const [show, setShow] = useState(false);
   const {user} = useContext(MasalaContext);
+  const [refreshCourses, setRefreshCourses] = useState(false);
 
   const showModal = () => {
     setShow(!show)
   }
 
+  useEffect(() => {
+    const refreshInterval = setInterval(() => {
+      console.log('Cursos actualizados automáticamente');
+      setRefreshCourses((prev) => !prev);
+    }, 60000); //se refresca cada 60000 ms => 1 minuto
+
+    // Limpiar el intervalo al desmontar el componente
+    return () => clearInterval(refreshInterval);
+  }); // El efecto se ejecutará cada X tiempo
+
   return (
     <section>
       <Row className='profile-section'>
         {/* profile */}
-        <Col md={4} className='profile-col'>
+        <Col md={5} lg={4} className='profile-col'>
           <div className='use-profile-ppal'>
             <div className='d-flex justify-content-between profile-img-cont'>
               <img src={user?.user_img ? `http://localhost:3000/images/users/${user?.user_img}` : '/images/user.png'} alt="foto perfil" className='profile-img' />
@@ -65,15 +76,15 @@ export const UserProfile = () => {
           </ModalBasico>
         </Col>
         {/* course */}
-        <Col md={8} className='profile-col'>
+        <Col md={7} lg={8} className='profile-col'>
           <div className='d-flex flex-column align-items-center course-ppal'>
             <div className='div-carousel'>
               <h3>Mis cursos</h3>
-              <AllCoursesOneUserEnroll />
+              <AllCoursesOneUserEnroll refreshCourses={refreshCourses} />
             </div>
             <div className='div-carousel'>
               <h3>Mis cursos creados</h3>
-              <AllCoursesOneUserCreate />
+              <AllCoursesOneUserCreate refreshCourses={refreshCourses} />
             </div>
           </div>
         </Col>
