@@ -193,8 +193,6 @@ class courseControllers{
     }
   };
   
-
-
   allCourses = (req, res)=>{
     let sql=`SELECT c.name as course_name , c.*, u.name as profesor_name
     FROM course c , user u 
@@ -205,52 +203,6 @@ class courseControllers{
      err?res.status(500).json(err):res.status(200).json(result)
     })
   }
-
-  createCourse = (req, res) => {
-    try {
-      const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
-      const courseImg = req.file ? req.file.filename : null;
-      let sql;
-      let values;
-      if (courseImg) {
-        // Si hay una imagen, incluir la columna course_img en la consulta
-        sql = `INSERT INTO course (name, duration, price, description, creator_user_id, course_img) VALUES (?, ?, ?, ?, ?, ?)`;
-        values = [name, duration, price, description, creator_user_id, courseImg];
-      } else {
-        // Si no hay imagen, omitir la columna course_img en la consulta
-        sql = `INSERT INTO course (name, duration, price, description, creator_user_id) VALUES (?, ?, ?, ?, ?)`;
-        values = [name, duration, price, description, creator_user_id];
-      }
-      // Ejecutar la consulta SQL
-      connection.query(sql, values, (error, result) => {
-        if (error) {
-          console.error("Error al insertar curso:", error);
-          res.status(500).json({ error: "Error interno del servidor" });
-        } else {
-          const courseId = result.insertId;
-          if (courseImg) {
-            // Si hay una imagen, insertarla en la base de datos
-            let imgSql = `UPDATE course SET course_img = ? WHERE course_id = ?`;
-            let imgValues = [courseImg, courseId];
-            connection.query(imgSql, imgValues, (imgError, imgResult) => {
-              if (imgError) {
-                console.error("Error al actualizar imagen del curso:", imgError);
-                res.status(500).json({ error: "Error interno del servidor" });
-              } else {
-                res.status(200).json({ course_id: courseId });
-              }
-            });
-          } else {
-            // Si no hay imagen, enviar respuesta directamente
-            res.status(200).json({ course_id: courseId });
-          }
-        }
-      });
-    } catch (error) {
-      console.error("Error en el controlador createCourse:", error);
-      res.status(500).json({ error: "Error interno del servidor" });
-    }
-  };
 
   getSubjects =(req,res)=>{
     const { course_id } = req.params;
@@ -267,18 +219,64 @@ class courseControllers{
   }
 
   addSubject=(req, res)=>{
-    const {course_id}=re.params;
+    const {course_id}=req.params;
     const {name, duration}=req.body
 
-    let sql=`INSERT into subject (course_id, name, duration) VALUES (${course_id}, "${name}", ${duration});`
+    let sql= `INSERT INTO subject (subject_id, course_id, name, duration)
+    SELECT COALESCE(MAX(subject_id) + 1, 1), ${course_id}, "${name}", ${duration}
+    FROM subject;`
 
     connection.query(sql, (err, result)=>{
-      console.log(result);
-
-     err?res.status(100).json(err):res.status(200).json(result)
+     console.log(result);
+      console.log(err)
+     err?res.status(500).json(err):res.status(200).json(result)
     })
   }
-  
+
+  activate=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_deleted=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  deactivate=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_deleted=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  visible=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_visible=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  invisible=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_visible=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  enable=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_disabled=0 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  disable=(req,res)=>{
+    const{id}=req.body
+    let sql=`UPDATE course SET is_disabled=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
 }
 
 

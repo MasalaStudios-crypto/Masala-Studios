@@ -162,11 +162,25 @@ class UserControllers{
   }
 
   allCreatedCourse=(req, res)=>{
-
+    const {user_id}=req.params
+    let sql = `SELECT name FROM course  WHERE creator_user_id = ${user_id};`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
   }
 
   allRegCourse=(req, res)=>{
-
+    const {user_id}=req.params
+    let sql = `
+    SELECT course.name
+    FROM course
+    JOIN register ON course.course_id = register.course_id
+    JOIN user ON user.user_id = register.user_id
+    WHERE user.user_id = ${user_id}
+`;
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
   }
 }
 

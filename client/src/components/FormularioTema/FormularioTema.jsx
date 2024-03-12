@@ -11,8 +11,6 @@ export const FormularioTema = ({handleClose, course_id}) => {
 
   const[subject, setSubject]=useState(intialValue)
   const [errorMessage, setErrorMessage]=useState()
-  const navigate= useNavigate()
-
 
   const handleChange =(elem)=>{
     const {name, value}= elem.target
@@ -23,24 +21,23 @@ export const FormularioTema = ({handleClose, course_id}) => {
     if(!subject.name || !subject.duration){
       setErrorMessage("Debes rellenar todos los campos")
     }
+
+
     else{
       axios
       .post(`http://localhost:3000/course/addSubject/${course_id}`, subject)
       .then((res)=>{
         handleClose();
-        navigate("/")
       })
       .catch((err)=>{
         console.log(err)
       })
     }
+   
   }
 
   return (
     <Form>
-      <h1>{course_id}</h1>
-      <h2>{subject.name}</h2>
-      <h2>{subject.duration}</h2>
 
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Nombre del tema</Form.Label>

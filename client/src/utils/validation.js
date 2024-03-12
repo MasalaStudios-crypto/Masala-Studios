@@ -27,6 +27,21 @@ export const isNumber = (event) => {
   }
 };
 
+export const isValidFloat = (event) => {
+  const charCode = event.which ? event.which : event.keyCode;
+  const inputValue = String.fromCharCode(charCode);
+  const currentValue = event.target.value;
+
+  // Utiliza una expresión regular para permitir 7 enteros y 2 decimales, y limitar a 10 caracteres
+  const regex = /^[0-9]{0,7}(\.[0-9]{0,2})?$/;
+
+  if (regex.test(currentValue + inputValue) && currentValue.length < 10) {
+    return true;
+  } else {
+    event.preventDefault();
+    return false;
+  }
+};
 
 //alfanumericos y espacios
 
