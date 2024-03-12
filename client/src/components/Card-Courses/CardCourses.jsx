@@ -1,8 +1,16 @@
 import React, { useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import './cardCourses.scss'
+import { Link } from 'react-router-dom'
+import { ModalBasico } from '../ModalBasico/ModalBasico'
+import { FormularioContacto } from '../FormularioContacto/FormularioContacto'
 
 export const CardCourses = ({elem}) => {
+  const[show, setShow] = useState(false);
+
+  const showModal =()=>{
+    setShow(!show)
+  }
 
   return (
     
@@ -15,10 +23,17 @@ export const CardCourses = ({elem}) => {
     <p>{elem?.duration}h.</p>
     <p>{elem?.price}€</p>
       
-    <Button variant="primary">Agregar</Button>
-    <br/><br />
-    <Button variant="primary">Más info.</Button>
+    <Button variant="primary" onClick={showModal} >Apuntarse</Button>
+    <Button variant="primary" as={Link} to={`/oneCourse/${elem.course_id}`} elem={elem} >Más info.</Button>
     </Card.Body>
+    <ModalBasico
+        title="Contacto"
+        handleClose={showModal}
+        show={show}>
+        <FormularioContacto
+          elem = {elem}
+          handleClose={showModal}/>
+        </ModalBasico>
     </Card>
 
     

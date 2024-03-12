@@ -15,14 +15,15 @@ import { MyCourse } from '../pages/MyCourse/MyCourse'
 import { AdminCourse } from '../pages/Admin/Course/AdminCourse'
 import { AdminSubject } from '../pages/Admin/Subject/AdminSubject'
 import { AllCoursesProfile } from '../pages/AllCoursesProfile/AllCoursesProfile'
-import { FormularioTema } from '../components/FormularioTema/FormularioTema'
+import { OneCourse } from '../pages/Cursos/OneCourse'
+
 
 
 
 
 export const AppRoutes = () => {
 
-  const {user}=useContext(MasalaContext) 
+  const {user}=useContext(MasalaContext)
   return (
   
     <>
@@ -43,7 +44,8 @@ export const AppRoutes = () => {
             <Route path='/allCourses' element={<AdminCourse/>} />
             <Route path='/subjects/:course_id' element={<AdminSubject/>} />
             <Route path='/allCoursesProfile' element={<AllCoursesProfile/>} />
-            <Route path='/allCourses' element={<AdminCourse/>} />
+            <Route path="/mycourse/:course_id" element={<MyCourse />}/>
+            <Route path="/oneCourse/:course_id" element={<OneCourse />}/>
             <Route path="*" element={<h1>TRAMPOSO</h1>}/>
 
             {!user && <>

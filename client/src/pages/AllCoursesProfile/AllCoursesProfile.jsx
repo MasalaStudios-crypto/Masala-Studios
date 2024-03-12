@@ -1,29 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CardCourses } from '../../components/Card-Courses/CardCourses'
 import './AllCoursesProfile.scss'
 import axios from 'axios'
+import { MasalaContext } from '../../Context/MasalaProvider'
 
 export const AllCoursesProfile = () => {
-
+  const {user} = useContext(MasalaContext)
   const [allCourses, setAllCourses] = useState([])
-  const [refreshCourses, setRefreshCourses] = useState(false)
-
-
-  const refresh = ()=>setRefreshCourses(!refreshCourses)
+ 
   
 
   useEffect(()=>{
-    axios
-        .get("http://localhost:3000/course/allCoursesProfile")
+    if (user) {
+      
+      axios
+      .get(`http://localhost:3000/course/allCoursesProfile`)
         .then((res)=>{
           setAllCourses(res.data)
-          refresh()
-      })
+          console.log(res.data)
+          
+        })
         .catch((err)=>console.log(err))
+        
+    }
+  },[user])
 
-  },[])
   return (
     <div className='allCoursesProfile-ppal'>
+      
       {allCourses.map((elem)=>
 
       <CardCourses key={elem.course_id} elem={elem}/>

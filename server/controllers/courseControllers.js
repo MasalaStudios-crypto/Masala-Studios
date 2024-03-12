@@ -194,64 +194,6 @@ class courseControllers{
   };
   
 
-
-  allCourses = (req, res)=>{
-    let sql=`SELECT c.name as course_name , c.*, u.name as profesor_name
-    FROM course c , user u 
-    WHERE c.creator_user_id = u.user_id`
-    connection.query(sql, (err, result)=>{
-      console.log(result);
-
-     err?res.status(500).json(err):res.status(200).json(result)
-    })
-  }
-
-  createCourse = (req, res) => {
-    try {
-      const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
-      const courseImg = req.file ? req.file.filename : null;
-      let sql;
-      let values;
-      if (courseImg) {
-        // Si hay una imagen, incluir la columna course_img en la consulta
-        sql = `INSERT INTO course (name, duration, price, description, creator_user_id, course_img) VALUES (?, ?, ?, ?, ?, ?)`;
-        values = [name, duration, price, description, creator_user_id, courseImg];
-      } else {
-        // Si no hay imagen, omitir la columna course_img en la consulta
-        sql = `INSERT INTO course (name, duration, price, description, creator_user_id) VALUES (?, ?, ?, ?, ?)`;
-        values = [name, duration, price, description, creator_user_id];
-      }
-      // Ejecutar la consulta SQL
-      connection.query(sql, values, (error, result) => {
-        if (error) {
-          console.error("Error al insertar curso:", error);
-          res.status(500).json({ error: "Error interno del servidor" });
-        } else {
-          const courseId = result.insertId;
-          if (courseImg) {
-            // Si hay una imagen, insertarla en la base de datos
-            let imgSql = `UPDATE course SET course_img = ? WHERE course_id = ?`;
-            let imgValues = [courseImg, courseId];
-            connection.query(imgSql, imgValues, (imgError, imgResult) => {
-              if (imgError) {
-                console.error("Error al actualizar imagen del curso:", imgError);
-                res.status(500).json({ error: "Error interno del servidor" });
-              } else {
-                res.status(200).json({ course_id: courseId });
-              }
-            });
-          } else {
-            // Si no hay imagen, enviar respuesta directamente
-            res.status(200).json({ course_id: courseId });
-          }
-        }
-      });
-    } catch (error) {
-      console.error("Error en el controlador createCourse:", error);
-      res.status(500).json({ error: "Error interno del servidor" });
-    }
-  };
-
   getSubjects =(req,res)=>{
     const { course_id } = req.params;
    
@@ -267,16 +209,49 @@ class courseControllers{
   }
 
   addSubject=(req, res)=>{
-    const {course_id}=re.params;
-    const {name, duration}=req.body
-
-    let sql=`INSERT into subject (course_id, name, duration) VALUES (${course_id}, "${name}", ${duration});`
+    const {course_id} = req.params
+    const {name, duration, subject_id}=req.body
+    console.log(req.params)
+    
+    let sql=`INSERT into subject (course_id, subject_id, name, duration) VALUES (${course_id}, ${subject_id},"${name}", ${duration})`
 
     connection.query(sql, (err, result)=>{
-      console.log(result);
+      console.log("resultadoo",result);
 
-     err?res.status(100).json(err):res.status(200).json(result)
+     err?res.status(500).json(err):res.status(200).json(result)
     })
+  }
+
+  oneCourse = (req, res) =>{
+    const {course_id} = req.params;
+   
+    
+  
+    const sql = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+    connection.query(sql, (err,result)=>{
+      err?res.status(500).json(err): res.status(200).json(result)
+    })
+  }
+
+  allCoursesProfile = (req, res) =>{
+
+    const {user_id} = req.params;
+    
+    // let sql = `SELECT *
+    // FROM course
+    // WHERE course_id NOT IN (
+    //     SELECT register.course_id
+    //     FROM register
+    //     WHERE register.user_id = ${user_id}
+    // ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id != ${user_id};`
+
+    let sql = 'SELECT * from course WHERE is_deleted = 0 and is_disabled = 0'
+    
+    connection.query(sql, (err, result)=>{
+          console.log(result);
+          console.log(err);
+        err?res.status(500).json(err):res.status(200) .json(result)
+   })
   }
   
 }

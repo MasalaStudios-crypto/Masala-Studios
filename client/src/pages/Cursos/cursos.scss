@@ -4,3 +4,64 @@
   border-radius: 25px;
 }
 
+.oneCourse-bckcolor{
+  width: calc((var(--bs-gutter-x)* 1) + 100%) ;
+  height: auto;
+  background-color: $color-2;
+  margin-left: calc((var(--bs-gutter-x)* -0.5));
+  margin-right: calc((var(--bs-gutter-x)* -0.5));
+  display: flex;
+  justify-content: center;
+  
+}
+.oneCourse-ppal{
+  height: auto;
+  min-height: 100vh;
+  width: 90%;
+  background-color: $color-3;
+  border-radius: 25px;
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+
+
+  .oneCourse-Card{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: space-around;
+
+
+    img{
+      width: 40vw;
+      height: 420px;
+      border-radius: 25px;
+    }
+    .oneCourse-div{
+      width: 40vw;
+      min-height: 60vh;
+      height: 100%;
+      padding: 20px;
+      border: 1px solid white;
+      border-radius: 25px;
+      text-align: justify;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    
+
+      .oneCourse-h4{
+        min-height: 50vh;
+        text-align: center;
+        margin-bottom: 20px;
+        h4{
+          margin-bottom: 35px;
+        }
+      }
+      .oneCourse-Button{
+        min-height: 10vh;
+      }
+    }
+  }
+}
+

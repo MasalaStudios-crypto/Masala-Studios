@@ -9,7 +9,7 @@ const initalValue={
   mensaje:""
 }
 
-export const FormularioContacto = ({handleClose}) => {
+export const FormularioContacto = ({handleClose, elem}) => {
 
   const[contacto, setContacto]=useState(initalValue)
 
@@ -26,6 +26,7 @@ export const FormularioContacto = ({handleClose}) => {
     const mailtoLink = `mailto:masalahead.av@pm.me?subject=${contacto.asunto}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
     handleClose();
+    handleChange()
   }
 
   return (
@@ -45,10 +46,10 @@ export const FormularioContacto = ({handleClose}) => {
         <Form.Label>Asunto</Form.Label>
         <Form.Control 
         name="asunto"
-        value={contacto.asunto}
+        value={elem ? elem.name : contacto.asunto}
         onChange={handleChange}
         type="text" 
-        placeholder="Introduce el asunto" />
+        placeholder="Introduce el asunto"/>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
