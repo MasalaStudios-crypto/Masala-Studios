@@ -47,6 +47,7 @@ export const AppRoutes = () => {
             <Route path='/about' element={<h1>ABOUT</h1>} />
             <Route path='/servicios' element={<Servicios/>} />
 
+
             {user && <>
 
             {user?.type === 2 && 

@@ -11,7 +11,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/allCourses', courseControllers.allCourses)
 
+
 router.get('/allCoursesProfile/:user_id',verify,  courseControllers.allCoursesProfile)
+
 
 router.get('/allCoursesOneUserEnroll/:user_id', courseControllers.allCoursesOneUserEnroll)
 

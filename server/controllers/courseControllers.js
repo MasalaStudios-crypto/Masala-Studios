@@ -37,10 +37,7 @@ class courseControllers{
   
         // Consultar todos los datos de los profesores asociados a los cursos
         let sql2 = `
-          SELECT user.*
-          FROM user
-          WHERE user.user_id IN (${profesorIds.join(',')})
-          GROUP BY user.user_id;
+          SELECT user.* FROM user WHERE user.user_id IN (${profesorIds.join(',')}) GROUP BY user.user_id;
         `;
   
         connection.query(sql2, (err2, teachersResult) => {
@@ -119,10 +116,8 @@ class courseControllers{
     const { user_id } = req.params;
   
     let sql = `
-      SELECT *
-      FROM course
-      WHERE creator_user_id = ${user_id}
-      GROUP BY course_id
+      SELECT * FROM course WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id} GROUP BY course_id
+
     `;
   
     connection.query(sql, (err, courses) => {
@@ -136,10 +131,7 @@ class courseControllers{
         // Itera sobre los cursos
         for (const courseId of cursosIds) {
           const sql2 = `
-            SELECT DISTINCT user.*
-            FROM user
-            JOIN register ON user.user_id = register.user_id
-            WHERE register.course_id = ${courseId}
+            SELECT DISTINCT user.* FROM user JOIN register ON user.user_id = register.user_id  WHERE register.course_id = ${courseId}
           `;
   
           // Ejecuta la consulta y almacena los resultados en el objeto
@@ -170,22 +162,16 @@ class courseControllers{
       const { course_id } = req.params;
   
       // Primera consulta SQL
-      const sql1 = `SELECT * 
-                    FROM course 
-                    WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+      const sql1 = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
       const result1 = await connection.promise().query(sql1);
   
       // Segunda consulta SQL
-      const sql2 = `SELECT subject.* 
-                    FROM subject, register 
-                    WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}
+      const sql2 = `SELECT subject.* FROM subject, register WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}
                     GROUP BY subject_id`;
       const result2 = await connection.promise().query(sql2);
   
       // Tercera consulta SQL
-      const sql3 = `SELECT resource.*
-                      FROM resource, course
-                      WHERE resource.course_id = course.course_id AND course.course_id = ${course_id}`;
+      const sql3 = `SELECT resource.* FROM resource, course WHERE resource.course_id = course.course_id AND course.course_id = ${course_id}`;
       const result3 = await connection.promise().query(sql3);
   
       // Manipular los resultados según tus necesidades
@@ -240,13 +226,10 @@ class courseControllers{
 
     const {user_id} = req.params;
     
-    let sql = `SELECT *
-    FROM course
-    WHERE course_id NOT IN (
-        SELECT register.course_id
-        FROM register
-        WHERE register.user_id = ${user_id}
-    ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id != ${user_id};`
+
+     let sql = `SELECT * FROM course WHERE course_id NOT IN (SELECT register.course_id FROM register WHERE register.user_id = ${user_id} ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled= 0 AND course.creator_user_id != ${user_id};`
+
+
     
     connection.query(sql, (err, result)=>{
           console.log(result);
@@ -282,9 +265,7 @@ addSubject = (req, res)=>{
     const { user_id, course_id } = req.params;
     //console.log(req.params);
    
-    let sql=`SELECT *
-              FROM register
-              WHERE user_id = ${user_id} and course_id = ${course_id};`
+    let sql=`SELECT * FROM register WHERE user_id = ${user_id} and course_id = ${course_id};`
     //console.log(sql);
     
     connection.query(sql, (err, result)=>{
@@ -298,11 +279,7 @@ addSubject = (req, res)=>{
     const { user_id, course_id } = req.params;
     const { status } = req.body; // Se espera que el nuevo estado se envíe en el cuerpo de la solicitud
   
-    let sql = `
-      UPDATE register
-      SET status = ${status}
-      WHERE user_id = ${user_id} AND course_id = ${course_id};
-    `;
+    let sql = ` UPDATE register SET status = ${status} WHERE user_id = ${user_id} AND course_id = ${course_id};`;
   
     connection.query(sql, (err, result) => {
       if (err) {

@@ -35,11 +35,13 @@ export const EditUser = ({handleClose}) => {
       setEdit({...edit, name:user.name, lastname: user.lastname, birth_date: invertirFecha2(user.birth_date), dni: user.dni, phone: user.phone, address: user.address, zip_code: user.zip_code, city: user.city, province: user.province, user_id: user.user_id})
     }
   }, [user])
+
  
   const handleChange = (e) => {
     let {value, name} = e.target
     if(name === "birth_date"){
       value = invertirFecha2(value)
+
     }
     setEdit({...edit, [name]:value});
 
@@ -79,7 +81,7 @@ export const EditUser = ({handleClose}) => {
       setMessage("Debes rellenar todos los campos")
     }
   }
-
+  console.log(invertirFecha2(edit.birth_date))
   return (
     <Row className='d-flex justify-content-center align-items-center edit-ppal'>
       <Col>
