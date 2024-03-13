@@ -90,7 +90,7 @@ export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
                 key={course.course_id}
                 imagePath={
                   course.course_img
-                    ? `http://localhost:3000/images/course/${course.course_img}`
+                    ? `http://localhost:3000/images/course_img/${course.course_img}`
                     : "/images/course.png"
                 }
                 title={course.name}

@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react'
 import { getLocalStorage } from '../utils/localStorageUtils'
 import {jwtDecode} from 'jwt-decode'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 export const MasalaContext=createContext({})
 
@@ -10,7 +9,6 @@ export const MasalaProvider = ({children}) => {
 
   const[user, setUser]=useState()
   const [token, setToken]=useState()
-  const navigate=useNavigate()
 
   useEffect(()=>{
     let tokenLocal = getLocalStorage("token");
