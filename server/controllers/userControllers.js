@@ -80,7 +80,7 @@ class UserControllers{
 
   editUser = (req, res) => {
     const {name, lastname, birth_date, dni, phone, address, zip_code, city, province, user_id} = JSON.parse(req.body.editUser)
-
+    console.log(birth_date)
     let img = ""
     
     if(req.file != undefined){
@@ -169,18 +169,33 @@ class UserControllers{
     })
   }
 
-  allRegCourse=(req, res)=>{
+  allCourses=(req, res)=>{
     const {user_id}=req.params
     let sql = `
-    SELECT course.name
-    FROM course
-    JOIN register ON course.course_id = register.course_id
-    JOIN user ON user.user_id = register.user_id
-    WHERE user.user_id = ${user_id}
-`;
+    SELECT c.*, u.name as user_name, u.lastname as user_lastname FROM course c, user u WHERE c.creator_user_id !=${user_id} AND u.user_id=${user_id} AND c.is_deleted=0 AND c.is_visible=1 AND c.is_disabled=0;
+   `;
     connection.query(sql, (err, result)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })
+  }
+  adminReg =(req, res)=>{
+    const {user_id}=req.params
+    const {course_id}=req.body
+    let sql=`INSERT INTO register (user_id, course_id) VALUES (${user_id}, ${course_id});`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  adminDereg =(req, res)=>{
+    const {user_id}=req.params
+    const {course_id}=req.body
+    let sql=`DELETE FROM register WHERE user_id=${user_id} AND course_id=${course_id};`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  adminRegDereg=(req,res)=>{
+
   }
 }
 

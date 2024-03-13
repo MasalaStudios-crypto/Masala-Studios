@@ -28,7 +28,9 @@ router.put('/enable', userControllers.enable)
 router.put('/disable', userControllers.disable)
 
 router.get('/allCreatedCourse/:user_id', userControllers.allCreatedCourse)
-router.get('/allRegCourse/:user_id', userControllers.allRegCourse)
+router.get('/allCourses/:user_id', userControllers.allCourses)
+router.put('/adminReg/:user_id', userControllers.adminReg)
+router.put('/adminDereg/:user_id', userControllers.adminDereg)
 
 
 module.exports = router;

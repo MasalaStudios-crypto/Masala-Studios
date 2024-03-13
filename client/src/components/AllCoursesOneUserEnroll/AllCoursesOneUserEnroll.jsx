@@ -71,7 +71,7 @@ export const AllCoursesOneUserEnroll = ({ refreshCourses }) => {
               <Slide
                 key={curso.course_id}
                 imagePath={curso.course_img
-                  ? `http://localhost:3000/images/course/${curso.course_img}`
+                  ? `http://localhost:3000/images/course_img/${curso.course_img}`
                   : "/images/course.png"
                 }
                 title={curso.name}

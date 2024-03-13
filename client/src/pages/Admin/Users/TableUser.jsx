@@ -160,7 +160,7 @@ export const TableUser = () => {
           show={show2}>
             <ListaCursosApuntados
             user_id={userId}
-            handleClose={openCreatedCourse} />
+            handleClose2={openRegCourse} />
           </ModalBasico2>
 
     </Table>

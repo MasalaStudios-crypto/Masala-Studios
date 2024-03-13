@@ -14,6 +14,7 @@ export const TableSubject = () => {
   const[show, setShow]=useState(false)
   const {token}= useContext(MasalaContext)
   const {course_id} = useParams()
+  const {user}=useContext(MasalaContext)
   const navigate =useNavigate();
 
   const showModal=()=>{
@@ -36,13 +37,14 @@ export const TableSubject = () => {
 
   return (
     <div>
-
+  
       <div>
         <Button onClick={showModal}>Añadir tema</Button>
-        <Button onClick={()=>{navigate("/allCourses")}}>Atras</Button>
+        <Button onClick={() => { user?.type === 1 ? navigate("/allCourses") : navigate("/") }}>Atrás</Button>
+
       </div>
       {subjects ?
-      <div>
+      <div>dsad
       <h2>Nombre del curso: {subjects[0]?.course_name}</h2>
       <h3>Profesor: {subjects[0]?.profesor_name}</h3>
       </div>
