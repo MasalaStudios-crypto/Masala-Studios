@@ -1,7 +1,7 @@
-const jwt=require('jsonwebtoken')
+const jwt= require('jsonwebtoken')
 require('dotenv').config()
 const verify = (req, res, next)=>{
-
+  
   let auth = req.headers.authorization
   if (!auth){
     return res.status(401).json("No estas autorizado")

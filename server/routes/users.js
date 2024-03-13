@@ -32,5 +32,4 @@ router.get('/allCourses/:user_id', userControllers.allCourses)
 router.put('/adminReg/:user_id', userControllers.adminReg)
 router.put('/adminDereg/:user_id', userControllers.adminDereg)
 
-
 module.exports = router;

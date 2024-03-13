@@ -7,12 +7,14 @@ import { ModalBasico } from '../ModalBasico/ModalBasico';
 import { AllStudentITeach } from '../AllStudentITeach/AllStudentITeach';
 import './allCoursesOneUserCreate.scss';
 
-const Slide = ({ imagePath, title, onClick }) => (
+const Slide = ({ imagePath, title, onClick, aref }) => (
   <div className="slide-container">
     <img src={imagePath} alt="foto curso" />
     <div className="caption-container">
       <h4 className='text-carousel'>{title}</h4>
       <Link onClick={onClick}>Ver alumnos</Link>
+      <br />
+      <Link to={aref}>Abrir curso</Link>
     </div>
   </div>
 );
@@ -33,6 +35,18 @@ export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
   const [lastFetchTime, setLastFetchTime] = useState(0);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  const updateDimensions = async () => {
+    if (user) {
+      try {
+        const res = await axios.get(`http://localhost:3000/course/allCoursesOneUserCreate/${user.user_id}`);
+        const coursesArray = Object.values(res.data);
+        setCoursesArray(chunkArray(coursesArray, getItemsToShow(screenWidth)));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   useLayoutEffect(() => {
     const handleResize = () => {
       const now = Date.now();
@@ -40,7 +54,7 @@ export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
         // Evitar nuevas peticiones al backend dentro de un intervalo de 1000 milisegundos (1 segundo)
         setLastFetchTime(now);
         setScreenWidth(window.innerWidth);
-        updateDimensions();
+        updateDimensions(); // Llamar directamente a la función updateDimensions aquí
       }
     };
 
@@ -52,19 +66,7 @@ export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
   }, [lastFetchTime]);
 
   useLayoutEffect(() => {
-    const updateDimensions = async () => {
-      if (user) {
-        try {
-          const res = await axios.get(`http://localhost:3000/course/allCoursesOneUserCreate/${user.user_id}`);
-          const coursesArray = Object.values(res.data);
-          setCoursesArray(chunkArray(coursesArray, getItemsToShow(screenWidth)));
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    };
-
-    updateDimensions();
+    updateDimensions(); // Llamar directamente a la función updateDimensions aquí
   }, [user, screenWidth]);
 
   const getItemsToShow = (width) => {
@@ -98,6 +100,7 @@ export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
                   showModal();
                   setCourseId(course.course_id);
                 }}
+                aref={`/mycourse/${course.course_id}`}
               />
             ))}
           </Carousel.Item>
@@ -120,7 +123,6 @@ export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
     </div>
   );
 };
-
 
 
 

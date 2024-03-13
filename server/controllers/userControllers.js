@@ -80,9 +80,10 @@ class UserControllers{
 
   editUser = (req, res) => {
     const {name, lastname, birth_date, dni, phone, address, zip_code, city, province, user_id} = JSON.parse(req.body.editUser)
-    console.log(birth_date)
-    let img = ""
+
     
+    let img = ""
+    console.log(birth_date);
     if(req.file != undefined){
       img = `, user_img = "${req.file.filename}"`
     } 
@@ -172,12 +173,15 @@ class UserControllers{
   allCourses=(req, res)=>{
     const {user_id}=req.params
     let sql = `
+
     SELECT c.*, u.name as user_name, u.lastname as user_lastname FROM course c, user u WHERE c.creator_user_id !=${user_id} AND u.user_id=${user_id} AND c.is_deleted=0 AND c.is_visible=1 AND c.is_disabled=0;
    `;
+
     connection.query(sql, (err, result)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
+
   adminReg =(req, res)=>{
     const {user_id}=req.params
     const {course_id}=req.body
@@ -197,6 +201,7 @@ class UserControllers{
   adminRegDereg=(req,res)=>{
 
   }
+
 }
 
 
