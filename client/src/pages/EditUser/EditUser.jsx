@@ -5,7 +5,7 @@ import './editUser.scss';
 import {MasalaContext} from '../../Context/MasalaProvider'
 import axios from 'axios';
 import { isAlphaNumericWithSpaces, isLetterWithSpace, isNumber, isValidPhoneNumber } from '../../utils/validation';
-import { invertirFecha, invertirFecha2 } from '../../utils/reverseDate';
+import { invertirFecha2 } from '../../utils/reverseDate';
 
 const initialValue = {
   name: "",
@@ -35,7 +35,7 @@ export const EditUser = ({handleClose}) => {
       setEdit({...edit, name:user.name, lastname: user.lastname, birth_date: invertirFecha2(user.birth_date), dni: user.dni, phone: user.phone, address: user.address, zip_code: user.zip_code, city: user.city, province: user.province, user_id: user.user_id})
     }
   }, [user])
-
+ 
   const handleChange = (e) => {
     let {value, name} = e.target
     if(name === "birth_date"){
@@ -51,6 +51,7 @@ export const EditUser = ({handleClose}) => {
   }
 
   const onSubmit = () => {
+
     if(edit.name && edit.lastname && edit.birth_date && edit.dni && edit.phone && edit.address && edit.zip_code && edit.city && edit.province){
 
     const newFormData = new FormData();
@@ -78,7 +79,7 @@ export const EditUser = ({handleClose}) => {
       setMessage("Debes rellenar todos los campos")
     }
   }
-  console.log(edit.birth_date)
+
   return (
     <Row className='d-flex justify-content-center align-items-center edit-ppal'>
       <Col>

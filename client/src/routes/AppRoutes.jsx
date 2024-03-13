@@ -52,6 +52,7 @@ export const AppRoutes = () => {
             {user?.type === 2 && 
             <>
             <Route path='/profile' element={<UserProfile />}/>
+
             <Route path="/mycourse/:course_id" element={<MyCourse />}/>
             <Route path="/oneCourse/:course_id" element={<OneCourse />}/>
             

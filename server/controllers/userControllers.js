@@ -80,7 +80,7 @@ class UserControllers{
 
   editUser = (req, res) => {
     const {name, lastname, birth_date, dni, phone, address, zip_code, city, province, user_id} = JSON.parse(req.body.editUser)
-
+    
     let img = ""
     console.log(birth_date);
     if(req.file != undefined){

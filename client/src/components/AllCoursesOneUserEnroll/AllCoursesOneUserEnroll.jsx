@@ -26,26 +26,46 @@ export const AllCoursesOneUserEnroll = ({ refreshCourses }) => {
     setScreenWidth(window.innerWidth);
   };
 
+
   useEffect(() => {
-    if (user) {
-      axios
-        .get(`http://localhost:3000/course/allCoursesOneUserEnroll/${user.user_id}`)
-        .then((res) => {
-          const { courses, teachers } = res.data;
+    const checkCoursesExistence = async () => {
+      try {
+        const coursesExist = await fetchCourseExistence();
+  
+        if (coursesExist) {
+          const { courses, teachers } = await fetchAllCourses();
           setAllCoursesOneUser(courses);
           setAllTeachers(teachers);
-        })
-        .catch(err => console.log(err));
+        }
+      } catch (error) {
+        console.error('Error al verificar la existencia de cursos:', error);
+      }
+    };
+  
+    const fetchCourseExistence = async () => {
+      const response = await axios.post('http://localhost:3000/course/checkCourses', {
+        user_id: user.user_id,
+      });
+      //console.log(response.data);
+      return response.data.length > 0;
+    };
+  
+    const fetchAllCourses = async () => {
+      const res = await axios.get(`http://localhost:3000/course/allCoursesOneUserEnroll/${user.user_id}`);
+      return res.data;
+    };
+  
+    if (user) {
+      checkCoursesExistence();
     }
-
+  
+    
     window.addEventListener('resize', updateDimensions);
 
     return () => {
       window.removeEventListener('resize', updateDimensions);
     };
-    
-  }, [user, refreshCourses]);
-
+  }, [user]);
   
   let itemsToShow = 1;
 

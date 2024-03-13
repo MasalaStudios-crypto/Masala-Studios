@@ -1,7 +1,7 @@
 .allCoursesProfile-ppal{
   width: calc((var(--bs-gutter-x)* 1) + 100%) ;
   height: auto;
-  min-height: 80vh;
+  min-height: calc(100vh - 80px - 85.14px);
   padding: 50px;
   margin-left: calc((var(--bs-gutter-x)* -0.5));
   margin-right: calc((var(--bs-gutter-x)* -0.5));
