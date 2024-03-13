@@ -121,7 +121,7 @@ class courseControllers{
     let sql = `
       SELECT *
       FROM course
-      WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id}
+      WHERE creator_user_id = ${user_id}
       GROUP BY course_id
     `;
   
@@ -240,16 +240,14 @@ class courseControllers{
 
     const {user_id} = req.params;
     
-    // let sql = `SELECT *
-    // FROM course
-    // WHERE course_id NOT IN (
-    //     SELECT register.course_id
-    //     FROM register
-    //     WHERE register.user_id = ${user_id}
-    // ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id != ${user_id};`
+     let sql = `SELECT *
+     FROM course
+     WHERE course_id NOT IN (
+         SELECT register.course_id
+         FROM register
+         WHERE register.user_id = ${user_id}
+     ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id != ${user_id};`
 
-    let sql = 'SELECT * from course WHERE is_deleted = 0 and is_disabled = 0'
-    
     connection.query(sql, (err, result)=>{
           console.log(result);
           console.log(err);
@@ -350,6 +348,49 @@ addSubject = (req, res)=>{
   disable=(req,res)=>{
     const{id}=req.body
     let sql=`UPDATE course SET is_disabled=1 WHERE course_id=${id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  editOneCourse = (req, res) => {
+    const {name, duration, price, description} = JSON.parse(req.body.editCourse)
+    const {course_id} = req.body
+    console.log(req.body);
+
+    let img = ""
+    
+    if(req.file != undefined){
+      img = `, course_img = "${req.file.filename}"`
+    } 
+    let priceFloat = parseFloat(price);
+
+    let sql = `UPDATE course SET name = "${name}", duration = "${duration}", price = ${priceFloat}, description = "${description}" ${img} WHERE course_id = ${course_id}`;
+  
+    connection.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(200).json({result, newImg: req.file?.filename});
+      } 
+    });
+  }
+
+  checkCourses = (req,res)=>{
+    const{user_id} = req.body
+    let sql = `SELECT * FROM register WHERE user_id = ${user_id} AND course_id IS NOT NULL`;
+
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  delOneCourses = (req,res)=>{
+    const{course_id} = req.params
+    console.log(req.params);
+
+    let sql = `UPDATE course SET is_deleted = 1 WHERE course_id = ${course_id}`;
+
     connection.query(sql, (err, result)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })

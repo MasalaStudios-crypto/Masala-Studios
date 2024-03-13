@@ -14,7 +14,7 @@ export const AllCoursesProfile = () => {
     if (user) {
       
       axios
-      .get(`http://localhost:3000/course/allCoursesProfile`)
+      .get(`http://localhost:3000/course/allCoursesProfile/${user.user_id}`)
         .then((res)=>{
           setAllCourses(res.data)
           console.log(res.data)

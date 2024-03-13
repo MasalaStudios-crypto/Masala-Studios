@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/allCourses', courseControllers.allCourses)
 
-router.get('/allCoursesProfile', courseControllers.allCoursesProfile)
+router.get('/allCoursesProfile/:user_id', courseControllers.allCoursesProfile)
 
 router.get('/allCoursesOneUserEnroll/:user_id', courseControllers.allCoursesOneUserEnroll)
 
@@ -41,5 +41,12 @@ router.put('/invisible', courseControllers.invisible)
 router.put('/enable', courseControllers.enable)
 router.put('/disable', courseControllers.disable)
 
+//no es dinámica porque nos traemos el id del front
+router.put('/editCourse', multer("course_img"), courseControllers.editOneCourse)
+
+//no es dinámica porque nos traemos el id del front
+router.post('/checkCourses', courseControllers.checkCourses)
+
+router.put('/delCourse/:course_id', courseControllers.delOneCourses)
 
 module.exports = router;
