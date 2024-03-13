@@ -79,7 +79,7 @@ export const EditUser = ({handleClose}) => {
       setMessage("Debes rellenar todos los campos")
     }
   }
-      
+
   return (
     <Row className='d-flex justify-content-center align-items-center edit-ppal'>
       <Col>

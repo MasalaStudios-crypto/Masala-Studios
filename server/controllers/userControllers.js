@@ -82,7 +82,7 @@ class UserControllers{
     const {name, lastname, birth_date, dni, phone, address, zip_code, city, province, user_id} = JSON.parse(req.body.editUser)
     
     let img = ""
-    
+    console.log(birth_date);
     if(req.file != undefined){
       img = `, user_img = "${req.file.filename}"`
     } 
@@ -176,12 +176,12 @@ class UserControllers{
     FROM course
     JOIN register ON course.course_id = register.course_id
     JOIN user ON user.user_id = register.user_id
-    WHERE user.user_id = ${user_id}
-`;
+    WHERE user.user_id = ${user_id}`;
     connection.query(sql, (err, result)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
+
 }
 
 
