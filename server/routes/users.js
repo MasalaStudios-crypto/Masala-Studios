@@ -28,11 +28,17 @@ router.put('/enable', userControllers.enable)
 router.put('/disable', userControllers.disable)
 
 router.get('/allCreatedCourse/:user_id', userControllers.allCreatedCourse)
+
 router.get('/allCourses/:user_id', userControllers.allCourses)
+
 router.put('/adminReg/:user_id', userControllers.adminReg)
+
 router.put('/adminDereg/:user_id', userControllers.adminDereg)
 router.post('/getRegCourses/:user_id', userControllers.getRegCourses)
 
 router.post('/changePassword', userControllers.changePassword)
+
+//no es dinámica porque nos traemos el id del front
+router.put('/deleteUser', userControllers.deleteUser);
 
 module.exports = router;

@@ -1,8 +1,9 @@
 var express = require('express');
 const courseControllers = require('../controllers/courseControllers');
 var router = express.Router();
-const multer= require('../middlewares/multerSIngle');
+const multer= require('../middlewares/multerSingle');
 const verify = require('../middlewares/TokenVerify');
+const multerResource = require('../middlewares/multerSingleResource')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -53,6 +54,12 @@ router.post('/checkCourses', courseControllers.checkCourses)
 
 router.put('/delCourse/:course_id', courseControllers.delOneCourses)
 
+
+router.put('/delSubject/:course_id/:subject_id', courseControllers.delOneSubject)
+
+router.put('/uploadFile/:course_id/:subject_id', multerResource(), courseControllers.uploadResource)
+
+router.get('/filename/:course_id', courseControllers.getFilename)
 
 
 module.exports = router;
