@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import './allStudentITeach.scss'
 
 export const AllStudentITeach = ({ allStudents, courseId }) => {
   const [allStatus, setAllStatus] = useState({});
@@ -47,13 +48,25 @@ export const AllStudentITeach = ({ allStudents, courseId }) => {
       <div className='d-flex flex-column'>
         <span>Nombre</span>
         {allStudents.map((student) => (
-          <span key={student.user_id}>{student.name}</span>
+          <span key={student.user_id} className='text-stud'>{student.name}</span>
         ))}
       </div>
       <div className='d-flex flex-column'>
         <span>Apellido</span>
         {allStudents.map((student) => (
-          <span key={student.user_id}>{student.lastname}</span>
+          <span key={student.user_id} className='text-stud'>{student.lastname}</span>
+        ))}
+      </div>
+      <div className='d-flex flex-column'>
+        <span>Email</span>
+        {allStudents.map((student) => (
+          <span key={student.user_id} className='text-stud'>{student.email}</span>
+        ))}
+      </div>
+      <div className='d-flex flex-column'>
+        <span>Teléfono</span>
+        {allStudents.map((student) => (
+          <span key={student.user_id} className='text-stud'>{student.phone}</span>
         ))}
       </div>
       <div>
@@ -61,6 +74,7 @@ export const AllStudentITeach = ({ allStudents, courseId }) => {
         {Object.entries(allStatus).map(([user_id, status]) => (
           <div key={user_id}>
             <select
+              className='text-stud'
               value={status}
               onChange={(e) => handleStatusChange(user_id, e.target.value)}
             >

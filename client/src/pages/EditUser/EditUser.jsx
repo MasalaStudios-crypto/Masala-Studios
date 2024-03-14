@@ -81,7 +81,7 @@ export const EditUser = ({handleClose}) => {
       setMessage("Debes rellenar todos los campos")
     }
   }
-  console.log(invertirFecha2(edit.birth_date))
+  //console.log(invertirFecha2(edit.birth_date))
   return (
     <Row className='d-flex justify-content-center align-items-center edit-ppal'>
       <Col>
@@ -209,7 +209,9 @@ export const EditUser = ({handleClose}) => {
                 </div>
                 </Form.Label>
               <Form.Control 
+              accept="image/*"
                 type="file" 
+                accept="image/*"
                 onChange={handleFile} 
                 hidden
               />

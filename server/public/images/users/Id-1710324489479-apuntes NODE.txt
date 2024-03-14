@@ -1,0 +1,15 @@
+NODE se basa en eventos.
+
+NODE es escalable.
+
+programa para esperar eventos
+
+servidor vs servidor web
+
+servidor: hardware con un programa instalado para dar soporte.
+
+servidor web: software que metes en el servidor para que funcione.
+
+Metodos HTTP: protocolo de trasnferencia de datos.
+
+Metodos: GET POST PUT DELETE PATCH CONNECT

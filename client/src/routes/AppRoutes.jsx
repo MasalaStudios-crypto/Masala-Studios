@@ -16,31 +16,17 @@ import { AdminSubject } from '../pages/Admin/Subject/AdminSubject'
 import { AllCoursesProfile } from '../pages/AllCoursesProfile/AllCoursesProfile'
 import { OneCourse } from '../pages/Cursos/OneCourse'
 import { MasalaContext } from '../Context/MasalaProvider'
-
-
-
-
-
-
-
 export const AppRoutes = () => {
-
   const {user}=useContext(MasalaContext);
-
-
-
   return (
-  
     <>
       <header>
         <nav>
           <NavBarApp />
         </nav>
-      </header> 
+      </header>
       <Container fluid>
         <main>
-   
-
           <Routes>
             {!user && <>
             <Route path='/register' element={<Register/>} />
@@ -54,6 +40,7 @@ export const AppRoutes = () => {
             <Route path='/servicios' element={<Servicios/>} />
 
 
+
         {user && <>
             {user?.type === 2 && 
             <>
@@ -65,27 +52,27 @@ export const AppRoutes = () => {
 
             </>
             }
-
             {user?.type === 1 &&
             <>
-            <Route path="/mycourse/:course_id" element={<MyCourse />}/>
+
             <Route path='/profile' element={<UserProfile />}/>
             <Route path='/subjects/:course_id' element={<AdminSubject/>} />
             <Route path='/allCourses' element={<AdminCourse/>} />
             <Route path='/allUsers' element={<AdminUsers/>} />
+            <Route path="/mycourse/:course_id" element={<MyCourse />}/>
+
             </>
             }
+
         </>
         }
 
           </Routes>
-   
         </main>
         <footer>
               <Footer />
         </footer>
       </Container>
-    </>  
-
+    </>
   )
 }
