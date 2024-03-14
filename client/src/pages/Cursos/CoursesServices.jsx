@@ -14,7 +14,7 @@ export const CoursesServices = () => {
   }
   useEffect(()=>{
     axios
-        .get("http://localhost:3000/course/allCourses")
+        .get("http://localhost:3000/course/allCoursesService")
         .then((res)=>{
         setCursos(res.data)
       })
@@ -48,12 +48,16 @@ export const CoursesServices = () => {
 
       </Carousel.Item>
         ))}
+
       </Carousel>
+        
         <ModalBasico
+        name={cursos.name}
         title="Contacto"
         handleClose={showModal}
         show={show}>
         <FormularioContacto
+          name={cursos.name}
           handleClose={showModal}/>
         </ModalBasico>
     

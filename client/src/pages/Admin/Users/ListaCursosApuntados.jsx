@@ -17,6 +17,11 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
       .get(`http://localhost:3000/users/allCourses/${user_id}`)
       .then((res)=>{setCoursesSign(res.data)})
       .catch((err)=>console.log(err))
+
+      axios
+        .post(`http://localhost:3000/users/getRegCourses/${user_id}`, {coursesSign})
+        .then((res)=>{})
+        .catch((err)=>console.log(err))
     }
   },[token])
 
@@ -33,12 +38,14 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
       }
     })} 
   const onDereg=(course_id)=>{
+    if (window.confirm("¿Estás seguro de que quieres dar de baja del curso al usuario?")) {
     axios
     .put(`http://localhost:3000/users/adminDereg/${user_id}`,{course_id})
     .then(()=>
     setReset(!reset),
     setMessage("Usuario "+coursesSign[0].user_name+" "+coursesSign[0].user_lastname+" desapuntado correctamente"))
     .catch((err)=>console.log(err))
+  }
   }      
   console.log(coursesSign)
 

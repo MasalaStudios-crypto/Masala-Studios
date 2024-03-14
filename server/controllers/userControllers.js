@@ -1,7 +1,9 @@
 const bcrypt=require('bcrypt')
 const connection = require('../config/db')
 const jwt=require('jsonwebtoken')
+const { enviarCorreoElectronico } = require('../public/javascripts/EnviarCorreo')
 require('dotenv').config()
+
 
 class UserControllers{
 
@@ -198,8 +200,37 @@ class UserControllers{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
-  adminRegDereg=(req,res)=>{
+  getRegCourses = (req, res)=>{
+    const user_id = req.params.user_id;
+    const coursesSign = req.body;
+    console.log('Courses recibidos:', coursesSign);
+  }
 
+  changePassword=(req, res)=>{
+    const email=req.body.elem
+    const password=req.body.newPass
+    console.log(email)
+    console.log(password)
+
+    let saltRounds=8;
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+      bcrypt.hash(password, salt, function(err, hash) {
+          // Store hash in your password DB.
+          if(err){
+            res.status(500).json(err)
+          }
+          let sql=`UPDATE user SET password="${hash}" WHERE email="${email}"; `
+
+          connection.query(sql, (error, result)=>{
+            error?
+              res.status (500).json(error)
+              : res.status(200).json(result)
+          })
+      });
+  });
+    
+    
+ 
   }
 
   deleteUser = (req,res)=>{

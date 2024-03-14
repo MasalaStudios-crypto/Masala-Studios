@@ -3,11 +3,22 @@ const connection = require('../config/db')
 const jwt=require('jsonwebtoken')
 require('dotenv').config()
 
-
 class courseControllers{
 
   allCourses = (req, res) =>{
-    let sql = 'SELECT * from course'
+
+    let sql = 'SELECT * from course;'
+    
+    connection.query(sql, (err, result)=>{
+          console.log(result);
+          console.log(err);
+        err?res.status(500).json(err):res.status(200).json(result)
+   })
+  }
+
+  allCoursesService=(req, res)=>{
+    let sql = 'SELECT * from course WHERE is_deleted=0 AND is_visible=1 AND is_disabled=0;'
+
     
     connection.query(sql, (err, result)=>{
           console.log(result);
@@ -117,6 +128,7 @@ class courseControllers{
   
     let sql = `
       SELECT * FROM course WHERE creator_user_id = ${user_id} GROUP BY course_id
+
     `;
   
     connection.query(sql, (err, courses) => {
@@ -433,6 +445,8 @@ addSubject = (req, res)=>{
     })
   }
   
+
+
 
 }
 

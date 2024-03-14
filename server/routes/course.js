@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/allCourses', courseControllers.allCourses)
 
+router.get('/allCoursesService', courseControllers.allCoursesService)
 
 router.get('/allCoursesProfile/:user_id',verify,  courseControllers.allCoursesProfile)
 
@@ -53,10 +54,12 @@ router.post('/checkCourses', courseControllers.checkCourses)
 
 router.put('/delCourse/:course_id', courseControllers.delOneCourses)
 
+
 router.put('/delSubject/:course_id/:subject_id', courseControllers.delOneSubject)
 
 router.put('/uploadFile/:course_id/:subject_id', multerResource(), courseControllers.uploadResource)
 
 router.get('/filename/:course_id', courseControllers.getFilename)
+
 
 module.exports = router;
