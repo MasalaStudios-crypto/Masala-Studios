@@ -1,7 +1,13 @@
 @import '../../variables';
 
 .Carousel-ppal{
+  width: 40vw;
+  height: 80vh;
   border-radius: 25px;
+  .carousel-img{
+    width: 300px;
+    height: 200px;
+  }
 }
 
 .oneCourse-bckcolor{

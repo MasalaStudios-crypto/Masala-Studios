@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import './formularioContacto.scss'
+import { isAlphaNumericWithSpaces } from '../../utils/validation'
 const initalValue={
   nombre:"",
   asunto:"",
@@ -37,6 +38,7 @@ export const FormularioContacto = ({handleClose, elem}) => {
         <Form.Control 
         name="nombre"
         value={contacto.nombre}
+        onKeyPress={isAlphaNumericWithSpaces}
         onChange={handleChange}
         type="text" 
         placeholder="Introduce tu nombre" />

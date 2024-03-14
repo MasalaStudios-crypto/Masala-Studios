@@ -28,25 +28,34 @@ export const AppRoutes = () => {
       <Container fluid>
         <main>
           <Routes>
+            {!user && <>
+            <Route path='/register' element={<Register/>} />
+            <Route path='/login' element={<Login/>} />
+            </>}
+
+            <Route path="*" element={<h1>TRAMPOSO</h1>}/>
             <Route path='/' element={<Home />}/>
             <Route path='/who' element={<Who />}/>
             <Route path='/about' element={<h1>ABOUT</h1>} />
             <Route path='/servicios' element={<Servicios/>} />
-            {user && <>
-            {user?.type === 2 &&
+
+
+
+        {user && <>
+            {user?.type === 2 && 
             <>
-            <Route path='/profile' element={<UserProfile />}/>
             <Route path="/mycourse/:course_id" element={<MyCourse />}/>
             <Route path="/oneCourse/:course_id" element={<OneCourse />}/>
             <Route path='/subjects/:course_id' element={<AdminSubject/>} />
+            <Route path='/profile' element={<UserProfile />}/>
+           <Route path='/allCoursesProfile/:user_id' element={(<AllCoursesProfile/>)} />
 
-            <Route path='/allCoursesProfile/:user_id' element={(<AllCoursesProfile/>)} />
             </>
             }
             {user?.type === 1 &&
             <>
-            <Route path='/profile' element={<UserProfile />}/>
 
+            <Route path='/profile' element={<UserProfile />}/>
             <Route path='/subjects/:course_id' element={<AdminSubject/>} />
             <Route path='/allCourses' element={<AdminCourse/>} />
             <Route path='/allUsers' element={<AdminUsers/>} />
@@ -54,12 +63,10 @@ export const AppRoutes = () => {
 
             </>
             }
-            </>}
-            <Route path="*" element={<h1>TRAMPOSO</h1>}/>
-            {!user && <>
-            <Route path='/register' element={<Register/>} />
-            <Route path='/login' element={<Login/>} />
-            </>}
+
+        </>
+        }
+
           </Routes>
         </main>
         <footer>

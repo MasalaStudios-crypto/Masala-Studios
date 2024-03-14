@@ -7,6 +7,7 @@ class courseControllers{
 
   allCourses = (req, res) =>{
 
+
     let sql = 'SELECT * from course;'
     
     connection.query(sql, (err, result)=>{

@@ -5,6 +5,7 @@ const multer= require('../middlewares/multerSingle');
 const verify = require('../middlewares/TokenVerify');
 const multerResource = require('../middlewares/multerSingleResource')
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -15,7 +16,6 @@ router.get('/allCourses', courseControllers.allCourses)
 router.get('/allCoursesService', courseControllers.allCoursesService)
 
 router.get('/allCoursesProfile/:user_id',verify,  courseControllers.allCoursesProfile)
-
 
 router.get('/allCoursesOneUserEnroll/:user_id', courseControllers.allCoursesOneUserEnroll)
 

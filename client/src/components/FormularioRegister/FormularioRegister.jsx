@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
+import { isAlphaNumericWithSpaces, validateEmail } from '../../utils/validation'
 const initialValue = {
   name:"",
   email:"",
@@ -23,7 +24,10 @@ export const FormularioRegister = ({handleClose}) => {
   const onSubmit =()=>{
     if(!register.name || !register.email || !register.password){
       setErrorMessage("Debes rellenar todos los campos")
-    }
+
+    }else if (!validateEmail(login.email)) {
+      setMessage('Debe incluir el carácter "@" en su correo electrónico.');
+    } 
     else if (register.password.length < 2){
       setErrorMessage("La contraseña minima debe contener mas de 8 caracteres")
     }
@@ -58,6 +62,7 @@ export const FormularioRegister = ({handleClose}) => {
         <Form.Control 
         name="name"
         value={register.name}
+        onKeyPress={isAlphaNumericWithSpaces}
         onChange={handleChange}
         type="text" 
         placeholder="Introduce tu nombre" />

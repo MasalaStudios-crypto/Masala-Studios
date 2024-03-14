@@ -6,11 +6,14 @@ import { saveLocalStorage } from '../../utils/localStorageUtils'
 import { MasalaContext } from '../../Context/MasalaProvider'
 import { FormularioRegister } from '../FormularioRegister/FormularioRegister'
 import { ModalBasico } from '../ModalBasico/ModalBasico'
+import { validateEmail } from '../../utils/validation'
 import { genPassword } from '../../utils/GenPassword'
+
 const initialValue = {
   email:"",
   password:""
 }
+
 
 export const FormularioLogin = ({handleClose2}) => {
   const navigate= useNavigate()
@@ -28,12 +31,15 @@ export const FormularioLogin = ({handleClose2}) => {
   const handleChange=(elem)=>{
     const {name, value}= elem.target
     setLogin({...login, [name]:value})
+
   }
 
   const onSubmit=()=>{
     if(!login.email || !login.password){
       setMessage("Debes rellenar todos los campos")
-    }
+    }else if (!validateEmail(login.email)) {
+      setMessage('Debe incluir el carácter "@" en su correo electrónico.');
+    } 
     else{
       axios
         .post('http://localhost:3000/users/login', login)
@@ -50,7 +56,8 @@ export const FormularioLogin = ({handleClose2}) => {
 
           //guardar el token en localstorage y decir a la app el user logueado
           saveLocalStorage("token", res.data.token)
-          setToken(res.data.token) // como localstorage es asincrono se guarda en provider
+          setToken(res.data.token)
+           // como localstorage es asincrono se guarda en provider
         })
         .catch((err)=>{
           if (err.response.status === 500){
@@ -59,10 +66,12 @@ export const FormularioLogin = ({handleClose2}) => {
           else{
             setMessage("Usuario no autorizado")
           }
+  
         })
         handleClose2();
 
     }
+    
   }
 
   const changePassword=(elem)=>{
@@ -89,10 +98,12 @@ export const FormularioLogin = ({handleClose2}) => {
         <Form.Label>Email</Form.Label>
         <Form.Control
         name="email"
-        type="text"
+        type="email"
         value={login.email}
         onChange={handleChange}
-        placeholder="Introduce tu Email" />
+        placeholder="Introduce tu Email"
+        required
+        />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
