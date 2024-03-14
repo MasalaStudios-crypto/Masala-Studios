@@ -2,7 +2,6 @@ var express = require('express');
 const courseControllers = require('../controllers/courseControllers');
 var router = express.Router();
 const multer= require('../middlewares/multerSIngle');
-const verify = require('../middlewares/TokenVerify');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -11,9 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/allCourses', courseControllers.allCourses)
 
-
-router.get('/allCoursesProfile/:user_id',verify,  courseControllers.allCoursesProfile)
-
+router.get('/allCoursesProfile/:user_id',  courseControllers.allCoursesProfile)
 
 router.get('/allCoursesOneUserEnroll/:user_id', courseControllers.allCoursesOneUserEnroll)
 

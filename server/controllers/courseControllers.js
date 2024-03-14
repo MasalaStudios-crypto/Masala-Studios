@@ -7,7 +7,7 @@ require('dotenv').config()
 class courseControllers{
 
   allCourses = (req, res) =>{
-    let sql = 'SELECT * from course WHERE is_deleted = 0 and is_disabled = 0'
+    let sql = 'SELECT * FROM course'
     
     connection.query(sql, (err, result)=>{
           console.log(result);
@@ -116,7 +116,7 @@ class courseControllers{
     const { user_id } = req.params;
   
     let sql = `
-      SELECT * FROM course WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id} GROUP BY course_id
+      SELECT * FROM course WHERE creator_user_id = ${user_id} GROUP BY course_id
 
     `;
   

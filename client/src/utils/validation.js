@@ -79,3 +79,9 @@ export const onEnter = (e) =>{
     find()
   }
 }
+
+//  Para que sea obligatorio el @ en el email
+
+export function validateEmail(value) {
+  return value.includes('@');
+}

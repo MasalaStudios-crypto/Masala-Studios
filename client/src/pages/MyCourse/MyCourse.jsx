@@ -22,11 +22,14 @@ export const MyCourse = () => {
   const [subjectDetails, setSubjectDetails] = useState();
   const [resourcetDetails, setResourceDetails] = useState();
   const {user} = useContext(MasalaContext);
+  const {token} = useContext(MasalaContext);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    // Realiza una solicitud para obtener detalles del curso utilizando course_id
-    axios.get(`http://localhost:3000/course/details/${course_id}`)
+
+    
+      // Realiza una solicitud para obtener detalles del curso utilizando course_id
+      axios.get(`http://localhost:3000/course/details/${course_id}`)
       .then((response) => {
         const {result1, result2, result3} = response.data
         //console.log("CURSO", result1);
@@ -40,6 +43,7 @@ export const MyCourse = () => {
       .catch((error) => {
         console.error(error);
       });
+
   }, [course_id]);
 
   //console.log("DATOS CURSO", courseDetails); //aquí tengo datos del curso

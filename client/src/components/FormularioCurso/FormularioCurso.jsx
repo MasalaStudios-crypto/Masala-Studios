@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom';
+
 import { isAlphaNumericWithSpaces, isNumber, isValidFloat, onEnter } from '../../utils/validation';
 import './formularioCurso.scss'
 
 
 
 
-export const FormularioCurso = ({setCourses, courses, user_id, showModal3 }) => {
+export const FormularioCurso = ({ user_id, showModal3 }) => {
 
   const initalValue={
     name:"",
