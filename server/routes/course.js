@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/allCourses', courseControllers.allCourses)
 
+router.get('/allCoursesService', courseControllers.allCoursesService)
 
 router.get('/allCoursesProfile/:user_id',verify,  courseControllers.allCoursesProfile)
 
@@ -51,5 +52,7 @@ router.put('/editCourse', multer("course_img"), courseControllers.editOneCourse)
 router.post('/checkCourses', courseControllers.checkCourses)
 
 router.put('/delCourse/:course_id', courseControllers.delOneCourses)
+
+
 
 module.exports = router;

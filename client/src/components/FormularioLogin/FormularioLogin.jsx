@@ -6,6 +6,7 @@ import { saveLocalStorage } from '../../utils/localStorageUtils'
 import { MasalaContext } from '../../Context/MasalaProvider'
 import { FormularioRegister } from '../FormularioRegister/FormularioRegister'
 import { ModalBasico } from '../ModalBasico/ModalBasico'
+import { genPassword } from '../../utils/GenPassword'
 const initialValue = {
   email:"",
   password:""
@@ -28,6 +29,7 @@ export const FormularioLogin = ({handleClose2}) => {
     const {name, value}= elem.target
     setLogin({...login, [name]:value})
   }
+
   const onSubmit=()=>{
     if(!login.email || !login.password){
       setMessage("Debes rellenar todos los campos")
@@ -63,6 +65,21 @@ export const FormularioLogin = ({handleClose2}) => {
     }
   }
 
+  const changePassword=(elem)=>{
+    if (elem===""){
+      setMessage("Introduzca un email para recuperar contraseña")
+    }
+    else{
+    setMessage("Email con contraseña nueva enviado a: "+elem)
+      const newPass= genPassword(8);
+      axios
+        .post(`http://localhost:3000/users/changePassword`, {elem: elem, newPass})
+        .then((res)=>{console.log(res)}, console.log(newPass))
+        .catch((err)=>{console.log(err)})
+    }
+    
+  }
+
   return (
     <Form>
 
@@ -87,8 +104,9 @@ export const FormularioLogin = ({handleClose2}) => {
         onChange={handleChange}  
         placeholder="Introduce tu contraseña" />
       </Form.Group>
-    
+      
       <p>Estas registrado? <a onClick={showModal}>Registro aqui</a> </p>
+      <p><a onClick={()=>{changePassword(login.email)}}>Recuperar contraseña</a></p>
       <span className='errorMessage'>{message}</span>
 
       <div>

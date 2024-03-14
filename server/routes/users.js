@@ -31,5 +31,8 @@ router.get('/allCreatedCourse/:user_id', userControllers.allCreatedCourse)
 router.get('/allCourses/:user_id', userControllers.allCourses)
 router.put('/adminReg/:user_id', userControllers.adminReg)
 router.put('/adminDereg/:user_id', userControllers.adminDereg)
+router.post('/getRegCourses/:user_id', userControllers.getRegCourses)
+
+router.post('/changePassword', userControllers.changePassword)
 
 module.exports = router;
