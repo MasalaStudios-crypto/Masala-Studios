@@ -1,5 +1,9 @@
 @import '../../variables';
 
+.myCourse-ppal {
+  margin-bottom: 80px;
+}
+
 .course-col {
   padding: 0 !important;
 }
@@ -16,6 +20,8 @@
   background-color: $color-4;
   min-height: calc(100vh - 85.14px - 80px);
   padding: 20px 50px 20px 20px;
+  max-height: calc(100vh - 85.14px - 80px);
+  overflow-y: auto;
 }
 
 .course-edit {

@@ -7,11 +7,12 @@ import {MasalaContext} from '../../Context/MasalaProvider'
 import { useNavigate } from 'react-router-dom'
 import { FormEditCourse } from '../../components/FormEditCourse/FormEditCourse';
 import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
+import { extractNumberFromName } from '../../utils/orderBy'
 
 const handleResourceClick = (resourcePath) => {
   const visualizador = document.getElementById('visualizador');
   visualizador.innerHTML = `
-    <iframe src="http://localhost:3000/images/course_img/${resourcePath}" width="100%" height="100%" className="iframe-resources">
+    <iframe src="http://localhost:3000/resource/${resourcePath}" width="100%" height="100%" className="iframe-resources">
     </iframe>
   `;
 }
@@ -57,7 +58,7 @@ export const MyCourse = () => {
   }
 //console.log(user?.user_id, courseDetails?.creator_user_id);
   return (
-    <section>
+    <section className='myCourse-ppal'>
       <Row className='course-section'>
         {/* Columna izquierda */}
         <Col md={10} className='course-col'>
@@ -89,26 +90,27 @@ export const MyCourse = () => {
                     ""
                 }
             </div>
-            {/* Mapeo de subject */}
-            {subjectDetails?.map((subject) => (
-              <div key={subject.subject_id}>
-                <p>{subject.name}</p>
-                <p>{subject.file_name}</p> {/* enlace de lo que sea */}
-                {/* Mapeo de recursos debajo de cada tema */}
-                {resourcetDetails?.map((resource) => (
-                  // Relación entre subject y resource a través de algún identificador
-                  resource.subject_id === subject.subject_id && (
-                    <div key={resource.resource_id}>
-                      <p>Recurso {resource.resource_id}:</p>
-                      <Button onClick={() => handleResourceClick(resource.path)}>
-                        Ver recurso
-                      </Button>
-                      {/* Agrega aquí la lógica para mostrar los detalles del recurso */}
-                    </div>
-                  )
-                ))}
-              </div>
-            ))}
+             {/* Mapeo de subject ordenado por tema */}
+             {subjectDetails
+              ?.slice()
+              .sort((a, b) => extractNumberFromName(a.name) - extractNumberFromName(b.name))
+              .map((subject) => (
+                <div key={subject.subject_id}>
+                  <p>{subject.name}</p>
+                  {/* Mapeo de recursos debajo de cada tema */}
+                  {resourcetDetails?.map((resource) => (
+                    // Relación entre subject y resource
+                    resource.subject_id === subject.subject_id && (
+                      <div key={resource.resource_id}>
+                        <p>Recurso:</p>
+                        <Button onClick={() => handleResourceClick(resource.path)}>
+                          Ver recurso
+                        </Button>
+                      </div>
+                    )
+                  ))}
+                </div>
+              ))}
           </div>
           {/* edit course */}
           <ModalBasico show={show} handleClose={showModal} title="Edición curso">

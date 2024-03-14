@@ -40,9 +40,10 @@
     object-fit: cover;
   }
 
-  .profile-edit {
-    width: 10%;
-    height: 10%;
+  .profile-edit,
+  .profile-delete {
+    width: 45px;
+    height: 45px;
     cursor: pointer;
   }
 }

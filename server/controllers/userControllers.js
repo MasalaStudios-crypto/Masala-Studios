@@ -202,6 +202,17 @@ class UserControllers{
 
   }
 
+  deleteUser = (req,res)=>{
+    const{user_id} = req.body
+    //console.log(user_id);
+
+     let sql = `UPDATE user SET is_deleted = 1 WHERE user_id = ${user_id}`;
+
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    }) 
+  }
+
 }
 
 

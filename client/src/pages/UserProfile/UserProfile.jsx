@@ -8,11 +8,16 @@ import { EditUser } from '../EditUser/EditUser'
 import { invertirFecha } from '../../utils/reverseDate';
 import { AllCoursesOneUserEnroll } from '../../components/AllCoursesOneUserEnroll/AllCoursesOneUserEnroll'
 import { AllCoursesOneUserCreate } from '../../components/AllCoursesOneUserCreate/AllCoursesOneUserCreate'
+import axios from 'axios'
+import { deleteLocalStorage } from '../../utils/localStorageUtils'
+import { useNavigate } from 'react-router-dom';
 
 export const UserProfile = () => {
   const [show, setShow] = useState(false);
-  const {user} = useContext(MasalaContext);
+  const {user, setToken, setUser} = useContext(MasalaContext);
   const [refreshCourses, setRefreshCourses] = useState(false);
+
+  const navigate = useNavigate();
 
   const showModal = () => {
     setShow(!show)
@@ -28,15 +33,51 @@ export const UserProfile = () => {
     return () => clearInterval(refreshInterval);
   }); // El efecto se ejecutará cada X tiempo
 
+  const erase = () => {
+    if (window.confirm("¿Estás seguro de que deseas borrar tu usuario?")) {
+      axios
+        .put('http://localhost:3000/users/deleteUser', { user_id: user.user_id })
+        .then((res) => {
+          deleteLocalStorage("token")
+          setToken()
+          setUser()
+          navigate('/')
+        })
+        .catch((err) => console.log(err));
+    }
+
+  }
+
   return (
     <section>
       <Row className='profile-section'>
-        {/* profile */}
+        {/* perfil */}
         <Col md={5} lg={4} className='profile-col'>
           <div className='use-profile-ppal'>
             <div className='d-flex justify-content-between profile-img-cont'>
-              <img src={user?.user_img ? `http://localhost:3000/images/users/${user?.user_img}` : '/images/user.png'} alt="foto perfil" className='profile-img' />
-              <img src="/icons/437886-200.png" alt="editar" className='profile-edit' onClick={showModal} />
+              {/* foto perfil */}
+              <img 
+                src={user?.user_img ? `http://localhost:3000/images/users/${user?.user_img}` : '/images/user.png'} 
+                alt="foto perfil" 
+                className='profile-img' 
+              />
+              {/* div iconos editar y borrar */}
+              <div className='d-flex justify-content-end'>
+                {/* icono editar */}
+                <img 
+                  src="/icons/437886-200.png" 
+                  alt="editar" 
+                  className='profile-edit' 
+                  onClick={showModal} 
+                />
+                {/* icono borrar */}
+                <img 
+                  src="/icons/delete.png" 
+                  alt="borrar" 
+                  className='profile-delete' 
+                  onClick={erase}
+                />
+              </div>
             </div>
             <span className='profile-text'>Nombre: </span>
             <span className='profile-gold-text'>{user?.name}</span>
@@ -70,12 +111,12 @@ export const UserProfile = () => {
           </div>
           <div className='text-center'>
           </div>
-        {/* edit profile */}
+        {/* editar perfil */}
           <ModalBasico show={show} handleClose={showModal} title="Edición usuario">
             <EditUser handleClose={showModal} user_id={user?.user_id} />
           </ModalBasico>
         </Col>
-        {/* course */}
+        {/* curso */}
         <Col md={7} lg={8} className='profile-col'>
           <div className='d-flex flex-column align-items-center course-ppal'>
             <div className='div-carousel'>
