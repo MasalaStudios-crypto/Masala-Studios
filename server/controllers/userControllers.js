@@ -1,15 +1,17 @@
 const bcrypt=require('bcrypt')
 const connection = require('../config/db')
 const jwt=require('jsonwebtoken')
-const { enviarCorreoElectronico } = require('../public/javascripts/EnviarCorreo')
 require('dotenv').config()
+
+
 
 
 class UserControllers{
 
   register = (req, res)=>{
     const {name, email, password}= req.body
-    // guardar los datos en la BD (pass encriptada)
+    console.log(email)
+    console.log(password)
     let saltRounds=8;
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
@@ -20,14 +22,18 @@ class UserControllers{
           let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
 
           connection.query(sql, (error, result)=>{
-            error?
+            if(error){
               res.status (500).json(error)
-              : res.status(200).json(result)
+            }else{ 
+            
+              res.status(200).json(result);
+            }
           })
       });
   });
 
   }
+  
 
   login = (req, res)=>{
     const {email, password}= req.body
@@ -211,6 +217,7 @@ class UserControllers{
     const password=req.body.newPass
     console.log(email)
     console.log(password)
+    sendMyMail("balcaza4@gmail.com", "body", "asunto");
 
     let saltRounds=8;
     bcrypt.genSalt(saltRounds, function(err, salt) {

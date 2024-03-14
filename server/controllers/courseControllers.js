@@ -239,14 +239,14 @@ class courseControllers{
     const {user_id} = req.params;
     
 
-     let sql = `SELECT * FROM course WHERE course_id NOT IN (SELECT register.course_id FROM register WHERE register.user_id = ${user_id} ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled= 0 AND course.creator_user_id != ${user_id};`
+    let sql = `SELECT * FROM course WHERE course_id NOT IN (SELECT register.course_id FROM register WHERE register.user_id = ${user_id} ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled= 0 AND course.creator_user_id != ${user_id};`
 
 
     
     connection.query(sql, (err, result)=>{
           console.log(result);
           console.log(err);
-        err?res.status(500).json(err):res.status(200) .json(result)
+        err?res.status(500).json(err):res.status(200).json(result)
    })
   }
   
