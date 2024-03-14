@@ -7,7 +7,7 @@ require('dotenv').config()
 class courseControllers{
 
   allCourses = (req, res) =>{
-    let sql = 'SELECT * from course WHERE is_deleted = 0 and is_disabled = 0'
+    let sql = 'SELECT * from course'
     
     connection.query(sql, (err, result)=>{
           console.log(result);
@@ -116,8 +116,7 @@ class courseControllers{
     const { user_id } = req.params;
   
     let sql = `
-      SELECT * FROM course WHERE is_deleted = 0 AND is_visible = 1 AND is_disabled = 0 AND creator_user_id = ${user_id} GROUP BY course_id
-
+      SELECT * FROM course WHERE creator_user_id = ${user_id} GROUP BY course_id
     `;
   
     connection.query(sql, (err, courses) => {
@@ -373,6 +372,67 @@ addSubject = (req, res)=>{
     })
   }
 
+  delOneSubject = (req,res)=>{
+    const { course_id, subject_id } = req.params;
+    console.log(req.params);
+
+    let sql = `DELETE FROM subject WHERE course_id = ${course_id} AND subject_id = ${subject_id}`;
+
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  uploadResource = (req, res) => {
+    const { course_id, subject_id } = req.params;
+    const fileType = req.body.fileType;
+    let typeNum = parseInt(fileType)
+    //console.log(req.params);
+    //console.log(req.file.filename);
+    //console.log(typeof fileType);
+  
+    // Verificar si ya existe un registro con el mismo course_id y subject_id
+    let sqlCheck = `SELECT * FROM resource WHERE course_id = ${course_id} AND subject_id = ${subject_id}`;
+  
+    connection.query(sqlCheck, (err, results) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        // Si hay resultados, significa que ya existe un registro con esos IDs, entonces hacemos un UPDATE
+        if (results.length > 0) {
+          let sqlUpdate = `UPDATE resource SET path = "${req.file.filename}" WHERE course_id = ${course_id} AND subject_id = ${subject_id}`;
+          connection.query(sqlUpdate, (err, result) => {
+            if (err) {
+              res.status(500).json(err);
+            } else {
+              res.status(200).json(result);
+            }
+          });
+        } else {
+          // Si no hay resultados, significa que no existe un registro con esos IDs, entonces hacemos un INSERT
+          let sqlInsert = `INSERT INTO resource SET course_id = ${course_id}, subject_id = ${subject_id}, type = ${typeNum}, path = "${req.file.filename}"`;
+          connection.query(sqlInsert, (err, result) => {
+            if (err) {
+              res.status(500).json(err);
+            } else {
+              res.status(200).json(result);
+            }
+          });
+        }
+      }
+    }); 
+  };
+
+  getFilename = (req, res)=>{
+    const { course_id, subject_id } = req.params;
+
+    let sql=`SELECT path, subject_id FROM resource WHERE course_id = ${course_id}`
+
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+  
 
 }
 
