@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userControllers = require('../controllers/userControllers');
-const multer= require('../middlewares/multerSIngle');
+const multer= require('../middlewares/multerSingle');
 const verify = require('../middlewares/TokenVerify');
 
 router.post('/register', userControllers.register)
@@ -34,7 +34,6 @@ router.get('/allCourses/:user_id', userControllers.allCourses)
 router.put('/adminReg/:user_id', userControllers.adminReg)
 
 router.put('/adminDereg/:user_id', userControllers.adminDereg)
-router.post('/getRegCourses/:user_id', userControllers.getRegCourses)
 
 router.post('/changePassword', userControllers.changePassword)
 

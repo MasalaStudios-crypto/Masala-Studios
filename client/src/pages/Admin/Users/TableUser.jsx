@@ -145,7 +145,7 @@ export const TableUser = () => {
 
           <ModalBasico
           user_id={userId}
-          title={"Cursos creados"}
+          title={`Cursos creados`}
           handleClose={openCreatedCourse} 
           show={show}>
             <ListaCursosCreados

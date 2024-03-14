@@ -2,7 +2,6 @@ var express = require('express');
 const courseControllers = require('../controllers/courseControllers');
 var router = express.Router();
 const multer= require('../middlewares/multerSingle');
-const verify = require('../middlewares/TokenVerify');
 const multerResource = require('../middlewares/multerSingleResource')
 
 
@@ -15,7 +14,7 @@ router.get('/allCourses', courseControllers.allCourses)
 
 router.get('/allCoursesService', courseControllers.allCoursesService)
 
-router.get('/allCoursesProfile/:user_id',verify,  courseControllers.allCoursesProfile)
+router.get('/allCoursesProfile/:user_id',  courseControllers.allCoursesProfile)
 
 router.get('/allCoursesOneUserEnroll/:user_id', courseControllers.allCoursesOneUserEnroll)
 

@@ -211,7 +211,6 @@ export const EditUser = ({handleClose}) => {
               <Form.Control 
               accept="image/*"
                 type="file" 
-                accept="image/*"
                 onChange={handleFile} 
                 hidden
               />
