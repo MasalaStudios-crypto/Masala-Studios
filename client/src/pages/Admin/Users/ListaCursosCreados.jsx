@@ -21,8 +21,8 @@ useEffect(()=>{
 
   return (
     <div>
-      {coursesCreated?.map((elem)=>(
-        <h3>{elem.name}</h3>
+      {coursesCreated?.map((elem, index)=>(
+        <h3 key={index}>{elem.name}</h3>
       ))}
     </div>
   )

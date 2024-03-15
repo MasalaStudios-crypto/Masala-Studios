@@ -61,8 +61,11 @@ router.put('/uploadFile/:course_id/:subject_id', multerResource(), courseControl
 
 router.get('/filename/:course_id', courseControllers.getFilename)
 
+router.post('/createTag', courseControllers.createTag)
+
 router.get('/searchCourses/:category/:text', courseControllers.getSearch)
 
 router.get('/tags', courseControllers.getTags)
+
 
 module.exports = router;
