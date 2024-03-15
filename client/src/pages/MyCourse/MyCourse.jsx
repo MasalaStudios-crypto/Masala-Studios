@@ -60,6 +60,14 @@ export const MyCourse = () => {
   const showModal = () => {
     setShow(!show)
   }
+
+  const contact =()=>{
+
+    const body = ``;
+    
+    const mailtoLink = `mailto:${courseDetails?.email}?subject=&body=`;
+    window.location.href = mailtoLink;
+  }
 //console.log(user?.user_id, courseDetails?.creator_user_id);
   return (
     <section className='myCourse-ppal'>
@@ -76,14 +84,19 @@ export const MyCourse = () => {
             <span>Descripción:</span>
             <br />
             <span>{courseDetails?.description}</span>
+            <br />
           </div>
+        
         </Col>
 
         {/* Columna derecha */}
         <Col md={2} className='course-col'>
           <div className='listado-temario'>
             <div className='d-flex justify-content-between'>
+              <div className='d-flex flex-column'>
+              <Button onClick={contact}>Contacto Profesor</Button>
               <h5>Temario del curso</h5>
+              </div>
                 {user?.user_id === courseDetails?.creator_user_id
                   ?
                     <div>

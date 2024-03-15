@@ -8,7 +8,7 @@ class courseControllers{
   allCourses = (req, res) =>{
 
 
-    let sql = 'SELECT * from course;'
+    let sql = `SELECT c.*, CONCAT(u.name, ' ', u.lastname) AS profesor FROM course c JOIN user u ON c.creator_user_id = u.user_id GROUP BY c.course_id;`
     
     connection.query(sql, (err, result)=>{
           console.log(result);
@@ -174,7 +174,7 @@ class courseControllers{
       const { course_id } = req.params;
   
       // Primera consulta SQL
-      const sql1 = `SELECT * FROM course WHERE is_deleted = 0 AND is_disabled = 0 AND course_id = ${course_id}`;
+      const sql1 = `SELECT c.*, u.email, concat(u.name, ' ', u.lastname)as profesor FROM course c, user u WHERE c.is_deleted = 0 AND c.is_disabled = 0 AND c.course_id = ${course_id} AND c.creator_user_id=u.user_id;`;
       const result1 = await connection.promise().query(sql1);
   
       // Segunda consulta SQL
@@ -445,7 +445,22 @@ addSubject = (req, res)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
-  
+
+  createTag = (req, res) => {
+    const  name  = req.body.name
+    console.log(name)
+    // let sql2 = `INSERT INTO tag (name) VALUES ("${name}");`;
+    let sql=`INSERT INTO tag (tag_id, name)
+             SELECT COALESCE(MAX(tag_id)+1,1), "${name}"
+             FROM tag;`
+    connection.query(sql, (err, result) => {
+        if (err) {
+            res.status(500).json(err);
+        } else {
+            res.status(200).json(result);
+        }
+    }); // FATLA HACER LO DE AUTOINCREMENT
+}
 
 
 

@@ -9,6 +9,7 @@ import { FormularioContacto } from '../FormularioContacto/FormularioContacto';
 import { FormularioLogin } from '../FormularioLogin/FormularioLogin';
 import { ModalBasico2 } from '../ModalBasico2/ModalBasico2';
 import { FormularioCurso } from '../FormularioCurso/FormularioCurso';
+import { FormularioTag } from '../FormularioTag/FormularioTag';
 
 export const NavBarApp= () => {
 
@@ -18,16 +19,20 @@ export const NavBarApp= () => {
   const[show, setShow]=useState(false)
   const[show2, setShow2]=useState(false)
   const[show3, setShow3]=useState(false)
+  const[show4, setShow4]=useState(false)
+
 
   const showModal =()=>{
     setShow(!show)
   }
-
   const showModal2 =()=>{
     setShow2(!show2)
   }
   const showModal3 =()=>{
     setShow3(!show3)
+  }
+  const showModal4 =()=>{
+    setShow4(!show4)
   }
 
   const LogOut=()=>{
@@ -94,6 +99,7 @@ export const NavBarApp= () => {
                   </div> 
                   :
                   <div>
+                  <NavDropdown.Item onClick={showModal4}>Crear TAG</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
                   </div>
                   }
@@ -135,9 +141,16 @@ export const NavBarApp= () => {
                 user_id={user?.user_id}
                 courses={courses}
                 setCourses={setCourses}
-                
                 />
               </ModalBasico2>
+
+              <ModalBasico
+              title="TAG"
+              show={show4}
+              handleClose={showModal4}>
+                <FormularioTag
+                handleClose={showModal4}/>
+              </ModalBasico>
 
             </Nav>
           </Navbar.Collapse>
