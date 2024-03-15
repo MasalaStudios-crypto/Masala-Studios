@@ -17,7 +17,6 @@ export const TableSubject = () => {
   const {course_id} = useParams()
   const {user}=useContext(MasalaContext)
   const navigate =useNavigate();
-  const [fileType, setFileType] = useState('pdf');
   const [selectedFileType, setSelectedFileType] = useState('pdf');
 
   const showModal=()=>{
@@ -85,11 +84,6 @@ export const TableSubject = () => {
     }
   }
 
-  const handleFileTypeChange = (event) => {
-    setSelectedFileType(event.target.value);
-    setFileType(event.target.value);
-  };
-
   const handleFileChange = (event, courseId, subjectId) => {
     //console.log("courseId:", courseId);
     //console.log("subjectId:", subjectId);
@@ -138,12 +132,13 @@ export const TableSubject = () => {
     }
   };
   
+  
   return (
     <div className='table-subject-ppal'>
   
       <div>
         <Button onClick={showModal}>Añadir tema</Button>
-        <Button onClick={() => { user?.type === 1 ? navigate("/allCourses") : navigate("/") }}>Atrás</Button>
+        <Button onClick={() => { user?.type === 1 ? navigate("/allCourses") : navigate("/profile") }}>Atrás</Button>
 
       </div>
       {subjects ?

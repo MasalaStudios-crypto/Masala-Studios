@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Col, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import { isAlphaNumericWithSpaces, isNumber, isValidFloat } from '../../utils/validation';
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
 
 const initalValue={
   name: "",
@@ -17,6 +19,8 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
   const[message, setMessage] = useState();
   const[editCourse, setEditCourse] = useState(initalValue);
   const [file, setFile] = useState();
+  const [options, setOptions] = useState([]);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     if(courseDetails){
@@ -35,7 +39,6 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
     setFile(e.target.files[0]);
   };
   
-
   const onSubmit=()=>{
 
     if (editCourse.name && editCourse.duration && editCourse.price  && editCourse.description) {
@@ -45,6 +48,7 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
       newFormData.append("editCourse", JSON.stringify(editCourse));
       newFormData.append("file", file)
       newFormData.append("course_id", courseDetails.course_id)
+      newFormData.append("tags", JSON.stringify(tags)) /// cambiar
 
       axios
         .put("http://localhost:3000/course/editCourse", newFormData)
@@ -59,6 +63,29 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
     }
   }
   //console.log("AQUIII", courseDetails);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/course/tags', {params: { course_id: courseDetails.course_id }})
+        .then(response => {
+          if (response.data && response.data.length > 0) {
+            setOptions(response.data.map(elem => ({ value: elem.tag_id, label: elem.name })));
+          } else {
+            setOptions([]);
+            //console.log(response.data);
+            //console.log(options);
+          }
+        })
+        .catch(error => {
+            console.error('Error fetching tags:', error);
+        });
+  }, []);
+
+  const animatedComponents = makeAnimated();
+
+  const onChangeSelect = (e) => {
+    //console.log("eento" ,e);
+    setTags(e.map(e => e.value))
+  }
 
   const erase = () => {
     if (window.confirm("¿Estás seguro de que deseas borrar este curso?")) {
@@ -116,10 +143,22 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
               type="file"  />
           </Form.Group> 
 
+          <Form.Group className="mb-3" controlId="formBasicTag">
+            <Form.Label>Tags</Form.Label>
+            <Select 
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              defaultValue={tags}
+              onChange={onChangeSelect}
+              isMulti
+              options={options} 
+            />
+          </Form.Group>
+
           <Form.Group className="mb-3" controlId="formBasicDescription">
             <Form.Label>Descripción</Form.Label>
             <Form.Control className='inputTexto'
-              maxLength="300" 
+              maxLength="255" 
               name="description"
               value={editCourse.description}
               onChange={handleChange}

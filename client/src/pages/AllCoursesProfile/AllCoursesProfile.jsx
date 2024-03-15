@@ -1,58 +1,132 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { CardCourses } from '../../components/Card-Courses/CardCourses'
-import './AllCoursesProfile.scss'
-import axios from 'axios'
-import { MasalaContext } from '../../Context/MasalaProvider'
-import { useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react';
+import { CardCourses } from '../../components/Card-Courses/CardCourses';
+import './AllCoursesProfile.scss';
+import axios from 'axios';
+import { MasalaContext } from '../../Context/MasalaProvider';
+import { useParams } from 'react-router-dom';
+import { isLetterWithSpace } from '../../utils/validation';
 
 export const AllCoursesProfile = () => {
-  const {user} = useContext(MasalaContext)
-  const [allCourses, setAllCourses] = useState([])
-  const {user_id} = useParams();
 
-  console.log(user?.user_id);
-  console.log(user_id);
- 
-  
+  const { user } = useContext(MasalaContext);
+  const [allCourses, setAllCourses] = useState([]);
+  const { user_id } = useParams();
+  const { token } = useContext(MasalaContext);
+  const [searchText, setSearchText] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('tag');
+  const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(()=>{
 
-      if (user) {
-        
-        axios
+  //console.log(user?.user_id);
+  //console.log(user_id);
+  //console.log(allCourses);
+
+  useEffect(() => {
+    if (user) {
+      axios
         .get(`http://localhost:3000/course/allCoursesProfile/${user?.user_id}`)
-        .then((res)=>{
-          setAllCourses(res.data)
-          console.log(res.data)
-          
+        .then((res) => {
+          setAllCourses(res.data);
+          //console.log(res.data);
         })
-        .catch((err)=>console.log("error axios",err))
-        
+
+        .catch((err) => console.log(err));
+
+    }
+  }, [user]);
+
+  // sacar los ids de los cursos para la comparación del de searchCourses
+  const courseIds = allCourses.map(course => course.course_id);
+
+  // Función para buscar cursos en el servidor
+  const searchCourses = () => {
+    //console.log("aqui", user);
+    if(selectedCategory && searchText){
+      axios
+        .get(`http://localhost:3000/course/searchCourses/${selectedCategory}/${searchText}`, {
+          params: {
+            user_id: user.user_id,
+            course_ids: courseIds.join(',')
+          }})
+        .then((res) => {
+          if (res.data && res.data.length > 0) {
+            setSearchResults(res.data);
+          } else {
+            setSearchResults([]);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    else {
+      // Si el campo de texto está vacío, recargar la página
+      window.location.reload();
     }
 
-  },[user])
+  }
+    
+  // Manejar cambios en el texto de búsqueda
+  const handleTextChange = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  // Manejar cambios en la categoría seleccionada
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  useEffect(() => {
+    if (searchText !== '' && searchResults.length === 0) {
+      window.location.reload();
+    }
+  }, [searchResults]);
 
   return (
     <>
-   {user?.user_id == user_id ?
-    <>
-    <div className='allCoursesProfile-ppal'>
-    
-    {allCourses.map((elem)=>
-
-    <CardCourses key={elem.course_id} elem={elem}/>
-
-    )}
-    
-    </div>
+      {user?.user_id == user_id ? (
+        <>
+          <div className='allCoursesProfile-ppal'>
+            <div className='search-ppal'>
+              {/* Campo de entrada de texto para búsqueda */}
+              <input 
+                type="text" 
+                value={searchText} 
+                onChange={handleTextChange} 
+                placeholder="Buscar curso" 
+                onKeyPress={isLetterWithSpace}
+              />
+              {/* Select para la categoría */}
+              <select 
+                value={selectedCategory} 
+                onChange={handleCategoryChange}
+              >
+                <option value='tag'>Tags</option>
+                <option value='course'>Nombre del curso</option>
+              </select>
+              {/* Botón para realizar la búsqueda */}
+              <button onClick={searchCourses}>Buscar</button>
+            </div>
+            {/* Mostrar si no hay resultados */}
+            {searchText !== '' && searchResults.length === 0 && (
+            <div>No hay resultados</div>
+            )}
+            {/* Mostrar resultados de la búsqueda o todos los cursos */}
+            {searchText === '' && searchResults.length === 0 ? (
+              allCourses.map((elem) => (
+                <CardCourses key={elem.course_id} elem={elem} />
+              ))
+            ) : (
+              searchResults.map((elem) => (
+                <CardCourses key={elem.course_id} elem={elem} />
+              ))
+            )}
+          </div>
+        </>
+      ) : (
+        <>
+          <h1>Acceso Denegado</h1>
+          <h3>Compruebe que la dirección es correcta</h3>
+        </>
+      )}
     </>
-    :
-    <>
-    <h1>Acceso Denegado</h1>
-    <h3>Compruebe que la direccion es correcta</h3>
-    </>
-    }
-  </>
-
-  )
-}
+  );
+};
