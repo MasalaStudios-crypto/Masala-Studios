@@ -74,6 +74,8 @@ class courseControllers{
   createCourse = (req, res) => {
     try {
       const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
+      const tags = JSON.parse(req.body.tags) 
+      console.log("tags" ,tags);
       const courseImg = req.file ? req.file.filename : null;
   
       let sql;
@@ -96,7 +98,19 @@ class courseControllers{
           res.status(500).json({ error: "Error interno del servidor" });
         } else {
           const courseId = result.insertId;
-  
+          let sqlTags
+          tags.forEach(element => {
+            sqlTags = `INSERT INTO course_tag (course_id, tag_id) VALUES (${courseId}, ${element})`
+            connection.query(sqlTags, (err, result) =>{
+              if(err){
+                console.log(err);
+              }
+            })
+            
+          });
+
+
+
           if (courseImg) {
             // Si hay una imagen, insertarla en la base de datos
             let imgSql = `UPDATE course SET course_img = ? WHERE course_id = ?`;
@@ -345,6 +359,7 @@ addSubject = (req, res)=>{
   editOneCourse = (req, res) => {
     const {name, duration, price, description} = JSON.parse(req.body.editCourse)
     const {course_id} = req.body
+    const tags = JSON.parse(req.body.tags)
     console.log(req.body);
 
     let img = ""
@@ -360,6 +375,23 @@ addSubject = (req, res)=>{
       if (err) {
         res.status(500).json(err);
       } else {
+        let sqlBorrarTags = `DELETE FROM course_tag WHERE course_id = ${course_id}`
+        connection.query(sqlBorrarTags, (errDelete, result)=> {
+          if(errDelete){
+            res.status(500).json(errDelete)
+          }
+          else{
+            let sqlNewTags
+            tags.forEach(element => {
+              sqlNewTags = `INSERT INTO course_tag (course_id, tag_id) VALUES (${course_id}, ${element})`
+              connection.query(sqlNewTags, (errNewTags) => {
+                if(errNewTags){
+                  res.status(500).json(errNewTags)
+                }
+              })
+            });
+          }
+        })
         res.status(200).json({result, newImg: req.file?.filename});
       } 
     });
@@ -445,10 +477,46 @@ addSubject = (req, res)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }
-  
 
+  getSearch = (req, res) => { //ARREGLAR
+    const { category, text } = req.params;
+    const {user_id} = req.query;
+    //console.log("AQUIII", req.params);
+    //console.log("aqui", req.query);
 
+    let sql;
+    // Verificamos si la categoría es "tag" o "course"
+    if (category === 'tag') {
+        // Si la categoría es "tag", construimos la consulta para buscar en la tabla de tags
+        sql = `SELECT course.* FROM course, tag, course_tag WHERE course.course_id = course_tag.course_id 
+          AND course_tag.tag_id = tag.tag_id AND tag.name LIKE '%${text}%' AND course.course_id NOT IN (
+            SELECT register.course_id FROM register WHERE register.user_id = ${user_id}) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled = 0 AND course.creator_user_id != ${user_id}`;
+    } else if (category === 'course') {
+        // Si la categoría es "course", construimos la consulta para buscar en la tabla de cursos
+        sql = `SELECT * FROM course WHERE name LIKE '%${text}%' AND course_id NOT IN (SELECT register.course_id FROM register WHERE register.user_id = ${user_id} ) AND course.is_deleted = 0 AND course.is_visible = 1 AND course.is_disabled= 0 AND course.creator_user_id != ${user_id};`;
+    } else {
+        // Manejar cualquier otro caso aquí, si es necesario
+        return res.status(400).json({ error: 'Categoría no válida' });
+    }
 
+    // Ejecutamos la consulta SQL correspondiente
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+  };
+
+  getTags = (req, res)=>{
+    let sql = 'SELECT * FROM tag';
+
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
 }
 
 

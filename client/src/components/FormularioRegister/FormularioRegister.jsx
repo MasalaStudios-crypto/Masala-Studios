@@ -25,7 +25,7 @@ export const FormularioRegister = ({handleClose}) => {
     if(!register.name || !register.email || !register.password){
       setErrorMessage("Debes rellenar todos los campos")
 
-    }else if (!validateEmail(login.email)) {
+    }else if (!validateEmail(register.email)) {
       setMessage('Debe incluir el carácter "@" en su correo electrónico.');
     } 
     else if (register.password.length < 2){

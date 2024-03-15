@@ -66,7 +66,6 @@ CREATE TABLE subject(
 	name VARCHAR(50) NOT NULL,
 	duration VARCHAR(10),
 	creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    file_name VARCHAR(100),
 	CONSTRAINT fk_course_3 FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -92,15 +91,6 @@ CREATE TABLE comment(
 	CONSTRAINT fk1_subject_2 FOREIGN KEY (course_id, subject_id) REFERENCES subject(course_id, subject_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-
-
-SELECT * FROM user;
-SELECT * FROM course;
-SELECT * FROM subject;
-SELECT * FROM resource;
-SELECT * FROM tag;
-SELECT * FROM comment;
 
 
 
