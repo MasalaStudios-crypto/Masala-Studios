@@ -16,6 +16,7 @@ import { AdminSubject } from '../pages/Admin/Subject/AdminSubject'
 import { AllCoursesProfile } from '../pages/AllCoursesProfile/AllCoursesProfile'
 import { OneCourse } from '../pages/Cursos/OneCourse'
 import { MasalaContext } from '../Context/MasalaProvider'
+import { ConfirmUser } from '../pages/Auth/ConfirmUser/ConfirmUser'
 export const AppRoutes = () => {
   const {user}=useContext(MasalaContext);
   return (
@@ -38,6 +39,7 @@ export const AppRoutes = () => {
             <Route path='/who' element={<Who />}/>
             <Route path='/about' element={<h1>ABOUT</h1>} />
             <Route path='/servicios' element={<Servicios/>} />
+            {/* <Route path='/confirmation/:token' element={<ConfirmUser/>} />rs */}
 
 
 

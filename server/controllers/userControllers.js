@@ -8,11 +8,14 @@ const sendMyMail = require('../public/javascripts/nodemailer')
 
 
 class UserControllers{
-
+  
+  // Generar un token
+  // Enviar el correo al user, mandandole el link que tiene la ruta de verificaion, y con parametro dinamico el token
+  // Controlador de verificacion de cuenta donde recoges el token de params, ves si 
+  
   register = (req, res)=>{
     const {name, email, password}= req.body
-    console.log(email)
-    console.log(password)
+    // guardar los datos en la BD (pass encriptada)
     let saltRounds=8;
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
@@ -23,6 +26,7 @@ class UserControllers{
           let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
 
           connection.query(sql, (error, result)=>{
+
             if(error){
 
               res.status (500).json(error)
@@ -30,12 +34,59 @@ class UserControllers{
             
               res.status(200).json(result);
             }
-
           })
       });
   });
 
   }
+  
+  // register = (req, res) => {
+  //   const { name, email, password } = req.body;
+
+  //   let saltRounds = 8;
+  //   bcrypt.genSalt(saltRounds, function (err, salt) {
+  //       if (err) {
+  //           return res.status(500).json({ error: "Error al generar la sal para el hash de la contraseña" });
+  //       }
+
+  //   bcrypt.hash(password, salt, function (err, hash) {
+  //       if (err) {
+  //           return res.status(500).json({ error: "Error al generar el hash de la contraseña" });
+  //       }
+
+  //       let sql = `INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`;
+  //       connection.query(sql, (error, result) => {
+  //         if (error) {
+  //             return res.status(500).json({ error: "Error al insertar el usuario en la base de datos" });
+  //         }
+
+  //         const token = jwt.sign({
+  //             user: {
+  //                 id: result.insertId,
+  //             }
+  //         },
+  //             process.env.SECRET,
+  //             { expiresIn: "1d" });
+
+  //         const confirmationLink = `http://localhost:3000/users/confirmation/${token}`;
+
+  //         sendMyMail('santysmp24@gmail.com',
+  //             `Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:
+  //             <a href="${confirmationLink}">Haz click aquí</a>`,
+  //             "Confirmación de cuenta"
+          
+  //         )
+  //         .then(() => {
+  //             res.status(200).json(result);
+  //         }).catch((err) => {
+  //             return res.status(500).json({ error: "Error al enviar el correo electrónico de confirmación" });
+  //         });
+  //       });
+  //   });
+  //   });
+  // }
+
+
   
 
   login = (req, res)=>{
@@ -73,6 +124,14 @@ class UserControllers{
       }
     })
   }
+
+  // confirmUser = (req, res) =>{
+  //   const {id} = req.body;
+
+  //   let sql = `UPDATE user SET is_disabled = 0 WHERE user_id = ${id}`
+
+  //   res.console.log(tokenP);
+  // } 
 
   getOneUser = (req, res) => {
     const {id} = req.params;
