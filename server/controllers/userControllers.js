@@ -316,6 +316,15 @@ class UserControllers{
     }) 
   }
 
+  getMyGrades = (req, res)=>{
+    const {user_id}=req.query
+    //console.log(req.query);
+    let sql = `SELECT register.*, course.* FROM register, course WHERE register.course_id = course.course_id AND register.user_id = ${user_id};`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
 }
 
 

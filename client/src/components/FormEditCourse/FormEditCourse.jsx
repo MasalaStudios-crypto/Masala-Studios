@@ -23,6 +23,20 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
+    const {course_id} = courseDetails
+    axios.get(`http://localhost:3000/course/tagsEdit/${course_id}`)
+        .then((res) => {
+          console.log("aqui",res.data);
+          setTags(res.data)
+        })
+        .catch(error => {
+            console.error(error);
+        });
+  }, [options]);
+
+  console.log(tags);
+
+  useEffect(() => {
     if(courseDetails){
       setEditCourse({...editCourse, name:courseDetails.name, duration:courseDetails.duration, price:courseDetails.price, description:courseDetails.description, is_deleted:courseDetails.is_deleted})
     }
@@ -48,7 +62,7 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
       newFormData.append("editCourse", JSON.stringify(editCourse));
       newFormData.append("file", file)
       newFormData.append("course_id", courseDetails.course_id)
-      newFormData.append("tags", JSON.stringify(tags)) /// cambiar
+      newFormData.append("tags", JSON.stringify(tags))
 
       axios
         .put("http://localhost:3000/course/editCourse", newFormData)
@@ -65,7 +79,7 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
   //console.log("AQUIII", courseDetails);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/course/tags', {params: { course_id: courseDetails.course_id }})
+    axios.get('http://localhost:3000/course/tags')
         .then(response => {
           if (response.data && response.data.length > 0) {
             setOptions(response.data.map(elem => ({ value: elem.tag_id, label: elem.name })));
@@ -83,8 +97,8 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
   const animatedComponents = makeAnimated();
 
   const onChangeSelect = (e) => {
-    //console.log("eento" ,e);
-    setTags(e.map(e => e.value))
+    console.log("eento" ,e);
+    setTags(e)
   }
 
   const erase = () => {
@@ -97,8 +111,9 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
         })
         .catch((err) => console.log(err));
     }
-
   }
+
+  
   return (
     <Row className='d-flex justify-content-center align-items-center'>
       <Col>
@@ -148,7 +163,7 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
             <Select 
               closeMenuOnSelect={false}
               components={animatedComponents}
-              defaultValue={tags}
+              value={tags} 
               onChange={onChangeSelect}
               isMulti
               options={options} 
