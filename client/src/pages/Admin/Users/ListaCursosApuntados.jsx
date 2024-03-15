@@ -4,11 +4,10 @@ import { MasalaContext } from '../../../Context/MasalaProvider'
 import { Button } from 'react-bootstrap'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 
-export const ListaCursosApuntados = ({user_id, handleClose2}) => {
+export const ListaCursosApuntados = ({user_id}) => {
 
   const [reset, setReset] = useState(false)
   const [coursesSign, setCoursesSign]=useState([])
-  const [message, setMessage]=useState("")
 
   const {token}= useContext(MasalaContext)
   useEffect(()=>{
@@ -18,23 +17,18 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
       .get(`http://localhost:3000/users/allCourses/${user_id}`)
       .then((res)=>{setCoursesSign(res.data)})
       .catch((err)=>console.log(err))
-
-
     }
-  },[token])
+  },[token, reset])
 
   const onReg=(course_id)=>{
     if (window.confirm("¿Estás seguro de que quieres dar de alta en este curso al usuario?")) {
     axios
     .put(`http://localhost:3000/users/adminReg/${user_id}`,{course_id})
     .then(()=>
-    setReset(!reset),
-    setMessage("Usuario "+coursesSign[0].user_name+" "+coursesSign[0].user_lastname+" registrado correctamente"))
+    setReset(!reset))
+  
     .catch((err)=>{
-      if (err.response.status === 500){
-        setMessage("Usuario ya registrado")
         console.log(err)
-      }
     })} 
   }
   const onDereg=(course_id)=>{
@@ -42,25 +36,35 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
     axios
     .put(`http://localhost:3000/users/adminDereg/${user_id}`,{course_id})
     .then(()=>
-    setReset(!reset),
-    setMessage("Usuario "+coursesSign[0].user_name+" "+coursesSign[0].user_lastname+" desapuntado correctamente"))
+    setReset(!reset))
     .catch((err)=>console.log(err))
   }
   }      
 
-  console.log(coursesSign)
+ let convertidorNotas=(num)=>{
+  let result="No registrado"
+  if(num===1){
+    result="Registrado"
+  }
+  else if(num===2){
+    result="Aprobado"
+  }
+  else if(num===3){
+    result="Suspenso"
+  }
+  return result
+ }
 
   return (
 
     <TableContainer component={Paper}>
+
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Nombre Cursos</TableCell>
-            <TableCell align="right">Calificacion</TableCell>
-            <TableCell align="right">Registrar</TableCell>
-            <TableCell align="right">Borrar</TableCell>
-
+            <TableCell align="right">Calificaciones</TableCell>
+            <TableCell align="right">Registrar/Borrar</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -70,15 +74,17 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
           >
               <TableCell component="th" scope="row">{elem.name}</TableCell>
-              <TableCell align="right">{elem.grade}</TableCell>
-              <TableCell align="right"><Button onClick={() => {onReg(elem.course_id)}}>Registrar</Button></TableCell>
+              <TableCell align="right">{convertidorNotas(elem.grade)}</TableCell>
+              <TableCell align="right">{elem.grade===0?<Button onClick={() => {onReg(elem.course_id)}}>Registrar</Button>:<Button variant="danger" onClick={() => {onDereg(elem.course_id)}}>Borrar</Button>}</TableCell>
 
-              <TableCell align="right"><Button onClick={() => {onDereg(elem.course_id)}}>Borrar</Button></TableCell>
             </TableRow>
             ))}
         </TableBody>
       </Table>
-      <span>{message}</span>
+
+
+      
+
     </TableContainer>
     
  

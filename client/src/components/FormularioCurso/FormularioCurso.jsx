@@ -1,12 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-
 import { isAlphaNumericWithSpaces, isNumber, isValidFloat, onEnter } from '../../utils/validation';
 import './formularioCurso.scss'
-
-
-
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
 
 export const FormularioCurso = ({ user_id, showModal3 }) => {
 
@@ -21,6 +19,8 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
   const[newCourse, setNewCourse] = useState(initalValue);
   const [file, setFile] = useState();
   const[message, setMessage] = useState();
+  const [options, setOptions] = useState([]);
+  const [tags, setTags] = useState([]);
 
 
   const handleChange=(elem)=>{
@@ -36,11 +36,11 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
 
   const onSubmit=()=>{
 
-    if (newCourse.name && newCourse.duration && newCourse.price  && newCourse.description) {
-      
+    if (newCourse.name && newCourse.duration && newCourse.price  && newCourse.description){
       const newFormData = new FormData()
       newFormData.append("CrCourse", JSON.stringify(newCourse));
       newFormData.append("file", file)
+      newFormData.append("tags", JSON.stringify(tags)) //revisar para cambiar
 
       axios
         .post("http://localhost:3000/course/createCourse", newFormData)
@@ -50,15 +50,34 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
         .catch(err => console.log(err))
 
       }
-      else{
+    else{
         setMessage("rellena algo por favor!!!");
-      }
-      }
-    
-      
-  
-  
+    }
+  }
 
+  useEffect(() => {
+    axios.get('http://localhost:3000/course/tags')
+        .then(response => {
+          if (response.data && response.data.length > 0) {
+            setOptions(response.data.map(elem => ({ value: elem.tag_id, label: elem.name })));
+          } else {
+            setOptions([]);
+            //console.log(response.data);
+            //console.log(options);
+          }
+        })
+        .catch(error => {
+            console.error('Error fetching tags:', error);
+        });
+  }, []);
+
+  const animatedComponents = makeAnimated();
+
+  const onChangeSelect = (e) => {
+    //console.log("eento" ,e);
+    setTags(e.map(e => e.value))
+  }
+    
   return (
 
 
@@ -104,15 +123,27 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
       type="file"  />
     </Form.Group> 
 
+    <Form.Group className="mb-3" controlId="formBasicTag">
+    <Form.Label>Tags</Form.Label>
+    <Select 
+      closeMenuOnSelect={false}
+      components={animatedComponents}
+      defaultValue={tags}
+      onChange={onChangeSelect}
+      isMulti
+      options={options} 
+    />
+    </Form.Group>
+
     <Form.Group className="mb-3" controlId="formBasicDescription">
       <Form.Label>Descripción</Form.Label>
       <Form.Control className='inputTexto'
-      maxLength="300" 
-      name="description"
-      value={newCourse.description}
-      onChange={handleChange}
-      as="textarea" rows={3} 
-      placeholder="Introduce descripción" />
+        maxLength="255" 
+        name="description"
+        value={newCourse.description}
+        onChange={handleChange}
+        as="textarea" rows={3} 
+        placeholder="Introduce descripción" />
     </Form.Group>
 
     <div>

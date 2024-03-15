@@ -91,7 +91,7 @@ export const TableCourse = () => {
               <TableCell align="right">{elem.duration}</TableCell>
               <TableCell align="right">{elem.price}</TableCell>
               <TableCell align="right">{elem.register_date}</TableCell>
-              <TableCell align="right">{elem.creator_user_id}</TableCell>
+              <TableCell align="right">{elem.profesor}</TableCell>
               <TableCell align="right">{elem.description}</TableCell>
 
               <TableCell align="right"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.course_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>

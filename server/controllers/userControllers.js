@@ -26,9 +26,14 @@ class UserControllers{
           let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
 
           connection.query(sql, (error, result)=>{
-            error?
+
+            if(error){
+
               res.status (500).json(error)
-              : res.status(200).json(result)
+            }else{ 
+            
+              res.status(200).json(result);
+            }
           })
       });
   });
@@ -237,39 +242,20 @@ class UserControllers{
 
   allCourses = (req, res) => {
     const { user_id } = req.params;
+
     let sql = `
-        SELECT COUNT(*) AS total_filas FROM register;
-    `;
-    
-    connection.query(sql, (err, result) => {
-        if (err) {
-            return res.status(500).json(err);
-        }
-        
-        const total_filas = result[0].total_filas;
-        
-        if (total_filas !== 0) {
-            sql = `
-                SELECT c.*, u.name as user_name, u.lastname as user_lastname, r.status as grade
-                FROM course c, user u, register r
-                WHERE c.creator_user_id != ${user_id} AND u.user_id = ${user_id} AND c.is_deleted = 0 AND c.is_visible = 1 AND c.is_disabled = 0;
-            `;
-        } else {
-            sql = `
-                SELECT c.*, u.name as user_name, u.lastname as user_lastname
-                FROM course c, user u
-                WHERE c.creator_user_id != ${user_id} AND u.user_id = ${user_id} AND c.is_deleted = 0 AND c.is_visible = 1 AND c.is_disabled = 0;
-            `;
-        }
-        
+    SELECT c.*, COALESCE(r.status, 0) AS grade
+    FROM course c
+    LEFT JOIN register r ON c.course_id = r.course_id AND r.user_id = ${user_id}
+    WHERE c.creator_user_id != ${user_id};`
+
         connection.query(sql, (err, result) => {
             if (err) {
                 return res.status(500).json(err);
             }
             res.status(200).json(result);
         });
-    });
-};
+  }
 
   adminReg =(req, res)=>{
     const {user_id}=req.params
