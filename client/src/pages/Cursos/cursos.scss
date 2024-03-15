@@ -71,3 +71,13 @@
   }
 }
 
+@media(width < 600px) {
+  .Carousel-ppal{
+    width: 80vw;
+    height: 80vh;
+    img{
+      width: 300px;
+      height: 200px;
+    }
+  }
+}

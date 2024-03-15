@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { isAlphaNumericWithSpaces, validateEmail } from '../../utils/validation'
+import { MasalaContext } from '../../Context/MasalaProvider'
+
 const initialValue = {
   name:"",
   email:"",
@@ -12,6 +14,7 @@ const initialValue = {
 
 export const FormularioRegister = ({handleClose}) => {
 
+  const {token} = useContext(MasalaContext);
   const [register, setRegister]=useState(initialValue)
   const [errorMessage, setErrorMessage]=useState()
   const navigate= useNavigate()
@@ -40,7 +43,7 @@ export const FormularioRegister = ({handleClose}) => {
       .then((res)=>{
         console.log(res)
         handleClose();
-        navigate("/")
+        navigate(`/confirmation/${token}`)
       })
       .catch((err)=>{
         console.log(err)

@@ -8,6 +8,8 @@ router.post('/register', userControllers.register)
 
 router.post('/login', userControllers.login)
 
+// router.get('/confirmation/:token', userControllers.confirmUser)
+
 router.get('/getOneUser/:id', userControllers.getOneUser);
 
 //no es dinámica porque nos traemos el id del front
@@ -39,7 +41,6 @@ router.post('/changePassword', userControllers.changePassword)
 
 //no es dinámica porque nos traemos el id del front
 router.put('/deleteUser', userControllers.deleteUser);
-
 
 
 module.exports = router;

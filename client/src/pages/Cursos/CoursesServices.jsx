@@ -26,30 +26,34 @@ export const CoursesServices = () => {
     <>
 
         
-      <Carousel  className='Carousel-ppal'>
+    {cursos.length > 0 ?
+    <Carousel  className='Carousel-ppal'>
 
-      {cursos.map((elem)=>(
-        
-        <Carousel.Item key={elem.course_id} className='Carousel-ppal'>
+    {cursos.map((elem)=>(
+      
+      <Carousel.Item key={elem.course_id} className='Carousel-ppal'>
 
-      <Card style={{backgroundColor:"rgba(255, 255, 255, 0.243)"}} className='serv-card'>
-    
-      <Card.Img   style={{width:"500px", height:"350px"}} variant="top" src={elem.course_img?`http://localhost:3000/images/course_img/${elem?.course_img}`:"../images/course.png"}  />
-      <Card.Body>
-        <Card.Title style={{textAlign:"center", fontSize:"20px"}}>{elem?.name}</Card.Title>
-      <p>Descripción: {elem?.description}</p>
-      <p>{elem?.duration}h.</p>
-      <p>{elem?.price}€</p>
-             
-        <Button style={{justifyContent:'end'}} variant="success" onClick={showModal}> Más info.</Button>
+    <Card style={{backgroundColor:"rgba(255, 255, 255, 0.243)"}} className='serv-card'>
+  
+    <Card.Img   style={{width:"500px", height:"350px"}} variant="top" src={elem.course_img?`http://localhost:3000/images/course_img/${elem?.course_img}`:"../images/course.png"}  />
+    <Card.Body>
+      <Card.Title style={{textAlign:"center", fontSize:"20px"}}>{elem?.name}</Card.Title>
+    <p>Descripción: {elem?.description}</p>
+    <p>{elem?.duration}h.</p>
+    <p>{elem?.price}€</p>
+           
+      <Button style={{justifyContent:'end'}} variant="success" onClick={showModal}> Más info.</Button>
 
-      </Card.Body>
-      </Card>
+    </Card.Body>
+    </Card>
 
-      </Carousel.Item>
-        ))}
+    </Carousel.Item>
+      ))}
 
-      </Carousel>
+    </Carousel>  
+    :
+    <h1 style={{textAlign:"center", marginTop:"200px"}}>Aún no hay cursos creados</h1>
+  }
         
         <ModalBasico
         name={cursos.name}
