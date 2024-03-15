@@ -48,7 +48,7 @@ export const FormularioLogin = ({handleClose2}) => {
            navigate("/") 
           }
           else{
-            navigate("/")
+            navigate("/profile")
           }
                     
           //guardar en el context

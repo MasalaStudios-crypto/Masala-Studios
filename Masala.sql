@@ -66,7 +66,6 @@ CREATE TABLE subject(
 	name VARCHAR(50) NOT NULL,
 	duration VARCHAR(10),
 	creation_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    file_name VARCHAR(100),
 	CONSTRAINT fk_course_3 FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -101,7 +100,10 @@ SELECT * FROM subject;
 SELECT * FROM resource;
 SELECT * FROM tag;
 SELECT * FROM comment;
+SELECT * FROM register;
 
+SELECT course.*
+FROM course, register 
 
 
 

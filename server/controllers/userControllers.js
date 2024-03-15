@@ -5,11 +5,14 @@ require('dotenv').config()
 const sendMyMail = require('../public/javascripts/nodemailer')
 
 
+
+
 class UserControllers{
 
   register = (req, res)=>{
     const {name, email, password}= req.body
-    // guardar los datos en la BD (pass encriptada)
+    console.log(email)
+    console.log(password)
     let saltRounds=8;
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
@@ -21,18 +24,19 @@ class UserControllers{
 
           connection.query(sql, (error, result)=>{
             if(error){
-             (500).json(error)
+
+              res.status (500).json(error)
+            }else{ 
+            
+              res.status(200).json(result);
             }
-            // generar token
-            // mandar email al user, mandandole el link que tiene la ruta de verificacion, y con parametro dinamico el token
-            // controlador de verificacion de cuenta donde recoges el token de params, ves si el token es valido, y entonces ya verificas al user( is_disables=1)
-            // te redirige al login directamente 
-              
+
           })
       });
   });
 
   }
+  
 
   login = (req, res)=>{
     const {email, password}= req.body
@@ -217,7 +221,9 @@ class UserControllers{
     const password=req.body.newPass
     console.log(email)
     console.log(password)
-     sendMyMail(`${email}`, `Esta es tu nueva contraseña: ${password}`, "Contraseña nueva");
+
+    sendMyMail("balcaza4@gmail.com", "body", "asunto");
+
 
     let saltRounds=8;
     bcrypt.genSalt(saltRounds, function(err, salt) {
