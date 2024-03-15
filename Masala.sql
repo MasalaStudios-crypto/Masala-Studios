@@ -94,6 +94,18 @@ CREATE TABLE comment(
 
 
 
+SELECT * FROM user;
+SELECT * FROM course;
+SELECT * FROM subject;
+SELECT * FROM resource;
+SELECT * FROM tag;
+SELECT * FROM comment;
+SELECT * FROM register;
+
+SELECT course.*
+FROM course, register 
+
+
 
 
 

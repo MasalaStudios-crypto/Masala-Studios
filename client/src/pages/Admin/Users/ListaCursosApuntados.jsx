@@ -2,11 +2,12 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { MasalaContext } from '../../../Context/MasalaProvider'
 import { Button } from 'react-bootstrap'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 
 export const ListaCursosApuntados = ({user_id, handleClose2}) => {
 
   const [reset, setReset] = useState(false)
-  const [coursesSign, setCoursesSign]=useState()
+  const [coursesSign, setCoursesSign]=useState([])
   const [message, setMessage]=useState("")
 
   const {token}= useContext(MasalaContext)
@@ -18,14 +19,12 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
       .then((res)=>{setCoursesSign(res.data)})
       .catch((err)=>console.log(err))
 
-      axios
-        .post(`http://localhost:3000/users/getRegCourses/${user_id}`, {coursesSign})
-        .then((res)=>{})
-        .catch((err)=>console.log(err))
+
     }
   },[token])
 
   const onReg=(course_id)=>{
+    if (window.confirm("¿Estás seguro de que quieres dar de alta en este curso al usuario?")) {
     axios
     .put(`http://localhost:3000/users/adminReg/${user_id}`,{course_id})
     .then(()=>
@@ -37,6 +36,7 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
         console.log(err)
       }
     })} 
+  }
   const onDereg=(course_id)=>{
     if (window.confirm("¿Estás seguro de que quieres dar de baja del curso al usuario?")) {
     axios
@@ -47,23 +47,40 @@ export const ListaCursosApuntados = ({user_id, handleClose2}) => {
     .catch((err)=>console.log(err))
   }
   }      
+
   console.log(coursesSign)
 
   return (
-    <div>
-      {coursesSign?.map((elem)=>(
-        <div className='d-flex'>
-          <h3>{elem.name}</h3>
-          <div >
-        
-          <Button onClick={() => {onReg(elem.course_id)}}>Registrar</Button>
-          
-          <Button onClick={() => {onDereg(elem.course_id)}}>Borrar</Button>    
 
-          </div>
-        </div>
-      ))}
-       <span>{message}</span>
-    </div>
+    <TableContainer component={Paper}>
+      <Table  aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Nombre Cursos</TableCell>
+            <TableCell align="right">Calificacion</TableCell>
+            <TableCell align="right">Registrar</TableCell>
+            <TableCell align="right">Borrar</TableCell>
+
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {coursesSign?.map((elem, index)=>(
+            <TableRow
+            key={index}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          >
+              <TableCell component="th" scope="row">{elem.name}</TableCell>
+              <TableCell align="right">{elem.grade}</TableCell>
+              <TableCell align="right"><Button onClick={() => {onReg(elem.course_id)}}>Registrar</Button></TableCell>
+
+              <TableCell align="right"><Button onClick={() => {onDereg(elem.course_id)}}>Borrar</Button></TableCell>
+            </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+      <span>{message}</span>
+    </TableContainer>
+    
+ 
   )
 }

@@ -14,6 +14,7 @@ router.get('/allCourses', courseControllers.allCourses)
 
 router.get('/allCoursesService', courseControllers.allCoursesService)
 
+
 router.get('/allCoursesProfile/:user_id', courseControllers.allCoursesProfile)
 
 router.get('/allCoursesOneUserEnroll/:user_id', courseControllers.allCoursesOneUserEnroll)

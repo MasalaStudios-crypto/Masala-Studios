@@ -210,7 +210,6 @@ export const EditUser = ({handleClose}) => {
                 </Form.Label>
               <Form.Control 
                 type="file" 
-                accept="image/*"
                 onChange={handleFile} 
                 hidden
               />

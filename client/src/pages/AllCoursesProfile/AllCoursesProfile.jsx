@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { isLetterWithSpace } from '../../utils/validation';
 
 export const AllCoursesProfile = () => {
+
   const { user } = useContext(MasalaContext);
   const [allCourses, setAllCourses] = useState([]);
   const { user_id } = useParams();
@@ -14,6 +15,7 @@ export const AllCoursesProfile = () => {
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('tag');
   const [searchResults, setSearchResults] = useState([]);
+
 
   //console.log(user?.user_id);
   //console.log(user_id);
@@ -27,7 +29,9 @@ export const AllCoursesProfile = () => {
           setAllCourses(res.data);
           //console.log(res.data);
         })
+
         .catch((err) => console.log(err));
+
     }
   }, [user]);
 
