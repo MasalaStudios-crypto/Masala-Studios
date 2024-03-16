@@ -13,12 +13,19 @@ export const CoursesServices = () => {
     setShow(!show)
   }
   useEffect(()=>{
-    axios
-        .get("http://localhost:3000/course/allCoursesService")
-        .then((res)=>{
+
+    if(cursos.length > 0){
+
+      
+      axios
+      .get("http://localhost:3000/course/allCoursesService")
+      .then((res)=>{
         setCursos(res.data)
       })
-        .catch((err)=>console.log(err))
+      .catch((err)=>console.log(err))
+    }else{
+      console.log("Error en el carrusel")
+    }
 
   },[])
 

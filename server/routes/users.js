@@ -8,7 +8,7 @@ router.post('/register', userControllers.register)
 
 router.post('/login', userControllers.login)
 
-// router.get('/confirmation/:token', userControllers.confirmUser)
+router.put('/verifyUser',verify, userControllers.confirmUser)
 
 router.get('/getOneUser/:id', userControllers.getOneUser);
 

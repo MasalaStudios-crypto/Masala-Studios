@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
-export const FormularioTag = ({showModal4}) => {
+export const FormularioTag = ({handleClose}) => {
 
   const initalValue={
     name:""
@@ -20,13 +20,12 @@ export const FormularioTag = ({showModal4}) => {
     if (tag.name){
       axios
         .post('http://localhost:3000/course/createTag', tag)
-        .then((res)=>{showModal4})
+        .then(()=> handleClose())
         .catch(err=>console.log(err))
-    }
-    else{
-      setMessage("Introduce un nombre por favor");
-    }
-    
+      }
+      else{
+        setMessage("Introduce un nombre por favor");
+      }
   }
   
   return (

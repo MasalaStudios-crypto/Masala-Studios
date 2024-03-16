@@ -24,7 +24,7 @@ async function sendMyMail(email, msg, subject){
     to: email,
     subject: subject,
     // html: "<div><h1>HOLA</h1></div>"
-    text: msg
+    html: msg
   })
   console.log("MENSJE ENVIADO", info)
 }

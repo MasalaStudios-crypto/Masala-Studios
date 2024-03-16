@@ -17,6 +17,8 @@ import { AllCoursesProfile } from '../pages/AllCoursesProfile/AllCoursesProfile'
 import { OneCourse } from '../pages/Cursos/OneCourse'
 import { MasalaContext } from '../Context/MasalaProvider'
 import { ConfirmUser } from '../pages/Auth/ConfirmUser/ConfirmUser'
+import { Confirm } from '../pages/Auth/Confirm/Confirm'
+import { TipoServicios } from '../pages/Servicios/TipoServicios/TipoServicios'
 export const AppRoutes = () => {
   const {user}=useContext(MasalaContext);
   return (
@@ -39,7 +41,9 @@ export const AppRoutes = () => {
             <Route path='/who' element={<Who />}/>
             <Route path='/about' element={<h1>ABOUT</h1>} />
             <Route path='/servicios' element={<Servicios/>} />
-            {/* <Route path='/confirmation/:token' element={<ConfirmUser/>} />rs */}
+            <Route path='/tipoServicios' element={<TipoServicios/>} />
+            <Route path='/confirmation' element={<ConfirmUser/>} />
+            <Route path='/verifyUser/:token2' element={<Confirm/>} />
 
 
 

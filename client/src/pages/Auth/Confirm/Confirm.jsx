@@ -1,0 +1,33 @@
+import axios from 'axios'
+import React, { useEffect } from 'react'
+// import { MasalaContext } from '../../../Context/MasalaProvider'
+import { useNavigate, useParams } from 'react-router-dom'
+
+export const Confirm = () => {
+
+    // const {token2} = useContext(MasalaContext)
+  const {token2} = useParams()
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token2}`
+    axios
+
+      .put(`http://localhost:3000/users/verifyUser`)
+    .then((res)=>{
+        
+        console.log(res);
+        navigate("/")
+  
+      })
+      .catch((err)=>console.log(err))
+
+      
+  },[])
+
+  return (
+    <div>Confirm</div>
+  )
+}
