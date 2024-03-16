@@ -39,6 +39,9 @@ export const FormularioLogin = ({handleClose2}) => {
       setMessage("Debes rellenar todos los campos")
     }else if (!validateEmail(login.email)) {
       setMessage('Debe incluir el carácter "@" en su correo electrónico.');
+
+    }else if (login.is_disabled = 1) {
+      setMessage('Debes de confirmar tu email antes de entrar');
     } 
     else{
       axios

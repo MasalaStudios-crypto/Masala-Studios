@@ -20,13 +20,14 @@ export const FormularioTag = ({handleClose}) => {
     if (tag.name){
       axios
         .post('http://localhost:3000/course/createTag', tag)
-        .then(() => handleClose())
+
+        .then(()=> handleClose())
+
         .catch(err=>console.log(err))
-    }
-    else{
-      setMessage("Introduce un nombre por favor");
-    }
-    
+      }
+      else{
+        setMessage("Introduce un nombre por favor");
+      }
   }
   
   return (
