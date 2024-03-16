@@ -316,6 +316,15 @@ class UserControllers{
     }) 
   }
 
+  upExam=(req,res)=>{
+    const{user_id, course_id}=req.params
+    console.log(req.file.filename)
+    let sql=`UPDATE register SET exam_path = "${req.file.filename}" WHERE user_id=${user_id} and course_id=${course_id}`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    }) 
+  }
+
 }
 
 

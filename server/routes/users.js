@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const userControllers = require('../controllers/userControllers');
 const multer= require('../middlewares/multerSingle');
+const multer2= require('../middlewares/multerSingleResource');
+
 const verify = require('../middlewares/TokenVerify');
 
 router.post('/register', userControllers.register)
@@ -42,5 +44,6 @@ router.post('/changePassword', userControllers.changePassword)
 //no es dinámica porque nos traemos el id del front
 router.put('/deleteUser', userControllers.deleteUser);
 
+router.put('/upExam/:user_id/:course_id', multer2(),userControllers.upExam)
 
 module.exports = router;

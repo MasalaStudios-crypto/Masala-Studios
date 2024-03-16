@@ -67,15 +67,15 @@ export const TableCourse = () => {
         <TableHead>
           <TableRow>
             <TableCell>Nombre</TableCell>
-            <TableCell align="right">Duracion</TableCell>
-            <TableCell align="right">Precio</TableCell>
-            <TableCell align="right">Fecha Creacion</TableCell>
-            <TableCell align="right">Profesor</TableCell>
-            <TableCell align="right">Descripcion</TableCell>
-            <TableCell align="right">Estado</TableCell>
-            <TableCell align="right">Visibilidad</TableCell>
-            <TableCell align="right">Habilitado</TableCell>
-            <TableCell align="right">Temas</TableCell>
+            <TableCell align="center">Duracion</TableCell>
+            <TableCell align="center">Precio</TableCell>
+            <TableCell align="center">Fecha Creacion</TableCell>
+            <TableCell align="center">Profesor</TableCell>
+            <TableCell align="center">Descripcion</TableCell>
+            <TableCell align="center">Estado</TableCell>
+            <TableCell align="center">Visibilidad</TableCell>
+            <TableCell align="center">Habilitado</TableCell>
+            <TableCell align="center">Temas</TableCell>
 
           </TableRow>
         </TableHead>
@@ -88,17 +88,17 @@ export const TableCourse = () => {
               <TableCell component="th" scope="row">
                 {elem.name}
               </TableCell>
-              <TableCell align="right">{elem.duration}</TableCell>
-              <TableCell align="right">{elem.price}</TableCell>
-              <TableCell align="right">{elem.register_date}</TableCell>
-              <TableCell align="right">{elem.profesor}</TableCell>
-              <TableCell align="right">{elem.description}</TableCell>
+              <TableCell align="center">{elem.duration}</TableCell>
+              <TableCell align="center">{elem.price}</TableCell>
+              <TableCell align="center">{elem.register_date}</TableCell>
+              <TableCell align="center">{elem.profesor}</TableCell>
+              <TableCell align="center">{elem.description}</TableCell>
 
-              <TableCell align="right"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.course_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
+              <TableCell align="center"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.course_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
 
-              <TableCell align="right"><Button variant={elem.is_visible===1?"success":"danger"} onClick={()=>onVisible(elem.course_id, elem.is_visible)}>{elem.is_visible===1?"Visible":"No visible"}</Button></TableCell>
+              <TableCell align="center"><Button variant={elem.is_visible===1?"success":"danger"} onClick={()=>onVisible(elem.course_id, elem.is_visible)}>{elem.is_visible===1?"Visible":"No visible"}</Button></TableCell>
 
-              <TableCell align="right"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.course_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
+              <TableCell align="center"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.course_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
 
               <TableCell onClick={()=>{navigate(`/subjects/${elem.course_id}`)}}><Button>Ver temas</Button></TableCell>
            

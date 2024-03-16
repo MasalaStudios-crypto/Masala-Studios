@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import './allStudentITeach.scss'
+import { useNavigate } from 'react-router-dom';
 
 export const AllStudentITeach = ({ allStudents, courseId }) => {
   const [allStatus, setAllStatus] = useState({});
-  
+  const [exam, setExam]=useState()
+  const navigate=useNavigate
   useEffect(() => {
     const fetchData = async () => {
       if (allStudents && allStudents.length > 0) {
@@ -15,7 +17,8 @@ export const AllStudentITeach = ({ allStudents, courseId }) => {
 
           try {
             const res = await axios.get(`http://localhost:3000/course/grades/${user_id}/${courseId}`);
-            const { status } = res.data[0];
+            const { status, exam_path } = res.data[0];
+            setExam(exam_path)
             tempStatus[user_id] = status;
           } catch (error) {
             console.error(error);
@@ -23,26 +26,30 @@ export const AllStudentITeach = ({ allStudents, courseId }) => {
         }
 
         setAllStatus(tempStatus);
+        
       }
     };
 
     fetchData();
   }, [allStudents]);
 
+
+
   const handleStatusChange = async (user_id, newStatus) => {
     try {
       // Realiza la actualización en la base de datos o servicio API
       await axios.put(`http://localhost:3000/course/grades/${user_id}/${courseId}`, {
         status: newStatus
+        
       });
-
+      
       // Actualiza el estado local después de la actualización exitosa
       setAllStatus({ ...allStatus, [user_id]: newStatus });
     } catch (error) {
       console.error(error);
     }
   };
-
+  console.log(exam)
   return (
     <div className='d-flex justify-content-around'>
       <div className='d-flex flex-column'>
@@ -69,6 +76,14 @@ export const AllStudentITeach = ({ allStudents, courseId }) => {
           <span key={student.user_id} className='text-stud'>{student.phone}</span>
         ))}
       </div>
+
+      <div className='d-flex flex-column'>
+        <span>Examen</span>
+        {allStudents.map((student) => (
+          <span key={student.user_id} className='text-stud'><a href={`http://localhost:3000/resource/${exam}`}>click</a></span>
+        ))}
+      </div>
+
       <div>
         <span>Estado</span>
         {Object.entries(allStatus).map(([user_id, status]) => (

@@ -92,20 +92,20 @@ export const TableUser = () => {
       <TableHead>
         <TableRow>
           <TableCell>Nombre</TableCell>
-          <TableCell align="right">Apellidos</TableCell>
-          <TableCell align="right">Fecha Nacimiento</TableCell>
-          <TableCell align="right">DNI</TableCell>
-          <TableCell align="right">Telefono</TableCell>
-          <TableCell align="right">Direccion</TableCell>
-          <TableCell align="right">Codigo Postal</TableCell>
-          <TableCell align="right">Ciudad</TableCell>
-          <TableCell align="right">Provincia</TableCell>
-          <TableCell align="right">Email</TableCell>
-          <TableCell align="right">Tipo</TableCell>
-          <TableCell align="right">Estado</TableCell>
-          <TableCell align="right">Habilitado</TableCell>
-          <TableCell align="right">Cursos creados</TableCell>
-          <TableCell align="right">Cursos apuntados</TableCell>
+          <TableCell align="center">Apellidos</TableCell>
+          <TableCell align="center">Fecha Nacimiento</TableCell>
+          <TableCell align="center">DNI</TableCell>
+          <TableCell align="center">Telefono</TableCell>
+          <TableCell align="center">Direccion</TableCell>
+          <TableCell align="center">Codigo Postal</TableCell>
+          <TableCell align="center">Ciudad</TableCell>
+          <TableCell align="center">Provincia</TableCell>
+          <TableCell align="center">Email</TableCell>
+          <TableCell align="center">Tipo</TableCell>
+          <TableCell align="center">Estado</TableCell>
+          <TableCell align="center">Habilitado</TableCell>
+          <TableCell align="center">Cursos creados</TableCell>
+          <TableCell align="center">Cursos apuntados</TableCell>
 
         </TableRow>
 
@@ -119,24 +119,24 @@ export const TableUser = () => {
             <TableCell component="th" scope="row">
               {elem.name} 
             </TableCell>
-            <TableCell align="right">{elem.lastname}</TableCell>
-            <TableCell align="right">{elem.birth_date}</TableCell>
-            <TableCell align="right">{elem.dni}</TableCell>
-            <TableCell align="right">{elem.phone}</TableCell>
-            <TableCell align="right">{elem.address}</TableCell>
-            <TableCell align="right">{elem.zip_code}</TableCell>
-            <TableCell align="right">{elem.city}</TableCell>
-            <TableCell align="right">{elem.province}</TableCell>
-            <TableCell align="right">{elem.email}</TableCell>
+            <TableCell align="center">{elem.lastname}</TableCell>
+            <TableCell align="center">{elem.birth_date}</TableCell>
+            <TableCell align="center">{elem.dni}</TableCell>
+            <TableCell align="center">{elem.phone}</TableCell>
+            <TableCell align="center">{elem.address}</TableCell>
+            <TableCell align="center">{elem.zip_code}</TableCell>
+            <TableCell align="center">{elem.city}</TableCell>
+            <TableCell align="center">{elem.province}</TableCell>
+            <TableCell align="center">{elem.email}</TableCell>
 
-            <TableCell align="right"><Button variant={elem.type===1?"primary":"success"} onClick={()=>onType(elem.user_id, elem.type)}>{elem.type===1?"Administrador":"Usuario"}</Button></TableCell>
+            <TableCell align="center"><Button variant={elem.type===1?"primary":"success"} onClick={()=>onType(elem.user_id, elem.type)}>{elem.type===1?"Administrador":"Usuario"}</Button></TableCell>
 
-            <TableCell align="right"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
+            <TableCell align="center"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
 
-            <TableCell align="right"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
+            <TableCell align="center"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
 
-            <TableCell onClick={()=>openCreatedCourse(elem.user_id)} align="right"><Button>Ver Cursos</Button></TableCell>
-            <TableCell  onClick={()=>openRegCourse(elem.user_id)} align="right"><Button>Ver Cursos</Button></TableCell>
+            <TableCell onClick={()=>openCreatedCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>
+            <TableCell  onClick={()=>openRegCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>
 
            
           </TableRow>

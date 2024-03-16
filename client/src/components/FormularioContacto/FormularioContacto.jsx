@@ -10,7 +10,7 @@ const initalValue={
   mensaje:""
 }
 
-export const FormularioContacto = ({handleClose, elem}) => {
+export const FormularioContacto = ({handleClose, elem, nameCourse}) => {
 
   const[contacto, setContacto]=useState(initalValue)
 
@@ -32,7 +32,6 @@ export const FormularioContacto = ({handleClose, elem}) => {
 
   return (
     <Form>
-
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Nombre</Form.Label>
         <Form.Control 
@@ -48,7 +47,7 @@ export const FormularioContacto = ({handleClose, elem}) => {
         <Form.Label>Asunto</Form.Label>
         <Form.Control 
         name="asunto"
-        value={elem ? elem.name : contacto.asunto}
+        value={nameCourse ? nameCourse : contacto.asunto}
         onChange={handleChange}
         type="text" 
         placeholder="Introduce el asunto"/>

@@ -295,7 +295,7 @@ addSubject = (req, res)=>{
     //console.log(sql);
     
     connection.query(sql, (err, result)=>{
-      //console.log(result);
+      console.log(result);
 
      err?res.status(500).json(err):res.status(200).json(result)
     })
