@@ -21,7 +21,7 @@ export const FormularioTag = ({handleClose}) => {
       axios
         .post('http://localhost:3000/course/createTag', tag)
 
-        .then(()=> handleClose())
+        .then(()=>handleClose())
 
         .catch(err=>console.log(err))
       }

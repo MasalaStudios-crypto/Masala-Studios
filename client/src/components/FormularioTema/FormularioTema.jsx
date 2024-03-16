@@ -59,7 +59,7 @@ export const FormularioTema = ({handleClose, course_id}) => {
         name="duration"
         value={subject.duration}
         onChange={handleChange}
-        type="text" 
+        type="number" 
         placeholder="Introduce la duracion" />
       </Form.Group>
 

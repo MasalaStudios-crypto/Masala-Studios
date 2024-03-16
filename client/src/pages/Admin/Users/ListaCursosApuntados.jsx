@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MasalaContext } from '../../../Context/MasalaProvider'
 import { Button } from 'react-bootstrap'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import './cursosApuntados.scss'
 
 export const ListaCursosApuntados = ({user_id}) => {
 
@@ -60,11 +61,11 @@ export const ListaCursosApuntados = ({user_id}) => {
     <TableContainer component={Paper}>
 
       <Table  aria-label="simple table">
-        <TableHead>
+        <TableHead >
           <TableRow>
-            <TableCell>Nombre Cursos</TableCell>
-            <TableCell align="right">Calificaciones</TableCell>
-            <TableCell align="right">Registrar/Borrar</TableCell>
+            <TableCell align="center">Nombre Cursos</TableCell>
+            <TableCell align="center">Calificaciones</TableCell>
+            <TableCell align="center">Registrar/Borrar</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -73,9 +74,9 @@ export const ListaCursosApuntados = ({user_id}) => {
             key={index}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
           >
-              <TableCell component="th" scope="row">{elem.name}</TableCell>
-              <TableCell align="right">{convertidorNotas(elem.grade)}</TableCell>
-              <TableCell align="right">{elem.grade===0?<Button onClick={() => {onReg(elem.course_id)}}>Registrar</Button>:<Button variant="danger" onClick={() => {onDereg(elem.course_id)}}>Borrar</Button>}</TableCell>
+              <TableCell component="th" scope="row" align="center">{elem.name}</TableCell>
+              <TableCell align="center">{convertidorNotas(elem.grade)}</TableCell>
+              <TableCell align="center">{elem.grade===0?<Button onClick={() => {onReg(elem.course_id)}}>Registrar</Button>:<Button variant="danger" onClick={() => {onDereg(elem.course_id)}}>Borrar</Button>}</TableCell>
 
             </TableRow>
             ))}

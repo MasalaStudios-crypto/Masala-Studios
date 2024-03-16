@@ -22,7 +22,7 @@ useEffect(()=>{
   return (
     <div>
       {coursesCreated?.map((elem, index)=>(
-        <h3 key={index}>{elem.name}</h3>
+        <p key={index}>{elem.name}</p>
       ))}
     </div>
   )

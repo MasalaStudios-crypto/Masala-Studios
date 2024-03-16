@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Col, Row } from 'react-bootstrap'
+import { Button, Col, Form, Row } from 'react-bootstrap'
 import './mycourse.scss'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -25,10 +25,9 @@ export const MyCourse = () => {
   const {user} = useContext(MasalaContext);
   const {token} = useContext(MasalaContext);
   const [show, setShow] = useState(false);
+  const [exam, setExam] =useState()
 
   useEffect(() => {
-
-    
       // Realiza una solicitud para obtener detalles del curso utilizando course_id
       axios.get(`http://localhost:3000/course/details/${course_id}`)
       .then((response) => {
@@ -68,6 +67,42 @@ export const MyCourse = () => {
     const mailtoLink = `mailto:${courseDetails?.email}?subject=&body=`;
     window.location.href = mailtoLink;
   }
+
+  const downloadExam =()=>{
+    axios
+      .get()
+      .then()
+      .catch()
+  }
+
+
+  const subirArchivo=()=> {
+    const archivoInput = document.getElementById('file');
+    const file = archivoInput.files[0];
+
+    if (!file) {
+        alert('Por favor selecciona un file PDF.');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const confirmacion = confirm('¿Estás seguro de que deseas subir este archivo?');
+
+    if (confirmacion) {
+        axios.put(`http://localhost:3000/users/upExam/${user.user_id}/${course_id}`, formData)
+        .then(response => {
+            console.log('Archivo subido exitosamente', response);
+            alert('Archivo subido exitosamente.');
+        })
+        .catch(error => {
+            console.error('Error al subir archivo', error);
+            alert('Error al subir el archivo. Por favor, inténtalo de nuevo.');
+        });
+    }
+}
+
 //console.log(user?.user_id, courseDetails?.creator_user_id);
   return (
     <section className='myCourse-ppal'>
@@ -93,7 +128,7 @@ export const MyCourse = () => {
           <div className='listado-temario'>
             <div className='d-flex justify-content-between'>
               <div className='d-flex flex-column'>
-              <Button onClick={contact}>Contacto Profesor</Button>
+                  <Button onClick={contact}>Contacto Profesor</Button>
               <h5>Temario del curso</h5>
               </div>
                 {user?.user_id === courseDetails?.creator_user_id
@@ -101,9 +136,14 @@ export const MyCourse = () => {
                     <div>
                       <img src="/icons/437886-200.png" alt="editar" className='course-edit' onClick={showModal} />
                       <img src="/icons/subject.svg" alt="temario" className='course-edit' onClick={navigateToSubjects} />
+                      <img src="/icons/download.png" alt="examen" className='course-edit' onClick={downloadExam}/>
                     </div>
                   :
-                    ""
+                  <form id="formulario" enctype="multipart/form-data">
+                    <label for="file">Selecciona un archivo PDF:</label>
+                    <input type="file" id="file" name="file" accept=".pdf"/>
+                    <button type="button" onClick={()=>subirArchivo()}>Subir archivo PDF</button>
+                  </form>
                 }
             </div>
              {/* Mapeo de subject ordenado por tema */}

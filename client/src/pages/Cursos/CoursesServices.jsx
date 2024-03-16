@@ -8,10 +8,13 @@ import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
 export const CoursesServices = () => {
   const [cursos, setCursos] = useState([])
   const[show, setShow] = useState(false);
+  const [nameCourse, setNameCourse]=useState()
 
-  const showModal =()=>{
+  const showModal =(elem)=>{
     setShow(!show)
+    setNameCourse(elem)
   }
+
   useEffect(()=>{
 
     if(cursos.length > 0){
@@ -28,7 +31,7 @@ export const CoursesServices = () => {
     }
 
   },[])
-
+  console.log(cursos)
   return (
     <>
 
@@ -49,7 +52,7 @@ export const CoursesServices = () => {
     <p>{elem?.duration}h.</p>
     <p>{elem?.price}€</p>
            
-      <Button style={{justifyContent:'end'}} variant="success" onClick={showModal}> Más info.</Button>
+      <Button style={{justifyContent:'end'}} variant="success" onClick={()=>showModal(elem.name)}> Más info.</Button>
 
     </Card.Body>
     </Card>
@@ -57,20 +60,21 @@ export const CoursesServices = () => {
     </Carousel.Item>
       ))}
 
+      
+
     </Carousel>  
     :
     <h1 style={{textAlign:"center", marginTop:"200px"}}>Aún no hay cursos creados</h1>
   }
-        
-        <ModalBasico
-        name={cursos.name}
+      <ModalBasico
         title="Contacto"
         handleClose={showModal}
         show={show}>
         <FormularioContacto
-          name={cursos.name}
+          nameCourse={nameCourse}
           handleClose={showModal}/>
-        </ModalBasico>
+        </ModalBasico>  
+        
     
     </>
   )
