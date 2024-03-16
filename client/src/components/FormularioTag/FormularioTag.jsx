@@ -20,7 +20,9 @@ export const FormularioTag = ({handleClose}) => {
     if (tag.name){
       axios
         .post('http://localhost:3000/course/createTag', tag)
+
         .then(()=> handleClose())
+
         .catch(err=>console.log(err))
       }
       else{
@@ -47,7 +49,7 @@ export const FormularioTag = ({handleClose}) => {
     onClick={onSubmit}
      className='ms-1 me-1' variant="primary">Crear</Button>
     <Button
-     onClick={showModal4}  
+     onClick={handleClose}  
      className='ms-1 me-1' variant="primary">Cancelar</Button>
     </div>
 

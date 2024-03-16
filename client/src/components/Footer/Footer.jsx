@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Nav } from 'react-bootstrap';
+import { Col, Container, Nav, Row } from 'react-bootstrap';
 import './footer.scss';
 import { ModalBasico } from '../ModalBasico/ModalBasico';
 import { FormularioContacto } from '../FormularioContacto/FormularioContacto';
@@ -12,15 +12,16 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="custom-footer-bg fixed-bottom">
-      <Container fluid>
+    <Row className="custom-footer-bg"> {/* quito fixed-bottom */}
+      <Col>
+      {/* <Container fluid className='container-fluid-footer '> */}
         <Nav className="justify-content-center">
-          <Nav.Link href="#home">TAKE AWAY</Nav.Link>
+          <Nav.Link href="#">TAKE AWAY</Nav.Link>
           <Nav.Link onClick={showModal}>CONTACT</Nav.Link>
-          <Nav.Link href="#pricing">LEGAL</Nav.Link>
-          <Nav.Link href="#contact">SOCIAL</Nav.Link>
-          <Nav.Link href="#contact">WORK WITH US</Nav.Link>
-          <Nav.Link href="#contact">BLOG</Nav.Link>
+          <Nav.Link href="#">LEGAL</Nav.Link>
+          <Nav.Link href="#">SOCIAL</Nav.Link>
+          <Nav.Link href="#">WORK WITH US</Nav.Link>
+          <Nav.Link href="#">BLOG</Nav.Link>
         </Nav>
         <ModalBasico
               title="Contacto"
@@ -29,7 +30,8 @@ export const Footer = () => {
           <FormularioContacto
                 handleClose={showModal}/>
         </ModalBasico>
-      </Container>
-    </footer>
+      {/* </Container> */}
+      </Col>
+    </Row>
   );
 };

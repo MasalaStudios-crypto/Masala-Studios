@@ -383,7 +383,7 @@ addSubject = (req, res)=>{
           else{
             let sqlNewTags
             tags.forEach(element => {
-              sqlNewTags = `INSERT INTO course_tag (course_id, tag_id) VALUES (${course_id}, ${element})`
+              sqlNewTags = `INSERT INTO course_tag (course_id, tag_id) VALUES (${course_id}, ${element.value})`
               connection.query(sqlNewTags, (errNewTags) => {
                 if(errNewTags){
                   res.status(500).json(errNewTags)
@@ -532,6 +532,17 @@ addSubject = (req, res)=>{
     let sql = 'SELECT * FROM tag';
 
     connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+  }
+
+  getTagsEdit = (req, res) => {
+    const {course_id} = req.params
+    console.log("AQUI", req.params);
+    let sql = `SELECT tag.name AS label, tag.tag_id AS value FROM tag, course_tag WHERE tag.tag_id = course_tag.tag_id AND course_tag.course_id = ${course_id} `
+
+    connection.query(sql, (err, result)=>{
+      console.log(result);
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }

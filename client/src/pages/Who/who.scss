@@ -9,7 +9,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: calc(100vh - 85.14px - 80px);
+  min-height: 100vh;
   display: flex;
 }
 
@@ -164,7 +164,7 @@
   /* Contenedor del slider */
   .slider-container {
     height: 100vh;
-    margin-bottom: 80px;
+    /* margin-bottom: 80px; */
   }
 
   /* imagenes de la carta */

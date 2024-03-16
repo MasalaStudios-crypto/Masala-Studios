@@ -19,6 +19,10 @@ import { MasalaContext } from '../Context/MasalaProvider'
 import { ConfirmUser } from '../pages/Auth/ConfirmUser/ConfirmUser'
 import { Confirm } from '../pages/Auth/Confirm/Confirm'
 import { TipoServicios } from '../pages/Servicios/TipoServicios/TipoServicios'
+import { MyGrades } from '../pages/MyGrades/MyGrades'
+
+
+
 export const AppRoutes = () => {
   const {user}=useContext(MasalaContext);
   return (
@@ -55,7 +59,7 @@ export const AppRoutes = () => {
             <Route path='/subjects/:course_id' element={<AdminSubject/>} />
             <Route path='/profile' element={<UserProfile />}/>
             <Route path='/allCoursesProfile/:user_id' element={(<AllCoursesProfile/>)} />
-
+            <Route path='/myGrades' element={<MyGrades />}/>
             </>
             }
             {user?.type === 1 &&
@@ -75,7 +79,7 @@ export const AppRoutes = () => {
 
           </Routes>
         </main>
-        <footer>
+        <footer id='footer'>
               <Footer />
         </footer>
       </Container>

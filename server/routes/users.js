@@ -42,5 +42,6 @@ router.post('/changePassword', userControllers.changePassword)
 //no es dinámica porque nos traemos el id del front
 router.put('/deleteUser', userControllers.deleteUser);
 
+router.get('/myGrades', userControllers.getMyGrades);
 
 module.exports = router;
