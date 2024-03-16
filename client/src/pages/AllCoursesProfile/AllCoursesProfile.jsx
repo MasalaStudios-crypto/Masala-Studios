@@ -11,7 +11,6 @@ export const AllCoursesProfile = () => {
   const { user } = useContext(MasalaContext);
   const [allCourses, setAllCourses] = useState([]);
   const { user_id } = useParams();
-  const { token } = useContext(MasalaContext);
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('tag');
   const [searchResults, setSearchResults] = useState([]);

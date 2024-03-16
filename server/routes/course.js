@@ -67,5 +67,6 @@ router.get('/searchCourses/:category/:text', courseControllers.getSearch)
 
 router.get('/tags', courseControllers.getTags)
 
+router.get('/tagsEdit/:course_id', courseControllers.getTagsEdit)
 
 module.exports = router;

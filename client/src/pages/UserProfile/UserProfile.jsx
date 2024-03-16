@@ -25,7 +25,7 @@ export const UserProfile = () => {
 
   useEffect(() => {
     const refreshInterval = setInterval(() => {
-      console.log('Cursos actualizados automáticamente');
+      //console.log('Cursos actualizados automáticamente');
       setRefreshCourses((prev) => !prev);
     }, 60000); //se refresca cada 60000 ms => 1 minuto
 
