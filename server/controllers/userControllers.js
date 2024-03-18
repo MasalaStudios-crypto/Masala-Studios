@@ -135,7 +135,7 @@ class UserControllers{
     console.log(req.user);
     const user_id = req.user;
 
-    let sql = `UPDATE user SET is_disabled = 1 WHERE user_id = ${user_id}`
+    let sql = `UPDATE user SET is_disabled = 0 WHERE user_id = ${user_id}`
     console.log(user_id)
 
     connection.query(sql, (err, result) => {
@@ -158,7 +158,7 @@ class UserControllers{
         res.status(500).json(err)
       }
       else{
-        res.status(200).json(result)
+        res.status(200).json(result[0])
       }
     })
   }
@@ -338,6 +338,7 @@ class UserControllers{
     connection.query(sql, (err, result)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     }) 
+  }
 
   getMyGrades = (req, res)=>{
     const {user_id}=req.query
