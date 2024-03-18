@@ -136,15 +136,14 @@ export const TableSubject = () => {
   return (
     <div className='table-subject-ppal'>
   
-      <div>
+      <div className='d-flex gap-3 justify-content-end'>
         <Button onClick={showModal}>Añadir tema</Button>
-        <Button onClick={() => { user?.type === 1 ? navigate("/allCourses") : navigate("/profile") }}>Atrás</Button>
-
+        <Button variant="secondary" onClick={() => { user?.type === 1 ? navigate("/allCourses") : navigate("/profile") }}>Atrás</Button>
       </div>
       {subjects ?
       <div>
-        <h2>Nombre del curso: {subjects[0]?.course_name}</h2>
-        <h3>Profesor: {subjects[0]?.profesor_name}</h3>
+        <h3><b>Nombre del curso: </b>{subjects[0]?.course_name}</h3>
+        <h4><b>Profesor: </b>{subjects[0]?.profesor_name}</h4>
       </div>
       :
       <p></p>
@@ -155,13 +154,13 @@ export const TableSubject = () => {
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
         <TableRow>
-          <TableCell align="center">Nombre</TableCell>
-          <TableCell align="center">Duracion</TableCell>
-          <TableCell align="center">Fecha Creacion</TableCell>
-          <TableCell align="center">Path</TableCell>
-          <TableCell align="center">Documento</TableCell>
-          <TableCell align="center">Tipo Documento</TableCell>
-          <TableCell align="center">Eliminar Tema</TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Nombre</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Duracion</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Fecha Creacion</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Tipo Documento</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Subir documento</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Nombre recurso</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Eliminar Tema</b></TableCell>      
         </TableRow>
       </TableHead>
       <TableBody>
@@ -176,31 +175,6 @@ export const TableSubject = () => {
               <TableCell align="center">{elem.name}</TableCell>
               <TableCell align="center">{elem.duration}h</TableCell>
               <TableCell align="center">{elem.creation_date}</TableCell>
-              <TableCell align="center">{elem.path}</TableCell>
-              {/* input */}
-              <TableCell align="center">
-                <label htmlFor={`file-upload-${elem.subject_id}`}>
-                  <input 
-                    id={`file-upload-${elem.subject_id}`}
-                    type="file" 
-                    onChange={(event) => handleFileChange(event, elem.course_id, elem.subject_id)}
-                    style={{ display: 'none' }}
-                    accept={
-                      elem.selectedFileType === 'pdf' ? 'application/pdf' : 
-                      elem.selectedFileType === 'imagen' ? 'image/*' : 
-                      elem.selectedFileType === 'video' ? 'video/*' : 
-                      elem.selectedFileType === 'audio' ? 'audio/*' : ''
-                    }
-                  />
-                  <IconButton
-                    color="primary"
-                    aria-label="upload picture"
-                    component="span"
-                  >
-                    <img src="/icons/folder.svg" alt="subir imagen" className='upload-img' />
-                  </IconButton>
-                </label>
-              </TableCell>
               {/* tipo archivo */}
               <TableCell align="center">
                 <FormControl>
@@ -226,6 +200,33 @@ export const TableSubject = () => {
                     </Select>
                 </FormControl>
               </TableCell>
+              {/* input */}
+              <TableCell align="center">
+                <label htmlFor={`file-upload-${elem.subject_id}`}>
+                  <input 
+                    id={`file-upload-${elem.subject_id}`}
+                    type="file" 
+                    onChange={(event) => handleFileChange(event, elem.course_id, elem.subject_id)}
+                    style={{ display: 'none' }}
+                    accept={
+                      elem.selectedFileType === 'pdf' ? 'application/pdf' : 
+                      elem.selectedFileType === 'imagen' ? 'image/*' : 
+                      elem.selectedFileType === 'video' ? 'video/*' : 
+                      elem.selectedFileType === 'audio' ? 'audio/*' : ''
+                    }
+                  />
+                  <IconButton
+                    color="primary"
+                    aria-label="upload picture"
+                    component="span"
+                  >
+                    <img src="/icons/folder.svg" alt="subir imagen" className='upload-img' />
+                  </IconButton>
+                </label>
+              </TableCell>
+              <TableCell align="center">{elem.path}</TableCell>
+              
+
               <TableCell align="center">
                 <Button 
                   variant="danger"

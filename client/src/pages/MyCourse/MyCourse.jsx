@@ -127,23 +127,24 @@ export const MyCourse = () => {
         <Col md={2} className='course-col'>
           <div className='listado-temario'>
             <div className='d-flex justify-content-between'>
-              <div className='d-flex flex-column'>
-                  <Button onClick={contact}>Contacto Profesor</Button>
-              <h5>Temario del curso</h5>
+              <div className='d-flex flex-column'>                 
+                <h5>Temario del curso</h5>
               </div>
                 {user?.user_id === courseDetails?.creator_user_id
                   ?
-                    <div>
-                      <img src="/icons/437886-200.png" alt="editar" className='course-edit' onClick={showModal} />
-                      <img src="/icons/subject.svg" alt="temario" className='course-edit' onClick={navigateToSubjects} />
-                      <img src="/icons/download.png" alt="examen" className='course-edit' onClick={downloadExam}/>
-                    </div>
+                  <div>
+                    <img src="/icons/437886-200.png" alt="editar" className='course-edit' onClick={showModal} />
+                    <img src="/icons/subject.svg" alt="temario" className='course-edit' onClick={navigateToSubjects} />
+                  </div>
                   :
-                  <form id="formulario" enctype="multipart/form-data">
-                    <label for="file">Selecciona un archivo PDF:</label>
-                    <input type="file" id="file" name="file" accept=".pdf"/>
-                    <button type="button" onClick={()=>subirArchivo()}>Subir archivo PDF</button>
-                  </form>
+                  <div className='d-flex flex-column'>
+                    <Button onClick={contact}>Contacto Profesor</Button>
+                    <form id="formulario" enctype="multipart/form-data">
+                      <input hidden type="file" id="file" name="file" accept=".pdf"/>
+                      <label for="file"><b>Pulsa aqui para introducir examen</b></label>
+                      <Button className='d-flex m-1' type="button" onClick={()=>subirArchivo()}>Subir examen</Button>
+                    </form>
+                  </div>
                 }
             </div>
              {/* Mapeo de subject ordenado por tema */}

@@ -18,6 +18,7 @@ import { FormularioLogin } from '../../../components/FormularioLogin/FormularioL
 import { FormularioRegister } from '../../../components/FormularioRegister/FormularioRegister';
 import { ListaCursosCreados } from './ListaCursosCreados';
 import { ListaCursosApuntados } from './ListaCursosApuntados';
+import './tableUser.scss'
 
 
 export const TableUser = () => {
@@ -90,22 +91,22 @@ export const TableUser = () => {
     <TableContainer component={Paper}>
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
-        <TableRow>
-          <TableCell>Nombre</TableCell>
-          <TableCell align="center">Apellidos</TableCell>
-          <TableCell align="center">Fecha Nacimiento</TableCell>
-          <TableCell align="center">DNI</TableCell>
-          <TableCell align="center">Telefono</TableCell>
-          <TableCell align="center">Direccion</TableCell>
-          <TableCell align="center">Codigo Postal</TableCell>
-          <TableCell align="center">Ciudad</TableCell>
-          <TableCell align="center">Provincia</TableCell>
-          <TableCell align="center">Email</TableCell>
-          <TableCell align="center">Tipo</TableCell>
-          <TableCell align="center">Estado</TableCell>
-          <TableCell align="center">Habilitado</TableCell>
-          <TableCell align="center">Cursos creados</TableCell>
-          <TableCell align="center">Cursos apuntados</TableCell>
+        <TableRow className="tableHead">
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Nombre</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Apellidos</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Fecha Nacimiento</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>DNI</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Telefono</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Direccion</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Codigo Postal</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Ciudad</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Provincia</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Email</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Tipo</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Estado</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Habilitado</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Cursos creados</b></TableCell>
+          <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Cursos apuntados</b></TableCell>
 
         </TableRow>
 
@@ -116,7 +117,7 @@ export const TableUser = () => {
             key={elem.user_id}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
           >
-            <TableCell component="th" scope="row">
+            <TableCell align="center" component="th" scope="row">
               {elem.name} 
             </TableCell>
             <TableCell align="center">{elem.lastname}</TableCell>

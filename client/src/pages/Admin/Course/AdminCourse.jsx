@@ -6,7 +6,7 @@ export const AdminCourse = () => {
   return (
     <div>
 
-      <h2>Administrar cursos</h2>
+      <h1>Administrar cursos</h1>
       <TableCourse/>
       
     </div>

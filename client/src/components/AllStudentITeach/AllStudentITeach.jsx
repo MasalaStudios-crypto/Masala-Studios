@@ -80,7 +80,7 @@ export const AllStudentITeach = ({ allStudents, courseId }) => {
       <div className='d-flex flex-column'>
         <span>Examen</span>
         {allStudents.map((student) => (
-          <span key={student.user_id} className='text-stud'><a href={`http://localhost:3000/resource/${exam}`}>click</a></span>
+          <span key={student.user_id} className='text-stud'><a href={`http://localhost:3000/resource/${exam}`}  target="_blank">click</a></span>
         ))}
       </div>
 
