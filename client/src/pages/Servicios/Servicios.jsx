@@ -75,9 +75,6 @@ export const Servicios = () => {
       </Card.Body>
     </Card>
       </Col>
-     
-
-
     </Row>
     </div>
   )

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 // import { MasalaContext } from '../../../Context/MasalaProvider'
 import { useNavigate, useParams } from 'react-router-dom'
+import './confirm.scss'
 
 export const Confirm = () => {
 
@@ -28,6 +29,6 @@ export const Confirm = () => {
   },[])
 
   return (
-    <div>Confirm</div>
+    <div className='confirm-ppal'>Confirm</div>
   )
 }

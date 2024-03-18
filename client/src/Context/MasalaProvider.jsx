@@ -21,8 +21,8 @@ export const MasalaProvider = ({children}) => {
         .get(`http://localhost:3000/users/getOneUser/${id}`)
         .then((res)=>{
           setUser(res.data)
-          setToken2(tokenRegister)
           setToken(tokenLocal)
+          setToken2(tokenRegister)
           //if(res.data.type === 1){
           //  navigate('/')
          //}

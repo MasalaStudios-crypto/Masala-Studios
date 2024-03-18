@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { MasalaContext } from '../../Context/MasalaProvider'
 import { Button, Col, Row } from 'react-bootstrap'
 import './userProfile.scss'
 import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
-import { useState } from 'react'
 import { EditUser } from '../EditUser/EditUser'
 import { invertirFecha } from '../../utils/reverseDate';
 import { AllCoursesOneUserEnroll } from '../../components/AllCoursesOneUserEnroll/AllCoursesOneUserEnroll'
@@ -15,23 +14,12 @@ import { useNavigate } from 'react-router-dom';
 export const UserProfile = () => {
   const [show, setShow] = useState(false);
   const {user, setToken, setUser} = useContext(MasalaContext);
-  const [refreshCourses, setRefreshCourses] = useState(false);
 
   const navigate = useNavigate();
 
   const showModal = () => {
     setShow(!show)
   }
-
-  useEffect(() => {
-    const refreshInterval = setInterval(() => {
-      //console.log('Cursos actualizados automáticamente');
-      setRefreshCourses((prev) => !prev);
-    }, 60000); //se refresca cada 60000 ms => 1 minuto
-
-    // Limpiar el intervalo al desmontar el componente
-    return () => clearInterval(refreshInterval);
-  }); // El efecto se ejecutará cada X tiempo
 
   const erase = () => {
     if (window.confirm("¿Estás seguro de que deseas borrar tu usuario?")) {
@@ -45,7 +33,6 @@ export const UserProfile = () => {
         })
         .catch((err) => console.log(err));
     }
-
   }
 
   return (
@@ -118,14 +105,14 @@ export const UserProfile = () => {
         </Col>
         {/* curso */}
         <Col md={7} lg={8} className='profile-col'>
-          <div className='d-flex flex-column align-items-center course-ppal'>
+          <div className='d-flex flex-column align-items-center justify-content-center gap-5 course-ppal'>
             <div className='div-carousel'>
               <h3>Mis cursos</h3>
-              <AllCoursesOneUserEnroll refreshCourses={refreshCourses} />
+              <AllCoursesOneUserEnroll />
             </div>
             <div className='div-carousel'>
               <h3>Mis cursos creados</h3>
-              <AllCoursesOneUserCreate refreshCourses={refreshCourses} />
+              <AllCoursesOneUserCreate />
             </div>
           </div>
         </Col>
