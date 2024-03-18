@@ -13,6 +13,7 @@
 /* profile */
 .profile-section {
   min-height: calc(100vh - 85.14px - 80px);
+  margin-top: 85.14px !important;
   background-image: url(/images/profile.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,6 +25,7 @@
 
 /* profile card */
 .use-profile-ppal {
+  min-height: 90%;
   margin: 40px;
   border-radius: 20px;
   border: 1px solid #000;
@@ -35,10 +37,11 @@
 .profile-img-cont {
 
   .profile-img {
-    width: 200px;
-    height: 200px;
+    width: 14rem;
+    height: 14rem;
     border-radius: 50%;
     object-fit: cover;
+    margin-bottom: 15px;
   }
 
   .profile-edit,
@@ -51,6 +54,7 @@
 
 /* course card */
 .course-ppal {
+  min-height: 90%;
   margin: 40px;
   border-radius: 20px;
   border: 1px solid #000;
@@ -66,25 +70,24 @@
 }
 
 /* media */
-@media screen and (max-width: 1200px) {
+//@media screen and (max-width: 1200px) {
   /* text */
-  .profile-text {
-    font-size: 1.2rem;
-  }
+//  .profile-text {
+//    font-size: 1.2rem;
+//  }
 
-  .profile-gold-text {
-    font-size: 1.2rem;
-  }
+//  .profile-gold-text {
+//    font-size: 1.2rem;
+//  }
 
   /* course card */
-  .course-ppal {
-    margin: 40px 10px 10px 10px;
-  }
-}
-@media screen and (max-width: 768px) {
+//  .course-ppal {
+//    margin: 40px 10px 10px 10px;
+//  }
+//}
+//@media screen and (max-width: 768px) {
   /* profile */
-  .profile-section {
-    height: 100vh;
-    margin-bottom: 200px;
-  }
-}
+//  .profile-section {
+//    height: 100vh;
+//  }
+//}

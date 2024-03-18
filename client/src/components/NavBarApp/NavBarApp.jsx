@@ -41,8 +41,9 @@ export const NavBarApp= () => {
     setToken()
     navigate("/")
   }
+ 
   return (
-    <Navbar expand="lg" className="custom-navbar-bg">
+    <Navbar expand="lg" className="custom-navbar-bg fixed-top">
       <Container fluid>
         <div className='nav-alinear1'>
           <Navbar.Brand href="/">
@@ -66,11 +67,11 @@ export const NavBarApp= () => {
               </div> 
               :
               <div className='d-flex'>
-              <Nav.Link href="#action1" className='masala-text'>PORTFOLIO</Nav.Link>
-              <Nav.Link href="/who" className='masala-text'>QUIENES SOMOS</Nav.Link>
-              <Nav.Link href="/servicios" className='masala-text'>SERVICIOS</Nav.Link>
-              <Nav.Link href="#action2" className='masala-text'>BLOG</Nav.Link>
-              <Nav.Link onClick={showModal} className='masala-text'>CONTACTO</Nav.Link>
+              <Nav.Link href="#" className='masala-text'>PORTFOLIO</Nav.Link>
+              <Nav.Link href="#who" onClick={()=>{navigate('/')}} className='masala-text'>QUIENES SOMOS</Nav.Link>
+              <Nav.Link href="#servicios" onClick={()=>{navigate('/')}}  className='masala-text'>SERVICIOS</Nav.Link>
+              <Nav.Link href="#" className='masala-text'>BLOG</Nav.Link>
+              <Nav.Link href="#footer" onClick={()=>{navigate('/')}} className='masala-text'>CONTACTO</Nav.Link>
               </div>
               }
                
@@ -85,7 +86,7 @@ export const NavBarApp= () => {
                 <div className='navbar-avatar'>
                   <NavDropdown id="navbarScrollingDropdown" title={user?.user_img 
                                 ? 
-                                <img src={`http://localhost:3000/images/users/${user?. user_img}`} alt="foto perfil" /> 
+                                <img src={`http://localhost:3000/images/users/${user?.user_img}`} alt="foto perfil" /> 
                                 :
                                 <span>{user?.name[0].toUpperCase()}</span>}
                   >
@@ -95,7 +96,7 @@ export const NavBarApp= () => {
                   <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
                   <NavDropdown.Item as={Link} to={`/allCoursesProfile/${user?.user_id}`}>Todos los cursos</NavDropdown.Item>
                   <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
-                  <NavDropdown.Item href="#action5">Calificaciones</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to={'/myGrades'}>Calificaciones</NavDropdown.Item>
                   </div> 
                   :
                   <div>

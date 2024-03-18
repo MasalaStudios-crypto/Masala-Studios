@@ -4,94 +4,96 @@ const jwt=require('jsonwebtoken')
 require('dotenv').config()
 const sendMyMail = require('../public/javascripts/nodemailer')
 
-
-
-
 class UserControllers{
-  
   // Generar un token
   // Enviar el correo al user, mandandole el link que tiene la ruta de verificaion, y con parametro dinamico el token
   // Controlador de verificacion de cuenta donde recoges el token de params, ves si 
   
-  register = (req, res)=>{
-    const {name, email, password}= req.body
-    // guardar los datos en la BD (pass encriptada)
-    let saltRounds=8;
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
-          // Store hash in your password DB.
-          if(err){
-            res.status(500).json(err)
-          }
-          let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
+/*    register = (req, res)=>{
+     const {name, email, password}= req.body
+     // guardar los datos en la BD (pass encriptada)
+     let saltRounds=8;
+     bcrypt.genSalt(saltRounds, function(err, salt) {
+       bcrypt.hash(password, salt, function(err, hash) {
+           // Store hash in your password DB.
+           if(err){
+             res.status(500).json(err)
+           }
+           let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
 
-          connection.query(sql, (error, result)=>{
+           connection.query(sql, (error, result)=>{
 
-            if(error){
+             if(error){
 
-              res.status (500).json(error)
-            }else{ 
+               res.status (500).json(error)
+             }else{ 
             
-              res.status(200).json(result);
-            }
-          })
-      });
-  });
+               res.status(200).json(result);
+             }
+           })
+       });
+   });
 
-  }
+   } */
   
-  // register = (req, res) => {
-  //   const { name, email, password } = req.body;
+  register = (req, res) => {
+    const { name, email, password } = req.body;
 
-  //   let saltRounds = 8;
-  //   bcrypt.genSalt(saltRounds, function (err, salt) {
-  //       if (err) {
-  //           return res.status(500).json({ error: "Error al generar la sal para el hash de la contraseña" });
-  //       }
+    let saltRounds = 8;
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+        if (err) {
+            return res.status(500).json({ error: "Error al generar la sal para el hash de la contraseña" });
+        }
 
-  //   bcrypt.hash(password, salt, function (err, hash) {
-  //       if (err) {
-  //           return res.status(500).json({ error: "Error al generar el hash de la contraseña" });
-  //       }
+    bcrypt.hash(password, salt, function (err, hash) {
+        if (err) {
+            return res.status(500).json({ error: "Error al generar el hash de la contraseña" });
+        }
+        
+        let sql = `INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`;
+        connection.query(sql, (error, result) => {
+          if (error) {
+              return res.status(500).json({ error: "Error al insertar el usuario en la base de datos" });
+          }
 
-  //       let sql = `INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`;
-  //       connection.query(sql, (error, result) => {
-  //         if (error) {
-  //             return res.status(500).json({ error: "Error al insertar el usuario en la base de datos" });
-  //         }
+          const token2 = jwt.sign({
+              user: {
+                  id: result.insertId,
+              }
+          },
+              process.env.SECRET,
+              { expiresIn: "3d" });
 
-  //         const token = jwt.sign({
-  //             user: {
-  //                 id: result.insertId,
-  //             }
-  //         },
-  //             process.env.SECRET,
-  //             { expiresIn: "1d" });
+          const confirmationLink = `http://localhost:5173/verifyUser/${token2}`;
 
-  //         const confirmationLink = `http://localhost:3000/users/confirmation/${token}`;
+          sendMyMail('sergiowani@gmail.com',
 
-  //         sendMyMail('santysmp24@gmail.com',
-  //             `Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:
-  //             <a href="${confirmationLink}">Haz click aquí</a>`,
-  //             "Confirmación de cuenta"
+              `<div>
+              <p>
+              Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:
+              Haz click aquí <a href='${confirmationLink}'>Pincha aquí</a>
+              </p>
+              </div>
+              `,
+              "Confirmación de cuenta"
           
-  //         )
-  //         .then(() => {
-  //             res.status(200).json(result);
-  //         }).catch((err) => {
-  //             return res.status(500).json({ error: "Error al enviar el correo electrónico de confirmación" });
-  //         });
-  //       });
-  //   });
-  //   });
-  // }
+          )
+          .then(() => {
+              res.status(200).json({token2, result});
+          }).catch((err) => {
+              return res.status(500).json({ err: "Error al enviar el correo electrónico de confirmación" });
+          });
+        });
+    });
+    });
+  }
 
 
   
 
   login = (req, res)=>{
     const {email, password}= req.body
-    let sql = `SELECT * FROM user WHERE email ="${email}" AND is_deleted=0`
+    let sql = `SELECT * FROM user WHERE email ="${email}" AND is_deleted=0 AND is_disabled = 0`
     connection.query(sql, (err, result)=>{
       if(err){
         res.status(500).json(err)
@@ -125,13 +127,22 @@ class UserControllers{
     })
   }
 
-  // confirmUser = (req, res) =>{
-  //   const {id} = req.body;
+  confirmUser = (req, res) =>{
+    console.log(req.user);
+    const user_id = req.user;
 
-  //   let sql = `UPDATE user SET is_disabled = 0 WHERE user_id = ${id}`
+    let sql = `UPDATE user SET is_disabled = 0 WHERE user_id = ${user_id}`
+    console.log(user_id)
 
-  //   res.console.log(tokenP);
-  // } 
+    connection.query(sql, (err, result) => {
+      if(err){
+        res.status(500).json(err)
+      }
+      else{
+        res.status(200).json(result)
+      }
+    })
+  } 
 
   getOneUser = (req, res) => {
     const {id} = req.params;
@@ -153,14 +164,14 @@ class UserControllers{
 
     
     let img = ""
-    console.log(birth_date);
+    
     if(req.file != undefined){
       img = `, user_img = "${req.file.filename}"`
     } 
     
     let sql = `UPDATE user SET name = "${name}", lastname = "${lastname}", birth_date = "${birth_date}", dni = "${dni}", phone = "${phone}", address = "${address}", zip_code = "${zip_code}", city = "${city}", province = "${province}" ${img} WHERE user_id = ${user_id}`;
   
-    console.log(sql);
+    
   
     connection.query(sql, (err, result) => {
       if (err) {
@@ -175,7 +186,7 @@ class UserControllers{
   allUsers= (req, res)=>{
     let sql = `SELECT * FROM user`
     connection.query(sql, (err, result)=>{
-      console.log(result);
+      
 
      err?res.status(500).json(err):res.status(200).json(result)
     })
@@ -278,10 +289,9 @@ class UserControllers{
   changePassword=(req, res)=>{
     const email=req.body.elem
     const password=req.body.newPass
-    console.log(email)
-    console.log(password)
 
-    sendMyMail("balcaza4@gmail.com", "body", "asunto");
+
+    sendMyMail("sergiowani@gmail.com", "body", "asunto");
 
 
     let saltRounds=8;
@@ -316,6 +326,7 @@ class UserControllers{
     }) 
   }
 
+
   upExam=(req,res)=>{
     const{user_id, course_id}=req.params
     console.log(req.file.filename)
@@ -325,7 +336,17 @@ class UserControllers{
     }) 
   }
 
+  getMyGrades = (req, res)=>{
+    const {user_id}=req.query
+    //console.log(req.query);
+    let sql = `SELECT register.*, course.* FROM register, course WHERE register.course_id = course.course_id AND register.user_id = ${user_id};`
+    connection.query(sql, (err, result)=>{
+      err?res.status(500).json(err):res.status(200).json(result)
+    })
+
+  }
+
 }
 
 
-module.exports = new UserControllers()
+module.exports = new UserControllers;

@@ -19,7 +19,7 @@ export const FormularioLogin = ({handleClose2}) => {
   const navigate= useNavigate()
   const[message, setMessage]=useState("")
   const[login, setLogin]=useState(initialValue)
-  const {setUser, setToken}=useContext(MasalaContext);
+  const {setUser, setToken, user}=useContext(MasalaContext);
   const[show, setShow]=useState(false)
 
   const showModal =()=>{
@@ -31,14 +31,16 @@ export const FormularioLogin = ({handleClose2}) => {
   const handleChange=(elem)=>{
     const {name, value}= elem.target
     setLogin({...login, [name]:value})
-
   }
-
+ 
   const onSubmit=()=>{
     if(!login.email || !login.password){
       setMessage("Debes rellenar todos los campos")
     }else if (!validateEmail(login.email)) {
       setMessage('Debe incluir el carácter "@" en su correo electrónico.');
+
+    }else if (login.is_disabled === 1) {
+      setMessage('Debes de confirmar tu email antes de entrar'); //no va a llegar en la vida a esto
     } 
     else{
       axios
@@ -46,9 +48,11 @@ export const FormularioLogin = ({handleClose2}) => {
         .then((res)=>{
           if(res.data.user.type===1){
            navigate("/") 
+           handleClose2();
           }
           else{
             navigate("/profile")
+            handleClose2();
           }
                     
           //guardar en el context
@@ -68,7 +72,6 @@ export const FormularioLogin = ({handleClose2}) => {
           }
   
         })
-        handleClose2();
 
     }
     

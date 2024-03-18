@@ -1,5 +1,9 @@
 @import '../../variables';
 
+.service-ppal{
+  height: 100%;
+}
+
 .service-title{
   background-color: $color-4;
   display: flex;
@@ -7,7 +11,7 @@
 }
 
 .serv-ppal{
-  min-height: 80vh;
+  height: calc(100vh - 56px + 12px);
   padding: 0 !important;
   background-color: $color-4;
   display: flex;

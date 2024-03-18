@@ -1,34 +1,18 @@
-import axios from 'axios'
-import React, { useContext, useEffect } from 'react'
-import { MasalaContext } from '../../../Context/MasalaProvider'
-import { useNavigate, useParams } from 'react-router-dom'
+
+import React from 'react'
+import './confirmUser.scss'
+
 
 export const ConfirmUser = () => {
 
-  const {token} = useContext(MasalaContext)
-  const {tokenP} = useParams()
-  const navigate = useNavigate()
 
-  useEffect(()=>{
-    if(token == tokenP){
-
-      axios
-      .get(`http://localhost:3000/user/confirmation/${token}`)
-      .then((res)=>{
-        navigate("/login")
-      })
-      .catch((err)=>console.log(err))
-      
-    }else{
-      console.log("Error de verificacion")
-    }
-  },[token])
 
 
   return (
-    <div>
+    <div className='confirmUser-ppal'>
       <div>
       <h1>Confirme su usuario en su correo electrónico</h1>
+      <p>Para terminar mire en su email</p>
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ router.post('/register', userControllers.register)
 
 router.post('/login', userControllers.login)
 
-// router.get('/confirmation/:token', userControllers.confirmUser)
+router.put('/verifyUser',verify, userControllers.confirmUser)
 
 router.get('/getOneUser/:id', userControllers.getOneUser);
 
@@ -44,6 +44,10 @@ router.post('/changePassword', userControllers.changePassword)
 //no es dinámica porque nos traemos el id del front
 router.put('/deleteUser', userControllers.deleteUser);
 
+
 router.put('/upExam/:user_id/:course_id', multer2(),userControllers.upExam)
+
+router.get('/myGrades', userControllers.getMyGrades);
+
 
 module.exports = router;

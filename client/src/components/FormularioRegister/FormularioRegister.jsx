@@ -14,8 +14,8 @@ const initialValue = {
 
 export const FormularioRegister = ({handleClose}) => {
 
-  const {token} = useContext(MasalaContext);
   const [register, setRegister]=useState(initialValue)
+  const {setToken2} = useContext(MasalaContext);
   const [errorMessage, setErrorMessage]=useState()
   const navigate= useNavigate()
 
@@ -43,7 +43,7 @@ export const FormularioRegister = ({handleClose}) => {
       .then((res)=>{
         console.log(res)
         handleClose();
-        navigate(`/confirmation/${token}`)
+        navigate(`/confirmation`)
       })
       .catch((err)=>{
         console.log(err)
@@ -54,8 +54,6 @@ export const FormularioRegister = ({handleClose}) => {
     }
     
   }
-
-  console.log(register)
   
   return (
     <Form>

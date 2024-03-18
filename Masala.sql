@@ -18,7 +18,7 @@ CREATE TABLE user (
     user_img VARCHAR(200),
     type tinyint NOT NULL default 2, -- 1 admin | 2 user
     is_deleted BOOLEAN  NOT NULL default 0,
-    is_disabled BOOLEAN NOT NULL default 0
+    is_disabled BOOLEAN NOT NULL default 1
 );
 
 CREATE TABLE course(
@@ -42,6 +42,7 @@ CREATE TABLE register( -- un user se apunta a un curso
     PRIMARY KEY (user_id, course_id),
 	status tinyint NOT NULL default 1,
     register_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- fecha en la que un alumno se apunta un curso
+    exam_path VARCHAR(200),
     CONSTRAINT fk_user_2 FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_course_1 FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE ON UPDATE CASCADE
 ); 

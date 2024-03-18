@@ -121,7 +121,6 @@ export const MyCourse = () => {
             <span>{courseDetails?.description}</span>
             <br />
           </div>
-        
         </Col>
 
         {/* Columna derecha */}

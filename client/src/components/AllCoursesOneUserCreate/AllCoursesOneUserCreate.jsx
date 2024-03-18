@@ -1,120 +1,96 @@
-import React, { useContext, useLayoutEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MasalaContext } from '../../Context/MasalaProvider';
 import { ModalBasico } from '../ModalBasico/ModalBasico';
 import { AllStudentITeach } from '../AllStudentITeach/AllStudentITeach';
+import { useMediaQuery } from 'react-responsive';
 import './allCoursesOneUserCreate.scss';
+import Card from 'react-bootstrap/Card';
 
 const Slide = ({ imagePath, title, onClick, aref }) => (
-  <div className="slide-container">
-    <img src={imagePath} alt="foto curso" />
-    <div className="caption-container">
-      <h4 className='text-carousel'>{title}</h4>
-      <Link onClick={onClick}>Ver alumnos</Link>
-      <br />
-      <Link to={aref}>Abrir curso</Link>
-    </div>
-  </div>
+  <Card className='slide-container'>
+      <Card.Img variant="top" src={imagePath} alt="foto curso" />
+      <Card.Body className="caption-container">
+        <Card.Title className='title-carousel'>{title}</Card.Title>
+	      <Link onClick={onClick}>Ver alumnos</Link>
+        <br />
+        <Link to={aref}>Abrir curso</Link>
+      </Card.Body>
+    </Card>
 );
 
-const chunkArray = (arr, chunkSize) => {
-  const chunkedArray = [];
-  for (let i = 0; i < arr.length; i += chunkSize) {
-    chunkedArray.push(arr.slice(i, i + chunkSize));
-  }
-  return chunkedArray;
-};
-
-export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
+export const AllCoursesOneUserCreate = () => {
   const { user } = useContext(MasalaContext);
   const [show, setShow] = useState(false);
   const [courseId, setCourseId] = useState();
   const [coursesArray, setCoursesArray] = useState([]);
-  const [lastFetchTime, setLastFetchTime] = useState(0);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const isLargeScreen = useMediaQuery({ minWidth: 1500 });
+  const isMediumScreen = useMediaQuery({ minWidth: 1150 });
 
-  const updateDimensions = async () => {
+  const updateCoursesArray = async () => {
     if (user) {
       try {
         const res = await axios.get(`http://localhost:3000/course/allCoursesOneUserCreate/${user.user_id}`);
         const coursesArray = Object.values(res.data);
-        setCoursesArray(chunkArray(coursesArray, getItemsToShow(screenWidth)));
+        setCoursesArray(coursesArray);
       } catch (err) {
         console.log(err);
       }
     }
   };
 
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      const now = Date.now();
-      if (now - lastFetchTime > 1000) {
-        // Evitar nuevas peticiones al backend dentro de un intervalo de 1000 milisegundos (1 segundo)
-        setLastFetchTime(now);
-        setScreenWidth(window.innerWidth);
-        updateDimensions(); // Llamar directamente a la función updateDimensions aquí
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [lastFetchTime]);
-
-  useLayoutEffect(() => {
-    updateDimensions(); // Llamar directamente a la función updateDimensions aquí
-  }, [user, screenWidth]);
-
-  const getItemsToShow = (width) => {
-    if (width > 1500) {
-      return 3;
-    } else if (width > 1150) {
-      return 2;
-    }
-    return 1;
-  };
+  useEffect(() => {
+    updateCoursesArray();
+  }, [user]);
 
   const showModal = () => {
     setShow(!show);
   };
 
+  // Definir la cantidad de elementos a mostrar en cada pantalla
+  const slidesToShow = isLargeScreen ? 3 : isMediumScreen ? 2 : 1;
+
+  // Agrupar los cursos según la cantidad de elementos a mostrar en cada pantalla
+  const groupedCourses = [];
+  for (let i = 0; i < coursesArray.length; i += slidesToShow) {
+    groupedCourses.push(coursesArray.slice(i, i + slidesToShow));
+  }
+
   return (
     <div>
-      <Carousel className="carousel-item-container">
-        {coursesArray.map((group, index) => (
-          <Carousel.Item key={index}>
-            {group.map(({ course }) => (
-              <Slide
-                key={course.course_id}
-                imagePath={
-                  course.course_img
-                    ? `http://localhost:3000/images/course_img/${course.course_img}`
-                    : "/images/course.png"
-                }
-                title={course.name}
-                onClick={() => {
-                  showModal();
-                  setCourseId(course.course_id);
-                }}
-                aref={`/mycourse/${course.course_id}`}
-              />
-            ))}
-          </Carousel.Item>
-        ))}
-      </Carousel>
-      {/* show students */}
+      {coursesArray && coursesArray.length > 0 ? (
+        <Carousel className="carousel-item-container">
+          {groupedCourses.map((group, index) => (
+            <Carousel.Item key={index}>
+              <div className="d-flex justify-content-center gap-5 slide-group">
+              {group.map((course, course_id) => (
+                <Slide
+                  key={course_id}
+                  imagePath={course.course_img ? `http://localhost:3000/images/course_img/${course.course_img}` : "/images/course.png"}
+                  title={course.name}
+                  onClick={() => {
+                    showModal();
+                    setCourseId(course.course_id);
+                  }}
+                  aref={`/mycourse/${course.course_id}`}
+                />
+              ))}
+              </div>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      ) : (
+        <div>No has creado ningún curso.</div>
+      )}
       <ModalBasico show={show} handleClose={showModal} title="Alumnos del curso">
         {courseId && (
           <AllStudentITeach
             handleClose={showModal}
-            allStudents={
-              coursesArray
-                .flat()
-                .find(({ course }) => course.course_id === courseId)?.students || []
+            allStudents={coursesArray
+              .flat()
+              .find(({ course }) => course.course_id === courseId)?.students || []
             }
             courseId={courseId}
           />
@@ -123,7 +99,3 @@ export const AllCoursesOneUserCreate = ({ refreshCourses }) => {
     </div>
   );
 };
-
-
-
-
