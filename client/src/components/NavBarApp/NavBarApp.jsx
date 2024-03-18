@@ -41,6 +41,7 @@ export const NavBarApp= () => {
     setToken()
     navigate("/")
   }
+ 
   return (
     <Navbar expand="lg" className="custom-navbar-bg fixed-top">
       <Container fluid>
@@ -85,7 +86,7 @@ export const NavBarApp= () => {
                 <div className='navbar-avatar'>
                   <NavDropdown id="navbarScrollingDropdown" title={user?.user_img 
                                 ? 
-                                <img src={`http://localhost:3000/images/users/${user?. user_img}`} alt="foto perfil" /> 
+                                <img src={`http://localhost:3000/images/users/${user?.user_img}`} alt="foto perfil" /> 
                                 :
                                 <span>{user?.name[0].toUpperCase()}</span>}
                   >

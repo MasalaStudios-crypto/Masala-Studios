@@ -4,41 +4,37 @@ const jwt=require('jsonwebtoken')
 require('dotenv').config()
 const sendMyMail = require('../public/javascripts/nodemailer')
 
-
-
-
 class UserControllers{
-  
   // Generar un token
   // Enviar el correo al user, mandandole el link que tiene la ruta de verificaion, y con parametro dinamico el token
   // Controlador de verificacion de cuenta donde recoges el token de params, ves si 
   
-  // register = (req, res)=>{
-  //   const {name, email, password}= req.body
-  //   // guardar los datos en la BD (pass encriptada)
-  //   let saltRounds=8;
-  //   bcrypt.genSalt(saltRounds, function(err, salt) {
-  //     bcrypt.hash(password, salt, function(err, hash) {
-  //         // Store hash in your password DB.
-  //         if(err){
-  //           res.status(500).json(err)
-  //         }
-  //         let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
+/*    register = (req, res)=>{
+     const {name, email, password}= req.body
+     // guardar los datos en la BD (pass encriptada)
+     let saltRounds=8;
+     bcrypt.genSalt(saltRounds, function(err, salt) {
+       bcrypt.hash(password, salt, function(err, hash) {
+           // Store hash in your password DB.
+           if(err){
+             res.status(500).json(err)
+           }
+           let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
 
-  //         connection.query(sql, (error, result)=>{
+           connection.query(sql, (error, result)=>{
 
-  //           if(error){
+             if(error){
 
-  //             res.status (500).json(error)
-  //           }else{ 
+               res.status (500).json(error)
+             }else{ 
             
-  //             res.status(200).json(result);
-  //           }
-  //         })
-  //     });
-  // });
+               res.status(200).json(result);
+             }
+           })
+       });
+   });
 
-  // }
+   } */
   
   register = (req, res) => {
     const { name, email, password } = req.body;
@@ -70,7 +66,7 @@ class UserControllers{
 
           const confirmationLink = `http://localhost:5173/verifyUser/${token2}`;
 
-          sendMyMail('santysmp24@gmail.com',
+          sendMyMail('sergiowani@gmail.com',
 
               `<div>
               <p>
@@ -97,7 +93,7 @@ class UserControllers{
 
   login = (req, res)=>{
     const {email, password}= req.body
-    let sql = `SELECT * FROM user WHERE email ="${email}" AND is_deleted=0`
+    let sql = `SELECT * FROM user WHERE email ="${email}" AND is_deleted=0 AND is_disabled = 0`
     connection.query(sql, (err, result)=>{
       if(err){
         res.status(500).json(err)
@@ -135,7 +131,7 @@ class UserControllers{
     console.log(req.user);
     const user_id = req.user;
 
-    let sql = `UPDATE user SET is_disabled = 1 WHERE user_id = ${user_id}`
+    let sql = `UPDATE user SET is_disabled = 0 WHERE user_id = ${user_id}`
     console.log(user_id)
 
     connection.query(sql, (err, result) => {
@@ -158,7 +154,7 @@ class UserControllers{
         res.status(500).json(err)
       }
       else{
-        res.status(200).json(result)
+        res.status(200).json(result[0])
       }
     })
   }
@@ -295,7 +291,7 @@ class UserControllers{
     const password=req.body.newPass
 
 
-    sendMyMail("balcaza4@gmail.com", "body", "asunto");
+    sendMyMail("sergiowani@gmail.com", "body", "asunto");
 
 
     let saltRounds=8;
@@ -338,6 +334,7 @@ class UserControllers{
     connection.query(sql, (err, result)=>{
       err?res.status(500).json(err):res.status(200).json(result)
     }) 
+  }
 
   getMyGrades = (req, res)=>{
     const {user_id}=req.query
@@ -352,4 +349,4 @@ class UserControllers{
 }
 
 
-module.exports = new UserControllers()
+module.exports = new UserControllers;
