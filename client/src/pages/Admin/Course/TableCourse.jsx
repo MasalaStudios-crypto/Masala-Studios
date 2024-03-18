@@ -66,16 +66,16 @@ export const TableCourse = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Nombre</TableCell>
-            <TableCell align="center">Duracion</TableCell>
-            <TableCell align="center">Precio</TableCell>
-            <TableCell align="center">Fecha Creacion</TableCell>
-            <TableCell align="center">Profesor</TableCell>
-            <TableCell align="center">Descripcion</TableCell>
-            <TableCell align="center">Estado</TableCell>
-            <TableCell align="center">Visibilidad</TableCell>
-            <TableCell align="center">Habilitado</TableCell>
-            <TableCell align="center">Temas</TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Nombre</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Duracion</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Precio</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Fecha Creacion</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Profesor</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Descripcion</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Estado</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Visibilidad</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Habilitado</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Temas</b></TableCell>
 
           </TableRow>
         </TableHead>
@@ -85,7 +85,7 @@ export const TableCourse = () => {
             key={elem.course_id}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell align="center" component="th" scope="row">
                 {elem.name}
               </TableCell>
               <TableCell align="center">{elem.duration}</TableCell>
@@ -100,7 +100,7 @@ export const TableCourse = () => {
 
               <TableCell align="center"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.course_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
 
-              <TableCell onClick={()=>{navigate(`/subjects/${elem.course_id}`)}}><Button>Ver temas</Button></TableCell>
+              <TableCell align="center" onClick={()=>{navigate(`/subjects/${elem.course_id}`)}}><Button>Ver temas</Button></TableCell>
            
             </TableRow>
           ))}

@@ -63,9 +63,9 @@ export const ListaCursosApuntados = ({user_id}) => {
       <Table  aria-label="simple table">
         <TableHead >
           <TableRow>
-            <TableCell align="center">Nombre Cursos</TableCell>
-            <TableCell align="center">Calificaciones</TableCell>
-            <TableCell align="center">Registrar/Borrar</TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.2rem' }}>Nombre Cursos</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.2rem' }}>Calificaciones</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.2rem' }}>Registrar/Borrar</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

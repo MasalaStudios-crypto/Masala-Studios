@@ -5,7 +5,7 @@ export const AdminSubject = () => {
   return (
     <div>
 
-      <h2>Administrar temas</h2>
+      <h1>Administrar temas</h1>
       <TableSubject/>
       
     </div>
