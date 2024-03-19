@@ -15,20 +15,13 @@ export const CoursesServices = () => {
     setNameCourse(elem)
   }
 
-  useEffect(()=>{
-
-    if(cursos.length > 0){
-
-      
+  useEffect(()=>{ 
       axios
       .get("http://localhost:3000/course/allCoursesService")
       .then((res)=>{
         setCursos(res.data)
       })
       .catch((err)=>console.log(err))
-    }else{
-      console.log("Error en el carrusel")
-    }
 
   },[])
   console.log(cursos)

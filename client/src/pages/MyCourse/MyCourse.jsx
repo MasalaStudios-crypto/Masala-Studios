@@ -139,9 +139,9 @@ export const MyCourse = () => {
                   :
                   <div className='d-flex flex-column'>
                     <Button onClick={contact}>Contacto Profesor</Button>
-                    <form id="formulario" enctype="multipart/form-data">
+                    <form id="formulario" encType="multipart/form-data">
                       <input hidden type="file" id="file" name="file" accept=".pdf"/>
-                      <label for="file"><b>Pulsa aqui para introducir examen</b></label>
+                      <label htmlFor="file"><b>Pulsa aqui para introducir examen</b></label>
                       <Button className='d-flex m-1' type="button" onClick={()=>subirArchivo()}>Subir examen</Button>
                     </form>
                   </div>

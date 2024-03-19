@@ -291,7 +291,7 @@ class UserControllers{
     const password=req.body.newPass
 
 
-    sendMyMail("sergiowani@gmail.com", "body", "asunto");
+    sendMyMail(`${email}`, `Tu comtraeña nueva es: ${password}`, "Cambio contraseña");
 
 
     let saltRounds=8;

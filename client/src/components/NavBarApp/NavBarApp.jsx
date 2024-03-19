@@ -44,7 +44,7 @@ export const NavBarApp= () => {
  
   return (
     <Navbar expand="lg" className="custom-navbar-bg fixed-top">
-      <Container fluid>
+      <Container fluid className='fluid-nav'>
         <div className='nav-alinear1'>
           <Navbar.Brand href="/">
             <img src="/images/logo.png" alt="logotipo" className='logo-nav' />
@@ -52,69 +52,105 @@ export const NavBarApp= () => {
           </Navbar.Brand>
         </div>
         <div className='d-flex justify-content-end nav-alinear2'>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll" >
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav" >
             <Nav
               className="me-auto my-2 my-lg-0 dropdawn-menu"
-              style={{ maxHeight: '100px' }}
-              navbarScroll
             >
               {user?.type===1 ?
-              <div className='d-flex'>
+              <div className='d-flex flex-wrap'>
               <Nav.Link href="/allUsers" className='masala-text'>USUARIOS</Nav.Link>
               <Nav.Link href="/allCourses" className='masala-text'>CURSOS</Nav.Link>
               <Nav.Link onClick={showModal3} className='masala-text'>CREAR CURSOS</Nav.Link>
+              <div className='botonera-movil-1'>
+                {!user ? (
+                        <Button onClick={showModal2} className='ml-auto'>Iniciar sesión</Button>
+                
+                    ) : (
+                      <Button onClick={LogOut} className='ms-1 me-1' variant="outline-success">LogOut</Button>
+                    )}
+              </div>
               </div> 
               :
-              <div className='d-flex'>
+              <div className='d-flex flex-wrap'>
               <Nav.Link href="#" className='masala-text'>PORTFOLIO</Nav.Link>
               <Nav.Link href="#who" onClick={()=>{navigate('/')}} className='masala-text'>QUIENES SOMOS</Nav.Link>
               <Nav.Link href="#servicios" onClick={()=>{navigate('/')}}  className='masala-text'>SERVICIOS</Nav.Link>
               <Nav.Link href="#" className='masala-text'>BLOG</Nav.Link>
               <Nav.Link href="#footer" onClick={()=>{navigate('/')}} className='masala-text'>CONTACTO</Nav.Link>
+
+              <div className='botonera-movil-1'>
+                {!user ? (
+                        <Button onClick={showModal2} className='ml-auto'>Iniciar sesión</Button>
+                
+                    ) : (
+                      <Button onClick={LogOut} className='ms-1 me-1' variant="outline-success">LogOut</Button>
+                    )}
+              </div>
               </div>
               }
                
-              {!user ? 
-                <div>
-                  <Button
-                    onClick={showModal2}
-                    className='ml-auto' >Iniciar sesión</Button>
-                </div>
-                :
-
-                <div className='navbar-avatar'>
-                  <NavDropdown id="navbarScrollingDropdown" title={user?.user_img 
-                                ? 
-                                <img src={`http://localhost:3000/images/users/${user?.user_img}`} alt="foto perfil" /> 
-                                :
-                                <span>{user?.name[0].toUpperCase()}</span>}
-                  >
-
-                  {user?.type===2 ? 
-                  <div> 
-                  <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={`/allCoursesProfile/${user?.user_id}`}>Todos los cursos</NavDropdown.Item>
-                  <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={'/myGrades'}>Calificaciones</NavDropdown.Item>
-                  </div> 
-                  :
+              {/* tamaño escritorio */}
+              <div className='desktop-menu'>
+                {!user ?
                   <div>
-                  <NavDropdown.Item onClick={showModal4}>Crear TAG</NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
+                    <Button
+                      onClick={showModal2}
+                      className='ml-auto' >Iniciar sesión</Button>
+                  </div>
+                  :
+                  <div className='navbar-avatar'>
+                    <NavDropdown id="basic-nav-dropdown" title={user?.user_img
+                                  ?
+                                  <img src={`http://localhost:3000/images/users/${user?.user_img}`} alt="foto perfil" />
+                                  :
+                                  <span>{user?.name[0].toUpperCase()}</span>}
+                    >
+                    {user?.type===2 ?
+                    <div>
+                    <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={`/allCoursesProfile/${user?.user_id}`}>Todos los cursos</NavDropdown.Item>
+                    <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={'/myGrades'}>Calificaciones</NavDropdown.Item>
+                    </div>
+                    :
+                    <div>
+                    <NavDropdown.Item onClick={showModal4}>Crear TAG</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
+                    </div>
+                    }
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action5">
+                    <Button
+                      onClick={LogOut}
+                      className='ms-1 me-1'
+                      variant="outline-success">
+                    LogOut</Button>
+                    </NavDropdown.Item>
+                    </NavDropdown>
                   </div>
                   }
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                  <Button
-                    onClick={LogOut}
-                    className='ms-1 me-1'
-                    variant="outline-success">
-                  LogOut</Button>
-                  </NavDropdown.Item>
+              </div>
+
+                {/* tamaño móvil */}
+                <div className='navbar-avatar-movil'>
+                  <NavDropdown title="MENÚ↪" id="basic-nav-dropdown">
+                  {user?.type === 2 ? (
+                    <>
+                    <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to={`/allCoursesProfile/${user.user_id}`}>Todos los cursos</NavDropdown.Item>
+                    <NavDropdown.Item onClick={showModal3}>Crear curso</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to='/myGrades'>Calificaciones</NavDropdown.Item>
+                    </>
+                  ) : (
+                    <>
+                    <NavDropdown.Item onClick={showModal4}>Crear TAG</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/profile">Perfil</NavDropdown.Item>
+                    </>
+                  )}
                   </NavDropdown>
                 </div>
-                }
+
 
               <ModalBasico
               title="Contacto"

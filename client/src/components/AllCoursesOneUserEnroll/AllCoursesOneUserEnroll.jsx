@@ -25,7 +25,7 @@ export const AllCoursesOneUserEnroll = () => {
   const [allCoursesOneUser, setAllCoursesOneUser] = useState([]);
   const [allTeachers, setAllTeachers] = useState([]);
   const isLargeScreen = useMediaQuery({ minWidth: 1500 });
-  const isMediumScreen = useMediaQuery({ minWidth: 1150 });
+  const isMediumScreen = useMediaQuery({ minWidth: 1300 });
 
   useEffect(() => {
     const fetchData = async () => {

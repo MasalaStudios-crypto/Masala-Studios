@@ -27,7 +27,7 @@ export const AllCoursesOneUserCreate = () => {
   const [courseId, setCourseId] = useState();
   const [coursesArray, setCoursesArray] = useState([]);
   const isLargeScreen = useMediaQuery({ minWidth: 1500 });
-  const isMediumScreen = useMediaQuery({ minWidth: 1150 });
+  const isMediumScreen = useMediaQuery({ minWidth: 1300 });
 
   const updateCoursesArray = async () => {
     if (user) {
@@ -65,9 +65,9 @@ export const AllCoursesOneUserCreate = () => {
           {groupedCourses.map((group, index) => (
             <Carousel.Item key={index}>
               <div className="d-flex justify-content-center gap-5 slide-group">
-              {group.map((course, course_id) => (
+              {group.map(({course}) => (
                 <Slide
-                  key={course_id}
+                  key={course.course_id}
                   imagePath={course.course_img ? `http://localhost:3000/images/course_img/${course.course_img}` : "/images/course.png"}
                   title={course.name}
                   onClick={() => {

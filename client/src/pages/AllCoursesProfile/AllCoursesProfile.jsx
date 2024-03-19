@@ -56,11 +56,10 @@ export const AllCoursesProfile = () => {
         })
         .catch((err) => console.log(err));
     }
-    else {
-      // Si el campo de texto está vacío, recargar la página
-      window.location.reload();
-    }
+  }
 
+  const reload = () => {
+    window.location.reload();
   }
     
   // Manejar cambios en el texto de búsqueda
@@ -73,11 +72,6 @@ export const AllCoursesProfile = () => {
     setSelectedCategory(event.target.value);
   };
 
-  useEffect(() => {
-    if (searchText !== '' && searchResults.length === 0) {
-      window.location.reload();
-    }
-  }, [searchResults]);
 
   return (
     <>
@@ -103,6 +97,8 @@ export const AllCoursesProfile = () => {
               </select>
               {/* Botón para realizar la búsqueda */}
               <button onClick={searchCourses}>Buscar</button>
+              {/* Botón para reiniciar la búsqueda */}
+              <button onClick={reload}>Reiniciar</button>
             </div>
             {/* Mostrar si no hay resultados */}
             {searchText !== '' && searchResults.length === 0 && (
