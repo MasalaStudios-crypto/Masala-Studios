@@ -4,6 +4,7 @@ import { MasalaContext } from '../../../Context/MasalaProvider'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
+import { invertirFecha } from '../../../utils/reverseDate'
 
 export const TableCourse = () => {
 
@@ -90,7 +91,7 @@ export const TableCourse = () => {
               </TableCell>
               <TableCell align="center">{elem.duration}</TableCell>
               <TableCell align="center">{elem.price}</TableCell>
-              <TableCell align="center">{elem.register_date}</TableCell>
+              <TableCell align="center">{invertirFecha(elem.register_date)}</TableCell>
               <TableCell align="center">{elem.profesor}</TableCell>
               <TableCell align="center">{elem.description}</TableCell>
 
