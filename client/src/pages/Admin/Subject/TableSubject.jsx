@@ -136,13 +136,13 @@ export const TableSubject = () => {
   return (
     <div className='table-subject-ppal'>
   
-      <div className='d-flex gap-3 justify-content-end'>
+      <div className='d-flex gap-3 justify-content-center'>
         <Button onClick={showModal}>Añadir tema</Button>
-        <Button variant="secondary" onClick={() => { user?.type === 1 ? navigate("/allCourses") : navigate("/profile") }}>Atrás</Button>
+        <Button className='b' variant="secondary" onClick={() => { user?.type === 1 ? navigate("/allCourses") : navigate("/profile") }}>Atrás</Button>
       </div>
       {subjects ?
-      <div>
-        <h3><b>Nombre del curso: </b>{subjects[0]?.course_name}</h3>
+      <div className='d-flex flex-column align-items-center gap-1'>
+        <h3><b>{subjects[0]?.course_name}</b></h3>
         <h4><b>Profesor: </b>{subjects[0]?.profesor_name}</h4>
       </div>
       :
@@ -150,7 +150,7 @@ export const TableSubject = () => {
       }
 
 
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ overflowX: 'auto' }}>
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
         <TableRow>
@@ -231,7 +231,7 @@ export const TableSubject = () => {
                 <Button 
                   variant="danger"
                   onClick={() => erase(elem.course_id, elem.subject_id)}
-                >Eliminar Tema</Button>
+                >Eliminar</Button>
               </TableCell>
             </TableRow>
           ))}
@@ -242,7 +242,8 @@ export const TableSubject = () => {
   <ModalBasico
     handleClose={showModal}
     show={show}
-    title="Añadir tema">
+    title="Añadir tema"
+    size="sm">
     <FormularioTema
       course_id={course_id}
       handleClose={showModal}/>

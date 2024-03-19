@@ -86,7 +86,7 @@ export const EditUser = ({handleClose}) => {
     <Row className='d-flex justify-content-center align-items-center edit-ppal'>
       <Col>
         <Form className='form-edit'>
-            <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Group className="mb-1" controlId="formBasicName">
               <Form.Label>Nombre</Form.Label>
               <Form.Control 
                 type="text" 
@@ -99,7 +99,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicLastname">
+            <Form.Group className="mb-1" controlId="formBasicLastname">
               <Form.Label>Apellidos</Form.Label>
               <Form.Control 
                 type="text" 
@@ -112,7 +112,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicBirthDate">
+            <Form.Group className="mb-1" controlId="formBasicBirthDate">
               <Form.Label>Fecha nacimiento</Form.Label>
               <Form.Control 
                 type="date"
@@ -123,7 +123,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicDni">
+            <Form.Group className="mb-1" controlId="formBasicDni">
               <Form.Label>D.N.I.</Form.Label>
               <Form.Control 
                 type="text" 
@@ -136,7 +136,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPhone">
+            <Form.Group className="mb-1" controlId="formBasicPhone">
               <Form.Label>Teléfono</Form.Label>
               <Form.Control 
                 type="text" 
@@ -149,7 +149,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicAddress">
+            <Form.Group className="mb-1" controlId="formBasicAddress">
               <Form.Label>Dirección</Form.Label>
               <Form.Control 
                 type="text" 
@@ -162,7 +162,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
  
-            <Form.Group className="mb-3" controlId="formBasicZipCode">
+            <Form.Group className="mb-1" controlId="formBasicZipCode">
               <Form.Label>Código postal</Form.Label>
               <Form.Control 
                 type="text" 
@@ -175,7 +175,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
  
-            <Form.Group className="mb-3" controlId="formBasicCity">
+            <Form.Group className="mb-1" controlId="formBasicCity">
               <Form.Label>Ciudad</Form.Label>
               <Form.Control 
                 type="text" 
@@ -188,7 +188,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicProvince">
+            <Form.Group className="mb-1" controlId="formBasicProvince">
               <Form.Label>Provincia</Form.Label>
               <Form.Control 
                 type="text" 
@@ -201,7 +201,7 @@ export const EditUser = ({handleClose}) => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicImg">
+            <Form.Group className="mb-1" controlId="formBasicImg">
               <Form.Label>
                 <div className='d-flex'>
                   <img src="/icons/folder.svg" alt="subir imagen" className='upload-img' />

@@ -16,20 +16,12 @@ export const CoursesServices = () => {
   }
 
   useEffect(()=>{
-
-    if(cursos.length > 0){
-
-      
       axios
       .get("http://localhost:3000/course/allCoursesService")
       .then((res)=>{
         setCursos(res.data)
       })
       .catch((err)=>console.log(err))
-    }else{
-      console.log("Error en el carrusel")
-    }
-
   },[])
   console.log(cursos)
   return (
@@ -69,7 +61,8 @@ export const CoursesServices = () => {
       <ModalBasico
         title="Contacto"
         handleClose={showModal}
-        show={show}>
+        show={show}
+        size="sm">
         <FormularioContacto
           nameCourse={nameCourse}
           handleClose={showModal}/>

@@ -46,9 +46,12 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
         .post("http://localhost:3000/course/createCourse", newFormData)
         .then((res)=>{
           showModal3()
+          if(window.location.pathname == "/profile"){
+            location.reload()
+          }
         })
         .catch(err => console.log(err))
-
+      
       }
     else{
         setMessage("rellena algo por favor!!!");
