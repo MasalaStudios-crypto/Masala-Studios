@@ -59,7 +59,8 @@ export const OneCourse = ({elem}) => {
         <ModalBasico
         title="Contacto"
         handleClose={showModal}
-        show={show}>
+        show={show}
+        size="sm">
         <FormularioContacto
           handleClose={showModal}/>
         </ModalBasico>

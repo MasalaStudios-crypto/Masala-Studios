@@ -137,7 +137,8 @@ export const FormularioLogin = ({handleClose2}) => {
       <ModalBasico
         title="Registro"
         show={show}
-        handleClose={showModal}>
+        handleClose={showModal}
+        size="sm">
         <FormularioRegister
           handleClose={showModal}/>
       </ModalBasico>

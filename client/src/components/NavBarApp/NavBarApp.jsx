@@ -127,7 +127,8 @@ export const NavBarApp= () => {
               <ModalBasico2
               title="Login"
               show={show2}
-              handleClose2={showModal2}>
+              handleClose2={showModal2}
+              size="sm">
                 <FormularioLogin
                 handleClose2={showModal2}/>
               </ModalBasico2>
@@ -148,7 +149,8 @@ export const NavBarApp= () => {
               <ModalBasico
               title="TAG"
               show={show4}
-              handleClose={showModal4}>
+              handleClose={showModal4}
+              size="sm">
                 <FormularioTag
                 handleClose={showModal4}/>
               </ModalBasico>

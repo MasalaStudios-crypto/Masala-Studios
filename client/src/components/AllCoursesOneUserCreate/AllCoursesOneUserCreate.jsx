@@ -65,9 +65,9 @@ export const AllCoursesOneUserCreate = () => {
           {groupedCourses.map((group, index) => (
             <Carousel.Item key={index}>
               <div className="d-flex justify-content-center gap-5 slide-group">
-              {group.map((course, course_id) => (
+              {group.map(({course}) => (
                 <Slide
-                  key={course_id}
+                  key={course.course_id}
                   imagePath={course.course_img ? `http://localhost:3000/images/course_img/${course.course_img}` : "/images/course.png"}
                   title={course.name}
                   onClick={() => {
@@ -84,7 +84,7 @@ export const AllCoursesOneUserCreate = () => {
       ) : (
         <div>No has creado ningún curso.</div>
       )}
-      <ModalBasico show={show} handleClose={showModal} title="Alumnos del curso">
+      <ModalBasico show={show} handleClose={showModal} size="lg" title="Alumnos del curso">
         {courseId && (
           <AllStudentITeach
             handleClose={showModal}

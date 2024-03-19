@@ -99,7 +99,7 @@ export const UserProfile = () => {
           <div className='text-center'>
           </div>
         {/* editar perfil */}
-          <ModalBasico show={show} handleClose={showModal} title="Edición usuario">
+          <ModalBasico show={show} handleClose={showModal} title="Edición usuario" >
             <EditUser handleClose={showModal} user_id={user?.user_id} />
           </ModalBasico>
         </Col>

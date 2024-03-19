@@ -12,7 +12,7 @@ export const CardCourses = ({elem}) => {
   const showModal =()=>{
     setShow(!show)
   }
-
+  console.log(elem)
   return (
     
  
@@ -30,7 +30,8 @@ export const CardCourses = ({elem}) => {
     <ModalBasico
         title="Contacto"
         handleClose={showModal}
-        show={show}>
+        show={show}
+        size="sm">
         <FormularioContacto
           elem = {elem}
           handleClose={showModal}/>
