@@ -66,7 +66,9 @@ class UserControllers{
 
           const confirmationLink = `http://localhost:5173/verifyUser/${token2}`;
 
+
           sendMyMail('santysmp24@gmail.com',
+
 
               `<div>
               <p>
@@ -291,7 +293,7 @@ class UserControllers{
     const password=req.body.newPass
 
 
-    sendMyMail("sergiowani@gmail.com", "body", "asunto");
+    sendMyMail(`${email}`, `Tu contraseña nueva es: ${password}`, "Cambio de contraseña");
 
 
     let saltRounds=8;

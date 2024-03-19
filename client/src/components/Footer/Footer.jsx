@@ -26,7 +26,8 @@ export const Footer = () => {
         <ModalBasico
               title="Contacto"
               show={show}
-              handleClose={showModal}>
+              handleClose={showModal}
+              size="sm">
           <FormularioContacto
                 handleClose={showModal}/>
         </ModalBasico>

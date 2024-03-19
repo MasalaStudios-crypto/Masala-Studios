@@ -51,7 +51,7 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
           }
         })
         .catch(err => console.log(err))
-
+      
       }
     else{
         setMessage("rellena algo por favor!!!");
