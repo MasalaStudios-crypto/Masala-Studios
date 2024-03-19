@@ -36,7 +36,6 @@ export const EditUser = ({handleClose}) => {
     }
   }, [user])
 
- 
   const handleChange = (e) => {
     let {value, name} = e.target
     if(name === "birth_date"){
@@ -44,8 +43,8 @@ export const EditUser = ({handleClose}) => {
 
     }
     setEdit({...edit, [name]:value});
-
   }
+  
   const navigate = useNavigate();
 
   const handleFile = (e) => {
@@ -65,7 +64,6 @@ export const EditUser = ({handleClose}) => {
       .put('http://localhost:3000/users/editUser', newFormData)
       .then((res) => {
         navigate('/profile')
-        console.log(res)
 
         if(res.data.newImg){
           setUser({...user, ...edit, user_img: res.data.newImg})
@@ -120,6 +118,7 @@ export const EditUser = ({handleClose}) => {
                 value={edit.birth_date === null ? "" : invertirFecha2(edit.birth_date)}
                 onChange={handleChange}
                 name="birth_date"
+                onKeyDown={(e) => { if (e.target.type === 'date') e.preventDefault(); }} // Evitar entrada manual
               />
             </Form.Group>
 

@@ -1,12 +1,10 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
-// import { MasalaContext } from '../../../Context/MasalaProvider'
 import { useNavigate, useParams } from 'react-router-dom'
 import './confirm.scss'
 
 export const Confirm = () => {
 
-    // const {token2} = useContext(MasalaContext)
   const {token2} = useParams()
   const navigate = useNavigate()
 
@@ -19,7 +17,6 @@ export const Confirm = () => {
       .put(`http://localhost:3000/users/verifyUser`)
     .then((res)=>{
         
-        console.log(res);
         navigate("/")
   
       })

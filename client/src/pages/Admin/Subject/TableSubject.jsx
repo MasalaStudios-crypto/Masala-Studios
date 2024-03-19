@@ -8,6 +8,7 @@ import { ModalBasico } from '../../../components/ModalBasico/ModalBasico'
 import { FormularioTema } from '../../../components/FormularioTema/FormularioTema'
 import './tableSubject.scss'
 import { extractNumberFromName } from '../../../utils/orderBy'
+import { invertirFecha } from '../../../utils/reverseDate'
 
 export const TableSubject = () => {
 
@@ -174,7 +175,7 @@ export const TableSubject = () => {
             >
               <TableCell align="center">{elem.name}</TableCell>
               <TableCell align="center">{elem.duration}h</TableCell>
-              <TableCell align="center">{elem.creation_date}</TableCell>
+              <TableCell align="center">{invertirFecha(elem.creation_date)}</TableCell>
               {/* tipo archivo */}
               <TableCell align="center">
                 <FormControl>

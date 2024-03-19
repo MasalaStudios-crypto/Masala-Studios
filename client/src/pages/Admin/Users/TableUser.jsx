@@ -19,8 +19,8 @@ import { FormularioRegister } from '../../../components/FormularioRegister/Formu
 import { ListaCursosCreados } from './ListaCursosCreados';
 import { ListaCursosApuntados } from './ListaCursosApuntados';
 import './tableUser.scss'
-
-
+import { invertirFecha } from '../../../utils/reverseDate'
+ 
 export const TableUser = () => {
 
   const [users, setUsers] = useState()
@@ -121,7 +121,7 @@ export const TableUser = () => {
               {elem.name} 
             </TableCell>
             <TableCell align="center">{elem.lastname}</TableCell>
-            <TableCell align="center">{elem.birth_date}</TableCell>
+            <TableCell align="center">{invertirFecha(elem.birth_date)}</TableCell>
             <TableCell align="center">{elem.dni}</TableCell>
             <TableCell align="center">{elem.phone}</TableCell>
             <TableCell align="center">{elem.address}</TableCell>
