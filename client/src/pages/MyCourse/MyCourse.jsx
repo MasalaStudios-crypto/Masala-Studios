@@ -135,12 +135,14 @@ export const MyCourse = () => {
                     <img src="/icons/subject.svg" alt="temario" className='course-edit' onClick={navigateToSubjects} />
                   </div>
                   :
+
                   <div className='d-flex flex-column gap-1 align-items-center'>
                     <Button onClick={contact}>Contacto</Button>
                     <form id="formulario" encType="multipart/form-data">
                       <input  hidden type="file" id="file" name="file" accept=".pdf"/>
                       <label htmlFor="file"><img className='course-edit' src="/icons/upload.jpg" alt="Seleccionar archivo" /></label>
                       <button className='botonExamen' type="button" onClick={()=>subirArchivo()}>Subir examen</button>
+
                     </form>
                   </div>
                 }

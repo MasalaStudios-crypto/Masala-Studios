@@ -1,18 +1,72 @@
-.tipoServicios-ppal{
-  width: calc((var(--bs-gutter-x)* 1) + 100% - 22px) ;
-  height: 100vh;
-  margin: 0;
+@import '../../../variables';
 
+.tipoServicios-ppal{
+  height: calc(auto - 85.14px);
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  margin-top: 85.14px;
+  // margin-left: calc(-0.7* var(--bs-gutter-x));
+  
+  
+  .tipoServ-ppal{
+    height: calc(auto - 85.14px);
+    padding: 20px;
+
+
+  }
+
+  .tipoServicios-h2{
+    text-align: center;
+    margin-top: -30px;
+
+  }
+  .tipoServ-h2{
+    margin-top: 20px ;
+   padding: 20px;
+  }
+
+  
   .section1{
-    height: 50vh;
+    background-color: $color-2;
+    height: 90vh;
+    padding: 50px;
+    margin-left: 10px;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+
+  
+
+    img{
+      width: 700px;
+      height: 600px;
+    }
+    
+    .tipoServ-p{
+      align-items: center;
+      justify-content: center;
+      pad: 10px;
+      font-size: 25px;
+    }
+    .tipoServ-button{
+      justify-content: center;
+      align-items: center;
+      margin-top: 60px;
+
+    }
   }
   .section2{
-    height: 50vh;
+    background-color: $color-3;
+    height: 100vh;
   }
   .section3{
-    height: 50vh;
+    background-color: $color-2;
+    height: 100vh;
   }
   .section4{
-    height: 50vh;
+    background-color: $color-3;
+    height: 100vh ;
   }
+
 }

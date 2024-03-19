@@ -22,6 +22,7 @@ export const CoursesServices = () => {
         setCursos(res.data)
       })
       .catch((err)=>console.log(err))
+
   },[])
   console.log(cursos)
   return (
