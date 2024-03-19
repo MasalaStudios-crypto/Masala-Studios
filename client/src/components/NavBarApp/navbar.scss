@@ -33,7 +33,7 @@
 }
 
 .nav-alinear2 {
-  padding-right: 38px !important;
+  padding-right: 38px;
 }
 
 .navbar-avatar{
@@ -73,15 +73,102 @@
   border: 0;
 }
 
+/* tamaño hamburguesa */
 .dropdown-toggle {
   width: 40px;
   height: 40px;
-  
 }
 
 /* ocultar flechita dropdown */
 .show.nav-link::after,
 ::after {
   display: none !important;
+}
+
+/* menú móvil */
+.navbar-avatar-movil {
+  display: none;
+}
+
+/* botonera login movil */
+.botonera-movil-1 {
+  display: none;
+}
+
+/* media */
+@media screen and (max-width: 991px) {
+  /* container fluid */
+  .fluid-nav {
+    position: relative;
+  }
+  /* menú desplegable */
+  .d-flex.flex-wrap {
+    background-color: $color-5;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-right: 35px !important;
+    position: absolute !important;
+    top: 100% !important;
+    padding-left: 50px;
+    padding-bottom: 25px;
+    padding-top: 40px;
+    left: 0 !important;
+  }
+
+  /* mostrar menú móvil */
+  .navbar-avatar-movil {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50px;
+  }
+
+  /* dropdown */
+  .dropdown-menu.show {
+    transform: translate(135px, -20%) !important;
+    border: 1px solid #000;
+  }
+
+  /* tamaño hamburguesa */
+  button.navbar-toggler {
+    width: 56px !important;
+    height: 40px !important;
+  }
+
+  /* hamburguesa */
+  .navbar-toggler {
+    order: 2; /* Asegura que la hamburguesa se coloque al final */
+    margin-left: auto; /* Evita que la hamburguesa se desplace a la izquierda */
+    height: auto; 
+  }
+
+  /* menú escritorio */
+  .desktop-menu {
+    display: none !important;
+  }
+
+  /* logo */
+  .fixed-top {
+    flex-wrap: nowrap !important;
+  }
+  
+  .fluid-nav {
+    align-items: flex-start !important;
+  }
+
+  /* botonera login movil */
+  .botonera-movil-1 {
+    display: block;
+  }
 
 }
+
+
+@media screen and (max-width: 591px) {
+  /* ocultar texto */
+  .masala-text, .head-text {
+    display: none;
+  } 
+}
+

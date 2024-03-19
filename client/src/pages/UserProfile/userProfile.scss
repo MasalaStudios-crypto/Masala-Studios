@@ -25,23 +25,31 @@
 
 /* profile card */
 .use-profile-ppal {
-  min-height: 90%;
+  height: 90%;
   margin: 40px;
   border-radius: 20px;
   border: 1px solid #000;
   box-shadow: 0 0 15px black;
-  padding: 20px;
+  padding: 40px;
   background-color: $color-2;
+
+  .botones-prof {
+    margin-top: 20px;
+  }
+
+  .botones-prof Button {
+    display: none;
+  }
 }
 
 .profile-img-cont {
 
   .profile-img {
-    width: 14rem;
-    height: 14rem;
+    width: 12.5rem;
+    height: 12.5rem;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   .profile-edit,
@@ -54,7 +62,7 @@
 
 /* course card */
 .course-ppal {
-  min-height: 90%;
+  height: 90%;
   margin: 40px;
   border-radius: 20px;
   border: 1px solid #000;
@@ -70,24 +78,38 @@
 }
 
 /* media */
-//@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
+ .md-custom {
+  width: 50% !important;
+ }
+}
+
+@media screen and (max-width: 850px) {
+  /* profile card */
+  .use-profile-ppal {
+    .botones-prof button {
+      display: block;
+    }
+  }
+
+  .iconos-prof img {
+    display: none;
+  }
+
   /* text */
-//  .profile-text {
-//    font-size: 1.2rem;
-//  }
+  .profile-text {
+    font-size: 1.2rem;
+  }
 
-//  .profile-gold-text {
-//    font-size: 1.2rem;
-//  }
+  .profile-gold-text {
+    font-size: 1.2rem;
+  }
 
-  /* course card */
-//  .course-ppal {
-//    margin: 40px 10px 10px 10px;
-//  }
-//}
-//@media screen and (max-width: 768px) {
-  /* profile */
-//  .profile-section {
-//    height: 100vh;
-//  }
-//}
+}
+
+@media screen and (max-width: 700px){
+  .md-custom {
+    width: 100% !important;
+   }
+  
+}

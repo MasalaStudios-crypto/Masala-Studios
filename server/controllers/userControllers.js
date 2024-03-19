@@ -292,9 +292,7 @@ class UserControllers{
     const email=req.body.elem
     const password=req.body.newPass
 
-
     sendMyMail(`${email}`, `Tu contraseña nueva es: ${password}`, "Cambio de contraseña");
-
 
     let saltRounds=8;
     bcrypt.genSalt(saltRounds, function(err, salt) {

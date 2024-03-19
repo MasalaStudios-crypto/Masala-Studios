@@ -27,7 +27,7 @@ export const AllCoursesOneUserCreate = () => {
   const [courseId, setCourseId] = useState();
   const [coursesArray, setCoursesArray] = useState([]);
   const isLargeScreen = useMediaQuery({ minWidth: 1500 });
-  const isMediumScreen = useMediaQuery({ minWidth: 1150 });
+  const isMediumScreen = useMediaQuery({ minWidth: 1300 });
 
   const updateCoursesArray = async () => {
     if (user) {
