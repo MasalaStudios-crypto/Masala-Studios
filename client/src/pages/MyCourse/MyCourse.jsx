@@ -126,26 +126,29 @@ export const MyCourse = () => {
         {/* Columna derecha */}
         <Col md={2} className='course-col'>
           <div className='listado-temario'>
-            <div className='d-flex justify-content-between'>
-              <div className='d-flex flex-column'>                 
-                <h5>Temario del curso</h5>
-              </div>
+            <div className='d-flex flex-column justify-content-end'>
+              
                 {user?.user_id === courseDetails?.creator_user_id
                   ?
-                  <div>
+                  <div className='d-flex flex-raw gap-2 align-items-end'style={{ justifyContent: 'flex-end' }}>
                     <img src="/icons/437886-200.png" alt="editar" className='course-edit' onClick={showModal} />
                     <img src="/icons/subject.svg" alt="temario" className='course-edit' onClick={navigateToSubjects} />
                   </div>
                   :
-                  <div className='d-flex flex-column'>
-                    <Button onClick={contact}>Contacto Profesor</Button>
+
+                  <div className='d-flex flex-column gap-1 align-items-center'>
+                    <Button onClick={contact}>Contacto</Button>
                     <form id="formulario" encType="multipart/form-data">
-                      <input hidden type="file" id="file" name="file" accept=".pdf"/>
-                      <label htmlFor="file"><b>Pulsa aqui para introducir examen</b></label>
-                      <Button className='d-flex m-1' type="button" onClick={()=>subirArchivo()}>Subir examen</Button>
+                      <input  hidden type="file" id="file" name="file" accept=".pdf"/>
+                      <label htmlFor="file"><img className='course-edit' src="/icons/upload.jpg" alt="Seleccionar archivo" /></label>
+                      <button className='botonExamen' type="button" onClick={()=>subirArchivo()}>Subir examen</button>
+
                     </form>
                   </div>
                 }
+                <div>                 
+                <h4><b>Temario del curso</b></h4>
+              </div>
             </div>
              {/* Mapeo de subject ordenado por tema */}
              {subjectDetails
@@ -153,12 +156,12 @@ export const MyCourse = () => {
               .sort((a, b) => extractNumberFromName(a.name) - extractNumberFromName(b.name))
               .map((subject) => (
                 <div key={subject.subject_id}>
-                  <p>{subject.name}</p>
+                  <h5><b>{subject.name}</b></h5>
                   {/* Mapeo de recursos debajo de cada tema */}
                   {resourcetDetails?.map((resource) => (
                     // Relación entre subject y resource
                     resource.subject_id === subject.subject_id && (
-                      <div key={resource.resource_id}>
+                      <div key={resource.resource_id} className='d-flex'>
                         <p>Recurso:</p>
                         <Button onClick={() => handleResourceClick(resource.path)}>
                           Ver recurso

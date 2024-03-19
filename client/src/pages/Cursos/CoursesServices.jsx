@@ -15,7 +15,7 @@ export const CoursesServices = () => {
     setNameCourse(elem)
   }
 
-  useEffect(()=>{ 
+  useEffect(()=>{
       axios
       .get("http://localhost:3000/course/allCoursesService")
       .then((res)=>{
@@ -62,7 +62,8 @@ export const CoursesServices = () => {
       <ModalBasico
         title="Contacto"
         handleClose={showModal}
-        show={show}>
+        show={show}
+        size="sm">
         <FormularioContacto
           nameCourse={nameCourse}
           handleClose={showModal}/>

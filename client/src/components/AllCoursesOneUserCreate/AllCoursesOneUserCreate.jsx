@@ -84,7 +84,7 @@ export const AllCoursesOneUserCreate = () => {
       ) : (
         <div>No has creado ningún curso.</div>
       )}
-      <ModalBasico show={show} handleClose={showModal} title="Alumnos del curso">
+      <ModalBasico show={show} handleClose={showModal} size="lg" title="Alumnos del curso">
         {courseId && (
           <AllStudentITeach
             handleClose={showModal}

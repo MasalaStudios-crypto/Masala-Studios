@@ -5,7 +5,7 @@ import './adminUser.scss'
 export const AdminUsers = () => {
   
   return (
-    <div>
+    <div className='ppal-user'>
 
       <h1>Administrar usuarios</h1>
 

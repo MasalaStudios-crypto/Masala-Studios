@@ -66,7 +66,9 @@ class UserControllers{
 
           const confirmationLink = `http://localhost:5173/verifyUser/${token2}`;
 
-          sendMyMail('sergiowani@gmail.com',
+
+          sendMyMail('santysmp24@gmail.com',
+
 
               `<div>
               <p>
@@ -290,9 +292,7 @@ class UserControllers{
     const email=req.body.elem
     const password=req.body.newPass
 
-
-    sendMyMail(`${email}`, `Tu comtraeña nueva es: ${password}`, "Cambio contraseña");
-
+    sendMyMail(`${email}`, `Tu contraseña nueva es: ${password}`, "Cambio de contraseña");
 
     let saltRounds=8;
     bcrypt.genSalt(saltRounds, function(err, salt) {
