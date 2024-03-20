@@ -32,7 +32,7 @@ export const FormularioContacto = ({handleClose, elem, nameCourse}) => {
   }
 
   return (
-    <Form>
+    <Form className='form-contacto'>
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Nombre</Form.Label>
         <Form.Control 

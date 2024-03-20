@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { isAlphaNumericWithSpaces, validateEmail } from '../../utils/validation'
-
+import './formRegister.scss'
 const initialValue = {
   name:"",
   email:"",
@@ -11,7 +11,7 @@ const initialValue = {
   password2:""
 }
 
-export const FormularioRegister = ({handleClose}) => {
+export const FormularioRegister = ({handleClose, handleClose2}) => {
 
   const [register, setRegister]=useState(initialValue)
   const [errorMessage, setErrorMessage]=useState()
@@ -22,14 +22,19 @@ export const FormularioRegister = ({handleClose}) => {
     setRegister({...register, [name]:value})
   }
 
+  const close=()=>{
+    handleClose();
+    handleClose2();
+  }
+
   const onSubmit =()=>{
     if(!register.name || !register.email || !register.password){
       setErrorMessage("Debes rellenar todos los campos")
 
     }else if (!validateEmail(register.email)) {
-      setMessage('Debe incluir el carácter "@" en su correo electrónico.');
+      setErrorMessage('Debe incluir el carácter "@" en su correo electrónico.');
     } 
-    else if (register.password.length < 2){
+    else if (register.password.length < 8){
       setErrorMessage("La contraseña minima debe contener mas de 8 caracteres")
     }
     else if(register.password!=register.password2){
@@ -41,10 +46,13 @@ export const FormularioRegister = ({handleClose}) => {
       .then((res)=>{
         console.log(res)
         handleClose();
+        handleClose2();
         navigate(`/confirmation`)
       })
       .catch((err)=>{
         console.log(err)
+        console.log(err.errno)
+        console.log(err.message)
         if(err.response.data.errno===1062){
           setErrorMessage("Email duplicado")
         }
@@ -54,7 +62,7 @@ export const FormularioRegister = ({handleClose}) => {
   }
   
   return (
-    <Form>
+    <Form className='form-register'>
 
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Nombre</Form.Label>
@@ -101,7 +109,7 @@ export const FormularioRegister = ({handleClose}) => {
 
       <div>
       <Button onClick={onSubmit} className='ms-1 me-1' variant="primary">Aceptar</Button>
-      <Button onClick={handleClose} className='ms-1 me-1' variant="primary">Cancelar</Button>
+      <Button onClick={close} className='ms-1 me-1' variant="primary">Cancelar</Button>
       </div>
       
     </Form>

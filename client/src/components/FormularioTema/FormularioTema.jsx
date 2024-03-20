@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { isAlphaNumericWithSpaces } from '../../utils/validation'
+import './formTema.scss'
 
 const intialValue={
   name:"",
@@ -40,14 +41,14 @@ export const FormularioTema = ({handleClose, course_id}) => {
   }
 
   return (
-    <Form>
+    <Form className='form-tema'>
 
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Nombre del tema</Form.Label>
         <Form.Control 
         name="name"
         value={subject.name}
-        onKeyPress={isAlphaNumericWithSpaces}
+        // onKeyPress={isAlphaNumericWithSpaces}
         onChange={handleChange}
         type="text" 
         placeholder="Introduce el nombre del tema" />

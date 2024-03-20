@@ -19,7 +19,7 @@ import { FormularioRegister } from '../../../components/FormularioRegister/Formu
 import { ListaCursosCreados } from './ListaCursosCreados';
 import { ListaCursosApuntados } from './ListaCursosApuntados';
 import './tableUser.scss'
-
+import { invertirFecha } from '../../../utils/reverseDate';
 
 export const TableUser = () => {
 
@@ -92,21 +92,21 @@ export const TableUser = () => {
     <Table sx={{ minWidth: 650 }} aria-label="simple table" >
       <TableHead>
         <TableRow className="tableHead">
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Nombre</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Apellidos</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Fecha Nacimiento</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>DNI</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Telefono</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Direccion</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Codigo Postal</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Ciudad</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Provincia</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Email</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Tipo</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Estado</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Habilitado</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Cursos creados</b></TableCell>
-          <TableCell align="center"><b style={{ fontSize: '1.1rem' }}>Cursos apuntados</b></TableCell>
+          <TableCell align="center"><b>Nombre</b></TableCell>
+          <TableCell align="center"><b >Apellidos</b></TableCell>
+          <TableCell align="center"><b >Fecha Nacimiento</b></TableCell>
+          <TableCell align="center"><b >DNI</b></TableCell>
+          <TableCell align="center"><b >Telefono</b></TableCell>
+          <TableCell align="center"><b >Direccion</b></TableCell>
+          <TableCell align="center"><b >Codigo Postal</b></TableCell>
+          <TableCell align="center"><b >Ciudad</b></TableCell>
+          <TableCell align="center"><b >Provincia</b></TableCell>
+          <TableCell align="center"><b >Email</b></TableCell>
+          <TableCell align="center"><b >Tipo</b></TableCell>
+          <TableCell align="center"><b >Estado</b></TableCell>
+          <TableCell align="center"><b >Habilitado</b></TableCell>
+          <TableCell align="center"><b >Cursos creados</b></TableCell>
+          <TableCell align="center"><b>Cursos apuntados</b></TableCell>
 
         </TableRow>
 
@@ -121,7 +121,7 @@ export const TableUser = () => {
               {elem.name} 
             </TableCell>
             <TableCell align="center">{elem.lastname}</TableCell>
-            <TableCell align="center">{elem.birth_date}</TableCell>
+            <TableCell align="center">{invertirFecha(elem.birth_date)}</TableCell>
             <TableCell align="center">{elem.dni}</TableCell>
             <TableCell align="center">{elem.phone}</TableCell>
             <TableCell align="center">{elem.address}</TableCell>

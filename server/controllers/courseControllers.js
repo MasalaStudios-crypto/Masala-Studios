@@ -8,7 +8,7 @@ class courseControllers{
   allCourses = (req, res) =>{
 
 
-    let sql = `SELECT c.*, CONCAT(u.name, ' ', u.lastname) AS profesor FROM course c JOIN user u ON c.creator_user_id = u.user_id GROUP BY c.course_id;`
+    let sql = `SELECT c.*, CONCAT_WS(' ',u.name, u.lastname) AS profesor FROM course c JOIN user u ON c.creator_user_id = u.user_id GROUP BY c.course_id;`
     
     connection.query(sql, (err, result)=>{
           console.log(result);

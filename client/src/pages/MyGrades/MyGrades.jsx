@@ -26,31 +26,30 @@ export const MyGrades = () => {
   //console.log(myGrades);
 
   return (
-    <Row>
-      <Col className='col-myGrades'>
-        <section className='myGrades-ppal'>
-          <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center" className='text-grade' sx={{width: '33%'}}>Nombre del curso</TableCell>
-                  <TableCell align="center" className='text-grade' sx={{width: '33%'}}>Duracion</    TableCell>
-                  <TableCell align="center" className='text-grade' sx={{width: '33%'}}>Estado</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-              {myGrades.map((grade) => (
-                <TableRow key={grade.course_id}>
-                  <TableCell align="center">{grade.name}</    TableCell>
-                  <TableCell align="center">{grade.duration}h</   TableCell>
-                  <TableCell align="center">{grade.status ===     1 ? 'En curso' : grade.status === 2 ?     'Aprobado' : 'Suspenso'}</TableCell>
-                </TableRow>
-              ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </section>
-      </Col>
-    </Row>
+    <div className='myGrades-ppal'>
+        <div  style={{ maxWidth: '100%', overflowX: 'auto' }}>
+          <h1>Calificaciones</h1>
+              <TableContainer component={Paper}>
+                <Table aria-label="simple table" sx={{ minWidth: 250 }}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center" className='text-grade' ><b>Nombre del curso</b></TableCell>
+                      <TableCell align="center" className='text-grade' ><b>Duracion</b></    TableCell>
+                      <TableCell align="center" className='text-grade' ><b>Estado</b></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                  {myGrades.map((grade) => (
+                    <TableRow key={grade.course_id}>
+                      <TableCell className='text-mid' sx={{width:'33%'}} align="center">{grade.name}</    TableCell>
+                      <TableCell className='text-mid' sx={{width:'33%'}} align="center">{grade.duration}h</   TableCell>
+                      <TableCell className='text-mid' sx={{width:'33%'}} align="center">{grade.status ===     1 ? 'En curso' : grade.status === 2 ?     'Aprobado' : 'Suspenso'}</TableCell>
+                    </TableRow>
+                  ))}
+                  </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
+    </div>
   )
 }

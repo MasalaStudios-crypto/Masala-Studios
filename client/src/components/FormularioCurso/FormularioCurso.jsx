@@ -84,7 +84,7 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
   return (
 
 
-    <Form>
+    <Form className='form-course'>
 
     <Form.Group className="mb-3" controlId="formBasicName">
       <Form.Label>Nombre del Curso</Form.Label>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { isAlphaNumericWithSpaces, isNumber, isValidFloat } from '../../utils/validation';
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
+import './formEditCourse.scss'
 
 const initalValue={
   name: "",
@@ -117,7 +118,7 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
   return (
     <Row className='d-flex justify-content-center align-items-center'>
       <Col>
-        <Form>
+        <Form className='form-edit-course'>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Nombre del Curso</Form.Label>
             <Form.Control 
