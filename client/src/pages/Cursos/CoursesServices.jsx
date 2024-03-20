@@ -24,7 +24,7 @@ export const CoursesServices = () => {
       .catch((err)=>console.log(err))
 
   },[])
-  console.log(cursos)
+
   return (
     <>
 

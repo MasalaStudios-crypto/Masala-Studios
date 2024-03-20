@@ -67,7 +67,9 @@ class UserControllers{
           const confirmationLink = `http://localhost:5173/verifyUser/${token2}`;
 
 
+
           sendMyMail('balcaza4@gmail.com',
+
 
 
               `<div>

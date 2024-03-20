@@ -32,7 +32,9 @@ export const FormularioRegister = ({handleClose, handleClose2}) => {
       setErrorMessage("Debes rellenar todos los campos")
 
     }else if (!validateEmail(register.email)) {
-      setErrorMessage('Debe incluir el carácter "@" en su correo electrónico.');
+
+      setErrorMessage('Debe introducir un correo electrónico válido');
+
     } 
     else if (register.password.length < 8){
       setErrorMessage("La contraseña minima debe contener mas de 8 caracteres")
@@ -80,6 +82,7 @@ export const FormularioRegister = ({handleClose, handleClose2}) => {
         <Form.Control 
         name="email"
         value={register.email}
+        onKeyPress={validateEmail}
         onChange={handleChange}
         type="text" 
         placeholder="Introduce tu Email" />

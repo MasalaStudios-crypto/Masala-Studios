@@ -30,12 +30,12 @@ export const Who = () => {
             </div>
           </section>
           <div className={`navigation-arrows ${currentSection === 0 ? 'first-section' : ''}`}>
-            <button onClick={handlePrevClick} className={`left-arrow ${currentSection === 0 ? 'hidden' : ''}`}>
+            <div onClick={handlePrevClick} className={`left-arrow ${currentSection === 0 ? 'hidden' : ''}`}>
               <img src="/icons/arrow.svg" alt="flecha" className='arrow2' />
-            </button>
-            <button onClick={handleNextClick} className={`right-arrow ${currentSection === totalSections - 1 ? 'hidden' : ''}`}>
+            </div>
+            <div onClick={handleNextClick} className={`right-arrow ${currentSection === totalSections - 1 ? 'hidden' : ''}`}>
               <img src="/icons/arrow.svg" alt="flecha" className='arrow' />
-            </button>
+            </div>
           </div>
         </div>
       </Col>

@@ -19,7 +19,9 @@ import { FormularioRegister } from '../../../components/FormularioRegister/Formu
 import { ListaCursosCreados } from './ListaCursosCreados';
 import { ListaCursosApuntados } from './ListaCursosApuntados';
 import './tableUser.scss'
+
 import { invertirFecha } from '../../../utils/reverseDate';
+
 
 export const TableUser = () => {
 

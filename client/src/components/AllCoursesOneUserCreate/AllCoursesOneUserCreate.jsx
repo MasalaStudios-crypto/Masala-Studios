@@ -9,7 +9,7 @@ import { useMediaQuery } from 'react-responsive';
 import './allCoursesOneUserCreate.scss';
 import Card from 'react-bootstrap/Card';
 
-const Slide = ({ imagePath, title, onClick, aref }) => (
+const Slide = ({ imagePath, title, onClick, aref, caption, caption2, caption3 }) => (
   <Card className='slide-container'>
       <Card.Img variant="top" src={imagePath} alt="foto curso" />
       <Card.Body className="caption-container">
@@ -17,6 +17,9 @@ const Slide = ({ imagePath, title, onClick, aref }) => (
 	      <Link onClick={onClick}>Ver alumnos</Link>
         <br />
         <Link to={aref}>Abrir curso</Link>
+        <Card.Text className='text-carousel'>
+        {caption}{caption2}{caption3}
+       </Card.Text>
       </Card.Body>
     </Card>
 );
@@ -75,6 +78,9 @@ export const AllCoursesOneUserCreate = () => {
                     setCourseId(course.course_id);
                   }}
                   aref={`/mycourse/${course.course_id}`}
+                  caption={course.is_deleted === 1 ? "❌" : ""}
+                  caption2={course.is_disabled === 1 ? "⛔" : ""}
+                  caption3={course.is_visible === 0 ? "👁‍🗨" : ""}
                 />
               ))}
               </div>

@@ -9,6 +9,7 @@ import { FormularioTema } from '../../../components/FormularioTema/FormularioTem
 import './tableSubject.scss'
 import { extractNumberFromName } from '../../../utils/orderBy'
 import { invertirFecha } from '../../../utils/reverseDate'
+
 export const TableSubject = () => {
 
   const [subjects, setSubjects]=useState([])

@@ -5,6 +5,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useNavigate } from 'react-router-dom'
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { invertirFecha } from '../../../utils/reverseDate'
+
 export const TableCourse = () => {
 
   const [courses, setCourses]=useState()
@@ -88,8 +89,10 @@ console.log(courses)
               <TableCell align="center" component="th" scope="row">
                 {elem.name}
               </TableCell>
+
               <TableCell align="center">{elem.duration}h</TableCell>
               <TableCell align="center">{elem.price}€</TableCell>
+
               <TableCell align="center">{invertirFecha(elem.register_date)}</TableCell>
               <TableCell align="center">{elem.profesor}</TableCell>
               <TableCell align="center">{elem.description}</TableCell>

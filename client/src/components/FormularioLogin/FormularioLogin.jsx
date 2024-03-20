@@ -38,7 +38,7 @@ export const FormularioLogin = ({handleClose2}) => {
     if(!login.email || !login.password){
       setMessage("Debes rellenar todos los campos")
     }else if (!validateEmail(login.email)) {
-      setMessage('Debe incluir el carácter "@" en su correo electrónico.');
+      setMessage('Debe introducir un correo electrónico válido');
 
     }else if (login.is_disabled === 1) {
       setMessage('Debes de confirmar tu email antes de entrar'); //no va a llegar en la vida a esto
@@ -104,6 +104,7 @@ export const FormularioLogin = ({handleClose2}) => {
         name="email"
         type="email"
         value={login.email}
+        onKeyPress={validateEmail}
         onChange={handleChange}
         placeholder="Introduce tu Email"
         required

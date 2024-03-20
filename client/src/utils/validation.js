@@ -5,7 +5,7 @@ export const isLetterWithSpace = (event) => {
   const char = String.fromCharCode(charCode);
 
   // Utiliza una expresión regular para permitir letras y espacios
-  if (/^[A-Za-z\s]+$/.test(char)) {
+  if (/^[A-Za-zÁáÉéÍíÓóÚúÜü\s]+$/.test(char)) {
     return true;
   } else {
     event.preventDefault();
@@ -60,17 +60,21 @@ export const isAlphaNumericWithSpaces = (event) => {
 // teléfono, admite +, números, espacios y máximo 30 caracteres 
 
 export const isValidPhoneNumber = (event) => {
-  const charCode = event.which ? event.which : event.keyCode;
-  const inputValue = String.fromCharCode(charCode);
+  const char = event.key;
+  const inputValue = event.target.value;
 
-  // Utiliza una expresión regular para permitir números, '+', espacios y limitar a 30 caracteres
-  if (/^[0-9+\s]*$/.test(inputValue) && event.target.value.length < 30) {
+  // Verifica si ya hay un signo + presente
+  const plusSignExists = inputValue.includes('+');
+
+  // Si el carácter es un dígito, un espacio o el signo más y la longitud es menor que 30, o si es el primer carácter y es un signo más, permite la entrada
+  if ((/^\d$/.test(char) || char === ' ' || (char === '+' && !plusSignExists && inputValue.length === 0)) && inputValue.length < 30) {
     return true;
   } else {
     event.preventDefault();
     return false;
   }
 };
+
 
 // Para enviar los formularios pulsando Enter
 
@@ -83,5 +87,8 @@ export const onEnter = (e) =>{
 //  Para que sea obligatorio el @ en el email
 
 export function validateEmail(value) {
-  return value.includes('@');
+  // Expresión regular para validar un correo electrónico
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(value);
 }
+
