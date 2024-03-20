@@ -105,7 +105,8 @@ export const UserProfile = () => {
         
         {/* curso */}
         <Col md={6} lg={8} className='sd-custom md-custom profile-col'>
-          <div className='d-flex flex-column align-items-center justify-content-center gap-5 course-ppal'>
+          {user.type===2?
+          <div className='d-flex flex-column align-items-center justify-content-center gap-5 course-ppal'>           
             <div className='div-carousel'>
               <h3>Mis cursos</h3>
               <AllCoursesOneUserEnroll />
@@ -113,8 +114,17 @@ export const UserProfile = () => {
             <div className='div-carousel'>
               <h3>Mis cursos creados</h3>
               <AllCoursesOneUserCreate />
-            </div>
+            </div>           
           </div>
+          :
+          <div className='d-flex flex-column align-items-center justify-content-center gap-5 course-ppal'>           
+
+            <div className='div-carousel'>
+              <h3>Mis cursos creados</h3>
+              <AllCoursesOneUserCreate />
+            </div>           
+          </div>
+          }
         </Col>
       </Row>
     </section> 

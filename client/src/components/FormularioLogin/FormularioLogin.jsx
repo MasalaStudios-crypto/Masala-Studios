@@ -8,6 +8,7 @@ import { FormularioRegister } from '../FormularioRegister/FormularioRegister'
 import { ModalBasico } from '../ModalBasico/ModalBasico'
 import { validateEmail } from '../../utils/validation'
 import { genPassword } from '../../utils/GenPassword'
+import'./formLogin.scss'
 
 const initialValue = {
   email:"",
@@ -93,7 +94,7 @@ export const FormularioLogin = ({handleClose2}) => {
   }
 
   return (
-    <Form>
+    <Form className='form-login'>
 
             <Form.Group 
       className="mb-3" 
@@ -120,8 +121,8 @@ export const FormularioLogin = ({handleClose2}) => {
         placeholder="Introduce tu contraseña" />
       </Form.Group>
       
-      <p>Estas registrado? <a onClick={showModal}>Registro aqui</a> </p>
-      <p><a onClick={()=>{changePassword(login.email)}}>Recuperar contraseña</a></p>
+      <p>Estas registrado? <a onClick={showModal} className='registro'>Registro aqui</a> </p>
+      <p><a onClick={()=>{changePassword(login.email)}} className='password'>Recuperar contraseña</a></p>
       <span className='errorMessage'>{message}</span>
 
       <div>
@@ -139,8 +140,9 @@ export const FormularioLogin = ({handleClose2}) => {
         title="Registro"
         show={show}
         handleClose={showModal}
-        size="sm">
+        >
         <FormularioRegister
+        handleClose2={handleClose2}
           handleClose={showModal}/>
       </ModalBasico>
 

@@ -77,7 +77,7 @@ export const NavBarApp= () => {
               <Nav.Link href="#who" onClick={()=>{navigate('/')}} className='masala-text'>QUIENES SOMOS</Nav.Link>
               <Nav.Link href="#servicios" onClick={()=>{navigate('/')}}  className='masala-text'>SERVICIOS</Nav.Link>
               <Nav.Link href="#" className='masala-text'>BLOG</Nav.Link>
-              <Nav.Link href="#footer" onClick={()=>{navigate('/')}} className='masala-text'>CONTACTO</Nav.Link>
+              <Nav.Link href="#footer" onClick={showModal} className='masala-text'>CONTACTO</Nav.Link>
 
               <div className='botonera-movil-1'>
                 {!user ? (
@@ -164,7 +164,7 @@ export const NavBarApp= () => {
               title="Login"
               show={show2}
               handleClose2={showModal2}
-              size="sm">
+              >
                 <FormularioLogin
                 handleClose2={showModal2}/>
               </ModalBasico2>
@@ -186,7 +186,7 @@ export const NavBarApp= () => {
               title="TAG"
               show={show4}
               handleClose={showModal4}
-              size="sm">
+              >
                 <FormularioTag
                 handleClose={showModal4}/>
               </ModalBasico>

@@ -27,7 +27,7 @@ export const TableCourse = () => {
         })
     }
   },[reset, token])
-
+console.log(courses)
   const onDeleted=(id, state)=>{
     let url="http://localhost:3000/course/activate"
     if(!state){
@@ -89,8 +89,10 @@ export const TableCourse = () => {
               <TableCell align="center" component="th" scope="row">
                 {elem.name}
               </TableCell>
-              <TableCell align="center">{elem.duration}</TableCell>
-              <TableCell align="center">{elem.price}</TableCell>
+
+              <TableCell align="center">{elem.duration}h</TableCell>
+              <TableCell align="center">{elem.price}€</TableCell>
+
               <TableCell align="center">{invertirFecha(elem.register_date)}</TableCell>
               <TableCell align="center">{elem.profesor}</TableCell>
               <TableCell align="center">{elem.description}</TableCell>

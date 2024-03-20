@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import './formTag.scss'
 
 export const FormularioTag = ({handleClose}) => {
 
@@ -31,7 +32,7 @@ export const FormularioTag = ({handleClose}) => {
   }
   
   return (
-    <Form>
+    <Form className='form-tag'>
 
     <Form.Group className="mb-3" controlId="formBasicName">
       <Form.Label>Nombre del TAG</Form.Label>

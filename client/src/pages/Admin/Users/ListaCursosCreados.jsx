@@ -20,7 +20,7 @@ useEffect(()=>{
 },[token])
 
   return (
-    <div>
+    <div className='text-center'>
       {coursesCreated?.map((elem, index)=>(
         <h5 key={index}>{elem.name}</h5>
       ))}
