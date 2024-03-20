@@ -229,7 +229,7 @@ class courseControllers{
   getSubjects =(req,res)=>{
     const { course_id } = req.params;
    
-    let sql=`SELECT c.name as course_name , s.*, u.name as profesor_name
+    let sql=`SELECT c.name as course_name , s.*, CONCAT_WS(' ', u.name, u.lastname )as profesor_name
     FROM subject s, course c, user u
       WHERE c.creator_user_id = u.user_id AND s.course_id = c.course_id AND s.course_id=${course_id};`
     
