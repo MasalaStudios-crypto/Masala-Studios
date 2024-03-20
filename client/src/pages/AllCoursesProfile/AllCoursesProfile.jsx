@@ -116,7 +116,7 @@ export const AllCoursesProfile = () => {
               searchResults.map((elem) => (
             
 
-                  <CardCourses key={elem.course_id} elem={elem} />
+                  <CardCourses key={elem.course_id} elem={elem}/>
 
            
               ))
