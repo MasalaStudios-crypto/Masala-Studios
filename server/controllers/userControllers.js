@@ -5,36 +5,6 @@ require('dotenv').config()
 const sendMyMail = require('../public/javascripts/nodemailer')
 
 class UserControllers{
-  // Generar un token
-  // Enviar el correo al user, mandandole el link que tiene la ruta de verificaion, y con parametro dinamico el token
-  // Controlador de verificacion de cuenta donde recoges el token de params, ves si 
-  
-/*    register = (req, res)=>{
-     const {name, email, password}= req.body
-     // guardar los datos en la BD (pass encriptada)
-     let saltRounds=8;
-     bcrypt.genSalt(saltRounds, function(err, salt) {
-       bcrypt.hash(password, salt, function(err, hash) {
-           // Store hash in your password DB.
-           if(err){
-             res.status(500).json(err)
-           }
-           let sql=`INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`
-
-           connection.query(sql, (error, result)=>{
-
-             if(error){
-
-               res.status (500).json(error)
-             }else{ 
-            
-               res.status(200).json(result);
-             }
-           })
-       });
-   });
-
-   } */
   
   register = (req, res) => {
     const { name, email, password } = req.body;
@@ -88,7 +58,7 @@ class UserControllers{
               return res.status(500).json({ err: "Error al enviar el correo electrónico de confirmación" });
           });
         });
-    });
+      });
     });
   }
 
@@ -132,11 +102,11 @@ class UserControllers{
   }
 
   confirmUser = (req, res) =>{
-    console.log(req.user);
+    // console.log(req.user);
     const user_id = req.user;
 
     let sql = `UPDATE user SET is_disabled = 0 WHERE user_id = ${user_id}`
-    console.log(user_id)
+    // console.log(user_id)
 
     connection.query(sql, (err, result) => {
       if(err){
@@ -331,7 +301,7 @@ class UserControllers{
 
   upExam=(req,res)=>{
     const{user_id, course_id}=req.params
-    console.log(req.file.filename)
+    // console.log(req.file.filename)
     let sql=`UPDATE register SET exam_path = "${req.file.filename}" WHERE user_id=${user_id} and course_id=${course_id}`
     connection.query(sql, (err, result)=>{
       err?res.status(500).json(err):res.status(200).json(result)

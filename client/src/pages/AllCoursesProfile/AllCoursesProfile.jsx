@@ -5,6 +5,7 @@ import axios from 'axios';
 import { MasalaContext } from '../../Context/MasalaProvider';
 import { useParams } from 'react-router-dom';
 import { isLetterWithSpace } from '../../utils/validation';
+import { Col, Row } from 'react-bootstrap';
 
 export const AllCoursesProfile = () => {
 
@@ -73,11 +74,13 @@ export const AllCoursesProfile = () => {
   };
 
 
-   return (
-    <div  className='allCoursesProfile-ppal'>
-      {user?.user_id == user_id ? (
-        <>
-            <div className='search-ppal'> 
+
+  return (
+    <div className='allCoursesProfile-ppal'>
+      <Row>
+        {user?.user_id == user_id ? (
+          <Col md={12}>
+            <div className='search-ppal'>
               {/* Campo de entrada de texto para búsqueda */}
                <input 
                 type="text" 
@@ -97,37 +100,39 @@ export const AllCoursesProfile = () => {
               {/* Botón para realizar la búsqueda */}
               <button onClick={searchCourses}>Buscar</button> 
               {/* Botón para reiniciar la búsqueda */}
-               <button onClick={reload}>Reiniciar</button>
-            </div> 
+              <button onClick={reload}>Reiniciar</button>
+            </div>
+            <Row className='allCoursesProfile-Row'>
             {/* Mostrar si no hay resultados */}
              {searchText !== '' && searchResults.length === 0 && (
               <div>No hay resultados</div>
+
             )} 
+
             {/* Mostrar resultados de la búsqueda o todos los cursos */}
             {searchText === '' && searchResults.length === 0 ? (
-              
               allCourses.map((elem) => (
                 
-         
                 <CardCourses key={elem.course_id} elem={elem} />
-    
-              ))
-            ) : (
+                ))
+                )          
+            : (
               searchResults.map((elem) => (
-            
-
-                  <CardCourses key={elem.course_id} elem={elem}/>
-
-           
-              ))
-            )}
-        </>
-      ) : (
-        <>
-          <h1>Acceso Denegado</h1>
-          <h3>Compruebe que la dirección es correcta</h3>
-        </>
-      )}
+                
+                <CardCourses key={elem.course_id} elem={elem}/>
+                ))
+                )}
+          </Row>
+          </Col>
+        ) : (
+          <Col md={12}>
+            <h1>Acceso Denegado</h1>
+            <h3>Compruebe que la dirección es correcta</h3>
+          </Col>
+        )}
+      </Row> 
     </div>
   );
-};
+  
+  };
+  

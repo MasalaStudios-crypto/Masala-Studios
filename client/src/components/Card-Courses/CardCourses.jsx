@@ -12,7 +12,7 @@ export const CardCourses = ({elem}) => {
   const showModal =()=>{
     setShow(!show)
   }
-  console.log(elem)
+  // console.log(elem)
   return (
     
  

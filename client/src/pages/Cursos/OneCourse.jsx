@@ -29,14 +29,14 @@ export const OneCourse = () => {
     axios
     .get(`http://localhost:3000/course/oneCourse/${course_id}`)
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       setCourse(res.data)
     })
     .catch(err=>console.log(err))
   }, [course_id])
 
-  console.log(imagenes);
-  console.log(course);
+  // console.log(imagenes);
+  // console.log(course);
 
   return (
     <>

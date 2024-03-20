@@ -27,7 +27,7 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
     const {course_id} = courseDetails
     axios.get(`http://localhost:3000/course/tagsEdit/${course_id}`)
         .then((res) => {
-          console.log("aqui",res.data);
+          // console.log("aqui",res.data);
           setTags(res.data)
         })
         .catch(error => {
@@ -35,7 +35,7 @@ export const FormEditCourse = ({courseDetails, handleClose }) => {
         });
   }, [options]);
 
-  console.log(tags);
+  // console.log(tags);
 
   useEffect(() => {
     if(courseDetails){

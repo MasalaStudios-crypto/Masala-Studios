@@ -93,7 +93,7 @@ export const MyCourse = () => {
     if (confirmacion) {
         axios.put(`http://localhost:3000/users/upExam/${user.user_id}/${course_id}`, formData)
         .then(response => {
-            console.log('Archivo subido exitosamente', response);
+            // console.log('Archivo subido exitosamente', response);
             alert('Archivo subido exitosamente.');
         })
         .catch(error => {
