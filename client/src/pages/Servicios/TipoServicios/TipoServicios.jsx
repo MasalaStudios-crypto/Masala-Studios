@@ -6,37 +6,38 @@ export const TipoServicios = () => {
   return (
     <Col className='tipoServicios-ppal'>
 
-    <Row className='tipoServ-ppal'>
     <Row className='tipoServicios-h2'>
-      <h2  className='tipoServ-h2'>Tipo de Servicios</h2>
+      <h1 style={{padding:"20px", marginTop:"20px"}}>Tipo de Servicios</h1>
       </Row>
+      <Row className='tipoServ-ppal'>
+
       <Row className='section1' id='OC'>
         <h2  className='tipoServicios-h2'> Operador de Cámara </h2>
         <Col>
-        <img src="/images/eventos.jpg" alt="" />
+        <img className='img-fluid tipoServ-img' src="/images/eventos.jpg" alt="" />
         </Col>
         <Col className='col-md-6 tipoServ-p'>
           <Row className='row-6'>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde similique temporibus natus vel nisi aut, in sapiente, corrupti repudiandae reiciendis iusto perferendis amet vitae, repellat eaque nihil quibusdam mollitia et neque. Id quia ea sed fugit iure enim doloremque dolore ullam soluta dolorem nihil error pariatur eius architecto molestias repellendus reprehenderit temporibus culpa, atque tenetur eaque. Asperiores tempora inventore repellendus rerum atque sapiente, minus error autem, illum dolorem eos sit ratione cum corporis ad magnam laborum! Voluptate in suscipit vitae officia exercitationem molestias reiciendis laboriosam quia porro aliquid! Voluptates aperiam suscipit neque architecto magnam optio nemo nobis amet tenetur officiis.</p>
+        <p>Servicio de operador de cámara profesional, livestream  y grabado en todo tipo de eventos en vivo, producciones audiovisuales(cortometrajes, peliculas, conciertos, bandas...) transmisión remota, realización en directo. Manejo y configuración de mochilas LIVE-U y similares</p>
           </Row>
           <Row className='row-cols-md-4 tipoServ-button'>
         <Button>Contactar</Button>
           </Row>
         </Col>
+      </Row>
 
 
       </Row>
-    </Row>
 
     <Row className='tipoServ-ppal'>
       <Row className='section1' id='APE'>
         <h2  className='tipoServicios-h2'> Auxiliar de Producción de Eventos </h2>
         <Col>
-        <img src="/images/eventos.jpg" alt="" />
+        <img  className='tipoServ-img  img-fluid' src="/images/eventos.jpg" alt="" />
         </Col>
-        <Col className='col-md-6 tipoServ-p'>
+        <Col className='col-md-6-col-sm-6 tipoServ-p'>
           <Row className='row-6'>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde similique temporibus natus vel nisi aut, in sapiente, corrupti repudiandae reiciendis iusto perferendis amet vitae, repellat eaque nihil quibusdam mollitia et neque. Id quia ea sed fugit iure enim doloremque dolore ullam soluta dolorem nihil error pariatur eius architecto molestias repellendus reprehenderit temporibus culpa, atque tenetur eaque. Asperiores tempora inventore repellendus rerum atque sapiente, minus error autem, illum dolorem eos sit ratione cum corporis ad magnam laborum! Voluptate in suscipit vitae officia exercitationem molestias reiciendis laboriosam quia porro aliquid! Voluptates aperiam suscipit neque architecto magnam optio nemo nobis amet tenetur officiis.</p>
+        <p>Ofrecemos servicios de asistencia a la producción de eventos y montajes,, transporte y colocación de equipos audiovisuales. Stock, almacén, manejo de máquinas elevadoras autopropulsadas e instalación de equipos audiovisuales. </p>
           </Row>
           <Row className='row-cols-md-4 tipoServ-button'>
         <Button>Contactar</Button>
@@ -50,11 +51,11 @@ export const TipoServicios = () => {
       <Row className='section1' id='EV'>
         <h2  className='tipoServicios-h2'> Editor de Video </h2>
         <Col>
-        <img src="/images/eventos.jpg" alt="" />
+        <img  className='tipoServ-img  img-fluid' src="/images/eventos.jpg" alt="" />
         </Col>
         <Col className='col-md-6 tipoServ-p'>
           <Row className='row-6'>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde similique temporibus natus vel nisi aut, in sapiente, corrupti repudiandae reiciendis iusto perferendis amet vitae, repellat eaque nihil quibusdam mollitia et neque. Id quia ea sed fugit iure enim doloremque dolore ullam soluta dolorem nihil error pariatur eius architecto molestias repellendus reprehenderit temporibus culpa, atque tenetur eaque. Asperiores tempora inventore repellendus rerum atque sapiente, minus error autem, illum dolorem eos sit ratione cum corporis ad magnam laborum! Voluptate in suscipit vitae officia exercitationem molestias reiciendis laboriosam quia porro aliquid! Voluptates aperiam suscipit neque architecto magnam optio nemo nobis amet tenetur officiis.</p>
+        <p>Servicios profesionales de Montaje y Postproducción Audiovisual, manejo de programas de la suite adobe (premiere pro, photoshop, media encoder, affter effects) Da Vinci, etc...</p>
           </Row>
           <Row className='row-cols-md-4 tipoServ-button'>
         <Button>Contactar</Button>
@@ -63,16 +64,17 @@ export const TipoServicios = () => {
 
 
       </Row>
-    </Row>
+      </Row>
+
     <Row className='tipoServ-ppal'>
       <Row className='section1' id='TVE'>
         <h2  className='tipoServicios-h2'> Técnico de Video para Espectáculos  </h2>
         <Col>
-        <img src="/images/eventos.jpg" alt="" />
+        <img  className='tipoServ-img img-fluid' src="/images/eventos.jpg" alt="" />
         </Col>
         <Col className='col-md-6 tipoServ-p'>
           <Row className='row-6'>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde similique temporibus natus vel nisi aut, in sapiente, corrupti repudiandae reiciendis iusto perferendis amet vitae, repellat eaque nihil quibusdam mollitia et neque. Id quia ea sed fugit iure enim doloremque dolore ullam soluta dolorem nihil error pariatur eius architecto molestias repellendus reprehenderit temporibus culpa, atque tenetur eaque. Asperiores tempora inventore repellendus rerum atque sapiente, minus error autem, illum dolorem eos sit ratione cum corporis ad magnam laborum! Voluptate in suscipit vitae officia exercitationem molestias reiciendis laboriosam quia porro aliquid! Voluptates aperiam suscipit neque architecto magnam optio nemo nobis amet tenetur officiis.</p>
+        <p>Tenemos dentro de nuestra carrtera de servicios la sistencia comoTécnico Audiovisual con especialidad de Video de Espectáculos. Vídeo LED, proyectores, montaje y configuración (software novastar, watchout, control de equipos, resolución de incidencias técnicas...)</p>
           </Row>
           <Row className='row-cols-md-4 tipoServ-button'>
         <Button>Contactar</Button>

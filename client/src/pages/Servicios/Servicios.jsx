@@ -21,7 +21,7 @@ export const Servicios = () => {
        
 
         <Card className='serv-card'>
-      <Card.Img variant="top" src="/images/image6.jpg" />
+      <Card.Img className='img-fluid'   variant="top" src=" /images/image6.jpg" />
       <Card.Body>
         <p>Operador de Cámara</p>
         <Button 
@@ -34,6 +34,7 @@ export const Servicios = () => {
     </Card>
         <Card className='serv-card'>
       <Card.Img 
+      className='img-fluid'
       variant="top" 
       src="/images/eventos.jpg" />
       <Card.Body>
@@ -49,7 +50,7 @@ export const Servicios = () => {
       
     </Card>
         <Card className='serv-card'>
-      <Card.Img variant="top" src="/images/image5.jpg" />
+      <Card.Img className='img-fluid' variant="top" src="/images/image5.jpg" />
       <Card.Body>
         <p>Editor de Video</p>
 
@@ -62,7 +63,7 @@ export const Servicios = () => {
       </Card.Body>
     </Card>
         <Card className='serv-card'>
-      <Card.Img variant="top" src="/images/equipo.jpg" />
+      <Card.Img className='img-fluid' variant="top" src="/images/equipo.jpg" />
       <Card.Body>
         <p>Técnico de Video para Espectáculos</p>
         

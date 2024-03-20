@@ -1,17 +1,20 @@
 @import '../../../variables';
 
 .tipoServicios-ppal{
-  height: calc(auto - 85.14px);
   display: flex;
   flex-wrap: wrap;
-  background-color: white;
+  justify-content: center;
+  background-color: $color-4;
   margin-top: 85.14px;
-  // margin-left: calc(-0.7* var(--bs-gutter-x));
+  margin-left: calc(-0.7* var(--bs-gutter-x));
+  margin-right: calc(-0.5* var(--bs-gutter-x));
+
   
   
   .tipoServ-ppal{
     height: calc(auto - 85.14px);
     padding: 20px;
+    margin-left: 10px !important;
 
 
   }
@@ -19,6 +22,7 @@
   .tipoServicios-h2{
     text-align: center;
     margin-top: -30px;
+    font-weight: bolder;
 
   }
   .tipoServ-h2{
@@ -28,10 +32,10 @@
 
   
   .section1{
-    background-color: $color-2;
-    height: 90vh;
+    background-color: $color-3;
+    height: 85vh;
+    width: 90vw;
     padding: 50px;
-    margin-left: 10px;
     border-radius: 25px;
     align-items: center;
     justify-content: center;
@@ -39,21 +43,25 @@
   
 
     img{
-      width: 700px;
-      height: 600px;
+      padding: 20px;
+      width: 600px;
+      height: 500px;
+      border-radius: 25px;
     }
+  
     
     .tipoServ-p{
+      width: 40vw;
       align-items: center;
       justify-content: center;
-      pad: 10px;
-      font-size: 25px;
+      font-size: 1.5rem;
+      max-height: 300px;
     }
     .tipoServ-button{
       justify-content: center;
       align-items: center;
-      margin-top: 60px;
-
+      margin-top: 50px;
+      min-width: 30px;
     }
   }
   .section2{
@@ -69,4 +77,65 @@
     height: 100vh ;
   }
 
+}
+
+@media (max-width: 1470px) {
+  
+    .tipoServ-img{
+      max-width: 462px;
+      max-height: 450px;
+      min-width: 400px;
+      min-height: 300px;
+      .tipoServ-p{
+        width: 70vw;
+        font-size: 1.5rem !important;
+      }    
+    }
+    
+  
+}
+@media (max-width: 800px) {
+  
+    .tipoServ-p{
+      width: 100vw;
+    }    
+    
+  
+}
+@media screen and (max-width: 612px) {
+  
+
+  .section1{
+    width: 70%;
+    
+    .tipoServ-img{
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    min-height: 300px;
+  }
+  
+}
+}
+@media screen and (width < 612px) {
+  
+
+  .section1{
+    width: 70%;
+    min-width: 100%;
+
+    .tipoServ-p{
+      min-width: 70%;
+      min-height: 30vh;
+      font-weight: none !important;
+      font-size: none !important;
+    }
+    
+    .tipoServ-img{
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    min-height: 300px;
+  }
+}
 }

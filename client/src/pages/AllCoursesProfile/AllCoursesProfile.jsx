@@ -74,10 +74,9 @@ export const AllCoursesProfile = () => {
 
 
   return (
-    <>
+    <div  className='allCoursesProfile-ppal'>
       {user?.user_id == user_id ? (
         <>
-          <div className='allCoursesProfile-ppal'>
             <div className='search-ppal'>
               {/* Campo de entrada de texto para búsqueda */}
               <input 
@@ -102,19 +101,26 @@ export const AllCoursesProfile = () => {
             </div>
             {/* Mostrar si no hay resultados */}
             {searchText !== '' && searchResults.length === 0 && (
-            <div>No hay resultados</div>
+              <div>No hay resultados</div>
             )}
             {/* Mostrar resultados de la búsqueda o todos los cursos */}
             {searchText === '' && searchResults.length === 0 ? (
+              
               allCourses.map((elem) => (
+                
+         
                 <CardCourses key={elem.course_id} elem={elem} />
+    
               ))
             ) : (
               searchResults.map((elem) => (
-                <CardCourses key={elem.course_id} elem={elem} />
+            
+
+                  <CardCourses key={elem.course_id} elem={elem} />
+
+           
               ))
             )}
-          </div>
         </>
       ) : (
         <>
@@ -122,6 +128,6 @@ export const AllCoursesProfile = () => {
           <h3>Compruebe que la dirección es correcta</h3>
         </>
       )}
-    </>
+    </div>
   );
 };
