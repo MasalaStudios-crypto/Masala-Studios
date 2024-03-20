@@ -110,9 +110,9 @@ export const FormularioRegister = ({handleClose, handleClose2}) => {
 
       <span className='errorMessage'>{errorMessage}</span>
 
-      <div>
+      <div className='d-flex justify-content-center'>
       <Button onClick={onSubmit} className='ms-1 me-1' variant="primary">Aceptar</Button>
-      <Button onClick={close} className='ms-1 me-1' variant="primary">Cancelar</Button>
+      <Button onClick={close} className='ms-1 me-1' variant="secondary">Cancelar</Button>
       </div>
       
     </Form>

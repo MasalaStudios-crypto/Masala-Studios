@@ -216,7 +216,7 @@ export const EditUser = ({handleClose}) => {
 
             <span className='errorMessage'>{message}</span>
 
-            <div>
+            <div className='d-flex justify-content-center'>
               <Button 
                 className='ms-1 me-1'
                 variant="primary" 
@@ -224,7 +224,7 @@ export const EditUser = ({handleClose}) => {
               >Aceptar</Button>
               <Button 
                 className='ms-1 me-1'
-                variant="primary" 
+                variant="secondary" 
                 onClick={handleClose}
               >Cancelar</Button>
             </div>

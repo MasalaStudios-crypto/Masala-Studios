@@ -1,3 +1,10 @@
+@import '../../../variables';
+
 Table{
   border: 2px solid black;
+  
+}
+
+TableContainer{
+  background-color: $color-3;
 }

@@ -121,11 +121,11 @@ export const FormularioLogin = ({handleClose2}) => {
         placeholder="Introduce tu contraseña" />
       </Form.Group>
       
-      <p>Estas registrado? <a onClick={showModal} className='registro'>Registro aqui</a> </p>
+      <p>Sin registrar? <a onClick={showModal} className='registro'>Registro aqui</a> </p>
       <p><a onClick={()=>{changePassword(login.email)}} className='password'>Recuperar contraseña</a></p>
       <span className='errorMessage'>{message}</span>
 
-      <div>
+      <div className='d-flex justify-content-center'>
       <Button 
       onClick={onSubmit}
       className='ms-1 me-1' 
@@ -133,14 +133,14 @@ export const FormularioLogin = ({handleClose2}) => {
       <Button 
       onClick={handleClose2} 
       className='ms-1 me-1' 
-      variant="primary">Cancelar</Button>
+      variant="secondary">Cancelar</Button>
       </div>
 
       <ModalBasico
         title="Registro"
         show={show}
         handleClose={showModal}
-        >
+        size="sm">
         <FormularioRegister
         handleClose2={handleClose2}
           handleClose={showModal}/>

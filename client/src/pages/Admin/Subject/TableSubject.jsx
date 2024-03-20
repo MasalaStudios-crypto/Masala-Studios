@@ -244,6 +244,7 @@ export const TableSubject = () => {
     handleClose={showModal}
     show={show}
     title="Añadir tema"
+    size="sm"
     >
     <FormularioTema
       course_id={course_id}
