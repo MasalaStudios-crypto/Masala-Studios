@@ -90,86 +90,78 @@ export const TableUser = () => {
   }
   return (
 
-    <TableContainer component={Paper} sx={{ overflowX: 'auto' }}>
-    <Table sx={{ minWidth: 650 }} aria-label="simple table" >
-      <TableHead>
-        <TableRow className="tableHead">
-          <TableCell align="center"><b>Nombre</b></TableCell>
-          <TableCell align="center"><b >Apellidos</b></TableCell>
-          <TableCell align="center"><b >Fecha Nacimiento</b></TableCell>
-          <TableCell align="center"><b >DNI</b></TableCell>
-          <TableCell align="center"><b >Telefono</b></TableCell>
-          <TableCell align="center"><b >Direccion</b></TableCell>
-          <TableCell align="center"><b >Codigo Postal</b></TableCell>
-          <TableCell align="center"><b >Ciudad</b></TableCell>
-          <TableCell align="center"><b >Provincia</b></TableCell>
-          <TableCell align="center"><b >Email</b></TableCell>
-          <TableCell align="center"><b >Tipo</b></TableCell>
-          <TableCell align="center"><b >Estado</b></TableCell>
-          <TableCell align="center"><b >Habilitado</b></TableCell>
-          <TableCell align="center"><b >Cursos creados</b></TableCell>
-          <TableCell align="center"><b>Cursos apuntados</b></TableCell>
-
-        </TableRow>
-
-      </TableHead>
-      <TableBody>
-        {users?.map((elem) => (
-          <TableRow
-            key={elem.user_id}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-          >
-            <TableCell align="center" component="th" scope="row">
-              {elem.name} 
-            </TableCell>
-            <TableCell align="center">{elem.lastname}</TableCell>
-            <TableCell align="center">{invertirFecha(elem.birth_date)}</TableCell>
-            <TableCell align="center">{elem.dni}</TableCell>
-            <TableCell align="center">{elem.phone}</TableCell>
-            <TableCell align="center">{elem.address}</TableCell>
-            <TableCell align="center">{elem.zip_code}</TableCell>
-            <TableCell align="center">{elem.city}</TableCell>
-            <TableCell align="center">{elem.province}</TableCell>
-            <TableCell align="center">{elem.email}</TableCell>
-
-            <TableCell align="center"><Button variant={elem.type===1?"primary":"success"} onClick={()=>onType(elem.user_id, elem.type)}>{elem.type===1?"Administrador":"Usuario"}</Button></TableCell>
-
-            <TableCell align="center"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
-
-            <TableCell align="center"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
-
-            <TableCell onClick={()=>openCreatedCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>
-            <TableCell  onClick={()=>openRegCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>
-
-           
+    <div className='user-admin-ppal'>
+      <TableContainer component={Paper} sx={{ overflowX: 'auto' }}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+        <TableHead>
+          <TableRow className="tableHead">
+            <TableCell align="center"><b>Nombre</b></TableCell>
+            <TableCell align="center"><b >Apellidos</b></TableCell>
+            <TableCell align="center"><b >Fecha Nacimiento</b></TableCell>
+            <TableCell align="center"><b >DNI</b></TableCell>
+            <TableCell align="center"><b >Telefono</b></TableCell>
+            <TableCell align="center"><b >Direccion</b></TableCell>
+            <TableCell align="center"><b >Codigo Postal</b></TableCell>
+            <TableCell align="center"><b >Ciudad</b></TableCell>
+            <TableCell align="center"><b >Provincia</b></TableCell>
+            <TableCell align="center"><b >Email</b></TableCell>
+            <TableCell align="center"><b >Tipo</b></TableCell>
+            <TableCell align="center"><b >Estado</b></TableCell>
+            <TableCell align="center"><b >Habilitado</b></TableCell>
+            <TableCell align="center"><b >Cursos creados</b></TableCell>
+            <TableCell align="center"><b>Cursos apuntados</b></TableCell>
           </TableRow>
-        ))}
-      </TableBody>
-
-          <ModalBasico
-          user_id={userId}
-          title={`Cursos creados`}
-          handleClose={openCreatedCourse} 
-          show={show}
-          size="sm">
-            <ListaCursosCreados
+        </TableHead>
+        <TableBody>
+          {users?.map((elem) => (
+            <TableRow
+              key={elem.user_id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell align="center" component="th" scope="row">
+                {elem.name}
+              </TableCell>
+              <TableCell align="center">{elem.lastname}</TableCell>
+              <TableCell align="center">{invertirFecha(elem.birth_date)}</TableCell>
+              <TableCell align="center">{elem.dni}</TableCell>
+              <TableCell align="center">{elem.phone}</TableCell>
+              <TableCell align="center">{elem.address}</TableCell>
+              <TableCell align="center">{elem.zip_code}</TableCell>
+              <TableCell align="center">{elem.city}</TableCell>
+              <TableCell align="center">{elem.province}</TableCell>
+              <TableCell align="center">{elem.email}</TableCell>
+              <TableCell align="center"><Button variant={elem.type===1?"info":"success"} onClick={()=>onType(elem.user_id, elem.type)}>{elem.type===1?"Administrador":"Usuario"}</Button></TableCell>
+              <TableCell align="center"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
+              <TableCell align="center"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
+              <TableCell onClick={()=>openCreatedCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>
+              <TableCell  onClick={()=>openRegCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>
+      
+            </TableRow>
+          ))}
+        </TableBody>
+            <ModalBasico
             user_id={userId}
-            handleClose={openCreatedCourse} />
-          </ModalBasico>
-
-          <ModalBasico2
-          user_id={userId}
-          title={"Cursos apuntados"}
-          handleClose2={openRegCourse} 
-          show={show2}
-          >
-            <ListaCursosApuntados
+            title={`Cursos creados`}
+            handleClose={openCreatedCourse}
+            show={show}
+            size="sm">
+              <ListaCursosCreados
+              user_id={userId}
+              handleClose={openCreatedCourse} />
+            </ModalBasico>
+            <ModalBasico2
             user_id={userId}
-            handleClose2={openRegCourse} />
-          </ModalBasico2>
-
-    </Table>
-  </TableContainer>
+            title={"Cursos apuntados"}
+            handleClose2={openRegCourse}
+            show={show2}
+            >
+              <ListaCursosApuntados
+              user_id={userId}
+              handleClose2={openRegCourse} />
+            </ModalBasico2>
+      </Table>
+        </TableContainer>
+    </div>
 
   )
 }

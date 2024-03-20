@@ -27,7 +27,7 @@ export const FormularioTag = ({handleClose}) => {
         .catch(err=>console.log(err))
       }
       else{
-        setMessage("Introduce un nombre por favor");
+        setMessage("Introduce un nombre");
       }
   }
   
@@ -43,15 +43,15 @@ export const FormularioTag = ({handleClose}) => {
       type="text" 
       placeholder="Introduce nombre TAG" />
     </Form.Group>
-
-    <div>
-      <p>{message}</p>
+      <span className='errorMessage'>{message}</span>
+    <div className='d-flex justify-content-center'> 
+      
     <Button
     onClick={onSubmit}
      className='ms-1 me-1' variant="primary">Crear</Button>
     <Button
      onClick={handleClose}  
-     className='ms-1 me-1' variant="primary">Cancelar</Button>
+     className='ms-1 me-1' variant="secondary">Cancelar</Button>
     </div>
 
     </Form>

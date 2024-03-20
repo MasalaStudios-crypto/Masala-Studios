@@ -1,10 +1,11 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 import './cursos.scss'
 import { FormularioContacto } from '../../components/FormularioContacto/FormularioContacto'
 import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
+import { MasalaContext } from '../../Context/MasalaProvider'
 
 
 export const OneCourse = ({elem}) => {
@@ -12,7 +13,8 @@ export const OneCourse = ({elem}) => {
   const [imagenes, setImagenes] = useState([])
   const [show, setShow] = useState(false);
   const {course_id} = useParams();
-
+  const {user}=useContext(MasalaContext)
+  const navigate=useNavigate()
   
   const showModal =()=>{
     setShow(!show)
@@ -53,8 +55,7 @@ export const OneCourse = ({elem}) => {
       <h5>Descripción: {course[0].description}</h5>
         </div>
       <div className='oneCourse-Button'>
-      <Button style={{justifyContent:'end'}} variant="success" as={Link} to="/allCoursesProfile">Volver</Button>
-      <Button style={{justifyContent:'end'}} variant="success" onClick={showModal}> Más info.</Button>
+      <Button style={{justifyContent:'end'}} variant="success" onClick={()=>navigate(`/allCoursesProfile/${user.user_id}`)}>Volver</Button>
 
         <ModalBasico
         title="Contacto"

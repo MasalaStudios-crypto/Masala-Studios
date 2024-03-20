@@ -148,15 +148,14 @@ export const FormularioCurso = ({ user_id, showModal3 }) => {
         as="textarea" rows={3} 
         placeholder="Introduce descripción" />
     </Form.Group>
-
-    <div>
-      <p>{message}</p>
+      <span className='errorMessage'>{message}</span>
+    <div className='d-flex justify-content-center'>
     <Button
     onClick={onSubmit}
      className='ms-1 me-1' variant="primary">Crear</Button>
     <Button
      onClick={showModal3}  
-     className='ms-1 me-1' variant="primary">Cancelar</Button>
+     className='ms-1 me-1' variant="secondary">Cancelar</Button>
     </div>
     
   </Form>
