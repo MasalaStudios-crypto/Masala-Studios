@@ -1,7 +1,10 @@
 @import '../../variables';
 
 .service-ppal{
-  height: 100%;
+  height: auto;
+  min-height: 60vh;
+  min-width: 365px;
+  gap: 20px;
 }
 
 .service-title{
@@ -11,7 +14,7 @@
 }
 
 .serv-ppal{
-  height: calc(100vh - 56px + 12px);
+  height: 60vh;
   padding: 0 !important;
   background-color: $color-4;
   display: flex;
@@ -20,8 +23,10 @@
 
 
   .serv-div1{
-    width: 50%;
-    height: 50vh;
+
+    width: 500px;
+    height: auto;
+    min-height: 50vh;
     padding: 20px;
     
     img{
@@ -31,8 +36,8 @@
   }
   
   .serv-div2{
-    width: 50%;
-    height: 80vh;
+    height: 50vh;
+    gap: 10px;
     background-color: $color-4;
     display: flex;
     flex-direction: row;
@@ -40,6 +45,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 100px;
+   
     
     
     
@@ -48,6 +54,7 @@
       display: flex;
       flex-direction: row;
       padding: 10px;
+      min-width: 300px;
       width: 300px;
       height: 200px;
       background-color: $color-5;
@@ -67,17 +74,32 @@
   }
 }
 
-@media(width < 400px) {
-  .serv-div1{
-    width: 80vw;
-    height: 50vh;
+@media(width < 900px) {
+
+  .serv-ppal{
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+
+
   }
   .serv-div2{
-    width: 80vw;
-    height: 50vh;
+    margin-bottom: 500px;
+  }
+}
 
-    .serv-card{
-      width: 50vw;
-    }
+@media(width < 600px) {
+
+  
+  .serv-ppal{
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+
+
   }
 }

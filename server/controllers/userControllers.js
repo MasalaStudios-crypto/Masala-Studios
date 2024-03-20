@@ -52,6 +52,7 @@ class UserControllers{
         
         let sql = `INSERT INTO user (name, email, password) VALUES ("${name}", "${email}", "${hash}")`;
         connection.query(sql, (error, result) => {
+
           if (error) {
               return res.status(500).json({ error: "Error al insertar el usuario en la base de datos" });
           }
@@ -71,15 +72,14 @@ class UserControllers{
           sendMyMail('balcaza4@gmail.com',
 
 
-
-              `<div>
-              <p>
-              Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:
-              Haz click aquí <a href='${confirmationLink}'>Pincha aquí</a>
-              </p>
-              </div>
-              `,
-              "Confirmación de cuenta"
+          `<div>
+          <p>
+          Por favor, haz clic en el siguiente enlace para confirmar tu cuenta:
+          Haz click aquí <a href='${confirmationLink}'>Pincha aquí</a>
+          </p>
+          </div>
+          `,
+          "Confirmación de cuenta"
           
           )
           .then(() => {

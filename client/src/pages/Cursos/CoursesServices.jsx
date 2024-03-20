@@ -49,8 +49,8 @@ export const CoursesServices = () => {
 
     </Card.Body>
     </Card>
-
     </Carousel.Item>
+
       ))}
 
       

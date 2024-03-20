@@ -18,7 +18,7 @@ export const CardCourses = ({elem}) => {
  
 
     <Card style={{backgroundColor:`rgba(250, 192, 32, 0.854)`}} className='allcourses-card'>
-    <Card.Img variant="top" src={elem.course_img?`http://localhost:3000/images/course_img/${elem?.course_img}`:"../images/course.png"} />
+    <Card.Img className='img-fluid' variant="top" src={elem.course_img?`http://localhost:3000/images/course_img/${elem?.course_img}`:"../images/course.png"} />
     <Card.Body style={{textAlign:'center'}}>
       <Card.Title>{elem?.name}</Card.Title>
     <p>{elem?.duration}h.</p>
