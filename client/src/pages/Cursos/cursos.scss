@@ -1,5 +1,12 @@
 @import '../../variables';
 
+.ppal-user{
+  margin-top: 85.14px !important;
+  min-height: calc(100vh - 85.14px - 80px);
+  width: 100%;
+}
+
+
 .Carousel-ppal{
   min-width: 300px;
   min-height: 620px;
@@ -20,6 +27,10 @@
   margin-right: calc((var(--bs-gutter-x)* -0.5));
   display: flex;
   justify-content: center;
+
+  margin-top: 85.14px !important;
+  min-height: calc(100vh - 85.14px - 80px);
+  
 }
 
 .oneCourse-ppal{
@@ -43,13 +54,14 @@
 
     img{
       width: 40vw;
-      height: 420px;
+      height: 50vw;
+      min-height: 500px;
       border-radius: 25px;
     }
     .oneCourse-div{
       width: 40vw;
-      min-height: 60vh;
-      height: 100%;
+      height: 50vw;
+      min-height: 500px;
       padding: 20px;
       border: 1px solid white;
       border-radius: 25px;
@@ -60,22 +72,18 @@
     
 
       .oneCourse-h4{
-        min-height: 50vh;
         text-align: center;
         margin-bottom: 20px;
         h4{
           margin-bottom: 35px;
         }
       }
-      .oneCourse-Button{
-        min-height: 10vh;
-      }
+
     }
   }
 }
 
 @media(width < 450px) {
-
   
   .Carousel-ppal{
     width: auto;
@@ -92,6 +100,72 @@
           height: 300px !important;
         }
       
+    }
+  }
+}
+
+@media(width<=1000px){
+
+  .oneCourse-bckcolor{
+    width: calc((var(--bs-gutter-x)* 1) + 100%) ;
+    height: auto;
+    background-color: $color-2;
+    margin-left: calc((var(--bs-gutter-x)* -0.5));
+    margin-right: calc((var(--bs-gutter-x)* -0.5));
+    display: flex;
+    justify-content: center;
+    margin-top: 85.14px !important;
+    min-height: calc(100vh - 85.14px - 80px);
+    
+  }
+  .oneCourse-ppal{
+    height: auto;
+    min-height: 100vh;
+    width: 90%;
+    background-color: $color-3;
+    border-radius: 25px;
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+   display: flex;
+   justify-content: center;
+  
+    .oneCourse-Card{
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+      justify-content: space-around;
+  
+      img{
+        width: 40vw;
+        height: 50vw;
+        min-width: 280px;
+        min-height: 500px;
+        border-radius: 25px;
+      }
+      .oneCourse-div{
+        width: 40vw;
+        height: 50vw;
+        min-width: 280px;
+        min-height: 500px;
+        padding: 20px;
+        border: 1px solid white;
+        border-radius: 25px;
+        text-align: justify;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        
+  
+        .oneCourse-h4{
+          text-align: center;
+          margin-bottom: 20px;
+          h4{
+            margin-bottom: 35px;
+          }
+        }
+  
+      }
     }
   }
 }

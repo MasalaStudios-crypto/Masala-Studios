@@ -74,6 +74,7 @@ export const AllCoursesProfile = () => {
   };
 
 
+
   return (
     <div className='allCoursesProfile-ppal'>
       <Row>
@@ -81,13 +82,13 @@ export const AllCoursesProfile = () => {
           <Col md={12}>
             <div className='search-ppal'>
               {/* Campo de entrada de texto para búsqueda */}
-              <input 
+               <input 
                 type="text" 
                 value={searchText} 
                 onChange={handleTextChange} 
                 placeholder="Buscar curso" 
-                onKeyPress={isLetterWithSpace}
-              />
+                onKeyPress={isLetterWithSpace} 
+              /> 
               {/* Select para la categoría */}
               <select 
                 value={selectedCategory} 
@@ -95,18 +96,19 @@ export const AllCoursesProfile = () => {
               >
                 <option value='tag'>Tags</option>
                 <option value='course'>Nombre del curso</option>
-              </select>
+              </select> 
               {/* Botón para realizar la búsqueda */}
-              <button onClick={searchCourses}>Buscar</button>
+              <button onClick={searchCourses}>Buscar</button> 
               {/* Botón para reiniciar la búsqueda */}
               <button onClick={reload}>Reiniciar</button>
             </div>
             <Row className='allCoursesProfile-Row'>
-
             {/* Mostrar si no hay resultados */}
-            {searchText !== '' && searchResults.length === 0 && (
+             {searchText !== '' && searchResults.length === 0 && (
               <div>No hay resultados</div>
-              )}
+
+            )} 
+
             {/* Mostrar resultados de la búsqueda o todos los cursos */}
             {searchText === '' && searchResults.length === 0 ? (
               allCourses.map((elem) => (

@@ -43,30 +43,25 @@ export const OneCourse = () => {
     <div className='oneCourse-bckcolor'>
     {course ? 
     <div  className='oneCourse-ppal'>
-      <h2>Nombre curso: {course[0].name}</h2>
 
       <div  className='oneCourse-Card'>
 
       <div>
-          <img src={`http://localhost:3000/images/course_img/${course[0].course_img}`}/>
+          <img  src={`http://localhost:3000/images/course_img/${course[0].course_img}`}/>
       </div>
       <div className='oneCourse-div'>
         <div className='oneCourse-h4'>
-      <p>Duración: {course[0].duration}h.</p>
-      <p>Precio: {course[0].price}€</p>
-      <h5>Descripción: {course[0].description}</h5>
+          <h1><b>{course[0].name}</b></h1>
+          <p>Duración: {course[0].duration}h.</p>
+          <p>Precio: {course[0].price}€</p>
+          <br />
+          <h5>Descripción: {course[0].description}</h5>
         </div>
       <div className='oneCourse-Button'>
-      <Button style={{justifyContent:'end'}} variant="success" onClick={()=>navigate(`/allCoursesProfile/${user.user_id}`)}>Volver</Button>
 
-        <ModalBasico
-        title="Contacto"
-        handleClose={showModal}
-        show={show}
-        size="sm">
-        <FormularioContacto
-          handleClose={showModal}/>
-        </ModalBasico>
+      <Button style={{justifyContent:'end'}} variant="secondary" onClick={()=>navigate(`/allCoursesProfile/${user.user_id}`)}>Volver</Button>
+
+
       </div>
       </div>
       </div>
