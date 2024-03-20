@@ -11,8 +11,8 @@ class courseControllers{
     let sql = `SELECT c.*, CONCAT_WS(' ',u.name, u.lastname) AS profesor FROM course c JOIN user u ON c.creator_user_id = u.user_id GROUP BY c.course_id;`
     
     connection.query(sql, (err, result)=>{
-          console.log(result);
-          console.log(err);
+          // console.log(result);
+          // console.log(err);
         err?res.status(500).json(err):res.status(200).json(result)
    })
   }
@@ -22,8 +22,8 @@ class courseControllers{
 
     
     connection.query(sql, (err, result)=>{
-          console.log(result);
-          console.log(err);
+          // console.log(result);
+          // console.log(err);
         err?res.status(500).json(err):res.status(200).json(result)
    })
   }
@@ -75,7 +75,7 @@ class courseControllers{
     try {
       const { name, duration, price, description, creator_user_id } = JSON.parse(req.body.CrCourse);
       const tags = JSON.parse(req.body.tags) 
-      console.log("tags" ,tags);
+      // console.log("tags" ,tags);
       const courseImg = req.file ? req.file.filename : null;
   
       let sql;
@@ -219,7 +219,7 @@ class courseControllers{
     FROM course c , user u 
     WHERE c.creator_user_id = u.user_id`
     connection.query(sql, (err, result)=>{
-      console.log(result);
+      // console.log(result);
 
      err?res.status(500).json(err):res.status(200).json(result)
     })
@@ -234,7 +234,7 @@ class courseControllers{
       WHERE c.creator_user_id = u.user_id AND s.course_id = c.course_id AND s.course_id=${course_id};`
     
     connection.query(sql, (err, result)=>{
-      console.log(result);
+      // console.log(result);
 
      err?res.status(500).json(err):res.status(200).json(result)
     })
@@ -258,8 +258,8 @@ class courseControllers{
 
     
     connection.query(sql, (err, result)=>{
-          console.log(result);
-          console.log(err);
+          // console.log(result);
+          // console.log(err);
         err?res.status(500).json(err):res.status(200).json(result)
    })
   }
@@ -295,7 +295,7 @@ addSubject = (req, res)=>{
     //console.log(sql);
     
     connection.query(sql, (err, result)=>{
-      console.log(result);
+      // console.log(result);
 
      err?res.status(500).json(err):res.status(200).json(result)
     })
@@ -312,7 +312,7 @@ addSubject = (req, res)=>{
         console.error(err);
         res.status(500).json(err);
       } else {
-        console.log(result);
+        // console.log(result);
         res.status(200).json({ message: "Estado actualizado exitosamente" });
       }
     });
@@ -360,7 +360,7 @@ addSubject = (req, res)=>{
     const {name, duration, price, description} = JSON.parse(req.body.editCourse)
     const {course_id} = req.body
     const tags = JSON.parse(req.body.tags)
-    console.log(req.body);
+    // console.log(req.body);
 
     let img = ""
     
@@ -408,7 +408,7 @@ addSubject = (req, res)=>{
 
   delOneCourses = (req,res)=>{
     const{course_id} = req.params
-    console.log(req.params);
+    // console.log(req.params);
 
     let sql = `UPDATE course SET is_deleted = 1 WHERE course_id = ${course_id}`;
 
@@ -419,7 +419,7 @@ addSubject = (req, res)=>{
 
   delOneSubject = (req,res)=>{
     const { course_id, subject_id } = req.params;
-    console.log(req.params);
+    // console.log(req.params);
 
     let sql = `DELETE FROM subject WHERE course_id = ${course_id} AND subject_id = ${subject_id}`;
 
@@ -481,7 +481,7 @@ addSubject = (req, res)=>{
 
   createTag = (req, res) => {
     const  name  = req.body.name
-    console.log(name)
+    // console.log(name)
     
     let sql=`INSERT INTO tag (tag_id, name)
              SELECT COALESCE(MAX(tag_id)+1,1), "${name}"
@@ -538,11 +538,11 @@ addSubject = (req, res)=>{
 
   getTagsEdit = (req, res) => {
     const {course_id} = req.params
-    console.log("AQUI", req.params);
+    // console.log("AQUI", req.params);
     let sql = `SELECT tag.name AS label, tag.tag_id AS value FROM tag, course_tag WHERE tag.tag_id = course_tag.tag_id AND course_tag.course_id = ${course_id} `
 
     connection.query(sql, (err, result)=>{
-      console.log(result);
+      // console.log(result);
       err?res.status(500).json(err):res.status(200).json(result)
     })
   }

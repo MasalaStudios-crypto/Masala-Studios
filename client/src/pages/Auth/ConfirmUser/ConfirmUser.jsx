@@ -12,7 +12,7 @@ export const ConfirmUser = () => {
     <div className='confirmUser-ppal'>
       <div>
       <h1>Confirme su usuario en su correo electrónico</h1>
-      <p>Para terminar mire en su email</p>
+      <p>Si no ha recibido ningún correo, mire en correo no deseado</p>
       </div>
     </div>
   )

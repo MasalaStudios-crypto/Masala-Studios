@@ -21,20 +21,7 @@
   background-color: $color-4;
   display: flex;
   flex-wrap: wrap; 
-
-
-
-  .serv-div1{
-    max-width: 600px;
-    height: 70vh;
-    min-height: 40vh;
-    padding: 20px;
-    
-    img{
-      width: 300px;
-      height: 300px;
-    }
-  }
+}
   
   .serv-div2{
     height: 70vh;
@@ -47,11 +34,11 @@
     align-items: start;
     justify-content: center;
     padding: 50px;
+   
     
     
     
-
-    .serv-card{
+    .servicios-card{
       display: flex;
       flex-direction: row;
       padding: 10px;
@@ -71,76 +58,43 @@
  
       border: 2px solid white;
     }
+  } 
 
-  }
-}
-
-@media(width < 1360px) {
   
+
+
+
+@media(width < 1268px) {
+
   .serv-ppal{
     display: flex;
     padding: 20px;
     justify-content: center;
     align-items: center;
-    height: 150vh;
-
-
-  }
-  .serv-div2{
-    margin-bottom: 500px;
+    height: 150vh !important;  
   }
   .serv-div1{
-    margin-bottom: 500px;
+    margin-bottom: 300px !important;
   }
-}
-@media(width < 1081px) {
-
-  .serv-ppal{
-    display: flex;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    height: 150vh !important;
+  .serv-div2{
     
-    
-    
+    margin-bottom: 300px !important;
   }
 }
 
-@media(width < 980px) {
-  .serv-ppal{
-    margin-bottom: 330px !important;
-    
-    .serv-div1{
-      height: 50vh !important;
-    }
-    
-    .serv-div2{
-      height: 100vh !important;
-      margin-top: -170px;
-    }
-  }
-}
 
-@media(width < 711px) {
-  
-  
-  .serv-ppal{
-    height: 100vh;
-    margin-bottom: 590px !important;
-   .serv-div2{
-    height: 140vh  !important;
-   } 
-  }
-}
+
+
 @media(width < 400px) {
   .serv-div1{
     width: 80vw;
-    height: 50vh;
+
+    
   }
   .serv-div2{
     width: 80vw;
-    height: 50vh;
+
+    margin-bottom: 300px !important;
     .serv-card{
       width: 50vw;
     }

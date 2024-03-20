@@ -83,11 +83,13 @@ export const FormularioLogin = ({handleClose2}) => {
       setMessage("Introduzca un email para recuperar contraseña")
     }
     else{
-    setMessage("Email con contraseña nueva enviado a: "+elem)
+    setMessage("Email con contraseña nueva enviado a: " + elem)
       const newPass= genPassword(8);
       axios
         .post(`http://localhost:3000/users/changePassword`, {elem: elem, newPass})
-        .then((res)=>{console.log(res)}, console.log(newPass))
+        .then((res)
+        // {console.log(res)}, console.log(newPass)
+        )
         .catch((err)=>{console.log(err)})
     }
     

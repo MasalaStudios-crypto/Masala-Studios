@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { isAlphaNumericWithSpaces, validateEmail } from '../../utils/validation'
 import './formRegister.scss'
+import { MasalaContext } from '../../Context/MasalaProvider'
 const initialValue = {
   name:"",
   email:"",
@@ -15,6 +16,7 @@ export const FormularioRegister = ({handleClose, handleClose2}) => {
 
   const [register, setRegister]=useState(initialValue)
   const [errorMessage, setErrorMessage]=useState()
+  const {user} = useContext(MasalaContext);
   const navigate= useNavigate()
 
   const handleChange =(elem)=>{
@@ -46,18 +48,19 @@ export const FormularioRegister = ({handleClose, handleClose2}) => {
       axios
       .post("http://localhost:3000/users/register", register)
       .then((res)=>{
-        console.log(res)
+        // console.log(res)
         handleClose();
         handleClose2();
         navigate(`/confirmation`)
       })
       .catch((err)=>{
         console.log(err)
-        console.log(err.errno)
-        console.log(err.message)
-        if(err.response.data.errno===1062){
+        // console.log(err.response.data.error)
+        // console.log(err.message)
+        if(err.response.data.error===1062){
           setErrorMessage("Email duplicado")
         }
+        
       })
     }
     

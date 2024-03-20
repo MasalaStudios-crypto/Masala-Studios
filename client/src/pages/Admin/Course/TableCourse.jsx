@@ -27,7 +27,9 @@ export const TableCourse = () => {
         })
     }
   },[reset, token])
-console.log(courses)
+
+// console.log(courses)
+
   const onDeleted=(id, state)=>{
     let url="http://localhost:3000/course/activate"
     if(!state){

@@ -26,7 +26,7 @@ async function sendMyMail(email, msg, subject){
     // html: "<div><h1>HOLA</h1></div>"
     html: msg
   })
-  console.log("MENSJE ENVIADO", info)
+  // console.log("MENSJE ENVIADO", info)
 }
 
 module.exports = sendMyMail;

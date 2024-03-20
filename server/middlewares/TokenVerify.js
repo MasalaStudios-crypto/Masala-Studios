@@ -13,7 +13,7 @@ const verify = (req, res, next)=>{
   }
 
   jwt.verify(token, process.env.SECRET, (err, decoded)=>{
-    console.log(decoded)
+    // console.log(decoded)
     if(decoded.user.id){
       req.user = decoded.user.id 
     }

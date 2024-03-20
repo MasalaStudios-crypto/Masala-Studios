@@ -1,7 +1,7 @@
 @import '../../variables';
 
 .Carousel-ppal{
-  min-width: 400px;
+  min-width: 300px;
   min-height: 620px;
   height: 620px;
   border-radius: 25px;
@@ -9,21 +9,21 @@
     width: 300px;
     height: 200px;
   }
+
 }
 
 .oneCourse-bckcolor{
   width: calc((var(--bs-gutter-x)* 1) + 100%) ;
-  height: auto;
+  height: 100vh;
   background-color: $color-2;
   margin-left: calc((var(--bs-gutter-x)* -0.5));
   margin-right: calc((var(--bs-gutter-x)* -0.5));
   display: flex;
   justify-content: center;
-  
 }
+
 .oneCourse-ppal{
-  height: auto;
-  min-height: 100vh;
+  height: 80vh;
   width: 90%;
   background-color: $color-3;
   border-radius: 25px;
@@ -74,14 +74,24 @@
   }
 }
 
-@media(width < 600px) {
+@media(width < 450px) {
 
   
   .Carousel-ppal{
-    img{
-      width: 300px;
-      min-width: 250px;
-      height: 200px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .serv-card{
+      height: 620px;
+      width: auto !important;
+  
+        img.card-img-top{
+
+          width: 200px !important;
+          height: 300px !important;
+        }
+      
     }
   }
 }
