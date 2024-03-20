@@ -1,20 +1,22 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import './cursos.scss'
 import { FormularioContacto } from '../../components/FormularioContacto/FormularioContacto'
 import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
 import { MasalaContext } from '../../Context/MasalaProvider'
 
 
-export const OneCourse = ({elem}) => {
+export const OneCourse = () => {
   const [course, setCourse] = useState()
   const [imagenes, setImagenes] = useState([])
   const [show, setShow] = useState(false);
   const {course_id} = useParams();
-  const {user}=useContext(MasalaContext)
-  const navigate=useNavigate()
+  const {user} = useContext(MasalaContext)
+  const navigate = useNavigate()
+
+
   
   const showModal =()=>{
     setShow(!show)
