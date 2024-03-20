@@ -14,8 +14,8 @@ export const OneCourse = () => {
   const [show, setShow] = useState(false);
   const {course_id} = useParams();
   const {user} = useContext(MasalaContext)
-
   const navigate = useNavigate()
+
 
   
   const showModal =()=>{

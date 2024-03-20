@@ -66,9 +66,9 @@ export const FormularioTema = ({handleClose, course_id}) => {
 
       <span className='errorMessage'>{errorMessage}</span>
 
-      <div>
+      <div className='d-flex justify-content-center'>
       <Button onClick={onSubmit} className='ms-1 me-1' variant="primary">Aceptar</Button>
-      <Button onClick={handleClose} className='ms-1 me-1' variant="primary">Cancelar</Button>
+      <Button onClick={handleClose} className='ms-1 me-1' variant="secondary">Cancelar</Button>
       </div>
       
     </Form>

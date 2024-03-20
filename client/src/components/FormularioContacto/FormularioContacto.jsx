@@ -76,9 +76,9 @@ export const FormularioContacto = ({handleClose, elem, nameCourse}) => {
         placeholder="Introduce el mensaje" />
       </Form.Group>
 
-      <div>
+      <div className='d-flex justify-content-center'>
       <Button onClick={Submit} className='ms-1 me-1' variant="primary">Enviar</Button>
-      <Button onClick={handleClose}  className='ms-1 me-1' variant="primary">Cancelar</Button>
+      <Button onClick={handleClose}  className='ms-1 me-1' variant="secondary">Cancelar</Button>
       </div>
       
     </Form>
