@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom'
 import { FormEditCourse } from '../../components/FormEditCourse/FormEditCourse';
 import { ModalBasico } from '../../components/ModalBasico/ModalBasico'
 import { extractNumberFromName } from '../../utils/orderBy'
+import {Forbidden} from '../Auth/Forbidden/Forbidden'
+import { IsInRegister } from '../../utils/validation';
+
 
 const handleResourceClick = (resourcePath) => {
   const visualizador = document.getElementById('visualizador');
@@ -22,6 +25,7 @@ export const MyCourse = () => {
   const [courseDetails, setCourseDetails] = useState();
   const [subjectDetails, setSubjectDetails] = useState();
   const [resourcetDetails, setResourceDetails] = useState();
+  const [registerDetails, setRegisterDetails] = useState([]);
   const {user} = useContext(MasalaContext);
   const {token} = useContext(MasalaContext);
   const [show, setShow] = useState(false);
@@ -31,13 +35,16 @@ export const MyCourse = () => {
       // Realiza una solicitud para obtener detalles del curso utilizando course_id
       axios.get(`http://localhost:3000/course/details/${course_id}`)
       .then((response) => {
-        const {result1, result2, result3} = response.data
+        const {result1, result2, result3, result4} = response.data
         //console.log("CURSO", result1);
         //console.log("TEMAS", result2);
         //console.log("RECURSOS", result3);
+        // console.log("RECURSOS", result4);
         setCourseDetails(result1);
         setSubjectDetails(result2);
         setResourceDetails(result3);
+        setRegisterDetails(result4);
+
 
       })
       .catch((error) => {
@@ -49,6 +56,7 @@ export const MyCourse = () => {
   //console.log("DATOS CURSO", courseDetails); //aquí tengo datos del curso
   //console.log("DATOS TEMAS", subjectDetails); //datos de los temas del curso
   //console.log("DATOS RECURSOS", resourcetDetails); //datos de los recursos del curso
+  console.log("DATOS REGISTRO", registerDetails); //datos de los registro del curso
 
   const navigate = useNavigate();
 
@@ -104,11 +112,14 @@ export const MyCourse = () => {
 }
 
 //console.log(user?.user_id, courseDetails?.creator_user_id);
+console.log(user?.user_id, registerDetails?.user_id, courseDetails?.course_id, registerDetails?.course_id)
   return (
     <section className='myCourse-ppal'>
+    {(IsInRegister(user?.user_id, registerDetails?.user_id, courseDetails?.course_id, registerDetails?.course_id) === true) || (courseDetails?.creator_user_id == user?.user_id) ?
       <Row className='course-section'>
 
         {/* Columna izquierda */}
+        
         <Col md={9} lg={10} className='course-col'>
           <div className='visualizador' id='visualizador'>
             <p>VISUALIZADOR</p>
@@ -126,6 +137,8 @@ export const MyCourse = () => {
 
         {/* Columna derecha */}
         <Col md={3} lg={2} className='course-col'>
+
+          
           <div className='listado-temario'>
             <div className='d-flex flex-column justify-content-end'>
               
@@ -176,7 +189,10 @@ export const MyCourse = () => {
             <FormEditCourse handleClose={showModal} courseDetails={courseDetails} />
           </ModalBasico>
         </Col>
-      </Row>
-    </section> 
+        </Row>
+        :
+        <Forbidden/>
+      }
+        </section> 
   )
 }

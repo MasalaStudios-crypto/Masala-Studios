@@ -92,3 +92,12 @@ export function validateEmail(value) {
   return emailRegex.test(value);
 }
 
+
+export function IsInRegister(user_id, user_id2, course_id, course_id2 ) {
+  if(user_id == user_id2 && course_id == course_id2){
+    return true
+  }else{
+    return false
+  }
+}
+

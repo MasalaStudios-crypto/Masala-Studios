@@ -38,6 +38,10 @@ export const EditUser = ({handleClose}) => {
 
   const handleChange = (e) => {
     let {value, name} = e.target
+    // if(name === "birth_date"){
+    //   value = invertirFecha2(value)
+
+    // }
     setEdit({...edit, [name]:value});
   }
   
@@ -111,9 +115,12 @@ export const EditUser = ({handleClose}) => {
               <Form.Control 
                 type="date"
                 placeholder="Fecha nacimiento"
+                // value={edit.birth_date === null ? "" : invertirFecha2(edit.birth_date)}
                 value={edit.birth_date === null ? "" : edit.birth_date}
                 onChange={handleChange}
                 name="birth_date"
+                // onKeyDown={(e) => { if (e.target.type === 'date') e.preventDefault(); }} // Evitar entrada manual
+
               />
             </Form.Group>
 
