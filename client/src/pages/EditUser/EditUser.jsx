@@ -5,7 +5,7 @@ import './editUser.scss';
 import {MasalaContext} from '../../Context/MasalaProvider'
 import axios from 'axios';
 import { isAlphaNumericWithSpaces, isLetterWithSpace, isNumber, isValidPhoneNumber } from '../../utils/validation';
-import { invertirFecha2 } from '../../utils/reverseDate';
+import { invertirFecha, invertirFecha2 } from '../../utils/reverseDate';
 
 const initialValue = {
   name: "",
@@ -38,10 +38,6 @@ export const EditUser = ({handleClose}) => {
 
   const handleChange = (e) => {
     let {value, name} = e.target
-    if(name === "birth_date"){
-      value = invertirFecha2(value)
-
-    }
     setEdit({...edit, [name]:value});
   }
   
@@ -56,7 +52,6 @@ export const EditUser = ({handleClose}) => {
     if(edit.name && edit.lastname && edit.birth_date && edit.dni && edit.phone && edit.address && edit.zip_code && edit.city && edit.province){
 
     const newFormData = new FormData();
-
     newFormData.append("editUser", JSON.stringify(edit))
     newFormData.append("file", file)
 
@@ -72,6 +67,7 @@ export const EditUser = ({handleClose}) => {
           setUser({...user, ...edit})
         }
         handleClose()
+        //location.reload()
       })
       .catch((err => console.log(err)))
     }
@@ -79,7 +75,7 @@ export const EditUser = ({handleClose}) => {
       setMessage("Debes rellenar todos los campos")
     }
   }
-  //console.log(invertirFecha2(edit.birth_date))
+
   return (
     <Row className='d-flex justify-content-center align-items-center edit-ppal'>
       <Col>
@@ -115,10 +111,9 @@ export const EditUser = ({handleClose}) => {
               <Form.Control 
                 type="date"
                 placeholder="Fecha nacimiento"
-                value={edit.birth_date === null ? "" : invertirFecha2(edit.birth_date)}
+                value={edit.birth_date === null ? "" : edit.birth_date}
                 onChange={handleChange}
                 name="birth_date"
-                onKeyDown={(e) => { if (e.target.type === 'date') e.preventDefault(); }} // Evitar entrada manual
               />
             </Form.Group>
 
