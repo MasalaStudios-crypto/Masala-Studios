@@ -5,7 +5,7 @@ import axios from 'axios';
 import { MasalaContext } from '../../Context/MasalaProvider';
 import { useParams } from 'react-router-dom';
 import { isLetterWithSpace } from '../../utils/validation';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 
 export const AllCoursesProfile = () => {
 
@@ -87,20 +87,22 @@ export const AllCoursesProfile = () => {
                 value={searchText} 
                 onChange={handleTextChange} 
                 placeholder="Buscar curso" 
-                onKeyPress={isLetterWithSpace} 
+                onKeyPress={isLetterWithSpace}
+                className='input-buscador' 
               /> 
               {/* Select para la categoría */}
               <select 
                 value={selectedCategory} 
                 onChange={handleCategoryChange}
+                className='select-buscador'
               >
                 <option value='tag'>Tags</option>
                 <option value='course'>Nombre del curso</option>
               </select> 
               {/* Botón para realizar la búsqueda */}
-              <button onClick={searchCourses}>Buscar</button> 
+              <Button  variant='primary' onClick={searchCourses}>Buscar</Button> 
               {/* Botón para reiniciar la búsqueda */}
-              <button onClick={reload}>Reiniciar</button>
+              <Button variant='secondary' onClick={reload}>Reiniciar</Button>
             </div>
             <Row className='allCoursesProfile-Row'>
             {/* Mostrar si no hay resultados */}
