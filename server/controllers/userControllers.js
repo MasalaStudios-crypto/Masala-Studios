@@ -39,7 +39,7 @@ class UserControllers{
 
 
 
-          sendMyMail('santysmp24@gmail.com',
+          sendMyMail('sergiowani@gmail.com',
 
 
           `<div>

@@ -10,10 +10,6 @@
   background-size: cover;
   background-position:center;
   background-repeat: no-repeat;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -34,3 +30,7 @@
   align-items: center;
 }
 
+.input-buscador, .select-buscador {
+  border-radius: 10px; 
+  padding: 8px;
+}
