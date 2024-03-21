@@ -46,6 +46,7 @@
     flex-direction: row;
     margin-top: 50px;
     justify-content: space-around;
+    gap: 10px;
 
  
 
@@ -53,14 +54,14 @@
     img{
       width: 35vw;
       max-height: 640px;
-      height: 50vw;
+      height: 50vh;
       min-height: 500px;
       border-radius: 25px;
     }
     .oneCourse-div{
       width: 35vw;
       max-height: 640px;
-      height: 50vw;
+      height: 50vh;
       min-height: 500px;
       padding: 20px;
       border: 1px solid white;

@@ -193,3 +193,12 @@
     padding: 50px 65px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  /* Card central */
+  .card-who {
+    p {
+      font-size: 0.7rem;
+    }
+  }
+}
