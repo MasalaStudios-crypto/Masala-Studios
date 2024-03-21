@@ -5,11 +5,15 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useNavigate } from 'react-router-dom'
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { invertirFecha } from '../../../utils/reverseDate'
+import { ModalBasico } from '../../../components/ModalBasico/ModalBasico'
+import { ListaAlumnosApuntados } from './ListaAlumnosApuntados'
 
 export const TableCourse = () => {
 
   const [courses, setCourses]=useState()
   const [reset, setReset]=useState(false)
+  const [show, setShow]=useState(false)
+  const [courseId, setCourseId]=useState()
   const {token}= useContext(MasalaContext)
   const navigate = useNavigate();
 
@@ -63,6 +67,11 @@ export const TableCourse = () => {
       .catch((err)=>console.log(err))
   }
 
+  const openStudents=(elem)=>{
+    setCourseId(elem)
+    setShow(!show)
+  }
+
   return (
 
     <TableContainer component={Paper} sx={{ overflowX: 'auto' }}>
@@ -78,6 +87,7 @@ export const TableCourse = () => {
             <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Estado</b></TableCell>
             <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Visibilidad</b></TableCell>
             <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Habilitado</b></TableCell>
+            <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Alumnos</b></TableCell>
             <TableCell align="center"><b style={{ fontSize: '1.3rem' }}>Temas</b></TableCell>
 
           </TableRow>
@@ -105,11 +115,23 @@ export const TableCourse = () => {
 
               <TableCell align="center"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.course_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
 
+              <TableCell align="center" onClick={()=>{openStudents(elem.course_id)}}><Button>Ver alumnos</Button></TableCell>
+
               <TableCell align="center" onClick={()=>{navigate(`/subjects/${elem.course_id}`)}}><Button>Ver temas</Button></TableCell>
            
             </TableRow>
           ))}
         </TableBody>
+
+        <ModalBasico
+          title={`Alumnos apuntados`}
+          handleClose={openStudents}
+          show={show}
+          size="sm">
+            <ListaAlumnosApuntados
+            course_id={courseId}
+            handleClose={openStudents}/>
+        </ModalBasico>
 
   </Table>
   </TableContainer>
