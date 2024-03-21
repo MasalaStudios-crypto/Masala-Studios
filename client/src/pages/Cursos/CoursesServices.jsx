@@ -38,7 +38,7 @@ export const CoursesServices = () => {
 
     <Card style={{backgroundColor:"rgba(255, 255, 255, 0.243)"}} className='serv-card'>
   
-    <Card.Img   style={{width:"480px", height:"350px"}} variant="top" src={elem.course_img?`http://localhost:3000/images/course_img/${elem?.course_img}`:"../images/course.png"}  />
+    <Card.Img   style={{width:"420px", height:"300px"}} variant="top" src={elem.course_img?`http://localhost:3000/images/course_img/${elem?.course_img}`:"../images/course.png"}  />
     <Card.Body>
       <Card.Title style={{textAlign:"center", fontSize:"20px"}}>{elem?.name}</Card.Title>
     <p>Descripción: {elem?.description}</p>
