@@ -88,8 +88,9 @@ export const AllCoursesProfile = () => {
                 value={searchText} 
                 onChange={handleTextChange} 
                 placeholder="Buscar curso" 
-                onKeyPress={isLetterWithSpace} 
-                className='input-buscador'
+                onKeyPress={isLetterWithSpace}
+                className='input-buscador' 
+
               /> 
               {/* Select para la categoría */}
               <select 
@@ -102,9 +103,9 @@ export const AllCoursesProfile = () => {
               </select> 
               {/* Botón para realizar la búsqueda */}
 
-              <Button variant="primary" onClick={searchCourses}>Buscar</Button> 
+              <Button  variant='primary' onClick={searchCourses}>Buscar</Button> 
               {/* Botón para reiniciar la búsqueda */}
-              <Button variant="secondary" onClick={reload}>Reiniciar</Button>
+              <Button variant='secondary' onClick={reload}>Reiniciar</Button>
 
             </div>
             <Row md={12} className='allCoursesProfile-Row'>
