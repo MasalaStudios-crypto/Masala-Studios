@@ -69,4 +69,6 @@ router.get('/tags', courseControllers.getTags)
 
 router.get('/tagsEdit/:course_id', courseControllers.getTagsEdit)
 
+router.get('/allStudentsJoin/:course_id', courseControllers.allStudentsJoin)
+
 module.exports = router;

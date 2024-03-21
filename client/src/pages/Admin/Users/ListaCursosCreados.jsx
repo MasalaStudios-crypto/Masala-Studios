@@ -22,7 +22,7 @@ useEffect(()=>{
   return (
     <div className='text-center'>
       {coursesCreated?.map((elem, index)=>(
-        <h5 key={index}>{elem.name}</h5>
+        <h5 key={index} style={{ color: 'black' }}>{elem.name}</h5>
       ))}
     </div>
   )
