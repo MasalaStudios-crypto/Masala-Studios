@@ -20,6 +20,7 @@ import { ConfirmUser } from '../pages/Auth/ConfirmUser/ConfirmUser'
 import { Confirm } from '../pages/Auth/Confirm/Confirm'
 import { TipoServicios } from '../pages/Servicios/TipoServicios/TipoServicios'
 import { MyGrades } from '../pages/MyGrades/MyGrades'
+import { Forbidden } from '../pages/Auth/Forbidden/Forbidden'
 
 
 
@@ -40,7 +41,7 @@ export const AppRoutes = () => {
             <Route path='/login' element={<Login/>} />
             </>}
 
-            <Route path="*" element={<h1>TRAMPOSO</h1>}/>
+            <Route path="*" element={<Forbidden />}/>
             <Route path='/' element={<Home />}/>
             <Route path='/who' element={<Who />}/>
             <Route path='/about' element={<h1>ABOUT</h1>} />

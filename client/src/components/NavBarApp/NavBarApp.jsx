@@ -63,12 +63,12 @@ export const NavBarApp= () => {
                   <div>
                   </div>
                   :
-            <div className='navatar-movil'>
+            <div className='navatar-movil'> {/* logo móvil */}
                 {user?.user_img
                                   ?
                                   <img src={`http://localhost:3000/images/users/${user?.user_img}`} alt="foto perfil" />
                                   :
-                                  <span>{user?.name[0].toUpperCase()}</span>}
+                                  <div className='div-span-movil'><span>{user?.name[0].toUpperCase()}</span></div>}
                 </div>}
           </div>
           <Navbar.Collapse id="basic-navbar-nav" >
@@ -123,7 +123,7 @@ export const NavBarApp= () => {
                                   ?
                                   <img src={`http://localhost:3000/images/users/${user?.user_img}`} alt="foto perfil" />
                                   :
-                                  <span>{user?.name[0].toUpperCase()}</span>}
+                                  <div className='div-span-escritorio'><span>{user?.name[0].toUpperCase()}</span></div>}
                     >
                     {user?.type===2 ?
                     <div>
