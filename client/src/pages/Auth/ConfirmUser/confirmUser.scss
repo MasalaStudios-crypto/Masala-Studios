@@ -1,7 +1,7 @@
 @import '../../../variables';
 
 .confirmUser-ppal {
-  min-height: 100vh;
+  min-height: calc(100vh - 85.14px - 80px);
   margin-top: 85.14px;
   margin-left: calc((var(--bs-gutter-x)* -0.5));
   margin-right: calc((var(--bs-gutter-x)* -0.5));
@@ -12,11 +12,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  height: 100vh;
 
-  h1{
+  h1, p{
     color: white;
+    text-shadow: 5px 3px 3px black;
   }
-  p{
-    color: white;
-  }
+
 }

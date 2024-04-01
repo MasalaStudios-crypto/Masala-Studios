@@ -56,7 +56,7 @@ export const MyCourse = () => {
   //console.log("DATOS CURSO", courseDetails); //aquí tengo datos del curso
   //console.log("DATOS TEMAS", subjectDetails); //datos de los temas del curso
   //console.log("DATOS RECURSOS", resourcetDetails); //datos de los recursos del curso
-  console.log("DATOS REGISTRO", registerDetails); //datos de los registro del curso
+  //console.log("DATOS REGISTRO", registerDetails); //datos de los registro del curso
 
   const navigate = useNavigate();
 
@@ -115,7 +115,7 @@ export const MyCourse = () => {
 console.log(user?.user_id, registerDetails?.user_id, courseDetails?.course_id, registerDetails?.course_id)
   return (
     <section className='myCourse-ppal'>
-    {(IsInRegister(user?.user_id, registerDetails?.user_id, courseDetails?.course_id, registerDetails?.course_id) === true) || (courseDetails?.creator_user_id == user?.user_id) ?
+    {courseDetails?.course_id?
       <Row className='course-section'>
 
         {/* Columna izquierda */}

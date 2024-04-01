@@ -130,9 +130,14 @@ export const TableUser = () => {
               <TableCell align="center">{elem.city}</TableCell>
               <TableCell align="center">{elem.province}</TableCell>
               <TableCell align="center">{elem.email}</TableCell>
+
               <TableCell align="center"><Button variant={elem.type===1?"info":"success"} onClick={()=>onType(elem.user_id, elem.type)}>{elem.type===1?"Administrador":"Usuario"}</Button></TableCell>
-              <TableCell align="center"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></TableCell>
+
+              <TableCell align="center"><Button variant={elem.is_deleted===0?"success":"danger"} onClick={()=>onDeleted(elem.user_id, elem.is_deleted)}>{elem.is_deleted===0?"Activo":"Inactivo"}</Button></
+              TableCell>
+
               <TableCell align="center"><Button variant={elem.is_disabled===0?"success":"danger"} onClick={()=>onDisabled(elem.user_id, elem.is_disabled)}>{elem.is_disabled===0?"Habilitado":"Deshabilitado"}</Button></TableCell>
+              
               <TableCell onClick={()=>openCreatedCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>
               
               <TableCell  onClick={()=>openRegCourse(elem.user_id)} align="center"><Button>Ver Cursos</Button></TableCell>

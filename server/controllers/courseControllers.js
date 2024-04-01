@@ -192,24 +192,18 @@ class courseControllers{
       const result1 = await connection.promise().query(sql1);
   
       // Segunda consulta SQL
-      const sql2 = `SELECT subject.* FROM subject, register WHERE register.course_id = subject.course_id AND register.course_id = ${course_id}
-                    GROUP BY subject_id`;
+      const sql2 = `SELECT * FROM subject WHERE subject.course_id=${course_id};`
       const result2 = await connection.promise().query(sql2);
   
       // Tercera consulta SQL
       const sql3 = `SELECT resource.* FROM resource, course WHERE resource.course_id = course.course_id AND course.course_id = ${course_id}`;
       const result3 = await connection.promise().query(sql3);
 
-      // Cuarta consulta SQL
-      const sql4 = `SELECT register.*, user.user_id, course.course_id FROM register, user, course WHERE register.course_id = course.course_id AND course.course_id = ${course_id}`;
-      const result4 = await connection.promise().query(sql4);
-  
       // Manipular los resultados según tus necesidades
       const response = {
         result1: result1[0][0], // solo la primera posición
         result2: result2[0],    // array completo de subjects
         result3: result3[0],     // array completo de resource
-        result4: result4[0][0]   // array completo de register
       };
   
       res.status(200).json(response);
