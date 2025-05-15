@@ -87,7 +87,8 @@ SELECT * FROM resource;
 SELECT * FROM tag;
 SELECT * FROM register;
 
-INSERT INTO user (name, email, password, type, is_disabled) VALUES ("administrador", "masalahead.av@pm.me", "$2b$08$BQiirSgzg1.D9MqkMuKGXuh8f/Iz6HKNq7AuTa.Illxa4LURAh6cu", 1, 0);
+INSERT INTO user (name, email, password, type, is_disabled) 
+VALUES ("Administrador", "jospinacadena@gmail.com", "$2a$10$yvRIl1elbhEN8N0oVCwTBuJ42wa8xlUCP40K4qVYHIrnbaQWSdD4C", 1, 0);
 
 
 
