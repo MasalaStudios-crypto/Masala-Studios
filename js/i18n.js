@@ -1,7 +1,7 @@
 /* ══════════════════════════════════════════════
    Masala Studios — i18n Engine
    Adapted from APEX Intelligence i18n system
-   Supports 31 languages with RTL + localStorage
+   Supports 31 languages with RTL + in-memory lang
    ══════════════════════════════════════════════ */
 
 class MasalaI18n {
@@ -17,7 +17,7 @@ class MasalaI18n {
   }
 
   async init() {
-    // Priority: localStorage > browser lang > es
+    // Priority: in-memory > browser lang > es
     const stored = this._getStored();
     const browserLang = navigator.language.split('-')[0];
     const browserFull = navigator.language; // e.g. pt-BR
@@ -88,7 +88,7 @@ class MasalaI18n {
 
   async switchLanguage(lang) {
     if (!this.supported.includes(lang)) return false;
-    localStorage.setItem('masala_lang', lang);
+    window._masalaLang = lang;
     await this.loadTranslations(lang);
     this.applyTranslations();
     this.updateHtmlAttrs();
@@ -97,7 +97,7 @@ class MasalaI18n {
   }
 
   _getStored() {
-    try { return localStorage.getItem('masala_lang'); } catch { return null; }
+    return window._masalaLang ?? null;
   }
 
   _dispatchChange() {

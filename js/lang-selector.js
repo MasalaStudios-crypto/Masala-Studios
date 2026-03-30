@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Init from stored language
-  const stored = localStorage.getItem('masala_lang') || 'es';
+  const stored = window._masalaLang || 'es';
   options.forEach(o => {
     o.classList.toggle('active', o.getAttribute('data-lang') === stored);
   });
