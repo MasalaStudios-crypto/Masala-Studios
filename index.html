@@ -196,6 +196,7 @@
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <section class="hero" id="inicio">
   <div class="hero-canvas" aria-hidden="true">
+    <div class="hero-real-bg" style="background-image:url('assets/images/hero-bg.jpg')"></div>
     <div class="hero-orb hero-orb--1"></div>
     <div class="hero-orb hero-orb--2"></div>
     <div class="hero-orb hero-orb--3"></div>
@@ -346,7 +347,7 @@
     <div class="portfolio-grid">
       <article class="pf-card pf-card--featured reveal">
         <div class="pf-media">
-          <div class="pf-visual cajamar-bg">
+          <div class="pf-visual pf-img" style="background-image:url('assets/images/pf-cajamar.jpg')">
             <div class="pf-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
             <div class="pf-client-badge">
               <span class="client-label-sm">Cliente</span>
@@ -371,7 +372,7 @@
 
       <article class="pf-card reveal">
         <div class="pf-media">
-          <div class="pf-visual film-bg-1">
+          <div class="pf-visual pf-img" style="background-image:url('assets/images/pf-selfie.jpg')">
             <div class="pf-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
             <span class="pf-badge">FESTIVAL</span>
           </div>
@@ -386,7 +387,7 @@
 
       <article class="pf-card reveal">
         <div class="pf-media">
-          <div class="pf-visual film-bg-2">
+          <div class="pf-visual pf-img" style="background-image:url('assets/images/pf-viles.jpg')">
             <div class="pf-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
             <span class="pf-badge pf-badge--gold">6 PREMIOS</span>
           </div>
@@ -401,7 +402,7 @@
 
       <article class="pf-card reveal">
         <div class="pf-media">
-          <div class="pf-visual sports-bg">
+          <div class="pf-visual pf-img" style="background-image:url('assets/images/pf-sports.jpg')">
             <span class="pf-live">LIVE</span>
           </div>
         </div>
@@ -521,20 +522,18 @@
         <p class="about-body" data-i18n="about.body">Creemos que más allá de impactar a quien ve una obra hoy, es posible crear un retrato fiel de la realidad que pueda recuperarse y estudiarse en el futuro, como un hallazgo arqueológico.</p>
 
         <div class="timeline">
-          <div class="tl-item"><span class="tl-year" data-i18n="about.m1year">2019</span><span class="tl-text">Prácticas en Europa FM (Atresmedia) y LinkUp Productions — Barcelona</span></div>
-          <div class="tl-item"><span class="tl-year">2021–22</span><span class="tl-text">Técnico AV en Parque Tecnológico de Andalucía (PTA) · Festival U22 · Letto Studio</span></div>
-          <div class="tl-item"><span class="tl-year" data-i18n="about.m2year">2022–23</span><span class="tl-text" data-i18n="about.m2text">Incubación en GO2Work — Escuela de Organización Industrial, Málaga</span></div>
-          <div class="tl-item"><span class="tl-year" data-i18n="about.m3year">2023</span><span class="tl-text" data-i18n="about.m3text">Programa Acelera Startups — Andalucía (NextGenerationEU)</span></div>
-          <div class="tl-item"><span class="tl-year" data-i18n="about.m4year">2024</span><span class="tl-text" data-i18n="about.m4text">6 premios internacionales en India, UK, Francia y EE.UU.</span></div>
-          <div class="tl-item"><span class="tl-year" data-i18n="about.m5year">2025</span><span class="tl-text" data-i18n="about.m5text">Expansión Colombia–España · Co-producción internacional</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m1year">2019</span><span class="tl-text" data-i18n="about.m1text">Prácticas en Europa FM (Atresmedia) y LinkUp Productions — Barcelona</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m2year">2021–22</span><span class="tl-text" data-i18n="about.m2text">Técnico AV en PTA Málaga · Festival U22 · Letto Studio</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m3year">2022–23</span><span class="tl-text" data-i18n="about.m3text">Fundación · Incubación GO2Work — EOI, Málaga</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m4year">2023</span><span class="tl-text" data-i18n="about.m4text">Programa Acelera Startups — Andalucía (NextGenerationEU)</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m5year">2024–25</span><span class="tl-text" data-i18n="about.m5text">6 premios internacionales · Gira Yllana · Starlite · JC Reyes Valencia</span></div>
         </div>
       </div>
 
       <div class="about-right reveal">
         <div class="founder-glass">
-          <div class="founder-avatar-area" aria-hidden="true">
-            <div class="avatar-ring"></div>
-            <svg class="avatar-icon" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="16" fill="currentColor" opacity="0.15"/><circle cx="40" cy="30" r="11" fill="currentColor" opacity="0.2"/><path d="M14 72c0-14.36 11.64-26 26-26s26 11.64 26 26" fill="currentColor" opacity="0.1"/></svg>
+          <div class="founder-avatar-area founder-photo-area" aria-hidden="false">
+            <img src="assets/images/founder.jpg" alt="Juan Ospina — Masala Studios" class="founder-photo" loading="lazy" />
           </div>
           <div class="founder-details">
             <h3 data-i18n="about.founderName">Juan Ospina</h3>

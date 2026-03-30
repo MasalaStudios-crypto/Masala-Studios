@@ -568,3 +568,57 @@ html:not(.fonts-loaded) body {
     justify-content: flex-start;
   }
 }
+
+/* ══════════════════════ REAL IMAGES ══════════════════════ */
+
+/* Hero background photo */
+.hero-real-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 40%;
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Darken further on mobile */
+@media (max-width: 768px) {
+  .hero-real-bg { opacity: 0.12; }
+}
+
+/* Portfolio real image fills */
+.pf-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Selfie poster is portrait — center the face area */
+.pf-img[style*="pf-selfie"] {
+  background-position: center 10%;
+}
+/* Darken overlay for better readability on hover */
+.pf-img .portfolio-overlay,
+.pf-img .pf-play {
+  /* Already handled by existing overlay CSS */
+}
+
+/* Founder photo */
+.founder-photo-area {
+  overflow: hidden;
+  background: var(--surface-3) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.founder-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s var(--ease);
+  filter: brightness(0.92) contrast(1.05);
+}
+.founder-glass:hover .founder-photo {
+  transform: scale(1.03);
+}
