@@ -1,7 +1,8 @@
 /* ══════════════════════════════════════════════
-   Masala Studios — i18n Engine
-   Adapted from APEX Intelligence i18n system
-   Supports 31 languages with RTL + in-memory lang
+   Masala Studios — i18n Engine v2
+   Hybrid: bundled translations (instant, works everywhere)
+   + async fetch fallback for future languages
+   31 languages, RTL support
    ══════════════════════════════════════════════ */
 
 class MasalaI18n {
@@ -14,38 +15,59 @@ class MasalaI18n {
       'zh','zh-TW','ja','ko','id','ms','vi','tl','th','tr','nl','pl',
       'uk','el','fa','sw','am','yo','ha'
     ];
+    // Use bundled translations if available (no fetch needed)
+    this._bundle = window.MASALA_LOCALES || null;
   }
 
   async init() {
-    // Priority: in-memory > browser lang > es
-    const stored = this._getStored();
-    const browserLang = navigator.language.split('-')[0];
-    const browserFull = navigator.language; // e.g. pt-BR
+    // Detect starting language: in-memory > browser lang > es
+    const stored = window._masalaLang ?? null;
+    const browserLang = navigator.language;
+    const browserShort = browserLang.split('-')[0];
 
     if (stored && this.supported.includes(stored)) {
       this.currentLang = stored;
-    } else if (this.supported.includes(browserFull)) {
-      this.currentLang = browserFull;
     } else if (this.supported.includes(browserLang)) {
       this.currentLang = browserLang;
+    } else if (this.supported.includes(browserShort)) {
+      this.currentLang = browserShort;
     }
 
     await this.loadTranslations(this.currentLang);
     this.applyTranslations();
     this.updateHtmlAttrs();
-    this._dispatchChange();
+    this._dispatch();
   }
 
   async loadTranslations(lang) {
+    // 1. Try bundled (instant, no network needed)
+    if (this._bundle && this._bundle[lang]) {
+      this.translations = this._bundle[lang];
+      this.currentLang = lang;
+      return true;
+    }
+
+    // 2. Fallback: fetch JSON (works on masalastudios.pro)
     try {
       const res = await fetch(`/locales/${lang}.json`);
       if (!res.ok) throw new Error(res.status);
       this.translations = await res.json();
       this.currentLang = lang;
+      // Cache into bundle for future calls
+      if (!this._bundle) this._bundle = {};
+      this._bundle[lang] = this.translations;
       return true;
-    } catch(e) {
-      console.warn(`[i18n] Failed to load ${lang}, falling back to es`);
-      if (lang !== 'es') return await this.loadTranslations('es');
+    } catch (e) {
+      console.warn(`[i18n] Could not load ${lang}, falling back to es`);
+      // Try bundle fallback to es
+      if (lang !== 'es') {
+        if (this._bundle?.es) {
+          this.translations = this._bundle.es;
+          this.currentLang = 'es';
+          return true;
+        }
+        return await this.loadTranslations('es');
+      }
       return false;
     }
   }
@@ -55,13 +77,15 @@ class MasalaI18n {
   }
 
   applyTranslations() {
-    // Document title
     const t = this.translations;
-    if (t.meta?.title) document.title = t.meta.title;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc && t.meta?.description) desc.content = t.meta.description;
+    if (!t || Object.keys(t).length === 0) return;
 
-    // All data-i18n elements
+    // Document title + meta description
+    if (t.meta?.title) document.title = t.meta.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && t.meta?.description) metaDesc.content = t.meta.description;
+
+    // All elements with data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       const val = this.get(key);
@@ -77,37 +101,30 @@ class MasalaI18n {
   updateHtmlAttrs() {
     const html = document.documentElement;
     html.lang = this.currentLang;
-    if (this.rtlLanguages.includes(this.currentLang)) {
-      html.dir = 'rtl';
-      document.body.classList.add('rtl');
-    } else {
-      html.dir = 'ltr';
-      document.body.classList.remove('rtl');
-    }
+    const isRTL = this.rtlLanguages.includes(this.currentLang);
+    html.dir = isRTL ? 'rtl' : 'ltr';
+    document.body.classList.toggle('rtl', isRTL);
   }
 
   async switchLanguage(lang) {
     if (!this.supported.includes(lang)) return false;
     window._masalaLang = lang;
-    await this.loadTranslations(lang);
+    const ok = await this.loadTranslations(lang);
+    if (!ok) return false;
     this.applyTranslations();
     this.updateHtmlAttrs();
-    this._dispatchChange();
+    this._dispatch();
     return true;
   }
 
-  _getStored() {
-    return window._masalaLang ?? null;
-  }
-
-  _dispatchChange() {
+  _dispatch() {
     document.dispatchEvent(new CustomEvent('masala:langchange', {
       detail: { lang: this.currentLang, rtl: this.rtlLanguages.includes(this.currentLang) }
     }));
   }
 }
 
-// Init on DOM ready
+// Bootstrap
 const masalaI18n = new MasalaI18n();
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => masalaI18n.init());
