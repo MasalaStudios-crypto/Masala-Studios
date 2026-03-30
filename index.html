@@ -1,735 +1,632 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Masala Studios — Productora Audiovisual</title>
-  <meta name="description" content="Masala Studios es una productora audiovisual que crea contenido multiformato de alta calidad. Producción, dirección, fotografía, postproducción y estrategia visual para empresas, marcas y proyectos creativos." />
+  <title data-i18n="meta.title">Masala Studios — Productora Audiovisual</title>
+  <meta name="description" data-i18n="meta.description" content="Contenido audiovisual de alto impacto para marcas, instituciones y proyectos creativos." />
   <meta property="og:title" content="Masala Studios — Productora Audiovisual" />
-  <meta property="og:description" content="Contenido audiovisual que conecta con tu audiencia. Especialistas en producción corporativa, publicidad, cine y documental." />
+  <meta property="og:description" content="Arte sin barreras expresivas. Contenido que deja huella." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/images/og-image.jpg" />
 
   <!-- Fonts -->
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="css/lang-selector.css" />
+  <link rel="stylesheet" href="css/rtl.css" />
 
-  <!-- Structured data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProductionCompany",
-    "name": "Masala Studios",
-    "alternateName": "Masala Head Multimedia",
-    "description": "Productora audiovisual especializada en contenido multiformato innovador.",
-    "email": "hola@masalastudios.pro",
-    "url": "https://masalastudios.pro",
-    "foundingDate": "2022",
-    "sameAs": ["https://www.linkedin.com/in/masalastudios/"]
-  }
+  {"@context":"https://schema.org","@type":"ProductionCompany","name":"Masala Studios","alternateName":"Masala Head Multimedia","email":"hola@masalastudios.pro","url":"https://masalastudios.pro","foundingDate":"2022","sameAs":["https://www.linkedin.com/in/masalastudios/"]}
   </script>
 </head>
 <body>
 
-  <!-- HEADER / NAV -->
-  <header class="header" id="header">
-    <nav class="nav container">
-      <a href="#inicio" class="nav-logo" aria-label="Masala Studios — inicio">
-        <svg viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Masala Studios logo" class="logo-svg">
-          <!-- Spiral flame mark -->
-          <g class="logo-mark">
-            <path d="M22 38 C22 38 8 32 8 20 C8 12 14 6 22 6 C30 6 36 12 36 20 C36 28 30 34 22 34 C17 34 13 30 13 25 C13 20 17 17 22 17 C26 17 29 20 29 24 C29 27 27 29 24 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <path d="M22 6 C22 6 28 2 30 2 C28 8 24 10 22 6Z" fill="currentColor"/>
-          </g>
-          <!-- Wordmark -->
-          <text x="46" y="22" class="logo-text-top" font-family="'Clash Display', sans-serif" font-size="16" font-weight="600" fill="currentColor" letter-spacing="2">MASALA</text>
-          <text x="46" y="40" class="logo-text-bottom" font-family="'Clash Display', sans-serif" font-size="16" font-weight="400" fill="currentColor" letter-spacing="2" opacity="0.75">STUDIOS</text>
-        </svg>
-      </a>
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+<header class="header" id="header">
+  <nav class="nav container">
 
-      <ul class="nav-links" role="list">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-        <li><a href="#premios" class="nav-link">Premios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <button class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-        <button class="nav-hamburger" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+    <a href="#inicio" class="nav-logo" aria-label="Masala Studios">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" width="34" height="34" class="nav-logo-icon">
+        <path d="M22 38 C22 38 8 32 8 20 C8 12 14 6 22 6 C30 6 36 12 36 20 C36 28 30 34 22 34 C17 34 13 30 13 25 C13 20 17 17 22 17 C26 17 29 20 29 24 C29 27 27 29 24 29" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path d="M22 6 C22 6 28 2 30 2 C28 8 24 10 22 6Z" fill="currentColor"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="nav-brand">MASALA</span>
+        <span class="nav-brand-suffix">STUDIOS</span>
       </div>
-    </nav>
+    </a>
 
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <ul role="list">
-        <li><a href="#servicios" class="mobile-link">Servicios</a></li>
-        <li><a href="#portfolio" class="mobile-link">Portfolio</a></li>
-        <li><a href="#premios" class="mobile-link">Premios</a></li>
-        <li><a href="#nosotros" class="mobile-link">Nosotros</a></li>
-        <li><a href="#contacto" class="mobile-link mobile-cta">Hablemos</a></li>
-      </ul>
+    <ul class="nav-links" role="list">
+      <li><a href="#servicios" class="nav-link" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="#portfolio" class="nav-link" data-i18n="nav.portfolio">Portfolio</a></li>
+      <li><a href="#premios"   class="nav-link" data-i18n="nav.awards">Premios</a></li>
+      <li><a href="#nosotros"  class="nav-link" data-i18n="nav.about">Nosotros</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- Language Selector -->
+      <div class="lang-selector" id="langSelector">
+        <button class="lang-btn" id="langToggle" aria-label="Select language" aria-expanded="false">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          <span id="currentLang">ES</span>
+          <svg class="lang-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown" aria-hidden="true">
+          <div class="lang-search-wrap">
+            <input type="text" class="lang-search" id="langSearch" placeholder="Search…" autocomplete="off" />
+          </div>
+          <div class="lang-list" id="langList">
+            <button class="lang-option active" data-lang="es" data-name="Español">🇪🇸 Español</button>
+            <button class="lang-option" data-lang="en" data-name="English">🇬🇧 English</button>
+            <button class="lang-option" data-lang="fr" data-name="Français">🇫🇷 Français</button>
+            <button class="lang-option" data-lang="de" data-name="Deutsch">🇩🇪 Deutsch</button>
+            <button class="lang-option" data-lang="it" data-name="Italiano">🇮🇹 Italiano</button>
+            <button class="lang-option" data-lang="pt-BR" data-name="Português">🇧🇷 Português (BR)</button>
+            <button class="lang-option" data-lang="ru" data-name="Русский">🇷🇺 Русский</button>
+            <button class="lang-option" data-lang="ar" data-name="العربية">🇸🇦 العربية</button>
+            <button class="lang-option" data-lang="hi" data-name="हिन्दी">🇮🇳 हिन्दी</button>
+            <button class="lang-option" data-lang="bn" data-name="বাংলা">🇧🇩 বাংলা</button>
+            <button class="lang-option" data-lang="ur" data-name="اردو">🇵🇰 اردو</button>
+            <button class="lang-option" data-lang="pa" data-name="ਪੰਜਾਬੀ">🇮🇳 ਪੰਜਾਬੀ</button>
+            <button class="lang-option" data-lang="zh" data-name="简体中文">🇨🇳 简体中文</button>
+            <button class="lang-option" data-lang="zh-TW" data-name="繁體中文">🇹🇼 繁體中文</button>
+            <button class="lang-option" data-lang="ja" data-name="日本語">🇯🇵 日本語</button>
+            <button class="lang-option" data-lang="ko" data-name="한국어">🇰🇷 한국어</button>
+            <button class="lang-option" data-lang="id" data-name="Bahasa Indonesia">🇮🇩 Bahasa Indonesia</button>
+            <button class="lang-option" data-lang="ms" data-name="Bahasa Melayu">🇲🇾 Bahasa Melayu</button>
+            <button class="lang-option" data-lang="vi" data-name="Tiếng Việt">🇻🇳 Tiếng Việt</button>
+            <button class="lang-option" data-lang="tl" data-name="Filipino">🇵🇭 Filipino</button>
+            <button class="lang-option" data-lang="th" data-name="ภาษาไทย">🇹🇭 ภาษาไทย</button>
+            <button class="lang-option" data-lang="tr" data-name="Türkçe">🇹🇷 Türkçe</button>
+            <button class="lang-option" data-lang="nl" data-name="Nederlands">🇳🇱 Nederlands</button>
+            <button class="lang-option" data-lang="pl" data-name="Polski">🇵🇱 Polski</button>
+            <button class="lang-option" data-lang="uk" data-name="Українська">🇺🇦 Українська</button>
+            <button class="lang-option" data-lang="el" data-name="Ελληνικά">🇬🇷 Ελληνικά</button>
+            <button class="lang-option" data-lang="fa" data-name="فارسی">🇮🇷 فارسی</button>
+            <button class="lang-option" data-lang="sw" data-name="Kiswahili">🇹🇿 Kiswahili</button>
+            <button class="lang-option" data-lang="am" data-name="አማርኛ">🇪🇹 አማርኛ</button>
+            <button class="lang-option" data-lang="yo" data-name="Yorùbá">🇳🇬 Yorùbá</button>
+            <button class="lang-option" data-lang="ha" data-name="Hausa">🇳🇬 Hausa</button>
+          </div>
+        </div>
+      </div>
+
+      <a href="#contacto" class="nav-cta" data-i18n="nav.cta">Hablemos</a>
+
+      <button class="nav-hamburger" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </header>
+  </nav>
 
-  <main>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul role="list">
+      <li><a href="#servicios" class="mobile-link" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="#portfolio" class="mobile-link" data-i18n="nav.portfolio">Portfolio</a></li>
+      <li><a href="#premios"   class="mobile-link" data-i18n="nav.awards">Premios</a></li>
+      <li><a href="#nosotros"  class="mobile-link" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="#contacto"  class="mobile-link mobile-cta" data-i18n="nav.cta">Hablemos</a></li>
+    </ul>
+  </div>
+</header>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="inicio" aria-labelledby="hero-heading">
-      <div class="hero-bg">
-        <div class="hero-gradient"></div>
-        <div class="hero-grid-lines" aria-hidden="true"></div>
+<main>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-canvas" aria-hidden="true">
+    <div class="hero-orb hero-orb--1"></div>
+    <div class="hero-orb hero-orb--2"></div>
+    <div class="hero-orb hero-orb--3"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-scan-line"></div>
+  </div>
+
+  <div class="hero-content container">
+    <div class="hero-eyebrow">
+      <span class="chip chip--gold" data-i18n="hero.eyebrow">Productora Audiovisual</span>
+      <span class="hero-dot" aria-hidden="true">·</span>
+      <span class="chip chip--ghost" data-i18n="hero.locations">Cartagena · España · Internacional</span>
+    </div>
+
+    <h1 class="hero-heading">
+      <span class="hero-line-1" data-i18n="hero.line1">Contenido que</span>
+      <span class="hero-line-2 gradient-text" data-i18n="hero.line2">deja huella.</span>
+    </h1>
+
+    <p class="hero-sub" data-i18n="hero.sub">Producimos audiovisual de alta calidad para marcas, instituciones y proyectos creativos que necesitan comunicar con impacto real.</p>
+
+    <div class="hero-actions">
+      <a href="#servicios" class="btn btn-primary" data-i18n="hero.btn1">Ver servicios</a>
+      <a href="#portfolio"  class="btn btn-glass"  data-i18n="hero.btn2">Portfolio</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num counter" data-target="6" data-suffix="+" data-i18n="hero.stat1num">6+</span>
+        <span class="stat-label" data-i18n="hero.stat1label">Premios internacionales</span>
       </div>
-      <div class="hero-content container">
-        <div class="hero-eyebrow">
-          <span class="badge">Productora Audiovisual</span>
-          <span class="hero-dot" aria-hidden="true">·</span>
-          <span class="badge-outline">Cartagena · España · Internacional</span>
-        </div>
-        <h1 class="hero-heading" id="hero-heading">
-          <span class="hero-line">Contenido que</span>
-          <span class="hero-line hero-accent">deja huella.</span>
-        </h1>
-        <p class="hero-sub">Producimos audiovisual de alta calidad para marcas, instituciones y proyectos creativos que necesitan comunicar con impacto real.</p>
-        <div class="hero-actions">
-          <a href="#servicios" class="btn btn-primary">Ver servicios</a>
-          <a href="#portfolio" class="btn btn-ghost">Portfolio</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num">6+</span>
-            <span class="stat-label">Premios internacionales</span>
-          </div>
-          <div class="stat-divider" aria-hidden="true"></div>
-          <div class="stat">
-            <span class="stat-num">5</span>
-            <span class="stat-label">Países de distribución</span>
-          </div>
-          <div class="stat-divider" aria-hidden="true"></div>
-          <div class="stat">
-            <span class="stat-num">2022</span>
-            <span class="stat-label">Desde</span>
-          </div>
-        </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-num counter" data-target="5" data-i18n="hero.stat2num">5</span>
+        <span class="stat-label" data-i18n="hero.stat2label">Países de distribución</span>
       </div>
-      <div class="hero-scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-num" data-i18n="hero.stat3num">2022</span>
+        <span class="stat-label" data-i18n="hero.stat3label">Desde</span>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- ===== PROBLEMS / VALUE ===== -->
-    <section class="problems section-sm" aria-label="Propuesta de valor">
-      <div class="container">
-        <div class="problems-grid">
-          <div class="problem-card reveal">
-            <div class="problem-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
-            </div>
-            <h3>Tu marca merece más que un vídeo genérico</h3>
-            <p>Creamos narrativas visuales que comunican quién eres de verdad, no solo lo que haces.</p>
-          </div>
-          <div class="problem-card reveal">
-            <div class="problem-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <h3>Producciones que se adaptan a tu presupuesto</h3>
-            <p>Desde spots corporativos hasta campañas de alto impacto. Flexibilidad real sin comprometer la calidad.</p>
-          </div>
-          <div class="problem-card reveal">
-            <div class="problem-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <h3>Entregas puntuales, sin sorpresas</h3>
-            <p>Gestión ágil del proyecto desde preproducción hasta entrega final. Sabemos que el tiempo vale dinero.</p>
-          </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-track"><div class="scroll-thumb"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ VALUE PROPS ═══════════════════════════════ -->
+<section class="value-props" aria-label="Propuesta de valor">
+  <div class="container">
+    <div class="vp-grid">
+      <div class="vp-card reveal">
+        <div class="vp-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
         </div>
+        <h3 data-i18n="problems.p1title">Tu marca merece más que un vídeo genérico</h3>
+        <p data-i18n="problems.p1desc">Creamos narrativas visuales que comunican quién eres de verdad, no solo lo que haces.</p>
       </div>
-    </section>
-
-    <!-- ===== SERVICES ===== -->
-    <section class="services section" id="servicios" aria-labelledby="services-heading">
-      <div class="container">
-        <div class="section-header reveal">
-          <p class="section-eyebrow">Lo que hacemos</p>
-          <h2 id="services-heading">Servicios audiovisuales</h2>
-          <p class="section-sub">Cubrimos el ciclo completo de producción — desde la idea hasta la distribución — para que tu mensaje llegue con fuerza y coherencia.</p>
+      <div class="vp-card reveal">
+        <div class="vp-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-
-        <div class="services-grid">
-          <div class="service-card service-card--large reveal">
-            <div class="service-card-inner">
-              <div class="service-number">01</div>
-              <div class="service-icon-wrap">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              </div>
-              <h3>Producción Corporativa</h3>
-              <p>Vídeos institucionales, presentaciones de marca, contenido para redes y plataformas digitales. Reflejamos la identidad de tu empresa con precisión y creatividad.</p>
-              <ul class="service-list" role="list">
-                <li>Spots publicitarios</li>
-                <li>Vídeos institucionales</li>
-                <li>Contenido para redes sociales</li>
-                <li>Entrevistas y testimonios</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-card reveal">
-            <div class="service-card-inner">
-              <div class="service-number">02</div>
-              <div class="service-icon-wrap">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-              </div>
-              <h3>Producción Cinematográfica</h3>
-              <p>Cortometrajes y proyectos de ficción con vocación de festivales nacionales e internacionales.</p>
-            </div>
-          </div>
-
-          <div class="service-card reveal">
-            <div class="service-card-inner">
-              <div class="service-number">03</div>
-              <div class="service-icon-wrap">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 012-2h2M3 17v2a2 2 0 002 2h2M17 3h2a2 2 0 012 2v2M17 21h2a2 2 0 002-2v-2"/></svg>
-              </div>
-              <h3>Fotografía Profesional</h3>
-              <p>Fotografía corporativa, de producto, eventos y retratos. Imágenes que comunican antes de leer una sola palabra.</p>
-            </div>
-          </div>
-
-          <div class="service-card reveal">
-            <div class="service-card-inner">
-              <div class="service-number">04</div>
-              <div class="service-icon-wrap">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3l14 9-14 9V3z"/></svg>
-              </div>
-              <h3>Postproducción</h3>
-              <p>Edición de vídeo, corrección de color, motion graphics, mezcla de sonido y VFX. El toque final que hace la diferencia.</p>
-            </div>
-          </div>
-
-          <div class="service-card reveal">
-            <div class="service-card-inner">
-              <div class="service-number">05</div>
-              <div class="service-icon-wrap">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-              </div>
-              <h3>Transmisiones en Directo</h3>
-              <p>Operación de cámara y producción técnica para eventos deportivos, culturales y corporativos en vivo.</p>
-            </div>
-          </div>
-
-          <div class="service-card service-card--accent reveal">
-            <div class="service-card-inner">
-              <div class="service-number">06</div>
-              <div class="service-icon-wrap">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-              </div>
-              <h3>Co-producción Internacional</h3>
-              <p>Conexión Spain–Colombia y con India. Facilitamos proyectos con alcance global aprovechando acuerdos de co-producción vigentes.</p>
-            </div>
-          </div>
-        </div>
+        <h3 data-i18n="problems.p2title">Producciones que se adaptan a tu presupuesto</h3>
+        <p data-i18n="problems.p2desc">Desde spots corporativos hasta campañas de alto impacto. Flexibilidad real sin comprometer la calidad.</p>
       </div>
-    </section>
-
-    <!-- ===== PORTFOLIO / CAJAMAR ===== -->
-    <section class="portfolio section" id="portfolio" aria-labelledby="portfolio-heading">
-      <div class="container">
-        <div class="section-header reveal">
-          <p class="section-eyebrow">Trabajo seleccionado</p>
-          <h2 id="portfolio-heading">Portfolio</h2>
+      <div class="vp-card reveal">
+        <div class="vp-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
-
-        <div class="portfolio-grid">
-          <!-- CAJAMAR — featured -->
-          <article class="portfolio-item portfolio-item--featured reveal" aria-label="Proyecto CAJAMAR">
-            <div class="portfolio-media">
-              <div class="portfolio-placeholder cajamar-bg">
-                <div class="portfolio-overlay">
-                  <div class="portfolio-play-btn" aria-hidden="true">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
-                  </div>
-                </div>
-                <div class="cajamar-logo-area" aria-hidden="true">
-                  <span class="client-label">Cliente</span>
-                  <span class="client-name">CAJAMAR</span>
-                  <span class="client-type">Grupo Cooperativo</span>
-                </div>
-              </div>
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tags">
-                <span class="tag">Producción Corporativa</span>
-                <span class="tag">Campaña</span>
-              </div>
-              <h3>Campaña Audiovisual CAJAMAR</h3>
-              <p>Producción de contenido audiovisual para el grupo cooperativo financiero CAJAMAR, una de las diez entidades financieras más significativas de España. Estrategia visual orientada a comunicar los valores cooperativos y de innovación de la institución.</p>
-              <div class="portfolio-meta">
-                <span class="meta-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  España
-                </span>
-                <span class="meta-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                  2022–Actualidad
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Selfie short film -->
-          <article class="portfolio-item reveal" aria-label="Cortometraje Selfie">
-            <div class="portfolio-media">
-              <div class="portfolio-placeholder film-bg-1">
-                <div class="portfolio-overlay">
-                  <div class="portfolio-play-btn" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
-                  </div>
-                </div>
-                <div class="film-badge">FESTIVAL</div>
-              </div>
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tags">
-                <span class="tag">Cortometraje</span>
-                <span class="tag">Producción Ejecutiva</span>
-              </div>
-              <h3>Selfie (2021)</h3>
-              <p>Cortometraje de ficción. Juan Ospina como productor asistente/ejecutivo. Presentado en festivales internacionales.</p>
-              <a href="https://www.imdb.com/name/nm13918752/" target="_blank" rel="noopener noreferrer" class="portfolio-link">Ver en IMDb →</a>
-            </div>
-          </article>
-
-          <!-- Viles short film -->
-          <article class="portfolio-item reveal" aria-label="Cortometraje Viles">
-            <div class="portfolio-media">
-              <div class="portfolio-placeholder film-bg-2">
-                <div class="portfolio-overlay">
-                  <div class="portfolio-play-btn" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
-                  </div>
-                </div>
-                <div class="film-badge awards-badge">6 PREMIOS</div>
-              </div>
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tags">
-                <span class="tag">Cortometraje</span>
-                <span class="tag">Horror / Ficción</span>
-              </div>
-              <h3>Viles (2023)</h3>
-              <p>Cortometraje de terror. Dirección: Dave Alcaide. Producción: Art Tales Productions. Juan Ospina como 1er asistente de cámara. Ganador de múltiples premios internacionales en 2024.</p>
-              <a href="https://www.stage32.com/media/3770354727552822483?ref=search" target="_blank" rel="noopener noreferrer" class="portfolio-link">Ver trailer →</a>
-            </div>
-          </article>
-
-          <!-- Live production -->
-          <article class="portfolio-item reveal" aria-label="Producción en directo deportes">
-            <div class="portfolio-media">
-              <div class="portfolio-placeholder sports-bg">
-                <div class="portfolio-overlay">
-                  <span class="live-badge">LIVE</span>
-                </div>
-              </div>
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-tags">
-                <span class="tag">Broadcast</span>
-                <span class="tag">Deportes</span>
-              </div>
-              <h3>Retransmisiones Deportivas</h3>
-              <p>Operación de cámara para RFEF, LaSexta, Quality Media, MotorSport TV, Melilla TV y Cabal Esports. Coberturas deportivas y eventos en directo a nivel nacional.</p>
-            </div>
-          </article>
-        </div>
+        <h3 data-i18n="problems.p3title">Entregas puntuales, sin sorpresas</h3>
+        <p data-i18n="problems.p3desc">Gestión ágil desde preproducción hasta entrega final. Sabemos que el tiempo vale dinero.</p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- ===== AWARDS ===== -->
-    <section class="awards section" id="premios" aria-labelledby="awards-heading">
-      <div class="awards-bg-element" aria-hidden="true"></div>
-      <div class="container">
-        <div class="section-header reveal">
-          <p class="section-eyebrow">Reconocimientos</p>
-          <h2 id="awards-heading">Premios internacionales</h2>
-          <p class="section-sub">Proyectos vinculados a Masala Studios reconocidos en festivales de cine de India, Reino Unido, Francia, Estados Unidos y más.</p>
-        </div>
+<!-- ═══════════════════════════════ SERVICES ═══════════════════════════════ -->
+<section class="services section" id="servicios">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="eyebrow" data-i18n="services.eyebrow">Lo que hacemos</p>
+      <h2 data-i18n="services.heading">Servicios audiovisuales</h2>
+      <p class="section-sub" data-i18n="services.sub">Cubrimos el ciclo completo de producción — desde la idea hasta la distribución.</p>
+    </div>
 
-        <div class="awards-grid">
-          <div class="award-card reveal">
-            <div class="award-flag">🇮🇳</div>
-            <div class="award-info">
-              <span class="award-type">Honorable Mention</span>
-              <h3 class="award-film">Viles</h3>
-              <p class="award-festival">Thilsri International Film Festival</p>
-              <span class="award-year">India · 2024</span>
-            </div>
-            <div class="award-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="trophy-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
-          </div>
+    <div class="services-grid">
+      <div class="svc-card svc-card--featured reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3 data-i18n="services.s1title">Producción Corporativa</h3>
+        <p data-i18n="services.s1desc">Vídeos institucionales, presentaciones de marca, contenido para redes y plataformas digitales.</p>
+        <ul class="svc-list" role="list">
+          <li data-i18n="services.s1f1">Spots publicitarios</li>
+          <li data-i18n="services.s1f2">Vídeos institucionales</li>
+          <li data-i18n="services.s1f3">Contenido para redes sociales</li>
+          <li data-i18n="services.s1f4">Entrevistas y testimonios</li>
+        </ul>
+      </div>
 
-          <div class="award-card reveal">
-            <div class="award-flag">🇮🇳</div>
-            <div class="award-info">
-              <span class="award-type">Honorable Mention</span>
-              <h3 class="award-film">Viles</h3>
-              <p class="award-festival">Makizhmithran International Film Festival</p>
-              <span class="award-year">India · 2024</span>
-            </div>
-            <div class="award-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="trophy-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
-          </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">02</div>
+        <div class="svc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4v16M17 4v16M3 8h4m10 0h4M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg></div>
+        <h3 data-i18n="services.s2title">Producción Cinematográfica</h3>
+        <p data-i18n="services.s2desc">Cortometrajes y proyectos de ficción con vocación de festivales nacionales e internacionales.</p>
+      </div>
 
-          <div class="award-card award-card--highlight reveal">
-            <div class="award-flag">🇬🇧</div>
-            <div class="award-info">
-              <span class="award-type">Audience Choice Winner</span>
-              <h3 class="award-film">Viles</h3>
-              <p class="award-festival">Lift-Off Global Network Sessions</p>
-              <span class="award-year">Reino Unido · 2024</span>
-            </div>
-            <div class="award-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="trophy-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
-          </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">03</div>
+        <div class="svc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 012-2h2M3 17v2a2 2 0 002 2h2M17 3h2a2 2 0 012 2v2M17 21h2a2 2 0 002-2v-2"/></svg></div>
+        <h3 data-i18n="services.s3title">Fotografía Profesional</h3>
+        <p data-i18n="services.s3desc">Fotografía corporativa, de producto, eventos y retratos.</p>
+      </div>
 
-          <div class="award-card award-card--highlight reveal">
-            <div class="award-flag">🇫🇷</div>
-            <div class="award-info">
-              <span class="award-type">Best Short Film</span>
-              <h3 class="award-film">Viles</h3>
-              <p class="award-festival">Bestlov Film Festival</p>
-              <span class="award-year">Francia · 2024</span>
-            </div>
-            <div class="award-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="trophy-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
-          </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">04</div>
+        <div class="svc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+        <h3 data-i18n="services.s4title">Postproducción</h3>
+        <p data-i18n="services.s4desc">Edición de vídeo, corrección de color, motion graphics, mezcla de sonido y VFX.</p>
+      </div>
 
-          <div class="award-card award-card--highlight reveal">
-            <div class="award-flag">🇬🇧</div>
-            <div class="award-info">
-              <span class="award-type">Silver Award</span>
-              <h3 class="award-film">Viles</h3>
-              <p class="award-festival">London Movie Awards</p>
-              <span class="award-year">Reino Unido · 2024</span>
-            </div>
-            <div class="award-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="trophy-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            </div>
-          </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">05</div>
+        <div class="svc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <h3 data-i18n="services.s5title">Transmisiones en Directo</h3>
+        <p data-i18n="services.s5desc">Operación de cámara y producción técnica para eventos deportivos, culturales y corporativos en vivo.</p>
+      </div>
 
-          <div class="award-card reveal">
-            <div class="award-flag">🇺🇸</div>
-            <div class="award-info">
-              <span class="award-type">Best Short Film</span>
-              <h3 class="award-film">Viles</h3>
-              <p class="award-festival">Hollywood Blood Horror Festival</p>
-              <span class="award-year">Estados Unidos · 2024</span>
-            </div>
-            <div class="award-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="trophy-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <div class="svc-card svc-card--accent reveal">
+        <div class="svc-num">06</div>
+        <div class="svc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+        <h3 data-i18n="services.s6title">Co-producción Internacional</h3>
+        <p data-i18n="services.s6desc">Conexión Spain–Colombia e India. Proyectos con alcance global aprovechando acuerdos de co-producción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PORTFOLIO ═══════════════════════════════ -->
+<section class="portfolio section" id="portfolio">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="eyebrow" data-i18n="portfolio.eyebrow">Trabajo seleccionado</p>
+      <h2 data-i18n="portfolio.heading">Portfolio</h2>
+    </div>
+
+    <div class="portfolio-grid">
+      <article class="pf-card pf-card--featured reveal">
+        <div class="pf-media">
+          <div class="pf-visual cajamar-bg">
+            <div class="pf-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+            <div class="pf-client-badge">
+              <span class="client-label-sm">Cliente</span>
+              <span class="client-name-lg">CAJAMAR</span>
+              <span class="client-type-sm">Grupo Cooperativo</span>
             </div>
           </div>
         </div>
-
-        <!-- Festivals also -->
-        <div class="festivals-row reveal">
-          <p class="festivals-label">También presente en</p>
-          <div class="festivals-list">
-            <a href="https://www.notodofilmfest.com/corto/selfie/" target="_blank" rel="noopener noreferrer" class="festival-pill">Notodo Film Fest</a>
-            <a href="https://www.almeriawesternfilmfestival.es/premio-rtva/" target="_blank" rel="noopener noreferrer" class="festival-pill">Almería Western Film Festival</a>
-            <span class="festival-pill festival-pill--static">Stage32 Community</span>
+        <div class="pf-info">
+          <div class="pf-tags">
+            <span class="chip chip--small" data-i18n="portfolio.cajamarTag1">Producción Corporativa</span>
+            <span class="chip chip--small" data-i18n="portfolio.cajamarTag2">Campaña</span>
           </div>
+          <h3 data-i18n="portfolio.cajamarTitle">Campaña Audiovisual CAJAMAR</h3>
+          <p data-i18n="portfolio.cajamarDesc">Producción de contenido audiovisual para el grupo cooperativo financiero CAJAMAR, una de las diez entidades financieras más significativas de España.</p>
+          <div class="pf-meta">
+            <span class="meta-pill">🇪🇸 España</span>
+            <span class="meta-pill">2022 – Actualidad</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pf-card reveal">
+        <div class="pf-media">
+          <div class="pf-visual film-bg-1">
+            <div class="pf-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+            <span class="pf-badge">FESTIVAL</span>
+          </div>
+        </div>
+        <div class="pf-info">
+          <div class="pf-tags"><span class="chip chip--small">Cortometraje</span></div>
+          <h3 data-i18n="portfolio.selfieTitle">Selfie (2021)</h3>
+          <p data-i18n="portfolio.selfieDesc">Cortometraje de ficción. Juan Ospina como productor asistente/ejecutivo.</p>
+          <a href="https://www.imdb.com/name/nm13918752/" target="_blank" rel="noopener noreferrer" class="pf-link" data-i18n="portfolio.selfieLink">Ver en IMDb →</a>
+        </div>
+      </article>
+
+      <article class="pf-card reveal">
+        <div class="pf-media">
+          <div class="pf-visual film-bg-2">
+            <div class="pf-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+            <span class="pf-badge pf-badge--gold">6 PREMIOS</span>
+          </div>
+        </div>
+        <div class="pf-info">
+          <div class="pf-tags"><span class="chip chip--small">Cortometraje</span><span class="chip chip--small">Horror</span></div>
+          <h3 data-i18n="portfolio.vilesTitle">Viles (2023)</h3>
+          <p data-i18n="portfolio.vilesDesc">Cortometraje de terror. Dirección: Dave Alcaide. 6 premios internacionales en 2024.</p>
+          <a href="https://www.stage32.com/media/3770354727552822483?ref=search" target="_blank" rel="noopener noreferrer" class="pf-link" data-i18n="portfolio.vilesLink">Ver trailer →</a>
+        </div>
+      </article>
+
+      <article class="pf-card reveal">
+        <div class="pf-media">
+          <div class="pf-visual sports-bg">
+            <span class="pf-live">LIVE</span>
+          </div>
+        </div>
+        <div class="pf-info">
+          <div class="pf-tags"><span class="chip chip--small">Broadcast</span><span class="chip chip--small">Deportes</span></div>
+          <h3 data-i18n="portfolio.sportsTitle">Retransmisiones Deportivas</h3>
+          <p data-i18n="portfolio.sportsDesc">Operación de cámara para RFEF, LaSexta, Quality Media, MotorSport TV, Melilla TV y Cabal Esports.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ AWARDS ═══════════════════════════════ -->
+<section class="awards section" id="premios">
+  <div class="awards-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="eyebrow" data-i18n="awards.eyebrow">Reconocimientos</p>
+      <h2 data-i18n="awards.heading">Premios internacionales</h2>
+      <p class="section-sub" data-i18n="awards.sub">Proyectos vinculados a Masala Studios reconocidos en festivales de cine de India, Reino Unido, Francia, Estados Unidos y más.</p>
+    </div>
+
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <span class="award-flag">🇮🇳</span>
+        <div class="award-body">
+          <span class="award-type" data-i18n="awards.a1type">Honorable Mention</span>
+          <strong class="award-film" data-i18n="awards.film">Viles</strong>
+          <span class="award-festival" data-i18n="awards.a1festival">Thilsri International Film Festival</span>
+          <span class="award-year" data-i18n="awards.a1country">India · 2024</span>
+        </div>
+        <svg class="award-star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+
+      <div class="award-card reveal">
+        <span class="award-flag">🇮🇳</span>
+        <div class="award-body">
+          <span class="award-type" data-i18n="awards.a2type">Honorable Mention</span>
+          <strong class="award-film" data-i18n="awards.film">Viles</strong>
+          <span class="award-festival" data-i18n="awards.a2festival">Makizhmithran International Film Festival</span>
+          <span class="award-year" data-i18n="awards.a2country">India · 2024</span>
+        </div>
+        <svg class="award-star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+
+      <div class="award-card award-card--highlight reveal">
+        <span class="award-flag">🇬🇧</span>
+        <div class="award-body">
+          <span class="award-type" data-i18n="awards.a3type">Audience Choice Winner</span>
+          <strong class="award-film" data-i18n="awards.film">Viles</strong>
+          <span class="award-festival" data-i18n="awards.a3festival">Lift-Off Global Network Sessions</span>
+          <span class="award-year" data-i18n="awards.a3country">Reino Unido · 2024</span>
+        </div>
+        <svg class="award-star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+
+      <div class="award-card award-card--highlight reveal">
+        <span class="award-flag">🇫🇷</span>
+        <div class="award-body">
+          <span class="award-type" data-i18n="awards.a4type">Best Short Film</span>
+          <strong class="award-film" data-i18n="awards.film">Viles</strong>
+          <span class="award-festival" data-i18n="awards.a4festival">Bestlov Film Festival</span>
+          <span class="award-year" data-i18n="awards.a4country">Francia · 2024</span>
+        </div>
+        <svg class="award-star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+
+      <div class="award-card award-card--highlight reveal">
+        <span class="award-flag">🇬🇧</span>
+        <div class="award-body">
+          <span class="award-type" data-i18n="awards.a5type">Silver Award</span>
+          <strong class="award-film" data-i18n="awards.film">Viles</strong>
+          <span class="award-festival" data-i18n="awards.a5festival">London Movie Awards</span>
+          <span class="award-year" data-i18n="awards.a5country">Reino Unido · 2024</span>
+        </div>
+        <svg class="award-star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+
+      <div class="award-card reveal">
+        <span class="award-flag">🇺🇸</span>
+        <div class="award-body">
+          <span class="award-type" data-i18n="awards.a6type">Best Short Film</span>
+          <strong class="award-film" data-i18n="awards.film">Viles</strong>
+          <span class="award-festival" data-i18n="awards.a6festival">Hollywood Blood Horror Festival</span>
+          <span class="award-year" data-i18n="awards.a6country">Estados Unidos · 2024</span>
+        </div>
+        <svg class="award-star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+    </div>
+
+    <div class="festivals-row reveal">
+      <span class="festivals-label" data-i18n="awards.alsoAt">También presente en</span>
+      <div class="festivals-pills">
+        <a href="https://www.notodofilmfest.com/corto/selfie/" target="_blank" rel="noopener noreferrer" class="festival-pill">Notodo Film Fest</a>
+        <a href="https://www.almeriawesternfilmfestival.es/premio-rtva/" target="_blank" rel="noopener noreferrer" class="festival-pill">Almería Western Film Festival</a>
+        <span class="festival-pill">Stage32 Community</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+<section class="about section" id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">Quiénes somos</p>
+        <h2 data-i18n="about.heading">Arte sin barreras expresivas</h2>
+        <p class="about-lead" data-i18n="about.lead">Masala Studios nació con una visión utópica: crear arte sin límites creativos ni geográficos.</p>
+        <p class="about-body" data-i18n="about.body">Creemos que más allá de impactar a quien ve una obra hoy, es posible crear un retrato fiel de la realidad que pueda recuperarse y estudiarse en el futuro, como un hallazgo arqueológico.</p>
+
+        <div class="timeline">
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m1year">2022</span><span class="tl-text" data-i18n="about.m1text">Fundación y primeros proyectos corporativos</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m2year">2022–23</span><span class="tl-text" data-i18n="about.m2text">Incubación en GO2Work — Escuela de Organización Industrial</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m3year">2023</span><span class="tl-text" data-i18n="about.m3text">Programa Acelera Startups — Andalucía (NextGenerationEU)</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m4year">2024</span><span class="tl-text" data-i18n="about.m4text">6 premios internacionales en India, UK, Francia y EE.UU.</span></div>
+          <div class="tl-item"><span class="tl-year" data-i18n="about.m5year">2025</span><span class="tl-text" data-i18n="about.m5text">Expansión Colombia–España · Co-producción internacional</span></div>
         </div>
       </div>
-    </section>
 
-    <!-- ===== ABOUT ===== -->
-    <section class="about section" id="nosotros" aria-labelledby="about-heading">
-      <div class="container">
-        <div class="about-grid">
-          <div class="about-text reveal">
-            <p class="section-eyebrow">Quiénes somos</p>
-            <h2 id="about-heading">Arte sin barreras expresivas</h2>
-            <p class="about-lead">Masala Studios (antes Masala Head Multimedia) nació con una visión utópica: crear arte sin límites creativos ni geográficos. El nombre lo dice todo — masala, en hindi, significa «mezcla de especias». Así entendemos el audiovisual: como la combinación precisa de ingredientes visuales, sonoros y narrativos para crear algo único.</p>
-            <p>Creemos que más allá de impactar a quien ve una obra hoy, es posible crear un retrato fiel de la realidad que pueda recuperarse y estudiarse en el futuro, como un hallazgo arqueológico.</p>
-
-            <div class="about-milestones">
-              <div class="milestone">
-                <span class="milestone-year">2022</span>
-                <span class="milestone-text">Fundación y primeros proyectos corporativos</span>
-              </div>
-              <div class="milestone">
-                <span class="milestone-year">2022–23</span>
-                <span class="milestone-text">Incubación en GO2Work — Escuela de Organización Industrial, Málaga</span>
-              </div>
-              <div class="milestone">
-                <span class="milestone-year">2023</span>
-                <span class="milestone-text">Programa Acelera Startups — Andalucía (NextGenerationEU)</span>
-              </div>
-              <div class="milestone">
-                <span class="milestone-year">2024</span>
-                <span class="milestone-text">6 premios internacionales en India, UK, Francia y EE.UU.</span>
-              </div>
-              <div class="milestone">
-                <span class="milestone-year">2025</span>
-                <span class="milestone-text">Expansión Colombia–España · Co-producción international</span>
-              </div>
-            </div>
+      <div class="about-right reveal">
+        <div class="founder-glass">
+          <div class="founder-avatar-area" aria-hidden="true">
+            <div class="avatar-ring"></div>
+            <svg class="avatar-icon" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="30" r="16" fill="currentColor" opacity="0.15"/><circle cx="40" cy="30" r="11" fill="currentColor" opacity="0.2"/><path d="M14 72c0-14.36 11.64-26 26-26s26 11.64 26 26" fill="currentColor" opacity="0.1"/></svg>
           </div>
-
-          <div class="about-founder reveal">
-            <div class="founder-card">
-              <div class="founder-image-area">
-                <div class="founder-avatar" aria-hidden="true">
-                  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="40" cy="30" r="18" fill="currentColor" opacity="0.15"/>
-                    <circle cx="40" cy="30" r="14" fill="currentColor" opacity="0.2"/>
-                    <path d="M14 70c0-14.36 11.64-26 26-26s26 11.64 26 26" fill="currentColor" opacity="0.1"/>
-                  </svg>
-                </div>
-              </div>
-              <div class="founder-info">
-                <h3>Juan Ospina</h3>
-                <p class="founder-title">Fundador & Director de Desarrollo</p>
-                <p class="founder-bio">Técnico Superior en Realización Audiovisual, operador de cámara, editor y productor con experiencia en festivales de música, eventos y proyectos cinematográficos en toda España.</p>
-                <div class="founder-skills">
-                  <span class="skill-tag">Dirección</span>
-                  <span class="skill-tag">Producción</span>
-                  <span class="skill-tag">Cámara</span>
-                  <span class="skill-tag">Edición</span>
-                  <span class="skill-tag">Motion Graphics</span>
-                  <span class="skill-tag">IA Aplicada</span>
-                </div>
-                <div class="founder-langs">
-                  <span class="lang-tag">ES</span>
-                  <span class="lang-tag">EN</span>
-                  <span class="lang-tag">FR</span>
-                  <span class="lang-tag">CA</span>
-                  <span class="lang-tag">IT</span>
-                </div>
-              </div>
+          <div class="founder-details">
+            <h3 data-i18n="about.founderName">Juan Ospina</h3>
+            <span class="founder-role" data-i18n="about.founderTitle">Fundador &amp; Director de Desarrollo</span>
+            <p data-i18n="about.founderBio">Técnico Superior en Realización Audiovisual, operador de cámara, editor y productor con experiencia en festivales de música, eventos y proyectos cinematográficos en toda España.</p>
+            <div class="skill-pills">
+              <span class="skill-pill">Dirección</span>
+              <span class="skill-pill">Producción</span>
+              <span class="skill-pill">Cámara</span>
+              <span class="skill-pill">Edición</span>
+              <span class="skill-pill">Motion</span>
+              <span class="skill-pill">IA Aplicada</span>
             </div>
-
-            <!-- Credentials -->
-            <div class="credentials">
-              <div class="credential">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                <span>iFP L'Hospitalet — Grado Superior Realización AV</span>
-              </div>
-              <div class="credential">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span>Incubado GO2Work — Escuela de Organización Industrial</span>
-              </div>
-              <div class="credential">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
-                <span>Acelera Startups — Andalucía · NextGenerationEU</span>
-              </div>
-              <div class="credential">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                <span>Presente en IMDb como productor verificado</span>
-              </div>
+            <div class="lang-pills">
+              <span class="lang-pill">ES</span><span class="lang-pill">EN</span><span class="lang-pill">FR</span><span class="lang-pill">CA</span><span class="lang-pill">IT</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ===== TRUST STRIP ===== -->
-    <section class="trust-section section-sm" aria-label="Clientes y colaboradores">
-      <div class="container">
-        <p class="trust-label">Hemos trabajado con</p>
-        <div class="trust-logos">
-          <span class="trust-logo">CAJAMAR</span>
-          <span class="trust-logo">LaSexta</span>
-          <span class="trust-logo">RFEF</span>
-          <span class="trust-logo">GAM Solutions</span>
-          <span class="trust-logo">Mediapal</span>
-          <span class="trust-logo">Quality Media</span>
-          <span class="trust-logo">ATM Broadcast</span>
-          <span class="trust-logo">BrainsPro</span>
+        <div class="credentials-list">
+          <div class="cred-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span data-i18n="about.c1">iFP L'Hospitalet — Grado Superior Realización AV</span></div>
+          <div class="cred-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span data-i18n="about.c2">Incubado GO2Work — Escuela de Organización Industrial</span></div>
+          <div class="cred-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg><span data-i18n="about.c3">Acelera Startups — Andalucía · NextGenerationEU</span></div>
+          <div class="cred-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><span data-i18n="about.c4">Presente en IMDb como productor verificado</span></div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- ===== CONTACT ===== -->
-    <section class="contact section" id="contacto" aria-labelledby="contact-heading">
-      <div class="container">
-        <div class="contact-grid">
-          <div class="contact-text reveal">
-            <p class="section-eyebrow">Contacto</p>
-            <h2 id="contact-heading">¿Tienes un proyecto?</h2>
-            <p>Cuéntanos qué necesitas. Respondemos en menos de 24 horas.</p>
-            <div class="contact-methods">
-              <a href="mailto:hola@masalastudios.pro" class="contact-method">
-                <div class="contact-method-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div>
-                  <span class="contact-method-label">Contacto general</span>
-                  <span class="contact-method-value">hola@masalastudios.pro</span>
-                </div>
-              </a>
-              <a href="mailto:booking@masalastudios.pro" class="contact-method">
-                <div class="contact-method-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
-                </div>
-                <div>
-                  <span class="contact-method-label">Producciones y reservas</span>
-                  <span class="contact-method-value">booking@masalastudios.pro</span>
-                </div>
-              </a>
-              <a href="mailto:press@masalastudios.pro" class="contact-method">
-                <div class="contact-method-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
-                </div>
-                <div>
-                  <span class="contact-method-label">Prensa y medios</span>
-                  <span class="contact-method-value">press@masalastudios.pro</span>
-                </div>
-              </a>
-              <a href="https://www.linkedin.com/in/masalastudios/" target="_blank" rel="noopener noreferrer" class="contact-method">
-                <div class="contact-method-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                </div>
-                <div>
-                  <span class="contact-method-label">LinkedIn</span>
-                  <span class="contact-method-value">linkedin.com/in/masalastudios</span>
-                </div>
-              </a>
-            </div>
+<!-- ═══════════════════════════════ TRUST ═══════════════════════════════ -->
+<section class="trust-strip" aria-label="Clientes y colaboradores">
+  <div class="container">
+    <p class="trust-label" data-i18n="trust.label">Hemos trabajado con</p>
+    <div class="trust-logos">
+      <span class="trust-logo">CAJAMAR</span>
+      <span class="trust-logo">LaSexta</span>
+      <span class="trust-logo">RFEF</span>
+      <span class="trust-logo">GAM Solutions</span>
+      <span class="trust-logo">Mediapal</span>
+      <span class="trust-logo">Quality Media</span>
+      <span class="trust-logo">ATM Broadcast</span>
+      <span class="trust-logo">BrainsPro</span>
+    </div>
+  </div>
+</section>
 
-            <div class="contact-routing">
-              <p class="routing-title">Directorio de contacto</p>
-              <div class="routing-grid">
-                <a href="mailto:info@masalastudios.pro" class="routing-item">
-                  <span class="routing-prefix">info@</span>
-                  <span class="routing-desc">Consultas web</span>
-                </a>
-                <a href="mailto:finance@masalastudios.pro" class="routing-item">
-                  <span class="routing-prefix">finance@</span>
-                  <span class="routing-desc">Facturación</span>
-                </a>
-                <a href="mailto:legal@masalastudios.pro" class="routing-item">
-                  <span class="routing-prefix">legal@</span>
-                  <span class="routing-desc">Contratos / NDAs</span>
-                </a>
-                <a href="mailto:studio@masalastudios.pro" class="routing-item">
-                  <span class="routing-prefix">studio@</span>
-                  <span class="routing-desc">Operaciones de estudio</span>
-                </a>
-              </div>
-            </div>
-          </div>
+<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+<section class="contact section" id="contacto">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <p class="eyebrow" data-i18n="contact.eyebrow">Contacto</p>
+        <h2 data-i18n="contact.heading">¿Tienes un proyecto?</h2>
+        <p class="contact-sub" data-i18n="contact.sub">Cuéntanos qué necesitas. Respondemos en menos de 24 horas.</p>
 
-          <form class="contact-form reveal" id="contactForm" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name" class="form-label">Nombre</label>
-                <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required autocomplete="name" />
-              </div>
-              <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-input" placeholder="tu@empresa.com" required autocomplete="email" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="service" class="form-label">Tipo de proyecto</label>
-              <select id="service" name="service" class="form-select">
-                <option value="">Selecciona un servicio</option>
-                <option value="corporativo">Producción Corporativa</option>
-                <option value="publicidad">Publicidad / Spot</option>
-                <option value="cinematografico">Proyecto Cinematográfico</option>
-                <option value="fotografia">Fotografía Profesional</option>
-                <option value="postproduccion">Postproducción</option>
-                <option value="directo">Transmisión en Directo</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message" class="form-label">Cuéntanos tu proyecto</label>
-              <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Describe brevemente qué necesitas..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <span>Enviar mensaje</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-            </button>
-            <p class="form-note">Tu mensaje llega a <strong>info@masalastudios.pro</strong>. Respondemos en menos de 24 h.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#inicio" class="footer-logo" aria-label="Masala Studios">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
-              <path d="M22 38 C22 38 8 32 8 20 C8 12 14 6 22 6 C30 6 36 12 36 20 C36 28 30 34 22 34 C17 34 13 30 13 25 C13 20 17 17 22 17 C26 17 29 20 29 24 C29 27 27 29 24 29" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-              <path d="M22 6 C22 6 28 2 30 2 C28 8 24 10 22 6Z" fill="currentColor"/>
-            </svg>
-            <div>
-              <span class="footer-logo-text">Masala Studios</span>
-              <span class="footer-logo-sub">Productora Audiovisual</span>
-            </div>
+        <div class="contact-methods">
+          <a href="mailto:hola@masalastudios.pro" class="contact-method">
+            <div class="cm-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><span class="cm-label" data-i18n="contact.general">Contacto general</span><span class="cm-val">hola@masalastudios.pro</span></div>
           </a>
-          <p class="footer-tagline">Arte sin barreras expresivas. Contenido que deja huella.</p>
+          <a href="mailto:booking@masalastudios.pro" class="contact-method">
+            <div class="cm-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+            <div><span class="cm-label" data-i18n="contact.booking">Producciones y reservas</span><span class="cm-val">booking@masalastudios.pro</span></div>
+          </a>
+          <a href="mailto:press@masalastudios.pro" class="contact-method">
+            <div class="cm-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/></svg></div>
+            <div><span class="cm-label" data-i18n="contact.press">Prensa y medios</span><span class="cm-val">press@masalastudios.pro</span></div>
+          </a>
+          <a href="https://www.linkedin.com/in/masalastudios/" target="_blank" rel="noopener noreferrer" class="contact-method">
+            <div class="cm-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <div><span class="cm-label" data-i18n="contact.linkedin">LinkedIn</span><span class="cm-val">linkedin.com/in/masalastudios</span></div>
+          </a>
         </div>
 
-        <nav class="footer-nav" aria-label="Navegación footer">
-          <h4 class="footer-nav-title">Servicios</h4>
-          <ul role="list">
-            <li><a href="#servicios">Producción Corporativa</a></li>
-            <li><a href="#servicios">Cinematografía</a></li>
-            <li><a href="#servicios">Fotografía</a></li>
-            <li><a href="#servicios">Postproducción</a></li>
-            <li><a href="#servicios">Transmisiones en Directo</a></li>
-          </ul>
-        </nav>
-
-        <nav class="footer-nav" aria-label="Navegación empresa">
-          <h4 class="footer-nav-title">Empresa</h4>
-          <ul role="list">
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#premios">Premios</a></li>
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="https://www.linkedin.com/in/masalastudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          </ul>
-        </nav>
-
-        <div class="footer-contact">
-          <h4 class="footer-nav-title">Contacto</h4>
-          <a href="mailto:hola@masalastudios.pro" class="footer-email">hola@masalastudios.pro</a>
-          <p class="footer-location">Cartagena de Indias, CO · España</p>
+        <div class="dir-box">
+          <p class="dir-title" data-i18n="contact.dirTitle">Directorio de contacto</p>
+          <div class="dir-grid">
+            <a href="mailto:info@masalastudios.pro" class="dir-item"><span class="dir-prefix">info@</span><span class="dir-desc" data-i18n="contact.dir1">Consultas web</span></a>
+            <a href="mailto:finance@masalastudios.pro" class="dir-item"><span class="dir-prefix">finance@</span><span class="dir-desc" data-i18n="contact.dir2">Facturación</span></a>
+            <a href="mailto:legal@masalastudios.pro" class="dir-item"><span class="dir-prefix">legal@</span><span class="dir-desc" data-i18n="contact.dir3">Contratos / NDAs</span></a>
+            <a href="mailto:studio@masalastudios.pro" class="dir-item"><span class="dir-prefix">studio@</span><span class="dir-desc" data-i18n="contact.dir4">Operaciones de estudio</span></a>
+          </div>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2025 Masala Studios · Masala Head Multimedia. Todos los derechos reservados.</p>
-        <div class="footer-badges">
-          <span class="footer-badge">Incubada GO2Work</span>
-          <span class="footer-badge">Acelera Startups</span>
+      <form class="contact-form glass-card reveal" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name" class="form-label" data-i18n="contact.fname">Nombre</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label" data-i18n="contact.femail">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="tu@empresa.com" required autocomplete="email" />
+          </div>
         </div>
+        <div class="form-group">
+          <label for="service" class="form-label" data-i18n="contact.fservice">Tipo de proyecto</label>
+          <select id="service" name="service" class="form-select">
+            <option value="" data-i18n="contact.opt0">Selecciona un servicio</option>
+            <option value="corporativo" data-i18n="contact.opt1">Producción Corporativa</option>
+            <option value="publicidad" data-i18n="contact.opt2">Publicidad / Spot</option>
+            <option value="cinematografico" data-i18n="contact.opt3">Proyecto Cinematográfico</option>
+            <option value="fotografia" data-i18n="contact.opt4">Fotografía Profesional</option>
+            <option value="postproduccion" data-i18n="contact.opt5">Postproducción</option>
+            <option value="directo" data-i18n="contact.opt6">Transmisión en Directo</option>
+            <option value="otro" data-i18n="contact.opt7">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message" class="form-label" data-i18n="contact.fmessage">Cuéntanos tu proyecto</label>
+          <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Describe brevemente qué necesitas..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          <span data-i18n="contact.fsubmit">Enviar mensaje</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+        </button>
+        <p class="form-note"><span data-i18n="contact.fnote">Tu mensaje llega a info@masalastudios.pro. Respondemos en menos de 24 h.</span></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#inicio" class="footer-logo">
+          <svg viewBox="0 0 44 44" fill="none" width="30" height="30"><path d="M22 38 C22 38 8 32 8 20 C8 12 14 6 22 6 C30 6 36 12 36 20 C36 28 30 34 22 34 C17 34 13 30 13 25 C13 20 17 17 22 17 C26 17 29 20 29 24 C29 27 27 29 24 29" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M22 6 C22 6 28 2 30 2 C28 8 24 10 22 6Z" fill="currentColor"/></svg>
+          <div><span class="fl-brand">Masala Studios</span><span class="fl-sub">Masala Group S.A.S</span></div>
+        </a>
+        <p class="footer-tagline" data-i18n="footer.tagline">Arte sin barreras expresivas. Contenido que deja huella.</p>
+        <div class="footer-badges">
+          <span class="footer-badge" data-i18n="footer.badge1">Incubada GO2Work</span>
+          <span class="footer-badge" data-i18n="footer.badge2">Acelera Startups</span>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Servicios">
+        <h4 class="footer-nav-title" data-i18n="footer.servicesTitle">Servicios</h4>
+        <ul role="list">
+          <li><a href="#servicios" data-i18n="footer.f1">Producción Corporativa</a></li>
+          <li><a href="#servicios" data-i18n="footer.f2">Cinematografía</a></li>
+          <li><a href="#servicios" data-i18n="footer.f3">Fotografía</a></li>
+          <li><a href="#servicios" data-i18n="footer.f4">Postproducción</a></li>
+          <li><a href="#servicios" data-i18n="footer.f5">Transmisiones en Directo</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-nav" aria-label="Empresa">
+        <h4 class="footer-nav-title" data-i18n="footer.companyTitle">Empresa</h4>
+        <ul role="list">
+          <li><a href="#portfolio" data-i18n="footer.c1">Portfolio</a></li>
+          <li><a href="#premios" data-i18n="footer.c2">Premios</a></li>
+          <li><a href="#nosotros" data-i18n="footer.c3">Nosotros</a></li>
+          <li><a href="#contacto" data-i18n="footer.c4">Contacto</a></li>
+          <li><a href="https://www.linkedin.com/in/masalastudios/" target="_blank" rel="noopener noreferrer" data-i18n="footer.c5">LinkedIn</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact-col">
+        <h4 class="footer-nav-title" data-i18n="footer.contactTitle">Contacto</h4>
+        <a href="mailto:hola@masalastudios.pro" class="footer-email">hola@masalastudios.pro</a>
+        <p class="footer-location" data-i18n="footer.location">Cartagena de Indias, CO · España</p>
       </div>
     </div>
-  </footer>
 
-  <script src="assets/js/main.js"></script>
+    <div class="footer-bottom">
+      <p class="footer-copy" data-i18n="footer.copy">© 2025 Masala Studios · Masala Group S.A.S. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/lang-selector.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

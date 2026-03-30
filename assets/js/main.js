@@ -1,262 +1,164 @@
-/* ================================================
-   MASALA STUDIOS — Main JavaScript
-   ================================================ */
-
-// ── Theme Toggle ──
-(function() {
-  const html = document.documentElement;
-  const btn = document.querySelector('[data-theme-toggle]');
-
-  // Force dark as default
-  const saved = null; // don't use localStorage in sandbox
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  let theme = saved || (prefersDark ? 'dark' : 'light');
-  html.setAttribute('data-theme', theme);
-
-  function updateToggleIcon(t) {
-    if (!btn) return;
-    if (t === 'dark') {
-      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-      btn.setAttribute('aria-label', 'Cambiar a modo claro');
-    } else {
-      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-      btn.setAttribute('aria-label', 'Cambiar a modo oscuro');
-    }
-  }
-
-  updateToggleIcon(theme);
-
-  if (btn) {
-    btn.addEventListener('click', () => {
-      theme = theme === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', theme);
-      updateToggleIcon(theme);
-    });
-  }
-})();
+/* ══════════════════════════════════════════════
+   Masala Studios — Main JS
+   ══════════════════════════════════════════════ */
 
 // ── Scroll-aware header ──
-(function() {
-  const header = document.getElementById('header');
-  let lastY = 0;
-
+(function () {
+  const hdr = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y > 60) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-    lastY = y;
+    hdr?.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 })();
 
-// ── Mobile Menu ──
-(function() {
-  const btn = document.getElementById('menuToggle');
-  const menu = document.getElementById('mobileMenu');
-  const links = menu.querySelectorAll('.mobile-link');
+// ── Hero orbs fade-in ──
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.querySelector('.hero-canvas');
+  if (canvas) setTimeout(() => canvas.classList.add('hero-orbs-ready'), 200);
+});
 
+// ── Mobile menu ──
+(function () {
+  const btn  = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  const links = menu?.querySelectorAll('.mobile-link');
   if (!btn || !menu) return;
 
   btn.addEventListener('click', () => {
-    const isOpen = menu.classList.contains('open');
-    menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(!isOpen));
-    menu.setAttribute('aria-hidden', String(isOpen));
-
-    // Animate hamburger
-    const spans = btn.querySelectorAll('span');
-    if (!isOpen) {
-      spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+    const [s1, s2, s3] = btn.querySelectorAll('span');
+    if (open) {
+      s1.style.transform = 'translateY(7px) rotate(45deg)';
+      s2.style.opacity   = '0';
+      s3.style.transform = 'translateY(-7px) rotate(-45deg)';
     } else {
-      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      [s1, s2, s3].forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
     }
   });
 
-  // Close on link click
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      menu.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      menu.setAttribute('aria-hidden', 'true');
-      btn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-    });
-  });
+  links?.forEach(l => l.addEventListener('click', () => {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    btn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }));
 })();
 
-// ── Reveal on Scroll (IntersectionObserver) ──
-(function() {
-  const elements = document.querySelectorAll('.reveal');
-  if (!elements.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        // Stagger within same parent
-        const siblings = entry.target.parentElement.querySelectorAll('.reveal:not(.visible)');
-        let delay = 0;
-        siblings.forEach((el, idx) => {
-          if (el === entry.target) delay = idx * 80;
-        });
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, delay);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
-
-  elements.forEach(el => observer.observe(el));
-})();
-
-// ── Smooth nav link active state ──
-(function() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  const observer = new IntersectionObserver((entries) => {
+// ── Reveal on scroll ──
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('active');
-          }
-        });
-      }
+      if (!entry.isIntersecting) return;
+      const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal:not(.visible)'));
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('visible'), idx * 70);
+      io.unobserve(entry.target);
     });
-  }, { threshold: 0.4, rootMargin: '-60px 0px 0px 0px' });
-
-  sections.forEach(s => observer.observe(s));
-
-  // Add active styles
-  const style = document.createElement('style');
-  style.textContent = `.nav-link.active { color: var(--color-text) !important; }`;
-  document.head.appendChild(style);
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
 })();
 
-// ── Contact Form ──
-(function() {
+// ── Nav active section ──
+(function () {
+  const sections = document.querySelectorAll('section[id]');
+  const links    = document.querySelectorAll('.nav-link');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${e.target.id}`));
+      }
+    });
+  }, { threshold: 0.35, rootMargin: '-60px 0px 0px 0px' });
+  sections.forEach(s => io.observe(s));
+})();
+
+// ── Counter animation ──
+(function () {
+  const counters = document.querySelectorAll('.counter');
+  if (!counters.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el     = e.target;
+      const target = parseFloat(el.getAttribute('data-target') || el.textContent);
+      const suffix = el.getAttribute('data-suffix') || '';
+      if (isNaN(target)) return;
+      let cur = 0;
+      const step = target / 45;
+      const timer = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = Math.round(cur) + suffix;
+        if (cur >= target) clearInterval(timer);
+      }, 28);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(c => io.observe(c));
+})();
+
+// ── Subtle tilt on cards ──
+(function () {
+  const cards = document.querySelectorAll('.pf-card, .award-card, .svc-card, .vp-card');
+  const matchMedia = window.matchMedia('(hover:hover)');
+  if (!matchMedia.matches) return;
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `perspective(800px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-3px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+})();
+
+// ── Contact form ──
+(function () {
   const form = document.getElementById('contactForm');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
-
     const btn = form.querySelector('[type="submit"]');
     const original = btn.innerHTML;
 
-    // Validate
-    const inputs = form.querySelectorAll('[required]');
+    // Validate required
     let valid = true;
-    inputs.forEach(input => {
-      if (!input.value.trim()) {
-        input.style.borderColor = '#e53e3e';
-        valid = false;
-      } else {
-        input.style.borderColor = '';
-      }
+    form.querySelectorAll('[required]').forEach(inp => {
+      inp.style.borderColor = inp.value.trim() ? '' : '#e53e3e';
+      if (!inp.value.trim()) valid = false;
     });
-
     if (!valid) return;
 
-    // Simulate send (mailto fallback)
-    const name = form.name.value;
-    const email = form.email.value;
+    const name    = form.name.value.trim();
+    const email   = form.email.value.trim();
     const service = form.service.value;
-    const message = form.message.value;
+    const message = form.message.value.trim();
 
-    // Smart routing by service type
-    const routingMap = {
-      'corporativo': 'booking@masalastudios.pro',
-      'publicidad': 'booking@masalastudios.pro',
-      'cinematografico': 'booking@masalastudios.pro',
-      'fotografia': 'booking@masalastudios.pro',
-      'postproduccion': 'studio@masalastudios.pro',
-      'directo': 'booking@masalastudios.pro',
-      'otro': 'info@masalastudios.pro',
-      '': 'info@masalastudios.pro'
+    const routing = {
+      corporativo: 'booking@masalastudios.pro',
+      publicidad:  'booking@masalastudios.pro',
+      cinematografico: 'booking@masalastudios.pro',
+      fotografia:  'booking@masalastudios.pro',
+      postproduccion: 'studio@masalastudios.pro',
+      directo:     'booking@masalastudios.pro',
+      otro:        'info@masalastudios.pro',
+      '':          'info@masalastudios.pro',
     };
-    const toAddress = routingMap[service] || 'info@masalastudios.pro';
+    const to = routing[service] || 'info@masalastudios.pro';
     const subject = encodeURIComponent(`[Web] Proyecto de ${name}${service ? ' — ' + service : ''}`);
-    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nServicio: ${service}\n\n${message}\n\n---\nEnviado desde masalastudios.pro`);
-    const mailto = `mailto:${toAddress}?cc=info@masalastudios.pro&subject=${subject}&body=${body}`;
+    const body    = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nServicio: ${service}\n\n${message}\n\n---\nEnviado desde masalastudios.pro`);
 
-    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> <span>¡Enviando...</span>`;
+    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Preparando...`;
     btn.disabled = true;
 
     setTimeout(() => {
-      window.location.href = mailto;
-      btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> <span>Mensaje preparado</span>`;
-
-      setTimeout(() => {
-        btn.innerHTML = original;
-        btn.disabled = false;
-        form.reset();
-      }, 3000);
-    }, 600);
-  });
-})();
-
-// ── Number counter animation for hero stats ──
-(function() {
-  const stats = document.querySelectorAll('.stat-num');
-  if (!stats.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const text = el.textContent;
-        const num = parseFloat(text);
-        const suffix = text.replace(/[\d.]/g, '');
-
-        if (!isNaN(num) && num > 1) {
-          let current = 0;
-          const increment = num / 40;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= num) {
-              current = num;
-              clearInterval(timer);
-            }
-            el.textContent = (Number.isInteger(num) ? Math.round(current) : current.toFixed(1)) + suffix;
-          }, 30);
-        }
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  stats.forEach(el => observer.observe(el));
-})();
-
-// ── Portfolio card hover parallax tilt ──
-(function() {
-  const cards = document.querySelectorAll('.portfolio-item, .award-card, .service-card');
-
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -3;
-      const rotateY = ((x - centerX) / centerX) * 3;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
+      window.location.href = `mailto:${to}?cc=info@masalastudios.pro&subject=${subject}&body=${body}`;
+      btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Listo`;
+      setTimeout(() => { btn.innerHTML = original; btn.disabled = false; form.reset(); }, 3000);
+    }, 500);
   });
 })();
