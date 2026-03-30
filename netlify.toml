@@ -21,12 +21,7 @@
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://api.fontshare.com https://fonts.googleapis.com; font-src 'self' https://api.fontshare.com https://cdn.fontshare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://masalastudios.pro;"
 
 [[headers]]
-  for = "/assets/images/*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/assets/images/*.jpg"
+  for = "/assets/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -46,7 +41,7 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/js/locales-bundle*.js"
+  for = "/js/locales-bundle.js"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
@@ -58,7 +53,7 @@
 [[headers]]
   for = "/locales/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [context.production]
   environment = { NODE_ENV = "production" }
