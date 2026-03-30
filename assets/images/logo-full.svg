@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" fill="none">
+  <!-- Spiral flame mark -->
+  <g transform="translate(8, 8)">
+    <!-- Outer spiral body -->
+    <path d="M42 76 C42 76 14 64 14 40 C14 22 26 10 42 10 C58 10 70 22 70 40 C70 58 58 70 42 70 C33 70 25 62 25 53 C25 44 33 38 42 38 C49 38 55 44 55 51 C55 56.5 51.5 60 47 60" stroke="#F5A800" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <!-- Flame/leaf curl at top -->
+    <path d="M42 10 C42 10 54 3 58 2 C55 12 48 15 42 10Z" fill="#F5A800"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="100" y="42" font-family="'Clash Display', 'Arial Black', sans-serif" font-size="32" font-weight="700" fill="#F5A800" letter-spacing="3">MASALA</text>
+  <text x="100" y="78" font-family="'Clash Display', 'Arial Black', sans-serif" font-size="32" font-weight="400" fill="#F5A800" letter-spacing="3">STUDIOS</text>
+</svg>

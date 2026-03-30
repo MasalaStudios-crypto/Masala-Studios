@@ -162,3 +162,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   });
 })();
+
+// ── URL lang param support (for hreflang / sitemap links) ──
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const urlLang = params.get('lang');
+  if (urlLang && window.masalaI18n) {
+    // Wait for i18n to init then switch
+    document.addEventListener('masala:langchange', function handler() {
+      document.removeEventListener('masala:langchange', handler);
+      if (window.masalaI18n.currentLang !== urlLang) {
+        window.masalaI18n.switchLanguage(urlLang);
+      }
+    }, { once: true });
+  }
+})();
+
+// ── Font load detection ──
+(function() {
+  if ('fonts' in document) {
+    document.fonts.ready.then(() => {
+      document.documentElement.classList.add('fonts-loaded');
+    });
+  } else {
+    document.documentElement.classList.add('fonts-loaded');
+  }
+})();

@@ -363,3 +363,62 @@ a,button,[role="button"]{transition:color var(--t),background var(--t),border-co
   .dir-grid{grid-template-columns:1fr}
   .festivals-row{flex-direction:column;align-items:flex-start}
 }
+
+/* ══════════════════════ NAV LOGO SVG ══════════════════════ */
+.nav-logo-svg {
+  width: 40px;
+  height: 40px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform var(--t);
+}
+.nav-logo:hover .nav-logo-svg {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+/* ══════════════════════ FAVICON SVG INLINE ══════════════════════ */
+/* Ensure SVG favicon fallback */
+
+/* ══════════════════════ PAGE TRANSITION ══════════════════════ */
+/* Smooth section entrance — rescued from apex-intelligence */
+section {
+  position: relative;
+}
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  pointer-events: none;
+}
+.hero::before { display: none; }
+
+/* ══════════════════════ LOGO FULL WIDTH ON MOBILE ══════════════════════ */
+@media (max-width: 768px) {
+  .nav-logo-svg { width: 34px; height: 34px; }
+  .nav-brand { font-size: 13px; }
+  .nav-brand-suffix { font-size: 9px; }
+}
+
+/* ══════════════════════ DOMAIN PRODUCTION FIXES ══════════════════════ */
+/* Ensure fonts load on masalastudios.pro */
+@font-face {
+  font-family: 'Satoshi';
+  src: local('Satoshi');
+  font-display: swap;
+}
+
+/* Ensure no FOUC on first load */
+html:not(.fonts-loaded) body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Print styles */
+@media print {
+  .header, .hero-canvas, .hero-scroll, .nav-hamburger, .mobile-menu { display: none !important; }
+  body { background: white; color: black; }
+  .gradient-text { -webkit-text-fill-color: #c98a00; background: none; }
+}
