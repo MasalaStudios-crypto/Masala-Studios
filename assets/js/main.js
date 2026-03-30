@@ -173,9 +173,21 @@
     const service = form.service.value;
     const message = form.message.value;
 
-    const subject = encodeURIComponent(`Proyecto de ${name}${service ? ' — ' + service : ''}`);
-    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nServicio: ${service}\n\n${message}`);
-    const mailto = `mailto:hola@masalastudios.pro?subject=${subject}&body=${body}`;
+    // Smart routing by service type
+    const routingMap = {
+      'corporativo': 'booking@masalastudios.pro',
+      'publicidad': 'booking@masalastudios.pro',
+      'cinematografico': 'booking@masalastudios.pro',
+      'fotografia': 'booking@masalastudios.pro',
+      'postproduccion': 'studio@masalastudios.pro',
+      'directo': 'booking@masalastudios.pro',
+      'otro': 'info@masalastudios.pro',
+      '': 'info@masalastudios.pro'
+    };
+    const toAddress = routingMap[service] || 'info@masalastudios.pro';
+    const subject = encodeURIComponent(`[Web] Proyecto de ${name}${service ? ' — ' + service : ''}`);
+    const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\nServicio: ${service}\n\n${message}\n\n---\nEnviado desde masalastudios.pro`);
+    const mailto = `mailto:${toAddress}?cc=info@masalastudios.pro&subject=${subject}&body=${body}`;
 
     btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> <span>¡Enviando...</span>`;
     btn.disabled = true;
