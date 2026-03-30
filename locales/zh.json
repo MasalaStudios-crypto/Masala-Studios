@@ -20,10 +20,10 @@
     "btn2": "作品集",
     "stat1num": "6+",
     "stat1label": "国际奖项",
-    "stat2num": "5",
-    "stat2label": "发行国家",
+    "stat2num": "11+",
+    "stat2label": "客户和制作公司",
     "stat3num": "2022",
-    "stat3label": "成立年份"
+    "stat3label": "创立于"
   },
   "problems": {
     "p1title": "您的品牌值得更好的内容",
@@ -36,7 +36,7 @@
   "awards": {
     "eyebrow": "荣誉",
     "heading": "国际奖项",
-    "sub": "Masala Studios相关项目在印度、英国、法国、美国等电影节获奖。",
+    "sub": "El cortometraje Viles (2023), en el que Juan Ospina participó como 1er asistente de cámara, fue reconocido en 6 festivales de cine en India, Reino Unido, Francia y Estados Unidos durante 2024.",
     "a1type": "荣誉提名",
     "a1festival": "Thilsri国际电影节",
     "a1country": "印度 · 2024",
@@ -84,8 +84,8 @@
     "opt3": "电影项目",
     "opt4": "专业摄影",
     "opt5": "后期制作",
-    "opt6": "直播",
-    "opt7": "其他"
+    "opt6": "现场技术 / LED",
+    "opt7": "国际联合制作"
   },
   "footer": {
     "tagline": "无界艺术。留下印记的内容创作。",
@@ -100,7 +100,7 @@
     "f2": "电影制作",
     "f3": "摄影",
     "f4": "后期制作",
-    "f5": "直播",
+    "f5": "现场技术 & LED",
     "c1": "作品集",
     "c2": "奖项",
     "c3": "关于我们",
@@ -128,8 +128,8 @@
     "s3desc": "Fotografía corporativa, de producto, eventos y retratos. Imágenes que comunican antes de leer una sola palabra.",
     "s4title": "Postproducción",
     "s4desc": "Edición de vídeo, corrección de color, motion graphics, mezcla de sonido y VFX.",
-    "s5title": "Transmisiones en Directo",
-    "s5desc": "Operación de cámara y producción técnica para eventos deportivos, culturales y corporativos en vivo.",
+    "s5title": "现场技术 & LED",
+    "s5desc": "摄影机操作、灯光设计、LED/视频墙技术员以及节日、演唱会、剧场和企业活动的舞台管理。",
     "s6title": "Co-producción Internacional",
     "s6desc": "Conexión Spain–Colombia e India. Proyectos con alcance global aprovechando acuerdos de co-producción."
   },
@@ -157,22 +157,23 @@
     "m1year": "2022",
     "m1text": "Fundación y primeros proyectos corporativos",
     "m2year": "2022–23",
-    "m2text": "Incubación en GO2Work — Escuela de Organización Industrial, Málaga",
+    "m2text": "Técnico AV en PTA Málaga · Festival U22 · Letto Studio",
     "m3year": "2023",
-    "m3text": "Programa Acelera Startups — Andalucía (NextGenerationEU)",
+    "m3text": "Fundación · Incubación GO2Work — EOI, Málaga",
     "m4year": "2024",
-    "m4text": "6 premios internacionales en India, UK, Francia y EE.UU.",
-    "m5year": "2025",
-    "m5text": "Expansión Colombia–España · Co-producción internacional",
+    "m4text": "Programa Acelera Startups — Andalucía · NextGenerationEU",
+    "m5year": "2024–25",
+    "m5text": "6 premios internacionales · Gira Yllana · Starlite · JC Reyes Valencia",
     "founderName": "Juan Ospina",
-    "founderTitle": "Fundador & Director de Desarrollo",
-    "founderBio": "Técnico Superior en Realización Audiovisual, operador de cámara, editor y productor con experiencia en festivales de música, eventos y proyectos cinematográficos en toda España.",
+    "founderTitle": "Fundador · Director de Desarrollo · Investigador IA Aplicada",
+    "founderBio": "Técnico Superior en Realización Audiovisual y de Espectáculos. Más de 6 años operando como cámara, diseñador de luz, técnico LED/videowall, backliner y director de producción en festivales, broadcast, teatro y cine en toda España.",
     "c1": "iFP L'Hospitalet — Grado Superior Realización AV",
     "c2": "Incubado GO2Work — Escuela de Organización Industrial",
     "c3": "Acelera Startups — Andalucía · NextGenerationEU",
-    "c4": "Presente en IMDb como productor verificado"
+    "c4": "Presente en IMDb como productor verificado",
+    "expTitle": "现场 & 制作经验"
   },
   "trust": {
-    "label": "Hemos trabajado con"
+    "label": "信任我们的客户"
   }
 }
