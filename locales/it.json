@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Masala Studios — Produzione Audiovisiva · Cartagena & Spagna",
-    "description": "High-impact audiovisual production: corporate video, film, photography, post-production, lighting design and live event technics. Masala Group S.A.S · hola@masalastudios.pro"
+    "description": "Produzione audiovisiva ad alto impatto: video aziendale, cinema, fotografia, post-produzione, lighting design e tecnica per eventi dal vivo. Masala Group S.A.S · hola@masalastudios.pro"
   },
   "nav": {
     "services": "Servizi",
@@ -26,12 +26,12 @@
     "stat3label": "Fondata"
   },
   "problems": {
-    "p1title": "Your brand deserves more than a generic video",
-    "p1desc": "We craft visual narratives that communicate who you truly are — not just what you do.",
-    "p2title": "Flexible in format, rigorous in quality",
-    "p2desc": "Corporate, film, broadcast, live events or LED. We adapt crew and process to every project.",
-    "p3title": "On-time delivery, no surprises",
-    "p3desc": "Agile management from pre-production to final delivery. Your time is part of the budget."
+    "p1title": "Il tuo brand merita più di un video generico",
+    "p1desc": "Creiamo narrazioni visive che comunicano chi sei davvero — non solo cosa fai.",
+    "p2title": "Flessibili nel formato, rigorosi nella qualità",
+    "p2desc": "Corporate, cinema, broadcast, eventi dal vivo o LED. Adattiamo team e processo a ogni progetto.",
+    "p3title": "Consegna puntuale, nessuna sorpresa",
+    "p3desc": "Gestione agile dalla pre-produzione alla consegna finale. Il tuo tempo è parte del budget."
   },
   "services": {
     "eyebrow": "Cosa facciamo",
@@ -139,12 +139,12 @@
     "exp6badge": "Mostra Immersiva",
     "exp7badge": "Sport · TV",
     "exp8badge": "Festival Musicali",
-    "exp9badge": "E-Sports · Live",
+    "exp9badge": "E-Sports · Dal vivo",
     "exp10badge": "Finzione · Documentario",
     "exp1title": "Lighting Designer — <em>Repoblar el alma en tiempos de mascarilla</em>",
     "exp2title": "Backliner — <em>Salta Conmigo</em>",
     "exp3title": "Tecnico AV — JC Reyes · Arena di Valencia",
-    "exp4title": "Stagehand — Starlite Occident Music Festival",
+    "exp4title": "Macchinista — Starlite Occident Music Festival",
     "exp5title": "Camera — Operazione Santiago-Rusadir · LaSexta",
     "exp6title": "Tecnico LED — Mundo Pixar · IFEMA Madrid",
     "exp7title": "Operatore Camera — RFEF · Coppa del Re",
@@ -180,13 +180,13 @@
     "heading": "Hai un progetto?",
     "sub": "Raccontaci di cosa hai bisogno. Rispondiamo entro 24 ore.",
     "general": "General contact",
-    "booking": "Productions & bookings",
-    "press": "Press & media",
+    "booking": "Produzioni & prenotazioni",
+    "press": "Stampa & media",
     "linkedin": "LinkedIn",
     "dirTitle": "Contact directory",
     "dir1": "Web inquiries",
     "dir2": "Billing",
-    "dir3": "Contracts / NDAs",
+    "dir3": "Contratti / NDA",
     "dir4": "Studio operations",
     "fname": "Nome",
     "femail": "Email",
